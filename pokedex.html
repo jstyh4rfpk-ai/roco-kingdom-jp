@@ -24,20 +24,14 @@ body {
     "Hiragino Kaku Gothic ProN",
     "Yu Gothic",
     sans-serif;
-
   color: #17324d;
   background: #f1f8fd;
 }
 
-/* ヘッダー */
-
 header {
-  padding: 24px 16px;
+  padding: 25px 16px;
   text-align: center;
-
-  background:
-    linear-gradient(135deg,#50b7f0,#79d4ff);
-
+  background: linear-gradient(135deg,#50b7f0,#79d4ff);
   color: white;
 }
 
@@ -51,40 +45,26 @@ header p {
   font-size: 13px;
 }
 
-/* トップへ戻る */
-
 .back {
   display: block;
   padding: 13px 18px;
-
   background: white;
-
   color: #1677d2;
   text-decoration: none;
-  font-weight: 700;
-
+  font-weight: 800;
   border-bottom: 1px solid #dceaf4;
 }
-
-/* メイン */
 
 main {
   width: min(950px, calc(100% - 24px));
   margin: 20px auto 50px;
 }
 
-/* 説明 */
-
 .info {
   padding: 18px;
-
   background: white;
-
   border-radius: 18px;
-
-  box-shadow:
-    0 5px 20px rgba(30,90,130,.08);
-
+  box-shadow: 0 5px 20px rgba(30,90,130,.08);
   margin-bottom: 18px;
 }
 
@@ -99,266 +79,172 @@ main {
   color: #657f94;
 }
 
-/* 検索 */
-
 .search-box {
   margin-bottom: 14px;
 }
 
 .search-box input {
-
   width: 100%;
-
   padding: 15px;
-
   border-radius: 13px;
-
   border: 1px solid #cbdfea;
-
   font-size: 16px;
-
   background: white;
 }
 
-/* 属性 */
-
 .type-section {
-
   padding: 16px;
-
   background: white;
-
   border-radius: 17px;
-
   margin-bottom: 18px;
-
-  box-shadow:
-    0 4px 16px rgba(30,90,130,.07);
+  box-shadow: 0 4px 16px rgba(30,90,130,.07);
 }
 
 .type-title {
-
   font-weight: 800;
-
   margin-bottom: 10px;
 }
 
 .types {
-
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 7px;
 }
 
 .type-btn {
-
   border: 0;
-
   padding: 8px 12px;
-
   border-radius: 999px;
-
   background: #edf5fa;
-
   color: #29475f;
-
   font-weight: 700;
-
   cursor: pointer;
 }
 
 .type-btn.active {
-
   background: #1689e8;
-
   color: white;
 }
 
-/* 件数 */
-
 .result-count {
-
   margin: 15px 3px;
-
   font-size: 14px;
-
   color: #647c90;
-
   font-weight: 700;
 }
 
-/* キャラ一覧 */
-
 .pokedex {
-
   display: grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
+  grid-template-columns: repeat(2,1fr);
   gap: 10px;
 }
 
 /* キャラカード */
 
 .character {
-
+  display: block;
   background: white;
-
   border-radius: 16px;
-
   overflow: hidden;
-
-  border:
-    1px solid #dceaf3;
-
-  box-shadow:
-    0 4px 14px rgba(30,90,130,.07);
-
-  cursor: pointer;
+  border: 1px solid #dceaf3;
+  box-shadow: 0 4px 14px rgba(30,90,130,.07);
+  text-decoration: none;
+  color: inherit;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
 
-/* 仮画像部分 */
+a.character:active {
+  transform: scale(.97);
+}
+
+a.character:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(30,90,130,.13);
+}
 
 .character-image {
-
+  position: relative;
   height: 125px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
-  background:
-    linear-gradient(
-      180deg,
-      #f5fbff,
-      #e9f6ff
-    );
-
+  background: linear-gradient(180deg,#f5fbff,#e9f6ff);
   font-size: 54px;
 }
 
-/* 情報 */
+.detail-badge {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(22,137,232,.92);
+  color: white;
+  font-size: 9px;
+  font-weight: 800;
+}
 
 .character-info {
-
   padding: 11px;
 }
 
 .number {
-
   color: #7d94a6;
-
   font-size: 11px;
-
   font-weight: 700;
 }
 
 .character-name {
-
   margin-top: 2px;
-
   font-size: 16px;
-
   font-weight: 800;
-
   color: #126fc1;
 }
 
 .chinese-name {
-
   font-size: 11px;
-
   color: #899ba9;
-
   margin-top: 1px;
 }
 
-/* 属性ラベル */
-
 .type {
-
   display: inline-block;
-
   margin-top: 6px;
-
   padding: 3px 9px;
-
   border-radius: 999px;
-
   font-size: 11px;
-
   font-weight: 800;
-
   color: white;
 }
 
-.light {
-  background: #e4ad25;
-}
-
-.grass {
-  background: #58ad55;
-}
-
-.fire {
-  background: #ed6253;
-}
-
-.water {
-  background: #479fe8;
-}
-
-/* ステータス */
+.light { background:#e4ad25; }
+.grass { background:#58ad55; }
+.fire  { background:#ed6253; }
+.water { background:#479fe8; }
 
 .total {
-
   margin-top: 7px;
-
   font-size: 12px;
-
   color: #617a8e;
 }
 
-/* 注意 */
-
 .translation-note {
-
   margin-top: 22px;
-
   padding: 15px;
-
   border-radius: 14px;
-
   background: #fff9e7;
-
   border: 1px solid #efdb96;
-
   font-size: 12px;
-
   color: #66582b;
 }
 
-/* PC */
-
 @media (min-width:700px) {
-
   .pokedex {
-
-    grid-template-columns:
-      repeat(4,1fr);
+    grid-template-columns: repeat(4,1fr);
   }
-
 }
 
-/* スマホ */
-
 @media (max-width:400px) {
-
   .character-image {
     height: 110px;
   }
@@ -366,59 +252,40 @@ main {
   .character-name {
     font-size: 14px;
   }
-
 }
 
 </style>
 </head>
 
-
 <body>
 
 <header>
-
 <h1>🐾 ロコキングダム キャラ図鑑</h1>
-
-<p>
-Roco Kingdom（洛克王国：世界）
-</p>
-
+<p>Roco Kingdom（洛克王国：世界）</p>
 </header>
-
 
 <a class="back" href="index.html">
 ← ロコキングダム速報へ戻る
 </a>
 
-
 <main>
 
-
 <section class="info">
-
 <h2>キャラクター図鑑</h2>
 
 <p>
 中国版で実装されているキャラクター情報を
 日本ユーザー向けに整理しています。
+キャラクターをタップすると詳細情報を確認できます。
 </p>
-
 </section>
 
-
-<!-- 検索 -->
-
 <div class="search-box">
-
 <input
 id="search"
 type="search"
 placeholder="🔍 キャラクター名・中国名・図鑑番号から検索">
-
 </div>
-
-
-<!-- 属性 -->
 
 <section class="type-section">
 
@@ -428,101 +295,55 @@ placeholder="🔍 キャラクター名・中国名・図鑑番号から検索">
 
 <div class="types">
 
-<button class="type-btn active"
-data-type="all">
-すべて
-</button>
-
-<button class="type-btn"
-data-type="normal">⚪ 普通</button>
-
-<button class="type-btn"
-data-type="grass">🌿 草</button>
-
-<button class="type-btn"
-data-type="fire">🔥 火</button>
-
-<button class="type-btn"
-data-type="water">💧 水</button>
-
-<button class="type-btn"
-data-type="light">✨ 光</button>
-
-<button class="type-btn"
-data-type="ground">⛰️ 地</button>
-
-<button class="type-btn"
-data-type="ice">❄️ 氷</button>
-
-<button class="type-btn"
-data-type="dragon">🐉 龍</button>
-
-<button class="type-btn"
-data-type="electric">⚡ 電気</button>
-
-<button class="type-btn"
-data-type="poison">☠️ 毒</button>
-
-<button class="type-btn"
-data-type="bug">🐛 虫</button>
-
-<button class="type-btn"
-data-type="fighting">👊 武</button>
-
-<button class="type-btn"
-data-type="wing">🪽 翼</button>
-
-<button class="type-btn"
-data-type="cute">💕 萌</button>
-
-<button class="type-btn"
-data-type="ghost">👻 幽</button>
-
-<button class="type-btn"
-data-type="dark">😈 悪</button>
-
-<button class="type-btn"
-data-type="machine">⚙️ 機械</button>
-
-<button class="type-btn"
-data-type="illusion">🔮 幻</button>
+<button class="type-btn active" data-type="all">すべて</button>
+<button class="type-btn" data-type="normal">⚪ 普通</button>
+<button class="type-btn" data-type="grass">🌿 草</button>
+<button class="type-btn" data-type="fire">🔥 火</button>
+<button class="type-btn" data-type="water">💧 水</button>
+<button class="type-btn" data-type="light">✨ 光</button>
+<button class="type-btn" data-type="ground">⛰️ 地</button>
+<button class="type-btn" data-type="ice">❄️ 氷</button>
+<button class="type-btn" data-type="dragon">🐉 龍</button>
+<button class="type-btn" data-type="electric">⚡ 電気</button>
+<button class="type-btn" data-type="poison">☠️ 毒</button>
+<button class="type-btn" data-type="bug">🐛 虫</button>
+<button class="type-btn" data-type="fighting">👊 武</button>
+<button class="type-btn" data-type="wing">🪽 翼</button>
+<button class="type-btn" data-type="cute">💕 萌</button>
+<button class="type-btn" data-type="ghost">👻 幽</button>
+<button class="type-btn" data-type="dark">😈 悪</button>
+<button class="type-btn" data-type="machine">⚙️ 機械</button>
+<button class="type-btn" data-type="illusion">🔮 幻</button>
 
 </div>
-
 </section>
 
-
 <div class="result-count">
-
 <span id="count">10</span>
 キャラクター表示中
-
 </div>
 
+<div class="pokedex" id="pokedex">
 
 <!-- =====================
-     キャラ一覧
+     NO.001 ディモ
+     詳細ページ対応済み
 ===================== -->
 
-<div class="pokedex"
-id="pokedex">
-
-
-<!-- 001 -->
-
-<div class="character"
-data-name="ディモ 迪莫 dimo"
+<a
+class="character"
+href="character-001.html"
+data-name="001 ディモ 迪莫 dimo"
 data-type="light">
 
 <div class="character-image">
 ✨
+<span class="detail-badge">詳細を見る ›</span>
 </div>
 
 <div class="character-info">
 
-<div class="number">
-NO.001
-</div>
+<div class="number">NO.001</div>
 
 <div class="character-name">
 ディモ（仮）
@@ -541,24 +362,21 @@ NO.001
 </div>
 
 </div>
-</div>
+</a>
 
 
-<!-- 002 -->
+<!-- NO.002 -->
 
-<div class="character"
-data-name="ニャーニャー 喵喵"
+<div
+class="character"
+data-name="002 ニャーニャー 喵喵 miaomiao"
 data-type="grass">
 
-<div class="character-image">
-🌿
-</div>
+<div class="character-image">🌿</div>
 
 <div class="character-info">
 
-<div class="number">
-NO.002
-</div>
+<div class="number">NO.002</div>
 
 <div class="character-name">
 ニャーニャー（仮）
@@ -568,9 +386,7 @@ NO.002
 中国名：喵喵
 </div>
 
-<span class="type grass">
-草
-</span>
+<span class="type grass">草</span>
 
 <div class="total">
 種族値合計：370
@@ -580,21 +396,18 @@ NO.002
 </div>
 
 
-<!-- 003 -->
+<!-- NO.003 -->
 
-<div class="character"
-data-name="ニャーウ 喵呜"
+<div
+class="character"
+data-name="003 ニャーウ 喵呜 miaowu"
 data-type="grass">
 
-<div class="character-image">
-🌱
-</div>
+<div class="character-image">🌱</div>
 
 <div class="character-info">
 
-<div class="number">
-NO.003
-</div>
+<div class="number">NO.003</div>
 
 <div class="character-name">
 ニャーウ（仮）
@@ -604,9 +417,7 @@ NO.003
 中国名：喵呜
 </div>
 
-<span class="type grass">
-草
-</span>
+<span class="type grass">草</span>
 
 <div class="total">
 種族値合計：490
@@ -616,21 +427,18 @@ NO.003
 </div>
 
 
-<!-- 004 -->
+<!-- NO.004 -->
 
-<div class="character"
-data-name="マジックキャット 魔力猫"
+<div
+class="character"
+data-name="004 魔力猫 magical cat 魔力猫"
 data-type="grass">
 
-<div class="character-image">
-🍃
-</div>
+<div class="character-image">🍃</div>
 
 <div class="character-info">
 
-<div class="number">
-NO.004
-</div>
+<div class="number">NO.004</div>
 
 <div class="character-name">
 魔力猫（仮）
@@ -640,9 +448,7 @@ NO.004
 中国名：魔力猫
 </div>
 
-<span class="type grass">
-草
-</span>
+<span class="type grass">草</span>
 
 <div class="total">
 種族値合計：556
@@ -652,21 +458,18 @@ NO.004
 </div>
 
 
-<!-- 005 -->
+<!-- NO.005 -->
 
-<div class="character"
-data-name="火花 huohua"
+<div
+class="character"
+data-name="005 火花 huohua sparka"
 data-type="fire">
 
-<div class="character-image">
-🔥
-</div>
+<div class="character-image">🔥</div>
 
 <div class="character-info">
 
-<div class="number">
-NO.005
-</div>
+<div class="number">NO.005</div>
 
 <div class="character-name">
 火花（仮）
@@ -676,9 +479,7 @@ NO.005
 中国名：火花
 </div>
 
-<span class="type fire">
-火
-</span>
+<span class="type fire">火</span>
 
 <div class="total">
 種族値合計：368
@@ -688,21 +489,18 @@ NO.005
 </div>
 
 
-<!-- 006 -->
+<!-- NO.006 -->
 
-<div class="character"
-data-name="焰火 yanhuo"
+<div
+class="character"
+data-name="006 焰火 yanhuo"
 data-type="fire">
 
-<div class="character-image">
-🔥
-</div>
+<div class="character-image">🔥</div>
 
 <div class="character-info">
 
-<div class="number">
-NO.006
-</div>
+<div class="number">NO.006</div>
 
 <div class="character-name">
 焰火（仮）
@@ -712,9 +510,7 @@ NO.006
 中国名：焰火
 </div>
 
-<span class="type fire">
-火
-</span>
+<span class="type fire">火</span>
 
 <div class="total">
 種族値合計：480
@@ -724,21 +520,18 @@ NO.006
 </div>
 
 
-<!-- 007 -->
+<!-- NO.007 -->
 
-<div class="character"
-data-name="火神 huoshen"
+<div
+class="character"
+data-name="007 火神 huoshen pyreon"
 data-type="fire">
 
-<div class="character-image">
-🔥
-</div>
+<div class="character-image">🔥</div>
 
 <div class="character-info">
 
-<div class="number">
-NO.007
-</div>
+<div class="number">NO.007</div>
 
 <div class="character-name">
 火神（仮）
@@ -748,9 +541,7 @@ NO.007
 中国名：火神
 </div>
 
-<span class="type fire">
-火
-</span>
+<span class="type fire">火</span>
 
 <div class="total">
 種族値合計：643
@@ -760,21 +551,18 @@ NO.007
 </div>
 
 
-<!-- 008 -->
+<!-- NO.008 -->
 
-<div class="character"
-data-name="水蓝蓝 shuilanlan"
+<div
+class="character"
+data-name="008 水藍藍 水蓝蓝 shuilanlan cerulla"
 data-type="water">
 
-<div class="character-image">
-💧
-</div>
+<div class="character-image">💧</div>
 
 <div class="character-info">
 
-<div class="number">
-NO.008
-</div>
+<div class="number">NO.008</div>
 
 <div class="character-name">
 水藍藍（仮）
@@ -784,9 +572,7 @@ NO.008
 中国名：水蓝蓝
 </div>
 
-<span class="type water">
-水
-</span>
+<span class="type water">水</span>
 
 <div class="total">
 種族値合計：372
@@ -796,21 +582,18 @@ NO.008
 </div>
 
 
-<!-- 009 -->
+<!-- NO.009 -->
 
-<div class="character"
-data-name="波波拉 bobola"
+<div
+class="character"
+data-name="009 ボボラ 波波拉 bobola"
 data-type="water">
 
-<div class="character-image">
-🌊
-</div>
+<div class="character-image">🌊</div>
 
 <div class="character-info">
 
-<div class="number">
-NO.009
-</div>
+<div class="number">NO.009</div>
 
 <div class="character-name">
 ボボラ（仮）
@@ -820,9 +603,7 @@ NO.009
 中国名：波波拉
 </div>
 
-<span class="type water">
-水
-</span>
+<span class="type water">水</span>
 
 <div class="total">
 種族値合計：485
@@ -832,21 +613,18 @@ NO.009
 </div>
 
 
-<!-- 010 -->
+<!-- NO.010 -->
 
-<div class="character"
-data-name="水灵 shuiling"
+<div
+class="character"
+data-name="010 水霊 水灵 shuiling sharlene"
 data-type="water">
 
-<div class="character-image">
-💦
-</div>
+<div class="character-image">💦</div>
 
 <div class="character-info">
 
-<div class="number">
-NO.010
-</div>
+<div class="number">NO.010</div>
 
 <div class="character-name">
 水霊（仮）
@@ -856,9 +634,7 @@ NO.010
 中国名：水灵
 </div>
 
-<span class="type water">
-水
-</span>
+<span class="type water">水</span>
 
 <div class="total">
 種族値合計：604
@@ -867,23 +643,23 @@ NO.010
 </div>
 </div>
 
-
 </div>
 
 
 <div class="translation-note">
 
-<strong>📌 表記について</strong><br>
+<strong>📌 図鑑について</strong><br><br>
 
-日本版で正式名称が確認できていない
-キャラクター名については、
-中国版名称をもとにした仮表記を使用しています。
+現在は中国版「洛克王国：世界」の情報をもとに
+日本語版図鑑を制作しています。<br><br>
 
-日本公式名称が発表された場合は
-順次正式名称へ変更します。
+日本版で正式名称が確認できていない名称については
+仮表記を使用しています。<br><br>
+
+今後、キャラクター画像・詳細性能・技・特性・
+進化・入手方法などを順次追加します。
 
 </div>
-
 
 </main>
 
@@ -903,7 +679,6 @@ const count =
 document.getElementById("count");
 
 let selectedType = "all";
-
 
 function filterCharacters() {
 
@@ -945,15 +720,12 @@ function filterCharacters() {
   });
 
   count.textContent = visible;
-
 }
-
 
 search.addEventListener(
   "input",
   filterCharacters
 );
-
 
 buttons.forEach(button => {
 
@@ -978,7 +750,6 @@ buttons.forEach(button => {
 });
 
 </script>
-
 
 </body>
 </html>
