@@ -130,7 +130,7 @@
     .comment-head {
       font-size: 14px;
       margin-bottom: 10px;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     .comment-number {
@@ -142,13 +142,15 @@
       text-decoration-style: dotted;
     }
 
-    .comment-number:active {
-      opacity: .6;
-    }
-
     .comment-name {
       color: #278843;
       font-weight: 700;
+    }
+
+    .poster-id {
+      color: #8257c7;
+      font-weight: 700;
+      margin-left: 7px;
     }
 
     .comment-date {
@@ -259,10 +261,7 @@
       読み込み中...
     </h2>
 
-    <div
-      class="topic-meta"
-      id="topic-meta"
-    ></div>
+    <div class="topic-meta" id="topic-meta"></div>
 
     <div
       class="topic-description"
@@ -273,10 +272,7 @@
   <section class="panel">
     <h2>💬 コメント</h2>
 
-    <p
-      class="status"
-      id="comment-status"
-    >
+    <p class="status" id="comment-status">
       読み込み中...
     </p>
 
@@ -288,7 +284,8 @@
 
     <div class="reply-hint">
       コメント番号をタップすると、
-      「&gt;&gt;番号」が自動で入力されます。
+      「&gt;&gt;番号」が自動で入力されます。<br>
+      投稿者IDは同じブラウザでは基本同じになります。
     </div>
 
     <input
@@ -308,10 +305,7 @@
       コメントを投稿
     </button>
 
-    <p
-      class="status"
-      id="post-message"
-    ></p>
+    <p class="status" id="post-message"></p>
   </section>
 
 </main>
@@ -364,8 +358,38 @@
     );
   }
 
-  function formatCommentBody(value) {
+  function generatePosterId() {
+    const chars =
+      "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 
+    let result = "";
+
+    for (let i = 0; i < 6; i++) {
+      result += chars[
+        Math.floor(Math.random() * chars.length)
+      ];
+    }
+
+    return result;
+  }
+
+  function getPosterId() {
+    let id =
+      localStorage.getItem("roco_poster_id");
+
+    if (!id) {
+      id = generatePosterId();
+
+      localStorage.setItem(
+        "roco_poster_id",
+        id
+      );
+    }
+
+    return id;
+  }
+
+  function formatCommentBody(value) {
     const safe =
       escapeHTML(value);
 
@@ -378,7 +402,6 @@
   }
 
   function replyToComment(number) {
-
     const textarea =
       document.getElementById("comment-body");
 
@@ -386,18 +409,14 @@
       `>>${number}`;
 
     if (textarea.value.trim()) {
-
       textarea.value =
         textarea.value.trimEnd()
         + "\n"
         + reply
         + "\n";
-
     } else {
-
       textarea.value =
         reply + "\n";
-
     }
 
     document
@@ -409,6 +428,7 @@
 
     setTimeout(() => {
       textarea.focus();
+
       textarea.setSelectionRange(
         textarea.value.length,
         textarea.value.length
@@ -417,7 +437,6 @@
   }
 
   function jumpToComment(number) {
-
     const target =
       document.getElementById(
         `comment-${number}`
@@ -440,7 +459,6 @@
   }
 
   async function checkAdmin() {
-
     const {
       data: { session }
     } = await client.auth.getSession();
@@ -450,9 +468,7 @@
   }
 
   async function loadTopic() {
-
     if (!topicId) {
-
       document
         .getElementById("topic-title")
         .textContent =
@@ -469,7 +485,6 @@
         .single();
 
     if (error) {
-
       document
         .getElementById("topic-title")
         .textContent =
@@ -497,7 +512,6 @@
   }
 
   async function loadComments() {
-
     const status =
       document.getElementById(
         "comment-status"
@@ -516,7 +530,6 @@
         });
 
     if (error) {
-
       status.textContent =
         "コメントを読み込めませんでした。";
 
@@ -525,7 +538,6 @@
     }
 
     if (!data.length) {
-
       status.textContent =
         "まだコメントはありません。";
 
@@ -561,6 +573,15 @@
               ? "comment-body deleted"
               : "comment-body";
 
+          const posterId =
+            comment.poster_id
+              ? `
+                <span class="poster-id">
+                  ID:${escapeHTML(comment.poster_id)}
+                </span>
+              `
+              : "";
+
           return `
             <div
               class="comment"
@@ -582,6 +603,8 @@
                     comment.name || "名無しさん"
                   )}
                 </span>
+
+                ${posterId}
 
                 <span class="comment-date">
                   ${formatDate(
@@ -626,7 +649,6 @@
             .getElementById("post-message");
 
         if (!body) {
-
           message.textContent =
             "コメントを入力してください。";
 
@@ -634,7 +656,6 @@
         }
 
         if (!currentTopic) {
-
           message.textContent =
             "トピックを読み込めていません。";
 
@@ -642,7 +663,6 @@
         }
 
         if (!currentTopic.is_open) {
-
           message.textContent =
             "このトピックはコメント受付を終了しています。";
 
@@ -652,17 +672,20 @@
         message.textContent =
           "投稿しています...";
 
+        const posterId =
+          getPosterId();
+
         const { error } =
           await client
             .from("comments")
             .insert({
               topic_id: topicId,
               name: name || "名無しさん",
-              body
+              body,
+              poster_id: posterId
             });
 
         if (error) {
-
           message.textContent =
             "投稿できませんでした。";
 
@@ -682,7 +705,6 @@
     );
 
   async function deleteComment(id) {
-
     if (!isAdmin) {
       return;
     }
@@ -707,7 +729,6 @@
         .eq("id", id);
 
     if (error) {
-
       alert(
         "削除できませんでした。"
       );
@@ -720,7 +741,6 @@
   }
 
   async function start() {
-
     await checkAdmin();
     await loadTopic();
     await loadComments();
