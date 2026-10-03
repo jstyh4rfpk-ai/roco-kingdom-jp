@@ -14,46 +14,82 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #eef8ff;
+      background:
+        linear-gradient(rgba(235,248,255,.88), rgba(235,248,255,.94)),
+        url("IMG_0596.png") center top / cover fixed;
       color: #17324d;
     }
 
     header {
-      padding: 25px 18px;
+      padding: 55px 20px 45px;
       text-align: center;
       color: white;
-      background: linear-gradient(135deg,#43a9ff,#73cbff);
+
+      background:
+        linear-gradient(
+          rgba(40,110,180,.28),
+          rgba(40,110,180,.28)
+        ),
+        url("52F37108-E234-43A0-BEB0-D8DD6C52AEA7.png")
+        center center / cover no-repeat;
+
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
     }
 
     header h1 {
       margin: 0;
-      font-size: 27px;
+      font-size: clamp(34px,9vw,58px);
+      line-height: 1.2;
+      text-shadow: 0 2px 8px rgba(0,0,0,.20);
+    }
+
+    header p {
+      margin: 14px 0 0;
+      font-size: 17px;
+      font-weight: 600;
+      text-shadow: 0 2px 8px rgba(0,0,0,.20);
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.55);
+      color: white;
     }
 
     main {
       width: min(900px, calc(100% - 24px));
-      margin: 22px auto 50px;
+      margin: 24px auto 50px;
     }
 
     .back {
       display: inline-block;
-      margin-bottom: 16px;
+      margin: 4px 0 18px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.92);
       color: #1478c9;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
+      box-shadow: 0 4px 15px rgba(0,0,0,.06);
     }
 
     .panel {
-      background: white;
-      padding: 20px;
-      margin-bottom: 18px;
-      border-radius: 18px;
-      box-shadow: 0 6px 22px rgba(0,0,0,.07);
+      background: rgba(255,255,255,.95);
+      padding: 22px;
+      margin-bottom: 20px;
+      border-radius: 24px;
+      box-shadow: 0 8px 28px rgba(40,100,150,.10);
+      border: 1px solid rgba(150,200,230,.25);
     }
 
     .topic-title {
       margin: 0 0 10px;
-      font-size: 25px;
+      font-size: 27px;
+      line-height: 1.45;
     }
 
     .topic-meta {
@@ -63,11 +99,12 @@
 
     .topic-description {
       margin-top: 14px;
-      line-height: 1.7;
+      line-height: 1.75;
+      font-size: 16px;
     }
 
     .comment {
-      padding: 16px 4px;
+      padding: 18px 4px;
       border-bottom: 1px solid #dce7ef;
     }
 
@@ -77,7 +114,8 @@
 
     .comment-head {
       font-size: 14px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      line-height: 1.6;
     }
 
     .comment-number {
@@ -88,7 +126,7 @@
 
     .comment-name {
       color: #278843;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .comment-date {
@@ -98,9 +136,10 @@
 
     .comment-body {
       white-space: pre-wrap;
-      line-height: 1.7;
+      line-height: 1.8;
       font-size: 16px;
       overflow-wrap: anywhere;
+      padding: 10px 0;
     }
 
     .deleted {
@@ -117,31 +156,32 @@
 
     input,
     textarea {
-      border: 1px solid #cbd8e4;
-      border-radius: 11px;
-      padding: 13px;
+      border: 1px solid #c9dcea;
+      border-radius: 14px;
+      padding: 14px;
       margin: 7px 0;
+      background: rgba(255,255,255,.95);
     }
 
     textarea {
-      min-height: 120px;
+      min-height: 130px;
       resize: vertical;
     }
 
     button {
       border: 0;
-      border-radius: 11px;
-      padding: 13px;
-      margin-top: 8px;
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 9px;
       color: white;
-      background: #2398ed;
-      font-weight: 700;
+      background: linear-gradient(135deg,#43a9ff,#2398ed);
+      font-weight: 800;
       cursor: pointer;
     }
 
     .delete-button {
       width: auto;
-      padding: 7px 12px;
+      padding: 8px 13px;
       margin-top: 10px;
       background: #df5353;
       font-size: 13px;
@@ -158,11 +198,22 @@
 
 <header>
   <h1>💬 ロコキングダム掲示板</h1>
+
+  <p>
+    Roco Kingdom（洛克王国：世界）<br>
+    日本向け交流掲示板 🇯🇵
+  </p>
+
+  <div class="badge">
+    非公式ファンサイト
+  </div>
 </header>
 
 <main>
 
-  <a class="back" href="bbs.html">← トピック一覧へ戻る</a>
+  <a class="back" href="bbs.html">
+    ← トピック一覧へ戻る
+  </a>
 
   <section class="panel">
     <h2 class="topic-title" id="topic-title">
@@ -174,7 +225,7 @@
   </section>
 
   <section class="panel">
-    <h2>コメント</h2>
+    <h2>💬 コメント</h2>
 
     <p class="status" id="comment-status">
       読み込み中...
@@ -225,8 +276,11 @@
     SUPABASE_KEY
   );
 
-  const params = new URLSearchParams(location.search);
-  const topicId = Number(params.get("id"));
+  const params =
+    new URLSearchParams(location.search);
+
+  const topicId =
+    Number(params.get("id"));
 
   let isAdmin = false;
   let currentTopic = null;
@@ -254,29 +308,36 @@
   }
 
   async function checkAdmin() {
+
     const {
       data: { session }
     } = await client.auth.getSession();
 
-    isAdmin = session?.user?.id === ADMIN_UID;
+    isAdmin =
+      session?.user?.id === ADMIN_UID;
   }
 
   async function loadTopic() {
+
     if (!topicId) {
       document.getElementById("topic-title")
-        .textContent = "トピックが見つかりません。";
+        .textContent =
+          "トピックが見つかりません。";
       return;
     }
 
-    const { data, error } = await client
-      .from("topics")
-      .select("*")
-      .eq("id", topicId)
-      .single();
+    const { data, error } =
+      await client
+        .from("topics")
+        .select("*")
+        .eq("id", topicId)
+        .single();
 
     if (error) {
       document.getElementById("topic-title")
-        .textContent = "トピックを読み込めませんでした。";
+        .textContent =
+          "トピックを読み込めませんでした。";
+
       console.error(error);
       return;
     }
@@ -291,179 +352,212 @@
         `${data.category || "その他"} ・ ${formatDate(data.created_at)}`;
 
     document.getElementById("topic-description")
-      .textContent = data.description || "";
+      .textContent =
+        data.description || "";
   }
 
   async function loadComments() {
+
     const status =
       document.getElementById("comment-status");
 
-    status.textContent = "読み込み中...";
+    status.textContent =
+      "読み込み中...";
 
-    const { data, error } = await client
-      .from("comments")
-      .select("*")
-      .eq("topic_id", topicId)
-      .order("comment_no", {
-        ascending: true
-      });
+    const { data, error } =
+      await client
+        .from("comments")
+        .select("*")
+        .eq("topic_id", topicId)
+        .order("comment_no", {
+          ascending: true
+        });
 
     if (error) {
       status.textContent =
         "コメントを読み込めませんでした。";
+
       console.error(error);
       return;
     }
 
     if (!data.length) {
+
       status.textContent =
         "まだコメントはありません。";
-      document.getElementById("comments").innerHTML = "";
+
+      document.getElementById("comments")
+        .innerHTML = "";
+
       return;
     }
 
     status.textContent =
       `コメント(${data.length}件)`;
 
-    document.getElementById("comments").innerHTML =
-      data.map(comment => {
+    document.getElementById("comments")
+      .innerHTML =
+        data.map(comment => {
 
-        const deleteButton =
-          isAdmin && !comment.is_deleted
-            ? `
-              <button
-                class="delete-button"
-                onclick="deleteComment(${comment.id})"
-              >
-                管理人：削除
-              </button>
-            `
-            : "";
+          const deleteButton =
+            isAdmin && !comment.is_deleted
+              ? `
+                <button
+                  class="delete-button"
+                  onclick="deleteComment(${comment.id})"
+                >
+                  管理人：削除
+                </button>
+              `
+              : "";
 
-        const bodyClass =
-          comment.is_deleted
-            ? "comment-body deleted"
-            : "comment-body";
+          const bodyClass =
+            comment.is_deleted
+              ? "comment-body deleted"
+              : "comment-body";
 
-        return `
-          <div class="comment">
+          return `
+            <div class="comment">
 
-            <div class="comment-head">
+              <div class="comment-head">
 
-              <span class="comment-number">
-                ${comment.comment_no}:
-              </span>
+                <span class="comment-number">
+                  ${comment.comment_no}:
+                </span>
 
-              <span class="comment-name">
-                ${escapeHTML(comment.name || "名無しさん")}
-              </span>
+                <span class="comment-name">
+                  ${escapeHTML(comment.name || "名無しさん")}
+                </span>
 
-              <span class="comment-date">
-                ${formatDate(comment.created_at)}
-              </span>
+                <span class="comment-date">
+                  ${formatDate(comment.created_at)}
+                </span>
+
+              </div>
+
+              <div class="${bodyClass}">
+                ${escapeHTML(comment.body)}
+              </div>
+
+              ${deleteButton}
 
             </div>
+          `;
 
-            <div class="${bodyClass}">
-              ${escapeHTML(comment.body)}
-            </div>
-
-            ${deleteButton}
-
-          </div>
-        `;
-
-      }).join("");
+        }).join("");
   }
 
   document
     .getElementById("submit-comment")
-    .addEventListener("click", async () => {
+    .addEventListener(
+      "click",
+      async () => {
 
-      const name =
-        document
-          .getElementById("comment-name")
-          .value
-          .trim();
+        const name =
+          document
+            .getElementById("comment-name")
+            .value
+            .trim();
 
-      const body =
+        const body =
+          document
+            .getElementById("comment-body")
+            .value
+            .trim();
+
+        const message =
+          document
+            .getElementById("post-message");
+
+        if (!body) {
+
+          message.textContent =
+            "コメントを入力してください。";
+
+          return;
+        }
+
+        if (!currentTopic) {
+
+          message.textContent =
+            "トピックを読み込めていません。";
+
+          return;
+        }
+
+        if (!currentTopic.is_open) {
+
+          message.textContent =
+            "このトピックはコメント受付を終了しています。";
+
+          return;
+        }
+
+        message.textContent =
+          "投稿しています...";
+
+        const { error } =
+          await client
+            .from("comments")
+            .insert({
+              topic_id: topicId,
+              name:
+                name || "名無しさん",
+              body
+            });
+
+        if (error) {
+
+          message.textContent =
+            "投稿できませんでした。";
+
+          console.error(error);
+          return;
+        }
+
         document
           .getElementById("comment-body")
-          .value
-          .trim();
+          .value = "";
 
-      const message =
-        document.getElementById("post-message");
-
-      if (!body) {
         message.textContent =
-          "コメントを入力してください。";
-        return;
+          "投稿しました！";
+
+        await loadComments();
       }
-
-      if (!currentTopic) {
-        message.textContent =
-          "トピックを読み込めていません。";
-        return;
-      }
-
-      if (!currentTopic.is_open) {
-        message.textContent =
-          "このトピックはコメント受付を終了しています。";
-        return;
-      }
-
-      message.textContent =
-        "投稿しています...";
-
-      const { error } = await client
-        .from("comments")
-        .insert({
-          topic_id: topicId,
-          name: name || "名無しさん",
-          body
-        });
-
-      if (error) {
-        message.textContent =
-          "投稿できませんでした。";
-        console.error(error);
-        return;
-      }
-
-      document.getElementById("comment-body")
-        .value = "";
-
-      message.textContent =
-        "投稿しました！";
-
-      await loadComments();
-    });
+    );
 
   async function deleteComment(id) {
+
     if (!isAdmin) {
       return;
     }
 
-    const ok = confirm(
-      "このコメントを削除済みにしますか？"
-    );
+    const ok =
+      confirm(
+        "このコメントを削除済みにしますか？"
+      );
 
     if (!ok) {
       return;
     }
 
-    const { error } = await client
-      .from("comments")
-      .update({
-        is_deleted: true,
-        name: "削除済み",
-body: "このコメントは削除されました"
-      })
-      .eq("id", id);
+    const { error } =
+      await client
+        .from("comments")
+        .update({
+          is_deleted: true,
+          name: "削除済み",
+          body:
+            "このコメントは削除されました"
+        })
+        .eq("id", id);
 
     if (error) {
-      alert("削除できませんでした。");
+
+      alert(
+        "削除できませんでした。"
+      );
+
       console.error(error);
       return;
     }
