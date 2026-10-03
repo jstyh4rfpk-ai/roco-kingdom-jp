@@ -13,33 +13,36 @@
 
   <link rel="canonical"
         href="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/">
-<!-- SNS・X共有用 -->
-<meta property="og:type" content="website">
-<meta property="og:locale" content="ja_JP">
-<meta property="og:site_name" content="ロコキングダム速報">
-<meta property="og:title" content="ロコキングダム速報｜Roco Kingdom 日本向け情報">
-<meta property="og:description" content="Roco Kingdom（洛克王国：世界）のCBT、Creator Program、事前登録、報酬、公式ニュースなどを日本向けに整理する非公式ファンサイトです。">
-<meta property="og:url" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/">
-<meta property="og:image" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/645A3AFD-40E9-429D-B26E-D2A823C1581D.png">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="1731">
-<meta property="og:image:height" content="909">
-<meta property="og:image:alt" content="ロコキングダム速報">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/645A3AFD-40E9-429D-B26E-D2A823C1581D.png">
-<meta name="twitter:title" content="ロコキングダム速報｜Roco Kingdom 日本向け情報">
-<meta name="twitter:description" content="CBT・Creator Program・事前登録・報酬・公式ニュースなど、Roco Kingdomの情報を日本向けに整理。">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "ロコキングダム速報",
-  "alternateName": "Roco Kingdom JP Guide",
-  "url": "https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/",
-  "inLanguage": "ja"
-}
-</script>
+  <!-- SNS・X共有用 -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="ロコキングダム速報">
+  <meta property="og:title" content="ロコキングダム速報｜Roco Kingdom 日本向け情報">
+  <meta property="og:description" content="Roco Kingdom（洛克王国：世界）のCBT、Creator Program、事前登録、報酬、公式ニュースなどを日本向けに整理する非公式ファンサイトです。">
+  <meta property="og:url" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/">
+  <meta property="og:image" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/645A3AFD-40E9-429D-B26E-D2A823C1581D.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1731">
+  <meta property="og:image:height" content="909">
+  <meta property="og:image:alt" content="ロコキングダム速報">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/645A3AFD-40E9-429D-B26E-D2A823C1581D.png">
+  <meta name="twitter:title" content="ロコキングダム速報｜Roco Kingdom 日本向け情報">
+  <meta name="twitter:description" content="CBT・Creator Program・事前登録・報酬・公式ニュースなど、Roco Kingdomの情報を日本向けに整理。">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "ロコキングダム速報",
+    "alternateName": "Roco Kingdom JP Guide",
+    "url": "https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/",
+    "inLanguage": "ja"
+  }
+  </script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -72,19 +75,23 @@
       color: #1677d2;
     }
 
+    /* =========================
+       ヘッダー
+    ========================= */
+
     header {
-  padding: 55px 20px 45px;
-  text-align: center;
-  background:
-    linear-gradient(
-      rgba(40, 110, 180, 0.28),
-      rgba(40, 110, 180, 0.28)
-    ),
-    url("52F37108-E234-43A0-BEB0-D8DD6C52AEA7.png")
-    center center / cover no-repeat;
-  color: white;
-  box-shadow: 0 4px 20px rgba(0,0,0,.12);
-}
+      padding: 55px 20px 45px;
+      text-align: center;
+      background:
+        linear-gradient(
+          rgba(40, 110, 180, 0.28),
+          rgba(40, 110, 180, 0.28)
+        ),
+        url("52F37108-E234-43A0-BEB0-D8DD6C52AEA7.png")
+        center center / cover no-repeat;
+      color: white;
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
+    }
 
     header h1 {
       margin: 0;
@@ -109,34 +116,150 @@
       font-size: 14px;
     }
 
+    /* =========================
+       上部ナビ
+    ========================= */
+
     nav {
       position: sticky;
       top: 0;
       z-index: 10;
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding: 12px;
-      background: rgba(255,255,255,.94);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      padding: 14px;
+      background: rgba(255,255,255,.96);
       backdrop-filter: blur(12px);
       box-shadow: 0 3px 12px rgba(0,0,0,.08);
     }
 
     nav a {
-      flex: 0 0 auto;
-      text-decoration: none;
-      color: #24425e;
-      background: #edf7ff;
-      padding: 8px 14px;
+      display: block;
+      text-align: center;
+      padding: 12px 10px;
       border-radius: 999px;
-      font-size: 14px;
+      background: #eef8ff;
+      color: #17324d;
+      text-decoration: none;
       font-weight: 700;
+      white-space: normal;
     }
+
+    /* =========================
+       メイン
+    ========================= */
 
     main {
       width: min(920px, calc(100% - 28px));
       margin: 28px auto 60px;
     }
+
+    /* =========================
+       攻略ガイド
+    ========================= */
+
+    .guide-section {
+      margin: 20px 0 26px;
+      padding: 22px;
+      background: rgba(255,255,255,.96);
+      border: 1px solid rgba(126,181,220,.32);
+      border-radius: 22px;
+      box-shadow: 0 8px 28px rgba(34,90,130,.10);
+    }
+
+    .guide-title {
+      margin: 0 0 18px;
+      padding-left: 12px;
+      border-left: 6px solid #38a8ff;
+      font-size: 24px;
+      color: #17324d;
+    }
+
+    .guide-description {
+      margin: -6px 0 18px;
+      color: #60778d;
+      font-size: 14px;
+    }
+
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .guide-item {
+      min-height: 110px;
+      padding: 16px 8px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+
+      text-align: center;
+      text-decoration: none;
+
+      color: #17324d;
+      background:
+        linear-gradient(
+          180deg,
+          #f9fdff,
+          #eaf6ff
+        );
+
+      border: 1px solid #cfe5f5;
+      border-radius: 15px;
+
+      font-weight: 800;
+      line-height: 1.35;
+
+      transition:
+        transform .15s ease,
+        box-shadow .15s ease,
+        border-color .15s ease;
+    }
+
+    a.guide-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(34,90,130,.14);
+      border-color: #75bee9;
+    }
+
+    a.guide-item:active {
+      transform: scale(.97);
+    }
+
+    .guide-icon {
+      font-size: 30px;
+      line-height: 1;
+    }
+
+    .guide-item small {
+      display: block;
+      color: #7890a5;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .guide-item.active {
+      background:
+        linear-gradient(
+          135deg,
+          #e2f5ff,
+          #f8fcff
+        );
+      border: 2px solid #55afe9;
+    }
+
+    .guide-item.preparing {
+      opacity: .72;
+      cursor: default;
+    }
+
+    /* =========================
+       通常カード
+    ========================= */
 
     .card {
       margin: 20px 0;
@@ -221,6 +344,10 @@
       background: #111;
     }
 
+    /* =========================
+       フッター
+    ========================= */
+
     footer {
       padding: 36px 20px 55px;
       text-align: center;
@@ -232,9 +359,40 @@
       color: #28445c;
     }
 
+    /* =========================
+       スマホ
+    ========================= */
+
     @media (max-width: 600px) {
       header {
         padding-top: 42px;
+      }
+
+      .guide-section {
+        padding: 17px 12px;
+        border-radius: 18px;
+      }
+
+      .guide-title {
+        font-size: 21px;
+      }
+
+      .guide-description {
+        font-size: 13px;
+      }
+
+      .guide-grid {
+        gap: 7px;
+      }
+
+      .guide-item {
+        min-height: 100px;
+        padding: 12px 5px;
+        font-size: 13px;
+      }
+
+      .guide-icon {
+        font-size: 27px;
       }
 
       .card {
@@ -246,26 +404,7 @@
         font-size: 21px;
       }
     }
-nav {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 14px;
-  background: #fff;
-  overflow-x: visible;
-}
-
-nav a {
-  display: block;
-  text-align: center;
-  padding: 12px 10px;
-  border-radius: 999px;
-  background: #eef8ff;
-  color: #17324d;
-  text-decoration: none;
-  font-weight: 700;
-  white-space: normal;
-}</style>
+  </style>
 </head>
 
 <body>
@@ -283,6 +422,7 @@ nav a {
   </div>
 </header>
 
+
 <nav>
   <a href="#news">🔴 最新速報</a>
   <a href="#cbt">🎮 CBT</a>
@@ -292,9 +432,100 @@ nav a {
   <a href="bbs.html">💬 掲示板</a>
 </nav>
 
+
 <main>
 
+  <!-- =========================
+       攻略ガイド
+  ========================== -->
+
+  <section class="guide-section">
+
+    <h2 class="guide-title">
+      📘 ロコキングダム攻略ガイド
+    </h2>
+
+    <p class="guide-description">
+      キャラクター・属性・育成など、
+      Roco Kingdomの攻略情報をまとめています。
+    </p>
+
+    <div class="guide-grid">
+
+      <!-- キャラ図鑑 -->
+      <a class="guide-item active" href="pokedex.html">
+        <span class="guide-icon">🐾</span>
+        <span>キャラ図鑑</span>
+        <small>中国版データ対応</small>
+      </a>
+
+      <!-- 属性相性 -->
+      <div class="guide-item preparing">
+        <span class="guide-icon">🔥</span>
+        <span>属性相性</span>
+        <small>準備中</small>
+      </div>
+
+      <!-- おすすめキャラ -->
+      <div class="guide-item preparing">
+        <span class="guide-icon">⭐</span>
+        <span>おすすめキャラ</span>
+        <small>準備中</small>
+      </div>
+
+      <!-- 育成・進化 -->
+      <div class="guide-item preparing">
+        <span class="guide-icon">🌱</span>
+        <span>育成・進化</span>
+        <small>準備中</small>
+      </div>
+
+      <!-- 技一覧 -->
+      <div class="guide-item preparing">
+        <span class="guide-icon">⚔️</span>
+        <span>技一覧</span>
+        <small>準備中</small>
+      </div>
+
+      <!-- アイテム -->
+      <div class="guide-item preparing">
+        <span class="guide-icon">🎒</span>
+        <span>アイテム</span>
+        <small>準備中</small>
+      </div>
+
+      <!-- マップ攻略 -->
+      <div class="guide-item preparing">
+        <span class="guide-icon">🗺️</span>
+        <span>マップ攻略</span>
+        <small>準備中</small>
+      </div>
+
+      <!-- 初心者攻略 -->
+      <div class="guide-item preparing">
+        <span class="guide-icon">🔰</span>
+        <span>初心者攻略</span>
+        <small>準備中</small>
+      </div>
+
+      <!-- 掲示板 -->
+      <a class="guide-item" href="bbs.html">
+        <span class="guide-icon">💬</span>
+        <span>攻略掲示板</span>
+        <small>情報交換</small>
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       最新速報
+  ========================== -->
+
   <section class="card news" id="news">
+
     <h2>🔴 最新速報</h2>
 
     <div class="item">
@@ -316,10 +547,16 @@ nav a {
       <strong>Creator Program情報を追加</strong>
       参加条件・応募方法・特典などを整理しています。
     </div>
+
   </section>
 
 
+  <!-- =========================
+       CBT
+  ========================== -->
+
   <section class="card cbt" id="cbt">
+
     <h2>🎮 CBT・テスト情報</h2>
 
     <p>
@@ -340,10 +577,16 @@ nav a {
       新しい公式情報が確認でき次第、
       内容を追加・更新します。
     </p>
+
   </section>
 
 
+  <!-- =========================
+       Creator Program
+  ========================== -->
+
   <section class="card creator" id="creator">
+
     <h2>🎨 Creator Program</h2>
 
     <p>
@@ -360,10 +603,16 @@ nav a {
       <strong>Creator向け特典</strong>
       公式発表された内容を中心に掲載します。
     </div>
+
   </section>
 
 
+  <!-- =========================
+       限定報酬
+  ========================== -->
+
   <section class="card reward" id="reward">
+
     <h2>🎁 限定報酬・イベント</h2>
 
     <p>
@@ -376,10 +625,16 @@ nav a {
       テスト限定なのか不明なものについては、
       確定情報として扱わず区別して掲載します。
     </div>
+
   </section>
 
 
+  <!-- =========================
+       関連リンク
+  ========================== -->
+
   <section class="card official" id="links">
+
     <h2>🔗 関連リンク</h2>
 
     <p>
@@ -393,10 +648,16 @@ nav a {
       rel="noopener noreferrer">
       𝕏 管理人「ねふ」のXを見る
     </a>
+
   </section>
 
 
+  <!-- =========================
+       このサイトについて
+  ========================== -->
+
   <section class="card">
+
     <h2>📢 このサイトについて</h2>
 
     <p>
@@ -419,6 +680,7 @@ nav a {
       最新・最終的な情報については、
       必ず公式発表をご確認ください。
     </div>
+
   </section>
 
 </main>
