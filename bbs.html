@@ -107,7 +107,7 @@
     }
 
     .topic-meta {
-      margin-top: 7px;
+      margin-top: 8px;
       font-size: 13px;
       color: #6b7f91;
     }
@@ -115,6 +115,11 @@
     .topic-description {
       margin-top: 8px;
       line-height: 1.6;
+    }
+
+    .comment-count {
+      font-weight: 700;
+      color: #1478c9;
     }
 
     .status {
@@ -147,31 +152,57 @@
 
 <main>
 
-  <a class="back" href="index.html">← ロコキングダム速報へ戻る</a>
+  <a class="back" href="index.html">
+    ← ロコキングダム速報へ戻る
+  </a>
 
   <section class="panel">
     <h2>トピック一覧</h2>
-    <p class="status" id="loading">読み込み中...</p>
+
+    <p class="status" id="loading">
+      読み込み中...
+    </p>
+
     <div id="topic-list"></div>
   </section>
 
   <section class="panel" id="login-panel">
     <h2>🔐 管理人ログイン</h2>
+
     <p class="status">
       トピック作成は管理人のみです。
     </p>
 
-    <input id="email" type="email" placeholder="管理人メールアドレス">
-    <input id="password" type="password" placeholder="パスワード">
+    <input
+      id="email"
+      type="email"
+      placeholder="管理人メールアドレス"
+    >
 
-    <button id="login-button">ログイン</button>
+    <input
+      id="password"
+      type="password"
+      placeholder="パスワード"
+    >
 
-    <p class="status" id="login-message"></p>
+    <button id="login-button">
+      ログイン
+    </button>
+
+    <p
+      class="status"
+      id="login-message"
+    ></p>
   </section>
 
-  <section class="panel hidden" id="admin-panel">
+  <section
+    class="panel hidden"
+    id="admin-panel"
+  >
 
-    <span class="admin-badge">管理人モード</span>
+    <span class="admin-badge">
+      管理人モード
+    </span>
 
     <h2>＋ 新しいトピックを作成</h2>
 
@@ -199,11 +230,17 @@
       トピックを作成
     </button>
 
-    <button id="logout-button" class="secondary">
+    <button
+      id="logout-button"
+      class="secondary"
+    >
       管理人ログアウト
     </button>
 
-    <p class="status" id="admin-message"></p>
+    <p
+      class="status"
+      id="admin-message"
+    ></p>
 
   </section>
 
@@ -259,9 +296,13 @@
 
   async function loadTopics() {
 
-    loading.textContent = "読み込み中...";
+    loading.textContent =
+      "読み込み中...";
 
-    const { data, error } = await client
+    const {
+      data: topics,
+      error: topicError
+    } = await client
       .from("topics")
       .select("*")
       .order("is_pinned", {
@@ -271,57 +312,97 @@
         ascending: false
       });
 
-    if (error) {
+    if (topicError) {
       loading.textContent =
         "トピックの読み込みに失敗しました。";
-      console.error(error);
+
+      console.error(topicError);
       return;
     }
 
+    const {
+      data: comments,
+      error: commentError
+    } = await client
+      .from("comments")
+      .select("topic_id");
+
+    if (commentError) {
+      loading.textContent =
+        "コメント件数を読み込めませんでした。";
+
+      console.error(commentError);
+      return;
+    }
+
+    const counts = {};
+
+    comments.forEach(comment => {
+      counts[comment.topic_id] =
+        (counts[comment.topic_id] || 0) + 1;
+    });
+
     loading.textContent = "";
 
-    if (!data.length) {
+    if (!topics.length) {
       topicList.innerHTML =
         "<p>まだトピックはありません。</p>";
       return;
     }
 
-    topicList.innerHTML = data.map(topic => {
+    topicList.innerHTML =
+      topics.map(topic => {
 
-      const pinned =
-        topic.is_pinned ? "📌 " : "";
+        const pinned =
+          topic.is_pinned
+            ? "📌 "
+            : "";
 
-      return `
-        <a
-          class="topic"
-          href="topic.html?id=${topic.id}"
-        >
-          <div class="topic-title">
-            ${pinned}${escapeHTML(topic.title)}
-          </div>
+        const count =
+          counts[topic.id] || 0;
 
-          ${
-            topic.description
-            ? `
-              <div class="topic-description">
-                ${escapeHTML(topic.description)}
-              </div>
-            `
-            : ""
-          }
+        return `
+          <a
+            class="topic"
+            href="topic.html?id=${topic.id}"
+          >
 
-          <div class="topic-meta">
+            <div class="topic-title">
+              ${pinned}${escapeHTML(topic.title)}
+            </div>
+
             ${
-              topic.category
-              ? escapeHTML(topic.category) + " ・ "
-              : ""
+              topic.description
+                ? `
+                  <div class="topic-description">
+                    ${escapeHTML(topic.description)}
+                  </div>
+                `
+                : ""
             }
-            ${formatDate(topic.created_at)}
-          </div>
-        </a>
-      `;
 
-    }).join("");
+            <div class="topic-meta">
+
+              ${
+                topic.category
+                  ? escapeHTML(topic.category) + " ・ "
+                  : ""
+              }
+
+              ${formatDate(topic.created_at)}
+
+              ・
+
+              <span class="comment-count">
+                コメント(${count}件)
+              </span>
+
+            </div>
+
+          </a>
+        `;
+
+      }).join("");
   }
 
   async function updateLoginState() {
@@ -345,106 +426,139 @@
 
   document
     .getElementById("login-button")
-    .addEventListener("click", async () => {
+    .addEventListener(
+      "click",
+      async () => {
 
-      const email =
-        document.getElementById("email").value.trim();
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
 
-      const password =
-        document.getElementById("password").value;
+        const password =
+          document
+            .getElementById("password")
+            .value;
 
-      const message =
-        document.getElementById("login-message");
+        const message =
+          document
+            .getElementById("login-message");
 
-      message.textContent = "ログイン中...";
-
-      const { error } =
-        await client.auth.signInWithPassword({
-          email,
-          password
-        });
-
-      if (error) {
         message.textContent =
-          "ログインできませんでした。";
-        console.error(error);
-        return;
+          "ログイン中...";
+
+        const { error } =
+          await client.auth
+            .signInWithPassword({
+              email,
+              password
+            });
+
+        if (error) {
+
+          message.textContent =
+            "ログインできませんでした。";
+
+          console.error(error);
+          return;
+        }
+
+        message.textContent = "";
+
+        await updateLoginState();
       }
-
-      message.textContent = "";
-
-      await updateLoginState();
-    });
+    );
 
   document
     .getElementById("logout-button")
-    .addEventListener("click", async () => {
+    .addEventListener(
+      "click",
+      async () => {
 
-      await client.auth.signOut();
-      await updateLoginState();
+        await client.auth.signOut();
 
-    });
+        await updateLoginState();
+      }
+    );
 
   document
     .getElementById("create-topic-button")
-    .addEventListener("click", async () => {
+    .addEventListener(
+      "click",
+      async () => {
 
-      const title =
+        const title =
+          document
+            .getElementById("topic-title")
+            .value
+            .trim();
+
+        const category =
+          document
+            .getElementById("topic-category")
+            .value
+            .trim();
+
+        const description =
+          document
+            .getElementById("topic-description")
+            .value
+            .trim();
+
+        const message =
+          document
+            .getElementById("admin-message");
+
+        if (!title) {
+
+          message.textContent =
+            "タイトルを入力してください。";
+
+          return;
+        }
+
+        message.textContent =
+          "作成しています...";
+
+        const { error } =
+          await client
+            .from("topics")
+            .insert({
+              title,
+              category:
+                category || null,
+              description:
+                description || null
+            });
+
+        if (error) {
+
+          message.textContent =
+            "トピックを作成できませんでした。";
+
+          console.error(error);
+          return;
+        }
+
         document
           .getElementById("topic-title")
-          .value
-          .trim();
+          .value = "";
 
-      const category =
         document
           .getElementById("topic-category")
-          .value
-          .trim();
+          .value = "";
 
-      const description =
         document
           .getElementById("topic-description")
-          .value
-          .trim();
+          .value = "";
 
-      const message =
-        document.getElementById("admin-message");
-
-      if (!title) {
         message.textContent =
-          "タイトルを入力してください。";
-        return;
+          "トピックを作成しました！";
+
+        await loadTopics();
       }
-
-      message.textContent =
-        "作成しています...";
-
-      const { error } =
-        await client
-          .from("topics")
-          .insert({
-            title,
-            category: category || null,
-            description: description || null
-          });
-
-      if (error) {
-        message.textContent =
-          "トピックを作成できませんでした。";
-        console.error(error);
-        return;
-      }
-
-      document.getElementById("topic-title").value = "";
-      document.getElementById("topic-category").value = "";
-      document.getElementById("topic-description").value = "";
-
-      message.textContent =
-        "トピックを作成しました！";
-
-      await loadTopics();
-
-    });
+    );
 
   client.auth.onAuthStateChange(() => {
     updateLoginState();
