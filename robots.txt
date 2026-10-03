@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/sitemap.xml
