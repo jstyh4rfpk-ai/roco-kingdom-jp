@@ -615,6 +615,21 @@ const characters = [
     speed: 44
   },
 
+  weaknesses: [
+    "fire",
+    "ice",
+    "poison",
+    "bug",
+    "wing"
+  ],
+
+  resistances: [
+    "water",
+    "light",
+    "ground",
+    "electric"
+  ],
+
   ability: {
     chineseName: "氧循环",
     name: "酸素循環",
@@ -629,7 +644,208 @@ const characters = [
     "Lv.32 → 魔力猫（仮）"
   ],
 
-  skills: [],
+  skills: {
+
+    level: [
+
+      {
+        level: 1,
+        chineseName: "抓挠",
+        name: "ひっかき（仮）",
+        type: "普通",
+        category: "物攻",
+        power: 35,
+        cost: 0,
+        description:
+          "物理ダメージを与え、自身のエネルギーを1回復する。"
+      },
+
+      {
+        level: 1,
+        chineseName: "休息回复",
+        name: "休息回復（仮）",
+        type: "普通",
+        category: "状態",
+        power: null,
+        cost: 2,
+        description:
+          "自身のHPを30％回復する。"
+      },
+
+      {
+        level: 6,
+        chineseName: "棘突",
+        name: "棘突（仮）",
+        type: "草",
+        category: "魔攻",
+        power: 100,
+        cost: 3,
+        description:
+          "敵の精霊に魔法ダメージを与える。"
+      },
+
+      {
+        level: 7,
+        chineseName: "扫尾",
+        name: "テールスイープ（仮）",
+        type: "普通",
+        category: "物攻",
+        power: 90,
+        cost: 2,
+        description:
+          "敵の精霊に物理ダメージを与える。"
+      },
+
+      {
+        level: 8,
+        chineseName: "藤绞",
+        name: "ツタ締め（仮）",
+        type: "草",
+        category: "物攻",
+        power: 80,
+        cost: 4,
+        description:
+          "物理ダメージを与え、自身のエネルギーを5回復する。"
+      },
+
+      {
+        level: 10,
+        chineseName: "防御",
+        name: "防御（仮）",
+        type: "普通",
+        category: "防御",
+        power: null,
+        cost: 1,
+        description:
+          "受けるダメージを70％軽減し、攻撃に対応する。"
+      },
+
+      {
+        level: 12,
+        chineseName: "徒长",
+        name: "徒長（仮）",
+        type: "草",
+        category: "状態",
+        power: null,
+        cost: 2,
+        description:
+          "自身のエネルギーを10回復する。"
+      },
+
+      {
+        level: 17,
+        chineseName: "叶绿光束",
+        name: "葉緑光線（仮）",
+        type: "草",
+        category: "魔攻",
+        power: 120,
+        cost: 4,
+        description:
+          "敵の精霊に魔法ダメージを与える。"
+      },
+
+      {
+        level: 21,
+        chineseName: "酶浓度调整",
+        name: "酵素濃度調整（仮）",
+        type: "草",
+        category: "防御",
+        power: null,
+        cost: 3,
+        description:
+          "受けるダメージを80％軽減する。攻撃に対応した場合、自身のHPを20％回復する。"
+      },
+
+      {
+        level: 29,
+        chineseName: "筛管奔流",
+        name: "師管奔流（仮）",
+        type: "草",
+        category: "物攻",
+        power: 80,
+        cost: 3,
+        description:
+          "物理ダメージを与える。自身のHPが80％を超えている場合、この技の威力が75上昇する。"
+      },
+
+      {
+        level: 30,
+        chineseName: "盛开",
+        name: "開花（仮）",
+        type: "草",
+        category: "状態",
+        power: null,
+        cost: 1,
+        description:
+          "自身の全技の威力を30上昇させる。防御に対応した場合、威力上昇量が60になる。"
+      },
+
+      {
+        level: 36,
+        chineseName: "孢子",
+        name: "胞子（仮）",
+        type: "草",
+        category: "状態",
+        power: null,
+        cost: 3,
+        description:
+          "敵に寄生を3層付与する。"
+      },
+
+      {
+        level: 42,
+        chineseName: "仙人掌刺击",
+        name: "サボテン刺突（仮）",
+        type: "草",
+        category: "物攻",
+        power: 150,
+        cost: 6,
+        description:
+          "敵の精霊に物理ダメージを与える。"
+      },
+
+      {
+        level: 48,
+        chineseName: "丰饶",
+        name: "豊穣（仮）",
+        type: "草",
+        category: "状態",
+        power: null,
+        cost: 3,
+        description:
+          "自身の物攻と魔攻を140％上昇させる。"
+      },
+
+      {
+        level: 49,
+        chineseName: "光合作用",
+        name: "光合成（仮）",
+        type: "草",
+        category: "状態",
+        power: null,
+        cost: 4,
+        description:
+          "自身に光合印記を1層付与する。"
+      },
+
+      {
+        level: 50,
+        chineseName: "光能聚集",
+        name: "光エネルギー集積（仮）",
+        type: "草",
+        category: "魔攻",
+        power: 100,
+        cost: 7,
+        description:
+          "魔法ダメージを与える。他の草属性技を使用するたび、この技の威力が恒久的に60上昇する。"
+      }
+
+    ],
+
+    stone: [],
+    bloodline: []
+
+  },
 
   dataStatus: "confirmed",
   dataVersion: "中国版 S4",
