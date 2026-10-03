@@ -146,10 +146,6 @@
       box-shadow: 0 4px 14px rgba(40,100,150,.05);
     }
 
-    .topic:active {
-      transform: scale(.99);
-    }
-
     .topic-title {
       font-size: 19px;
       font-weight: 800;
@@ -172,9 +168,39 @@
       font-weight: 800;
     }
 
-    .delete-topic-button {
+    .admin-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
       margin-top: 8px;
+    }
+
+    .edit-topic-button {
+      background: #2398ed;
+    }
+
+    .delete-topic-button {
       background: #df5353;
+    }
+
+    .edit-box {
+      margin-top: 10px;
+      padding: 16px;
+      border-radius: 16px;
+      background: #f4faff;
+      border: 1px solid #d5e7f2;
+    }
+
+    .edit-box.hidden {
+      display: none;
+    }
+
+    .save-edit-button {
+      background: #2e9d63;
+    }
+
+    .cancel-edit-button {
+      background: #71869a;
     }
 
     .status {
@@ -233,7 +259,7 @@
     <h2>🔐 管理人ログイン</h2>
 
     <p class="status">
-      トピック作成・削除は管理人のみです。
+      トピック作成・編集・削除は管理人のみです。
     </p>
 
     <input
@@ -429,15 +455,69 @@
         const count =
           counts[topic.id] || 0;
 
-        const deleteButton =
+        const adminButtons =
           isAdmin
             ? `
-              <button
-                class="delete-topic-button"
-                onclick="deleteTopic(${topic.id}, event)"
+              <div class="admin-actions">
+                <button
+                  class="edit-topic-button"
+                  onclick="openEdit(${topic.id}, event)"
+                >
+                  ✏️ 管理人：編集
+                </button>
+
+                <button
+                  class="delete-topic-button"
+                  onclick="deleteTopic(${topic.id}, event)"
+                >
+                  🗑️ 管理人：削除
+                </button>
+              </div>
+
+              <div
+                class="edit-box hidden"
+                id="edit-box-${topic.id}"
               >
-                管理人：トピック削除
-              </button>
+                <input
+                  id="edit-title-${topic.id}"
+                  type="text"
+                  maxlength="100"
+                  value="${escapeHTML(topic.title)}"
+                >
+
+                <input
+                  id="edit-category-${topic.id}"
+                  type="text"
+                  maxlength="40"
+                  value="${escapeHTML(topic.category || "")}"
+                  placeholder="カテゴリ"
+                >
+
+                <textarea
+                  id="edit-description-${topic.id}"
+                  maxlength="500"
+                  placeholder="説明文"
+                >${escapeHTML(topic.description || "")}</textarea>
+
+                <button
+                  class="save-edit-button"
+                  onclick="saveEdit(${topic.id}, event)"
+                >
+                  保存
+                </button>
+
+                <button
+                  class="cancel-edit-button"
+                  onclick="closeEdit(${topic.id}, event)"
+                >
+                  キャンセル
+                </button>
+
+                <p
+                  class="status"
+                  id="edit-message-${topic.id}"
+                ></p>
+              </div>
             `
             : "";
 
@@ -481,12 +561,124 @@
               </div>
             </a>
 
-            ${deleteButton}
+            ${adminButtons}
 
           </div>
         `;
 
       }).join("");
+  }
+
+  function openEdit(id, event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    document
+      .getElementById(`edit-box-${id}`)
+      .classList.remove("hidden");
+  }
+
+  function closeEdit(id, event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    document
+      .getElementById(`edit-box-${id}`)
+      .classList.add("hidden");
+  }
+
+  async function saveEdit(id, event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!isAdmin) {
+      return;
+    }
+
+    const title =
+      document
+        .getElementById(`edit-title-${id}`)
+        .value
+        .trim();
+
+    const category =
+      document
+        .getElementById(`edit-category-${id}`)
+        .value
+        .trim();
+
+    const description =
+      document
+        .getElementById(`edit-description-${id}`)
+        .value
+        .trim();
+
+    const message =
+      document
+        .getElementById(`edit-message-${id}`);
+
+    if (!title) {
+      message.textContent =
+        "タイトルを入力してください。";
+      return;
+    }
+
+    message.textContent =
+      "保存しています...";
+
+    const { error } =
+      await client
+        .from("topics")
+        .update({
+          title,
+          category: category || null,
+          description: description || null
+        })
+        .eq("id", id);
+
+    if (error) {
+      message.textContent =
+        "保存できませんでした。";
+
+      console.error(error);
+      return;
+    }
+
+    await loadTopics();
+  }
+
+  async function deleteTopic(id, event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!isAdmin) {
+      return;
+    }
+
+    const ok = confirm(
+      "このトピックを削除しますか？\n中のコメントもすべて削除されます。"
+    );
+
+    if (!ok) {
+      return;
+    }
+
+    const { error } =
+      await client
+        .from("topics")
+        .delete()
+        .eq("id", id);
+
+    if (error) {
+      alert(
+        "トピックを削除できませんでした。"
+      );
+
+      console.error(error);
+      return;
+    }
+
+    await loadTopics();
   }
 
   async function updateLoginState() {
@@ -613,38 +805,6 @@
 
       await loadTopics();
     });
-
-  async function deleteTopic(id, event) {
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (!isAdmin) {
-      return;
-    }
-
-    const ok = confirm(
-      "このトピックを削除しますか？\n中のコメントもすべて削除されます。"
-    );
-
-    if (!ok) {
-      return;
-    }
-
-    const { error } =
-      await client
-        .from("topics")
-        .delete()
-        .eq("id", id);
-
-    if (error) {
-      alert("トピックを削除できませんでした。");
-      console.error(error);
-      return;
-    }
-
-    await loadTopics();
-  }
 
   client.auth.onAuthStateChange(() => {
     updateLoginState();
