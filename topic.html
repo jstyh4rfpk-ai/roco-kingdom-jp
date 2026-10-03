@@ -11,6 +11,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -21,7 +25,7 @@
     }
 
     header {
-      padding: 55px 20px 45px;
+      padding: 50px 20px 42px;
       text-align: center;
       color: white;
 
@@ -38,21 +42,21 @@
 
     header h1 {
       margin: 0;
-      font-size: clamp(34px,9vw,58px);
+      font-size: clamp(32px,8vw,52px);
       line-height: 1.2;
-      text-shadow: 0 2px 8px rgba(0,0,0,.20);
+      text-shadow: 0 2px 8px rgba(0,0,0,.2);
     }
 
     header p {
-      margin: 14px 0 0;
-      font-size: 17px;
+      margin: 12px 0 0;
+      font-size: 16px;
       font-weight: 600;
-      text-shadow: 0 2px 8px rgba(0,0,0,.20);
+      text-shadow: 0 2px 8px rgba(0,0,0,.2);
     }
 
     .badge {
       display: inline-block;
-      margin-top: 18px;
+      margin-top: 16px;
       padding: 8px 18px;
       border-radius: 999px;
       background: rgba(255,255,255,.22);
@@ -79,17 +83,17 @@
 
     .panel {
       background: rgba(255,255,255,.95);
+      border-radius: 24px;
       padding: 22px;
       margin-bottom: 20px;
-      border-radius: 24px;
       box-shadow: 0 8px 28px rgba(40,100,150,.10);
       border: 1px solid rgba(150,200,230,.25);
     }
 
     .topic-title {
       margin: 0 0 10px;
-      font-size: 27px;
-      line-height: 1.45;
+      font-size: clamp(24px,6vw,34px);
+      line-height: 1.4;
     }
 
     .topic-meta {
@@ -100,16 +104,27 @@
     .topic-description {
       margin-top: 14px;
       line-height: 1.75;
-      font-size: 16px;
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      font-size: 26px;
     }
 
     .comment {
       padding: 18px 4px;
       border-bottom: 1px solid #dce7ef;
+      scroll-margin-top: 20px;
+      transition: background .25s;
     }
 
     .comment:last-child {
       border-bottom: 0;
+    }
+
+    .comment.highlight {
+      background: #e9f7ff;
+      border-radius: 12px;
     }
 
     .comment-head {
@@ -122,11 +137,18 @@
       color: #1478c9;
       font-weight: 800;
       margin-right: 5px;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    .comment-number:active {
+      opacity: .6;
     }
 
     .comment-name {
       color: #278843;
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .comment-date {
@@ -139,12 +161,29 @@
       line-height: 1.8;
       font-size: 16px;
       overflow-wrap: anywhere;
-      padding: 10px 0;
+      padding: 8px 0;
     }
 
     .deleted {
       color: #8a98a5;
       font-style: italic;
+    }
+
+    .reply-link {
+      color: #1478c9;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .reply-hint {
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #eef8ff;
+      color: #527085;
+      font-size: 13px;
+      line-height: 1.6;
     }
 
     input,
@@ -220,22 +259,37 @@
       読み込み中...
     </h2>
 
-    <div class="topic-meta" id="topic-meta"></div>
-    <div class="topic-description" id="topic-description"></div>
+    <div
+      class="topic-meta"
+      id="topic-meta"
+    ></div>
+
+    <div
+      class="topic-description"
+      id="topic-description"
+    ></div>
   </section>
 
   <section class="panel">
     <h2>💬 コメント</h2>
 
-    <p class="status" id="comment-status">
+    <p
+      class="status"
+      id="comment-status"
+    >
       読み込み中...
     </p>
 
     <div id="comments"></div>
   </section>
 
-  <section class="panel">
+  <section class="panel" id="comment-form">
     <h2>✏️ コメントを書く</h2>
+
+    <div class="reply-hint">
+      コメント番号をタップすると、
+      「&gt;&gt;番号」が自動で入力されます。
+    </div>
 
     <input
       id="comment-name"
@@ -254,7 +308,10 @@
       コメントを投稿
     </button>
 
-    <p class="status" id="post-message"></p>
+    <p
+      class="status"
+      id="post-message"
+    ></p>
   </section>
 
 </main>
@@ -307,6 +364,81 @@
     );
   }
 
+  function formatCommentBody(value) {
+
+    const safe =
+      escapeHTML(value);
+
+    return safe.replace(
+      /&gt;&gt;(\d+)/g,
+      '<span class="reply-link" onclick="jumpToComment($1)">'
+      + '&gt;&gt;$1'
+      + '</span>'
+    );
+  }
+
+  function replyToComment(number) {
+
+    const textarea =
+      document.getElementById("comment-body");
+
+    const reply =
+      `>>${number}`;
+
+    if (textarea.value.trim()) {
+
+      textarea.value =
+        textarea.value.trimEnd()
+        + "\n"
+        + reply
+        + "\n";
+
+    } else {
+
+      textarea.value =
+        reply + "\n";
+
+    }
+
+    document
+      .getElementById("comment-form")
+      .scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    setTimeout(() => {
+      textarea.focus();
+      textarea.setSelectionRange(
+        textarea.value.length,
+        textarea.value.length
+      );
+    }, 350);
+  }
+
+  function jumpToComment(number) {
+
+    const target =
+      document.getElementById(
+        `comment-${number}`
+      );
+
+    if (!target) {
+      return;
+    }
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+    target.classList.add("highlight");
+
+    setTimeout(() => {
+      target.classList.remove("highlight");
+    }, 1400);
+  }
+
   async function checkAdmin() {
 
     const {
@@ -320,9 +452,12 @@
   async function loadTopic() {
 
     if (!topicId) {
-      document.getElementById("topic-title")
+
+      document
+        .getElementById("topic-title")
         .textContent =
           "トピックが見つかりません。";
+
       return;
     }
 
@@ -334,7 +469,9 @@
         .single();
 
     if (error) {
-      document.getElementById("topic-title")
+
+      document
+        .getElementById("topic-title")
         .textContent =
           "トピックを読み込めませんでした。";
 
@@ -344,14 +481,17 @@
 
     currentTopic = data;
 
-    document.getElementById("topic-title")
+    document
+      .getElementById("topic-title")
       .textContent = data.title;
 
-    document.getElementById("topic-meta")
+    document
+      .getElementById("topic-meta")
       .textContent =
         `${data.category || "その他"} ・ ${formatDate(data.created_at)}`;
 
-    document.getElementById("topic-description")
+    document
+      .getElementById("topic-description")
       .textContent =
         data.description || "";
   }
@@ -359,7 +499,9 @@
   async function loadComments() {
 
     const status =
-      document.getElementById("comment-status");
+      document.getElementById(
+        "comment-status"
+      );
 
     status.textContent =
       "読み込み中...";
@@ -374,6 +516,7 @@
         });
 
     if (error) {
+
       status.textContent =
         "コメントを読み込めませんでした。";
 
@@ -386,7 +529,8 @@
       status.textContent =
         "まだコメントはありません。";
 
-      document.getElementById("comments")
+      document
+        .getElementById("comments")
         .innerHTML = "";
 
       return;
@@ -395,7 +539,8 @@
     status.textContent =
       `コメント(${data.length}件)`;
 
-    document.getElementById("comments")
+    document
+      .getElementById("comments")
       .innerHTML =
         data.map(comment => {
 
@@ -417,26 +562,37 @@
               : "comment-body";
 
           return `
-            <div class="comment">
+            <div
+              class="comment"
+              id="comment-${comment.comment_no}"
+            >
 
               <div class="comment-head">
 
-                <span class="comment-number">
+                <span
+                  class="comment-number"
+                  onclick="replyToComment(${comment.comment_no})"
+                  title="このコメントに返信"
+                >
                   ${comment.comment_no}:
                 </span>
 
                 <span class="comment-name">
-                  ${escapeHTML(comment.name || "名無しさん")}
+                  ${escapeHTML(
+                    comment.name || "名無しさん"
+                  )}
                 </span>
 
                 <span class="comment-date">
-                  ${formatDate(comment.created_at)}
+                  ${formatDate(
+                    comment.created_at
+                  )}
                 </span>
 
               </div>
 
               <div class="${bodyClass}">
-                ${escapeHTML(comment.body)}
+                ${formatCommentBody(comment.body)}
               </div>
 
               ${deleteButton}
@@ -501,8 +657,7 @@
             .from("comments")
             .insert({
               topic_id: topicId,
-              name:
-                name || "名無しさん",
+              name: name || "名無しさん",
               body
             });
 
@@ -532,10 +687,9 @@
       return;
     }
 
-    const ok =
-      confirm(
-        "このコメントを削除済みにしますか？"
-      );
+    const ok = confirm(
+      "このコメントを削除済みにしますか？"
+    );
 
     if (!ok) {
       return;
@@ -566,6 +720,7 @@
   }
 
   async function start() {
+
     await checkAdmin();
     await loadTopic();
     await loadComments();
