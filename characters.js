@@ -46,6 +46,20 @@ const characters = [
     speed: 92
   },
 
+  /* 属性相性 */
+
+  weaknesses: [
+    "grass",
+    "ghost"
+  ],
+
+  resistances: [
+    "dark",
+    "illusion"
+  ],
+
+  /* 特性 */
+
   ability: {
     chineseName: "最好的伙伴",
     name: "最高のパートナー",
@@ -63,7 +77,139 @@ const characters = [
     "👑 首領形態 → 聖水ディモ（仮）"
   ],
 
-  skills: [],
+  /* 技 */
+
+  skills: {
+
+    /* ==============================
+       レベル習得
+    ============================== */
+
+    level: [
+
+      {
+        level: 1,
+        chineseName: "闪光",
+        name: "閃光（仮）",
+        type: "光",
+        category: "魔攻",
+        power: 60,
+        cost: 1,
+        description:
+          "敵の精霊に魔法ダメージを与える。"
+      },
+
+      {
+        level: 7,
+        chineseName: "魔法增效",
+        name: "魔法強化（仮）",
+        type: "普通",
+        category: "状態",
+        power: null,
+        cost: 0,
+        description:
+          "自身の魔攻を70％上昇させる。"
+      },
+
+      {
+        level: 9,
+        chineseName: "光球",
+        name: "光球（仮）",
+        type: "光",
+        category: "魔攻",
+        power: 80,
+        cost: 2,
+        description:
+          "敵の精霊に魔法ダメージを与える。"
+      },
+
+      {
+        level: 11,
+        chineseName: "火焰箭",
+        name: "火炎の矢（仮）",
+        type: "火",
+        category: "物攻",
+        power: 80,
+        cost: 2,
+        description:
+          "敵の精霊に物理ダメージを与える。"
+      },
+
+      {
+        level: 27,
+        chineseName: "闪光冲击",
+        name: "閃光衝撃（仮）",
+        type: "光",
+        category: "物攻",
+        power: 100,
+        cost: 3,
+        description:
+          "敵の精霊に物理ダメージを与える。"
+      },
+
+      {
+        level: 30,
+        chineseName: "漫反射",
+        name: "拡散反射（仮）",
+        type: "光",
+        category: "状態",
+        power: null,
+        cost: 1,
+        description:
+          "各属性につき最大1つの技の威力を35上昇させる。"
+      },
+
+      {
+        level: 40,
+        chineseName: "放晴",
+        name: "晴天（仮）",
+        type: "光",
+        category: "状態",
+        power: null,
+        cost: 1,
+        description:
+          "光属性技の威力を恒久的に50％上昇させる。防御への対応時は恒久的に100％上昇する。"
+      },
+
+      {
+        level: 42,
+        chineseName: "过曝",
+        name: "過露光（仮）",
+        type: "光",
+        category: "魔攻",
+        power: 60,
+        cost: 3,
+        description:
+          "魔法ダメージを与える。他属性の技を1種類使用するごとに、この技の威力が恒久的に30上昇する。"
+      },
+
+      {
+        level: 48,
+        chineseName: "折射",
+        name: "屈折（仮）",
+        type: "光",
+        category: "魔攻",
+        power: 50,
+        cost: 4,
+        description:
+          "魔法ダメージを与える。装備している他属性の技によって異なる効果を得る。"
+      }
+
+    ],
+
+    /* ==============================
+       技能石
+    ============================== */
+
+    stone: [],
+
+    /* ==============================
+       血脈技
+    ============================== */
+
+    bloodline: []
+
+  },
 
   dataStatus: "confirmed",
   dataVersion: "中国版 S4",
