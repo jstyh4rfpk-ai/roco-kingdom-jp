@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>ロコキングダム掲示板</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #eef8ff;
+      color: #17324d;
+    }
+
+    header {
+      padding: 28px 18px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg,#43a9ff,#73cbff);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 8px 0 0;
+    }
+
+    main {
+      width: min(900px, calc(100% - 24px));
+      margin: 24px auto 50px;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 22px rgba(0,0,0,.07);
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: #1478c9;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    input,
+    textarea,
+    button {
+      width: 100%;
+      font: inherit;
+    }
+
+    input,
+    textarea {
+      padding: 12px;
+      margin: 7px 0;
+      border: 1px solid #cbd8e4;
+      border-radius: 10px;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      background: #2398ed;
+      color: white;
+    }
+
+    .secondary {
+      background: #71869a;
+    }
+
+    .topic {
+      display: block;
+      padding: 16px;
+      margin: 12px 0;
+      border: 1px solid #d8e6f0;
+      border-radius: 14px;
+      background: #f8fcff;
+      color: #17324d;
+      text-decoration: none;
+    }
+
+    .topic-title {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .topic-meta {
+      margin-top: 7px;
+      font-size: 13px;
+      color: #6b7f91;
+    }
+
+    .topic-description {
+      margin-top: 8px;
+      line-height: 1.6;
+    }
+
+    .status {
+      font-size: 14px;
+      color: #63788c;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .admin-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #e8f6ff;
+      color: #1478c9;
+      font-size: 13px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>💬 ロコキングダム掲示板</h1>
+  <p>Roco Kingdom 日本向け交流掲示板</p>
+</header>
+
+<main>
+
+  <a class="back" href="index.html">← ロコキングダム速報へ戻る</a>
+
+  <section class="panel">
+    <h2>トピック一覧</h2>
+    <p class="status" id="loading">読み込み中...</p>
+    <div id="topic-list"></div>
+  </section>
+
+  <section class="panel" id="login-panel">
+    <h2>🔐 管理人ログイン</h2>
+    <p class="status">
+      トピック作成は管理人のみです。
+    </p>
+
+    <input id="email" type="email" placeholder="管理人メールアドレス">
+    <input id="password" type="password" placeholder="パスワード">
+
+    <button id="login-button">ログイン</button>
+
+    <p class="status" id="login-message"></p>
+  </section>
+
+  <section class="panel hidden" id="admin-panel">
+
+    <span class="admin-badge">管理人モード</span>
+
+    <h2>＋ 新しいトピックを作成</h2>
+
+    <input
+      id="topic-title"
+      type="text"
+      maxlength="100"
+      placeholder="トピックタイトル"
+    >
+
+    <input
+      id="topic-category"
+      type="text"
+      maxlength="40"
+      placeholder="カテゴリ（例：CBT）"
+    >
+
+    <textarea
+      id="topic-description"
+      maxlength="500"
+      placeholder="説明文（任意）"
+    ></textarea>
+
+    <button id="create-topic-button">
+      トピックを作成
+    </button>
+
+    <button id="logout-button" class="secondary">
+      管理人ログアウト
+    </button>
+
+    <p class="status" id="admin-message"></p>
+
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const SUPABASE_URL =
+    "https://vjdttnlrkceesmmvbnym.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_smTxr916q6a0_c_-PuOY5w_JDTAxziW";
+
+  const client = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  const topicList =
+    document.getElementById("topic-list");
+
+  const loading =
+    document.getElementById("loading");
+
+  const loginPanel =
+    document.getElementById("login-panel");
+
+  const adminPanel =
+    document.getElementById("admin-panel");
+
+  function escapeHTML(value) {
+    return String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function formatDate(value) {
+    return new Date(value).toLocaleString(
+      "ja-JP",
+      {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      }
+    );
+  }
+
+  async function loadTopics() {
+
+    loading.textContent = "読み込み中...";
+
+    const { data, error } = await client
+      .from("topics")
+      .select("*")
+      .order("is_pinned", {
+        ascending: false
+      })
+      .order("created_at", {
+        ascending: false
+      });
+
+    if (error) {
+      loading.textContent =
+        "トピックの読み込みに失敗しました。";
+      console.error(error);
+      return;
+    }
+
+    loading.textContent = "";
+
+    if (!data.length) {
+      topicList.innerHTML =
+        "<p>まだトピックはありません。</p>";
+      return;
+    }
+
+    topicList.innerHTML = data.map(topic => {
+
+      const pinned =
+        topic.is_pinned ? "📌 " : "";
+
+      return `
+        <a
+          class="topic"
+          href="topic.html?id=${topic.id}"
+        >
+          <div class="topic-title">
+            ${pinned}${escapeHTML(topic.title)}
+          </div>
+
+          ${
+            topic.description
+            ? `
+              <div class="topic-description">
+                ${escapeHTML(topic.description)}
+              </div>
+            `
+            : ""
+          }
+
+          <div class="topic-meta">
+            ${
+              topic.category
+              ? escapeHTML(topic.category) + " ・ "
+              : ""
+            }
+            ${formatDate(topic.created_at)}
+          </div>
+        </a>
+      `;
+
+    }).join("");
+  }
+
+  async function updateLoginState() {
+
+    const {
+      data: { session }
+    } = await client.auth.getSession();
+
+    if (session) {
+
+      loginPanel.classList.add("hidden");
+      adminPanel.classList.remove("hidden");
+
+    } else {
+
+      loginPanel.classList.remove("hidden");
+      adminPanel.classList.add("hidden");
+
+    }
+  }
+
+  document
+    .getElementById("login-button")
+    .addEventListener("click", async () => {
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      const message =
+        document.getElementById("login-message");
+
+      message.textContent = "ログイン中...";
+
+      const { error } =
+        await client.auth.signInWithPassword({
+          email,
+          password
+        });
+
+      if (error) {
+        message.textContent =
+          "ログインできませんでした。";
+        console.error(error);
+        return;
+      }
+
+      message.textContent = "";
+
+      await updateLoginState();
+    });
+
+  document
+    .getElementById("logout-button")
+    .addEventListener("click", async () => {
+
+      await client.auth.signOut();
+      await updateLoginState();
+
+    });
+
+  document
+    .getElementById("create-topic-button")
+    .addEventListener("click", async () => {
+
+      const title =
+        document
+          .getElementById("topic-title")
+          .value
+          .trim();
+
+      const category =
+        document
+          .getElementById("topic-category")
+          .value
+          .trim();
+
+      const description =
+        document
+          .getElementById("topic-description")
+          .value
+          .trim();
+
+      const message =
+        document.getElementById("admin-message");
+
+      if (!title) {
+        message.textContent =
+          "タイトルを入力してください。";
+        return;
+      }
+
+      message.textContent =
+        "作成しています...";
+
+      const { error } =
+        await client
+          .from("topics")
+          .insert({
+            title,
+            category: category || null,
+            description: description || null
+          });
+
+      if (error) {
+        message.textContent =
+          "トピックを作成できませんでした。";
+        console.error(error);
+        return;
+      }
+
+      document.getElementById("topic-title").value = "";
+      document.getElementById("topic-category").value = "";
+      document.getElementById("topic-description").value = "";
+
+      message.textContent =
+        "トピックを作成しました！";
+
+      await loadTopics();
+
+    });
+
+  client.auth.onAuthStateChange(() => {
+    updateLoginState();
+  });
+
+  loadTopics();
+  updateLoginState();
+</script>
+
+</body>
+</html>
