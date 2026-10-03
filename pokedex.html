@@ -1,0 +1,984 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>キャラ図鑑 | ロコキングダム速報</title>
+
+<meta name="description"
+content="Roco Kingdom（洛克王国：世界）のキャラクター図鑑。中国版で実装されているキャラクターの属性・種族値・進化などを日本語で整理しています。">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+
+  color: #17324d;
+  background: #f1f8fd;
+}
+
+/* ヘッダー */
+
+header {
+  padding: 24px 16px;
+  text-align: center;
+
+  background:
+    linear-gradient(135deg,#50b7f0,#79d4ff);
+
+  color: white;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+header p {
+  margin: 6px 0 0;
+  font-size: 13px;
+}
+
+/* トップへ戻る */
+
+.back {
+  display: block;
+  padding: 13px 18px;
+
+  background: white;
+
+  color: #1677d2;
+  text-decoration: none;
+  font-weight: 700;
+
+  border-bottom: 1px solid #dceaf4;
+}
+
+/* メイン */
+
+main {
+  width: min(950px, calc(100% - 24px));
+  margin: 20px auto 50px;
+}
+
+/* 説明 */
+
+.info {
+  padding: 18px;
+
+  background: white;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 5px 20px rgba(30,90,130,.08);
+
+  margin-bottom: 18px;
+}
+
+.info h2 {
+  margin: 0 0 8px;
+  font-size: 21px;
+}
+
+.info p {
+  margin: 0;
+  font-size: 13px;
+  color: #657f94;
+}
+
+/* 検索 */
+
+.search-box {
+  margin-bottom: 14px;
+}
+
+.search-box input {
+
+  width: 100%;
+
+  padding: 15px;
+
+  border-radius: 13px;
+
+  border: 1px solid #cbdfea;
+
+  font-size: 16px;
+
+  background: white;
+}
+
+/* 属性 */
+
+.type-section {
+
+  padding: 16px;
+
+  background: white;
+
+  border-radius: 17px;
+
+  margin-bottom: 18px;
+
+  box-shadow:
+    0 4px 16px rgba(30,90,130,.07);
+}
+
+.type-title {
+
+  font-weight: 800;
+
+  margin-bottom: 10px;
+}
+
+.types {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+.type-btn {
+
+  border: 0;
+
+  padding: 8px 12px;
+
+  border-radius: 999px;
+
+  background: #edf5fa;
+
+  color: #29475f;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.type-btn.active {
+
+  background: #1689e8;
+
+  color: white;
+}
+
+/* 件数 */
+
+.result-count {
+
+  margin: 15px 3px;
+
+  font-size: 14px;
+
+  color: #647c90;
+
+  font-weight: 700;
+}
+
+/* キャラ一覧 */
+
+.pokedex {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap: 10px;
+}
+
+/* キャラカード */
+
+.character {
+
+  background: white;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  border:
+    1px solid #dceaf3;
+
+  box-shadow:
+    0 4px 14px rgba(30,90,130,.07);
+
+  cursor: pointer;
+}
+
+/* 仮画像部分 */
+
+.character-image {
+
+  height: 125px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f5fbff,
+      #e9f6ff
+    );
+
+  font-size: 54px;
+}
+
+/* 情報 */
+
+.character-info {
+
+  padding: 11px;
+}
+
+.number {
+
+  color: #7d94a6;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+.character-name {
+
+  margin-top: 2px;
+
+  font-size: 16px;
+
+  font-weight: 800;
+
+  color: #126fc1;
+}
+
+.chinese-name {
+
+  font-size: 11px;
+
+  color: #899ba9;
+
+  margin-top: 1px;
+}
+
+/* 属性ラベル */
+
+.type {
+
+  display: inline-block;
+
+  margin-top: 6px;
+
+  padding: 3px 9px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  color: white;
+}
+
+.light {
+  background: #e4ad25;
+}
+
+.grass {
+  background: #58ad55;
+}
+
+.fire {
+  background: #ed6253;
+}
+
+.water {
+  background: #479fe8;
+}
+
+/* ステータス */
+
+.total {
+
+  margin-top: 7px;
+
+  font-size: 12px;
+
+  color: #617a8e;
+}
+
+/* 注意 */
+
+.translation-note {
+
+  margin-top: 22px;
+
+  padding: 15px;
+
+  border-radius: 14px;
+
+  background: #fff9e7;
+
+  border: 1px solid #efdb96;
+
+  font-size: 12px;
+
+  color: #66582b;
+}
+
+/* PC */
+
+@media (min-width:700px) {
+
+  .pokedex {
+
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+
+}
+
+/* スマホ */
+
+@media (max-width:400px) {
+
+  .character-image {
+    height: 110px;
+  }
+
+  .character-name {
+    font-size: 14px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<h1>🐾 ロコキングダム キャラ図鑑</h1>
+
+<p>
+Roco Kingdom（洛克王国：世界）
+</p>
+
+</header>
+
+
+<a class="back" href="index.html">
+← ロコキングダム速報へ戻る
+</a>
+
+
+<main>
+
+
+<section class="info">
+
+<h2>キャラクター図鑑</h2>
+
+<p>
+中国版で実装されているキャラクター情報を
+日本ユーザー向けに整理しています。
+</p>
+
+</section>
+
+
+<!-- 検索 -->
+
+<div class="search-box">
+
+<input
+id="search"
+type="search"
+placeholder="🔍 キャラクター名・中国名・図鑑番号から検索">
+
+</div>
+
+
+<!-- 属性 -->
+
+<section class="type-section">
+
+<div class="type-title">
+属性から探す
+</div>
+
+<div class="types">
+
+<button class="type-btn active"
+data-type="all">
+すべて
+</button>
+
+<button class="type-btn"
+data-type="normal">⚪ 普通</button>
+
+<button class="type-btn"
+data-type="grass">🌿 草</button>
+
+<button class="type-btn"
+data-type="fire">🔥 火</button>
+
+<button class="type-btn"
+data-type="water">💧 水</button>
+
+<button class="type-btn"
+data-type="light">✨ 光</button>
+
+<button class="type-btn"
+data-type="ground">⛰️ 地</button>
+
+<button class="type-btn"
+data-type="ice">❄️ 氷</button>
+
+<button class="type-btn"
+data-type="dragon">🐉 龍</button>
+
+<button class="type-btn"
+data-type="electric">⚡ 電気</button>
+
+<button class="type-btn"
+data-type="poison">☠️ 毒</button>
+
+<button class="type-btn"
+data-type="bug">🐛 虫</button>
+
+<button class="type-btn"
+data-type="fighting">👊 武</button>
+
+<button class="type-btn"
+data-type="wing">🪽 翼</button>
+
+<button class="type-btn"
+data-type="cute">💕 萌</button>
+
+<button class="type-btn"
+data-type="ghost">👻 幽</button>
+
+<button class="type-btn"
+data-type="dark">😈 悪</button>
+
+<button class="type-btn"
+data-type="machine">⚙️ 機械</button>
+
+<button class="type-btn"
+data-type="illusion">🔮 幻</button>
+
+</div>
+
+</section>
+
+
+<div class="result-count">
+
+<span id="count">10</span>
+キャラクター表示中
+
+</div>
+
+
+<!-- =====================
+     キャラ一覧
+===================== -->
+
+<div class="pokedex"
+id="pokedex">
+
+
+<!-- 001 -->
+
+<div class="character"
+data-name="ディモ 迪莫 dimo"
+data-type="light">
+
+<div class="character-image">
+✨
+</div>
+
+<div class="character-info">
+
+<div class="number">
+NO.001
+</div>
+
+<div class="character-name">
+ディモ（仮）
+</div>
+
+<div class="chinese-name">
+中国名：迪莫
+</div>
+
+<span class="type light">
+光
+</span>
+
+<div class="total">
+種族値合計：582
+</div>
+
+</div>
+</div>
+
+
+<!-- 002 -->
+
+<div class="character"
+data-name="ニャーニャー 喵喵"
+data-type="grass">
+
+<div class="character-image">
+🌿
+</div>
+
+<div class="character-info">
+
+<div class="number">
+NO.002
+</div>
+
+<div class="character-name">
+ニャーニャー（仮）
+</div>
+
+<div class="chinese-name">
+中国名：喵喵
+</div>
+
+<span class="type grass">
+草
+</span>
+
+<div class="total">
+種族値合計：370
+</div>
+
+</div>
+</div>
+
+
+<!-- 003 -->
+
+<div class="character"
+data-name="ニャーウ 喵呜"
+data-type="grass">
+
+<div class="character-image">
+🌱
+</div>
+
+<div class="character-info">
+
+<div class="number">
+NO.003
+</div>
+
+<div class="character-name">
+ニャーウ（仮）
+</div>
+
+<div class="chinese-name">
+中国名：喵呜
+</div>
+
+<span class="type grass">
+草
+</span>
+
+<div class="total">
+種族値合計：490
+</div>
+
+</div>
+</div>
+
+
+<!-- 004 -->
+
+<div class="character"
+data-name="マジックキャット 魔力猫"
+data-type="grass">
+
+<div class="character-image">
+🍃
+</div>
+
+<div class="character-info">
+
+<div class="number">
+NO.004
+</div>
+
+<div class="character-name">
+魔力猫（仮）
+</div>
+
+<div class="chinese-name">
+中国名：魔力猫
+</div>
+
+<span class="type grass">
+草
+</span>
+
+<div class="total">
+種族値合計：556
+</div>
+
+</div>
+</div>
+
+
+<!-- 005 -->
+
+<div class="character"
+data-name="火花 huohua"
+data-type="fire">
+
+<div class="character-image">
+🔥
+</div>
+
+<div class="character-info">
+
+<div class="number">
+NO.005
+</div>
+
+<div class="character-name">
+火花（仮）
+</div>
+
+<div class="chinese-name">
+中国名：火花
+</div>
+
+<span class="type fire">
+火
+</span>
+
+<div class="total">
+種族値合計：368
+</div>
+
+</div>
+</div>
+
+
+<!-- 006 -->
+
+<div class="character"
+data-name="焰火 yanhuo"
+data-type="fire">
+
+<div class="character-image">
+🔥
+</div>
+
+<div class="character-info">
+
+<div class="number">
+NO.006
+</div>
+
+<div class="character-name">
+焰火（仮）
+</div>
+
+<div class="chinese-name">
+中国名：焰火
+</div>
+
+<span class="type fire">
+火
+</span>
+
+<div class="total">
+種族値合計：480
+</div>
+
+</div>
+</div>
+
+
+<!-- 007 -->
+
+<div class="character"
+data-name="火神 huoshen"
+data-type="fire">
+
+<div class="character-image">
+🔥
+</div>
+
+<div class="character-info">
+
+<div class="number">
+NO.007
+</div>
+
+<div class="character-name">
+火神（仮）
+</div>
+
+<div class="chinese-name">
+中国名：火神
+</div>
+
+<span class="type fire">
+火
+</span>
+
+<div class="total">
+種族値合計：643
+</div>
+
+</div>
+</div>
+
+
+<!-- 008 -->
+
+<div class="character"
+data-name="水蓝蓝 shuilanlan"
+data-type="water">
+
+<div class="character-image">
+💧
+</div>
+
+<div class="character-info">
+
+<div class="number">
+NO.008
+</div>
+
+<div class="character-name">
+水藍藍（仮）
+</div>
+
+<div class="chinese-name">
+中国名：水蓝蓝
+</div>
+
+<span class="type water">
+水
+</span>
+
+<div class="total">
+種族値合計：372
+</div>
+
+</div>
+</div>
+
+
+<!-- 009 -->
+
+<div class="character"
+data-name="波波拉 bobola"
+data-type="water">
+
+<div class="character-image">
+🌊
+</div>
+
+<div class="character-info">
+
+<div class="number">
+NO.009
+</div>
+
+<div class="character-name">
+ボボラ（仮）
+</div>
+
+<div class="chinese-name">
+中国名：波波拉
+</div>
+
+<span class="type water">
+水
+</span>
+
+<div class="total">
+種族値合計：485
+</div>
+
+</div>
+</div>
+
+
+<!-- 010 -->
+
+<div class="character"
+data-name="水灵 shuiling"
+data-type="water">
+
+<div class="character-image">
+💦
+</div>
+
+<div class="character-info">
+
+<div class="number">
+NO.010
+</div>
+
+<div class="character-name">
+水霊（仮）
+</div>
+
+<div class="chinese-name">
+中国名：水灵
+</div>
+
+<span class="type water">
+水
+</span>
+
+<div class="total">
+種族値合計：604
+</div>
+
+</div>
+</div>
+
+
+</div>
+
+
+<div class="translation-note">
+
+<strong>📌 表記について</strong><br>
+
+日本版で正式名称が確認できていない
+キャラクター名については、
+中国版名称をもとにした仮表記を使用しています。
+
+日本公式名称が発表された場合は
+順次正式名称へ変更します。
+
+</div>
+
+
+</main>
+
+
+<script>
+
+const search =
+document.getElementById("search");
+
+const characters =
+document.querySelectorAll(".character");
+
+const buttons =
+document.querySelectorAll(".type-btn");
+
+const count =
+document.getElementById("count");
+
+let selectedType = "all";
+
+
+function filterCharacters() {
+
+  const keyword =
+    search.value
+    .toLowerCase()
+    .trim();
+
+  let visible = 0;
+
+  characters.forEach(character => {
+
+    const name =
+      character.dataset.name
+      .toLowerCase();
+
+    const type =
+      character.dataset.type;
+
+    const nameMatch =
+      name.includes(keyword);
+
+    const typeMatch =
+      selectedType === "all" ||
+      type.split(" ").includes(selectedType);
+
+    if (nameMatch && typeMatch) {
+
+      character.style.display = "";
+
+      visible++;
+
+    } else {
+
+      character.style.display = "none";
+
+    }
+
+  });
+
+  count.textContent = visible;
+
+}
+
+
+search.addEventListener(
+  "input",
+  filterCharacters
+);
+
+
+buttons.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    () => {
+
+      buttons.forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      selectedType =
+        button.dataset.type;
+
+      filterCharacters();
+
+    }
+  );
+
+});
+
+</script>
+
+
+</body>
+</html>
