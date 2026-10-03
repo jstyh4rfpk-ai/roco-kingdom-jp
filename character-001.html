@@ -74,7 +74,7 @@ main {
   font-size: 20px;
 }
 
-/* キャラ上部 */
+/* キャラクター上部 */
 
 .hero {
   text-align: center;
@@ -168,10 +168,10 @@ main {
 .trait strong {
   display: block;
   margin-bottom: 5px;
-  color: #b47a00;
+  color: #a87100;
 }
 
-/* 相性 */
+/* 属性相性 */
 
 .matchups {
   display: grid;
@@ -194,6 +194,16 @@ main {
 
 /* 技 */
 
+.skill-group-title {
+  margin: 5px 0 10px;
+  padding: 12px 14px;
+  border-radius: 13px;
+  background: #eaf7ff;
+  color: #126fc1;
+  font-size: 17px;
+  font-weight: 900;
+}
+
 .skill {
   padding: 14px 0;
   border-bottom: 1px solid #e4edf3;
@@ -213,20 +223,28 @@ main {
 .skill-name {
   font-weight: 900;
   color: #126fc1;
+  font-size: 17px;
+}
+
+.skill-cn {
+  margin-top: 2px;
+  color: #7890a3;
+  font-size: 12px;
 }
 
 .skill-level {
+  flex: 0 0 auto;
   font-size: 11px;
   color: #7890a3;
 }
 
 .skill-tags {
-  margin: 5px 0;
+  margin: 7px 0;
 }
 
 .tag {
   display: inline-block;
-  margin-right: 4px;
+  margin: 0 4px 4px 0;
   padding: 2px 7px;
   border-radius: 999px;
   background: #edf4f8;
@@ -237,6 +255,17 @@ main {
 .skill-effect {
   font-size: 13px;
   color: #4f687b;
+}
+
+/* 技能石など */
+
+.empty-skill {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 13px;
+  background: #f7fafc;
+  color: #7a90a2;
+  font-size: 13px;
 }
 
 /* 進化 */
@@ -392,9 +421,14 @@ main {
   <div class="trait">
 
     <strong>
-      最好的伙伴
-      <small>（日本語仮訳：最高のパートナー）</small>
+      最高のパートナー（仮）
     </strong>
+
+    <div class="skill-cn">
+      中国名：最好的伙伴
+    </div>
+
+    <br>
 
     弱点を突くダメージを与えた後、
     攻撃・防御・速度が20％上昇し、
@@ -412,18 +446,8 @@ main {
   <div class="matchups">
 
     <div class="match">
-      <strong>攻撃で有利</strong>
-      👻 幽 / 😈 悪
-    </div>
-
-    <div class="match">
-      <strong>攻撃で不利</strong>
-      🌿 草 / ❄️ 氷
-    </div>
-
-    <div class="match">
       <strong>弱点</strong>
-      👻 幽 / 🌿 草
+      🌿 草 / 👻 幽
     </div>
 
     <div class="match">
@@ -433,140 +457,385 @@ main {
 
   </div>
 
+  <p class="source-note">
+    ※中国版データをもとに整理しています。
+  </p>
+
 </section>
 
 
 <section class="card">
 
-  <h2>⚡ 主な習得技</h2>
+  <h2>⚡ 技・スキル</h2>
 
-  <div class="skill">
-
-    <div class="skill-top">
-      <span class="skill-name">猛烈撞击</span>
-      <span class="skill-level">Lv.1</span>
-    </div>
-
-    <div class="skill-tags">
-      <span class="tag">普通</span>
-      <span class="tag">物理</span>
-      <span class="tag">威力65</span>
-      <span class="tag">消費1</span>
-    </div>
-
-    <div class="skill-effect">
-      敵1体に物理ダメージを与える。
-    </div>
-
+  <div class="skill-group-title">
+    📈 レベル習得（19）
   </div>
 
 
   <div class="skill">
-
     <div class="skill-top">
-      <span class="skill-name">闪光</span>
+      <span class="skill-name">閃光（仮）</span>
       <span class="skill-level">Lv.1</span>
     </div>
-
+    <div class="skill-cn">中国名：闪光</div>
     <div class="skill-tags">
       <span class="tag">光</span>
-      <span class="tag">魔法</span>
+      <span class="tag">魔攻</span>
       <span class="tag">威力60</span>
       <span class="tag">消費1</span>
     </div>
-
     <div class="skill-effect">
-      敵1体に魔法ダメージを与える。
+      敵の精霊に魔法ダメージを与える。
     </div>
-
   </div>
 
 
   <div class="skill">
-
     <div class="skill-top">
-      <span class="skill-name">光球</span>
+      <span class="skill-name">猛烈突撃（仮）</span>
+      <span class="skill-level">Lv.1</span>
+    </div>
+    <div class="skill-cn">中国名：猛烈撞击</div>
+    <div class="skill-tags">
+      <span class="tag">普通</span>
+      <span class="tag">物攻</span>
+      <span class="tag">威力65</span>
+      <span class="tag">消費1</span>
+    </div>
+    <div class="skill-effect">
+      敵の精霊に物理ダメージを与える。
+    </div>
+  </div>
+
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">防御（仮）</span>
+      <span class="skill-level">Lv.1</span>
+    </div>
+    <div class="skill-cn">中国名：防御</div>
+    <div class="skill-tags">
+      <span class="tag">普通</span>
+      <span class="tag">防御</span>
+      <span class="tag">消費1</span>
+    </div>
+    <div class="skill-effect">
+      受けるダメージを70％軽減し、攻撃に対応する。
+    </div>
+  </div>
+
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">魔法強化（仮）</span>
+      <span class="skill-level">Lv.7</span>
+    </div>
+    <div class="skill-cn">中国名：魔法增效</div>
+    <div class="skill-tags">
+      <span class="tag">普通</span>
+      <span class="tag">状態</span>
+      <span class="tag">消費0</span>
+    </div>
+    <div class="skill-effect">
+      自身の魔攻を70％上昇させる。
+    </div>
+  </div>
+
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">光球（仮）</span>
       <span class="skill-level">Lv.9</span>
     </div>
-
+    <div class="skill-cn">中国名：光球</div>
     <div class="skill-tags">
       <span class="tag">光</span>
-      <span class="tag">魔法</span>
+      <span class="tag">魔攻</span>
       <span class="tag">威力80</span>
       <span class="tag">消費2</span>
     </div>
-
     <div class="skill-effect">
-      敵1体に魔法ダメージを与える。
+      敵の精霊に魔法ダメージを与える。
     </div>
-
   </div>
 
 
   <div class="skill">
-
     <div class="skill-top">
-      <span class="skill-name">火焰箭</span>
+      <span class="skill-name">火炎の矢（仮）</span>
       <span class="skill-level">Lv.11</span>
     </div>
-
+    <div class="skill-cn">中国名：火焰箭</div>
     <div class="skill-tags">
       <span class="tag">火</span>
-      <span class="tag">物理</span>
+      <span class="tag">物攻</span>
       <span class="tag">威力80</span>
       <span class="tag">消費2</span>
     </div>
-
     <div class="skill-effect">
-      敵1体に物理ダメージを与える。
+      敵の精霊に物理ダメージを与える。
     </div>
-
   </div>
 
 
   <div class="skill">
-
     <div class="skill-top">
-      <span class="skill-name">放晴</span>
-      <span class="skill-level">Lv.40</span>
+      <span class="skill-name">パワー強化（仮）</span>
+      <span class="skill-level">Lv.13</span>
     </div>
+    <div class="skill-cn">中国名：力量增效</div>
+    <div class="skill-tags">
+      <span class="tag">普通</span>
+      <span class="tag">状態</span>
+      <span class="tag">消費1</span>
+    </div>
+    <div class="skill-effect">
+      自身の物攻を100％上昇させる。
+    </div>
+  </div>
 
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">棘突（仮）</span>
+      <span class="skill-level">Lv.16</span>
+    </div>
+    <div class="skill-cn">中国名：棘突</div>
+    <div class="skill-tags">
+      <span class="tag">草</span>
+      <span class="tag">魔攻</span>
+      <span class="tag">威力100</span>
+      <span class="tag">消費3</span>
+    </div>
+    <div class="skill-effect">
+      敵の精霊に魔法ダメージを与える。
+    </div>
+  </div>
+
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">潮流（仮）</span>
+      <span class="skill-level">Lv.19</span>
+    </div>
+    <div class="skill-cn">中国名：潮涌</div>
+    <div class="skill-tags">
+      <span class="tag">水</span>
+      <span class="tag">物攻</span>
+      <span class="tag">威力80</span>
+      <span class="tag">消費2</span>
+    </div>
+    <div class="skill-effect">
+      敵の精霊に物理ダメージを与える。
+    </div>
+  </div>
+
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">超導（仮）</span>
+      <span class="skill-level">Lv.22</span>
+    </div>
+    <div class="skill-cn">中国名：超导</div>
+    <div class="skill-tags">
+      <span class="tag">電</span>
+      <span class="tag">魔攻</span>
+      <span class="tag">威力90</span>
+      <span class="tag">消費3</span>
+    </div>
+    <div class="skill-effect">
+      魔法ダメージを与える。
+      迸発時、この技のエネルギー消費が2減少する。
+    </div>
+  </div>
+
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">閃光衝撃（仮）</span>
+      <span class="skill-level">Lv.27</span>
+    </div>
+    <div class="skill-cn">中国名：闪光冲击</div>
+    <div class="skill-tags">
+      <span class="tag">光</span>
+      <span class="tag">物攻</span>
+      <span class="tag">威力100</span>
+      <span class="tag">消費3</span>
+    </div>
+    <div class="skill-effect">
+      敵の精霊に物理ダメージを与える。
+    </div>
+  </div>
+
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">拡散反射（仮）</span>
+      <span class="skill-level">Lv.30</span>
+    </div>
+    <div class="skill-cn">中国名：漫反射</div>
     <div class="skill-tags">
       <span class="tag">光</span>
       <span class="tag">状態</span>
       <span class="tag">消費1</span>
     </div>
-
     <div class="skill-effect">
-      光属性技の威力を恒久的に50％上昇させ、
-      防御時の効果を恒久的に100％へ変更する。
+      各属性につき最大1つの技の威力を35上昇させる。
     </div>
-
   </div>
 
 
   <div class="skill">
-
     <div class="skill-top">
-      <span class="skill-name">光刃</span>
-      <span class="skill-level">Lv.47</span>
+      <span class="skill-name">氷の爪（仮）</span>
+      <span class="skill-level">Lv.32</span>
     </div>
+    <div class="skill-cn">中国名：冰爪</div>
+    <div class="skill-tags">
+      <span class="tag">氷</span>
+      <span class="tag">物攻</span>
+      <span class="tag">威力80</span>
+      <span class="tag">消費2</span>
+    </div>
+    <div class="skill-effect">
+      敵の精霊に物理ダメージを与える。
+    </div>
+  </div>
 
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">熱砂（仮）</span>
+      <span class="skill-level">Lv.34</span>
+    </div>
+    <div class="skill-cn">中国名：热砂</div>
+    <div class="skill-tags">
+      <span class="tag">地</span>
+      <span class="tag">魔攻</span>
+      <span class="tag">威力80</span>
+      <span class="tag">消費2</span>
+    </div>
+    <div class="skill-effect">
+      敵の精霊に魔法ダメージを与える。
+    </div>
+  </div>
+
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">念力膨張（仮）</span>
+      <span class="skill-level">Lv.36</span>
+    </div>
+    <div class="skill-cn">中国名：念力膨胀</div>
+    <div class="skill-tags">
+      <span class="tag">幻</span>
+      <span class="tag">物攻</span>
+      <span class="tag">威力80</span>
+      <span class="tag">消費2</span>
+    </div>
+    <div class="skill-effect">
+      敵の精霊に物理ダメージを与える。
+    </div>
+  </div>
+
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">晴天（仮）</span>
+      <span class="skill-level">Lv.40</span>
+    </div>
+    <div class="skill-cn">中国名：放晴</div>
     <div class="skill-tags">
       <span class="tag">光</span>
-      <span class="tag">物理</span>
+      <span class="tag">状態</span>
+      <span class="tag">消費1</span>
+    </div>
+    <div class="skill-effect">
+      光属性技の威力を恒久的に50％上昇させる。
+      防御への対応時は恒久的に100％上昇する。
+    </div>
+  </div>
+
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">過露光（仮）</span>
+      <span class="skill-level">Lv.42</span>
+    </div>
+    <div class="skill-cn">中国名：过曝</div>
+    <div class="skill-tags">
+      <span class="tag">光</span>
+      <span class="tag">魔攻</span>
+      <span class="tag">威力60</span>
+      <span class="tag">消費3</span>
+    </div>
+    <div class="skill-effect">
+      魔法ダメージを与える。
+      他属性の技を1種類使用するごとに、
+      この技の威力が恒久的に30上昇する。
+    </div>
+  </div>
+
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">光刃（仮）</span>
+      <span class="skill-level">Lv.47</span>
+    </div>
+    <div class="skill-cn">中国名：光刃</div>
+    <div class="skill-tags">
+      <span class="tag">光</span>
+      <span class="tag">物攻</span>
       <span class="tag">威力120</span>
       <span class="tag">消費4</span>
     </div>
-
     <div class="skill-effect">
-      敵1体に物理ダメージを与える。
+      敵の精霊に物理ダメージを与える。
     </div>
-
   </div>
 
+
+  <div class="skill">
+    <div class="skill-top">
+      <span class="skill-name">屈折（仮）</span>
+      <span class="skill-level">Lv.48</span>
+    </div>
+    <div class="skill-cn">中国名：折射</div>
+    <div class="skill-tags">
+      <span class="tag">光</span>
+      <span class="tag">魔攻</span>
+      <span class="tag">威力50</span>
+      <span class="tag">消費4</span>
+    </div>
+    <div class="skill-effect">
+      魔法ダメージを与える。
+      装備している他属性の技によって異なる効果を得る。
+    </div>
+  </div>
+
+
+  <div class="skill-group-title" style="margin-top:20px;">
+    💎 技能石
+  </div>
+
+  <div class="empty-skill">
+    現在データ整理中です。
+  </div>
+
+
+  <div class="skill-group-title" style="margin-top:16px;">
+    🧬 血脈技
+  </div>
+
+  <div class="empty-skill">
+    現在データ整理中です。
+  </div>
+
+
   <p class="source-note">
-    ※技名は中国版名称。日本版正式名称発表後に更新予定。
+    ※技名・効果文は中国版データをもとに日本語で整理しています。
+    日本版正式名称発表後に更新予定です。
   </p>
 
 </section>
@@ -574,10 +843,10 @@ main {
 
 <section class="card evolution">
 
-  <h2>🌱 進化・形態</h2>
+  <h2>🌱 進化・派生形態</h2>
 
   <div class="evo-main">
-    ✨ 迪莫
+    ✨ 迪莫 / ディモ（仮）
   </div>
 
   <div class="arrow">
@@ -616,14 +885,13 @@ main {
   <h2>🎁 入手方法</h2>
 
   <p>
-    中国版では
-    <strong>ストーリー進行で入手</strong>
-    とされています。
+    中国版で入手可能です。
   </p>
 
   <p class="source-note">
-    日本版での入手方法は正式サービス開始後、
-    公式情報を確認して更新します。
+    詳細な入手条件は確認・整理後に更新します。
+    日本版での入手方法については、
+    公式情報発表後に更新予定です。
   </p>
 
 </section>
@@ -634,14 +902,16 @@ main {
   <strong>🇨🇳 中国版データについて</strong><br><br>
 
   このページは中国版
-  「洛克王国：世界」のデータをもとに、
-  日本ユーザー向けに独自に整理しています。<br><br>
+  「洛克王国：世界」の情報をもとに、
+  日本ユーザー向けに整理しています。<br><br>
 
   日本版で正式名称が確認できていない名称には
   仮表記を使用しています。<br><br>
 
-  また、中国版のアップデートによって
-  ステータス・特性・技などが変更される場合があります。
+  中国版アップデートによって、
+  ステータス・特性・技などが変更される場合があります。<br><br>
+
+  最終照合：2026年10月4日
 
 </div>
 
