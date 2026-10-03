@@ -127,10 +127,13 @@
       background: #71869a;
     }
 
+    .topic-wrap {
+      margin: 14px 0;
+    }
+
     .topic {
       display: block;
       padding: 18px;
-      margin: 14px 0;
       border: 1px solid #d7e8f3;
       border-radius: 18px;
       background: linear-gradient(
@@ -167,6 +170,11 @@
     .comment-count {
       color: #1478c9;
       font-weight: 800;
+    }
+
+    .delete-topic-button {
+      margin-top: 8px;
+      background: #df5353;
     }
 
     .status {
@@ -225,7 +233,7 @@
     <h2>🔐 管理人ログイン</h2>
 
     <p class="status">
-      トピック作成は管理人のみです。
+      トピック作成・削除は管理人のみです。
     </p>
 
     <input
@@ -302,6 +310,9 @@
   const SUPABASE_KEY =
     "sb_publishable_smTxr916q6a0_c_-PuOY5w_JDTAxziW";
 
+  const ADMIN_UID =
+    "5ceedf79-fee7-4159-bb82-a19848e5858f";
+
   const client = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
@@ -318,6 +329,8 @@
 
   const adminPanel =
     document.getElementById("admin-panel");
+
+  let isAdmin = false;
 
   function escapeHTML(value) {
     return String(value ?? "")
@@ -339,6 +352,15 @@
         minute: "2-digit"
       }
     );
+  }
+
+  async function checkAdmin() {
+    const {
+      data: { session }
+    } = await client.auth.getSession();
+
+    isAdmin =
+      session?.user?.id === ADMIN_UID;
   }
 
   async function loadTopics() {
@@ -407,43 +429,61 @@
         const count =
           counts[topic.id] || 0;
 
+        const deleteButton =
+          isAdmin
+            ? `
+              <button
+                class="delete-topic-button"
+                onclick="deleteTopic(${topic.id}, event)"
+              >
+                管理人：トピック削除
+              </button>
+            `
+            : "";
+
         return `
-          <a
-            class="topic"
-            href="topic.html?id=${topic.id}"
-          >
-            <div class="topic-title">
-              ${pinned}${escapeHTML(topic.title)}
-            </div>
+          <div class="topic-wrap">
 
-            ${
-              topic.description
-                ? `
-                  <div class="topic-description">
-                    ${escapeHTML(topic.description)}
-                  </div>
-                `
-                : ""
-            }
-
-            <div class="topic-meta">
+            <a
+              class="topic"
+              href="topic.html?id=${topic.id}"
+            >
+              <div class="topic-title">
+                ${pinned}${escapeHTML(topic.title)}
+              </div>
 
               ${
-                topic.category
-                  ? escapeHTML(topic.category) + " ・ "
+                topic.description
+                  ? `
+                    <div class="topic-description">
+                      ${escapeHTML(topic.description)}
+                    </div>
+                  `
                   : ""
               }
 
-              ${formatDate(topic.created_at)}
+              <div class="topic-meta">
 
-              ・
+                ${
+                  topic.category
+                    ? escapeHTML(topic.category) + " ・ "
+                    : ""
+                }
 
-              <span class="comment-count">
-                コメント(${count}件)
-              </span>
+                ${formatDate(topic.created_at)}
 
-            </div>
-          </a>
+                ・
+
+                <span class="comment-count">
+                  コメント(${count}件)
+                </span>
+
+              </div>
+            </a>
+
+            ${deleteButton}
+
+          </div>
         `;
 
       }).join("");
@@ -451,17 +491,17 @@
 
   async function updateLoginState() {
 
-    const {
-      data: { session }
-    } = await client.auth.getSession();
+    await checkAdmin();
 
-    if (session) {
+    if (isAdmin) {
       loginPanel.classList.add("hidden");
       adminPanel.classList.remove("hidden");
     } else {
       loginPanel.classList.remove("hidden");
       adminPanel.classList.add("hidden");
     }
+
+    await loadTopics();
   }
 
   document
@@ -574,11 +614,42 @@
       await loadTopics();
     });
 
+  async function deleteTopic(id, event) {
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!isAdmin) {
+      return;
+    }
+
+    const ok = confirm(
+      "このトピックを削除しますか？\n中のコメントもすべて削除されます。"
+    );
+
+    if (!ok) {
+      return;
+    }
+
+    const { error } =
+      await client
+        .from("topics")
+        .delete()
+        .eq("id", id);
+
+    if (error) {
+      alert("トピックを削除できませんでした。");
+      console.error(error);
+      return;
+    }
+
+    await loadTopics();
+  }
+
   client.auth.onAuthStateChange(() => {
     updateLoginState();
   });
 
-  loadTopics();
   updateLoginState();
 </script>
 
