@@ -46,8 +46,6 @@ const characters = [
     speed: 92
   },
 
-  /* 属性相性 */
-
   weaknesses: [
     "grass",
     "ghost"
@@ -57,8 +55,6 @@ const characters = [
     "dark",
     "illusion"
   ],
-
-  /* 特性 */
 
   ability: {
     chineseName: "最好的伙伴",
@@ -77,13 +73,7 @@ const characters = [
     "👑 首領形態 → 聖水ディモ（仮）"
   ],
 
-  /* 技 */
-
   skills: {
-
-    /* ==============================
-       レベル習得
-    ============================== */
 
     level: [
 
@@ -97,6 +87,30 @@ const characters = [
         cost: 1,
         description:
           "敵の精霊に魔法ダメージを与える。"
+      },
+
+      {
+        level: 1,
+        chineseName: "猛烈撞击",
+        name: "猛烈突撃（仮）",
+        type: "普通",
+        category: "物攻",
+        power: 65,
+        cost: 1,
+        description:
+          "敵の精霊に物理ダメージを与える。"
+      },
+
+      {
+        level: 1,
+        chineseName: "防御",
+        name: "防御（仮）",
+        type: "普通",
+        category: "防御",
+        power: null,
+        cost: 1,
+        description:
+          "受けるダメージを70％軽減し、攻撃に対応する。"
       },
 
       {
@@ -136,6 +150,54 @@ const characters = [
       },
 
       {
+        level: 13,
+        chineseName: "力量增效",
+        name: "パワー強化（仮）",
+        type: "普通",
+        category: "状態",
+        power: null,
+        cost: 1,
+        description:
+          "自身の物攻を100％上昇させる。"
+      },
+
+      {
+        level: 16,
+        chineseName: "棘突",
+        name: "棘突（仮）",
+        type: "草",
+        category: "魔攻",
+        power: 100,
+        cost: 3,
+        description:
+          "敵の精霊に魔法ダメージを与える。"
+      },
+
+      {
+        level: 19,
+        chineseName: "潮涌",
+        name: "潮流（仮）",
+        type: "水",
+        category: "物攻",
+        power: 80,
+        cost: 2,
+        description:
+          "敵の精霊に物理ダメージを与える。"
+      },
+
+      {
+        level: 22,
+        chineseName: "超导",
+        name: "超導（仮）",
+        type: "電",
+        category: "魔攻",
+        power: 90,
+        cost: 3,
+        description:
+          "魔法ダメージを与える。迸発時、この技のエネルギー消費が2減少する。"
+      },
+
+      {
         level: 27,
         chineseName: "闪光冲击",
         name: "閃光衝撃（仮）",
@@ -157,6 +219,42 @@ const characters = [
         cost: 1,
         description:
           "各属性につき最大1つの技の威力を35上昇させる。"
+      },
+
+      {
+        level: 32,
+        chineseName: "冰爪",
+        name: "氷の爪（仮）",
+        type: "氷",
+        category: "物攻",
+        power: 80,
+        cost: 2,
+        description:
+          "敵の精霊に物理ダメージを与える。"
+      },
+
+      {
+        level: 34,
+        chineseName: "热砂",
+        name: "熱砂（仮）",
+        type: "地",
+        category: "魔攻",
+        power: 80,
+        cost: 2,
+        description:
+          "敵の精霊に魔法ダメージを与える。"
+      },
+
+      {
+        level: 36,
+        chineseName: "念力膨胀",
+        name: "念力膨張（仮）",
+        type: "幻",
+        category: "物攻",
+        power: 80,
+        cost: 2,
+        description:
+          "敵の精霊に物理ダメージを与える。"
       },
 
       {
@@ -184,6 +282,18 @@ const characters = [
       },
 
       {
+        level: 47,
+        chineseName: "光刃",
+        name: "光刃（仮）",
+        type: "光",
+        category: "物攻",
+        power: 120,
+        cost: 4,
+        description:
+          "敵の精霊に物理ダメージを与える。"
+      },
+
+      {
         level: 48,
         chineseName: "折射",
         name: "屈折（仮）",
@@ -197,16 +307,7 @@ const characters = [
 
     ],
 
-    /* ==============================
-       技能石
-    ============================== */
-
     stone: [],
-
-    /* ==============================
-       血脈技
-    ============================== */
-
     bloodline: []
 
   },
