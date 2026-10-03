@@ -14,24 +14,50 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #eef8ff;
+      background:
+        linear-gradient(rgba(235,248,255,.88), rgba(235,248,255,.94)),
+        url("IMG_0596.png") center top / cover fixed;
       color: #17324d;
     }
 
     header {
-      padding: 28px 18px;
+      padding: 55px 20px 45px;
       text-align: center;
       color: white;
-      background: linear-gradient(135deg,#43a9ff,#73cbff);
+
+      background:
+        linear-gradient(
+          rgba(40,110,180,.28),
+          rgba(40,110,180,.28)
+        ),
+        url("52F37108-E234-43A0-BEB0-D8DD6C52AEA7.png")
+        center center / cover no-repeat;
+
+      box-shadow: 0 4px 20px rgba(0,0,0,.12);
     }
 
     header h1 {
       margin: 0;
-      font-size: 30px;
+      font-size: clamp(34px,9vw,58px);
+      line-height: 1.2;
+      text-shadow: 0 2px 8px rgba(0,0,0,.18);
     }
 
     header p {
-      margin: 8px 0 0;
+      margin: 14px 0 0;
+      font-size: 17px;
+      font-weight: 600;
+      text-shadow: 0 2px 8px rgba(0,0,0,.18);
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.55);
+      color: white;
     }
 
     main {
@@ -39,20 +65,30 @@
       margin: 24px auto 50px;
     }
 
-    .panel {
-      background: white;
-      border-radius: 18px;
-      padding: 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 6px 22px rgba(0,0,0,.07);
-    }
-
     .back {
       display: inline-block;
-      margin-bottom: 16px;
+      margin: 4px 0 18px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.9);
       color: #1478c9;
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
+      box-shadow: 0 4px 15px rgba(0,0,0,.06);
+    }
+
+    .panel {
+      background: rgba(255,255,255,.95);
+      border-radius: 24px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 28px rgba(40,100,150,.10);
+      border: 1px solid rgba(150,200,230,.25);
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      font-size: 26px;
     }
 
     input,
@@ -64,25 +100,26 @@
 
     input,
     textarea {
-      padding: 12px;
+      padding: 14px;
       margin: 7px 0;
-      border: 1px solid #cbd8e4;
-      border-radius: 10px;
+      border: 1px solid #c9dcea;
+      border-radius: 14px;
+      background: rgba(255,255,255,.95);
     }
 
     textarea {
-      min-height: 90px;
+      min-height: 100px;
       resize: vertical;
     }
 
     button {
       border: 0;
-      border-radius: 10px;
-      padding: 12px;
-      margin-top: 8px;
-      font-weight: 700;
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 9px;
+      font-weight: 800;
       cursor: pointer;
-      background: #2398ed;
+      background: linear-gradient(135deg,#43a9ff,#2398ed);
       color: white;
     }
 
@@ -92,34 +129,44 @@
 
     .topic {
       display: block;
-      padding: 16px;
-      margin: 12px 0;
-      border: 1px solid #d8e6f0;
-      border-radius: 14px;
-      background: #f8fcff;
+      padding: 18px;
+      margin: 14px 0;
+      border: 1px solid #d7e8f3;
+      border-radius: 18px;
+      background: linear-gradient(
+        135deg,
+        rgba(247,252,255,.98),
+        rgba(235,247,255,.98)
+      );
       color: #17324d;
       text-decoration: none;
+      box-shadow: 0 4px 14px rgba(40,100,150,.05);
+    }
+
+    .topic:active {
+      transform: scale(.99);
     }
 
     .topic-title {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
-    }
-
-    .topic-meta {
-      margin-top: 8px;
-      font-size: 13px;
-      color: #6b7f91;
+      line-height: 1.5;
     }
 
     .topic-description {
-      margin-top: 8px;
-      line-height: 1.6;
+      margin-top: 9px;
+      line-height: 1.65;
+    }
+
+    .topic-meta {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #718397;
     }
 
     .comment-count {
-      font-weight: 700;
       color: #1478c9;
+      font-weight: 800;
     }
 
     .status {
@@ -133,12 +180,12 @@
 
     .admin-badge {
       display: inline-block;
-      padding: 5px 10px;
+      padding: 6px 12px;
       border-radius: 999px;
       background: #e8f6ff;
       color: #1478c9;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
     }
   </style>
 </head>
@@ -147,7 +194,15 @@
 
 <header>
   <h1>💬 ロコキングダム掲示板</h1>
-  <p>Roco Kingdom 日本向け交流掲示板</p>
+
+  <p>
+    Roco Kingdom（洛克王国：世界）<br>
+    日本向け交流掲示板 🇯🇵
+  </p>
+
+  <div class="badge">
+    非公式ファンサイト
+  </div>
 </header>
 
 <main>
@@ -157,7 +212,7 @@
   </a>
 
   <section class="panel">
-    <h2>トピック一覧</h2>
+    <h2>💬 トピック一覧</h2>
 
     <p class="status" id="loading">
       読み込み中...
@@ -189,17 +244,13 @@
       ログイン
     </button>
 
-    <p
-      class="status"
-      id="login-message"
-    ></p>
+    <p class="status" id="login-message"></p>
   </section>
 
   <section
     class="panel hidden"
     id="admin-panel"
   >
-
     <span class="admin-badge">
       管理人モード
     </span>
@@ -237,11 +288,7 @@
       管理人ログアウト
     </button>
 
-    <p
-      class="status"
-      id="admin-message"
-    ></p>
-
+    <p class="status" id="admin-message"></p>
   </section>
 
 </main>
@@ -296,8 +343,7 @@
 
   async function loadTopics() {
 
-    loading.textContent =
-      "読み込み中...";
+    loading.textContent = "読み込み中...";
 
     const {
       data: topics,
@@ -366,7 +412,6 @@
             class="topic"
             href="topic.html?id=${topic.id}"
           >
-
             <div class="topic-title">
               ${pinned}${escapeHTML(topic.title)}
             </div>
@@ -398,7 +443,6 @@
               </span>
 
             </div>
-
           </a>
         `;
 
@@ -412,153 +456,123 @@
     } = await client.auth.getSession();
 
     if (session) {
-
       loginPanel.classList.add("hidden");
       adminPanel.classList.remove("hidden");
-
     } else {
-
       loginPanel.classList.remove("hidden");
       adminPanel.classList.add("hidden");
-
     }
   }
 
   document
     .getElementById("login-button")
-    .addEventListener(
-      "click",
-      async () => {
+    .addEventListener("click", async () => {
 
-        const email =
-          document
-            .getElementById("email")
-            .value
-            .trim();
+      const email =
+        document
+          .getElementById("email")
+          .value
+          .trim();
 
-        const password =
-          document
-            .getElementById("password")
-            .value;
+      const password =
+        document
+          .getElementById("password")
+          .value;
 
-        const message =
-          document
-            .getElementById("login-message");
+      const message =
+        document.getElementById("login-message");
 
+      message.textContent =
+        "ログイン中...";
+
+      const { error } =
+        await client.auth.signInWithPassword({
+          email,
+          password
+        });
+
+      if (error) {
         message.textContent =
-          "ログイン中...";
+          "ログインできませんでした。";
 
-        const { error } =
-          await client.auth
-            .signInWithPassword({
-              email,
-              password
-            });
-
-        if (error) {
-
-          message.textContent =
-            "ログインできませんでした。";
-
-          console.error(error);
-          return;
-        }
-
-        message.textContent = "";
-
-        await updateLoginState();
+        console.error(error);
+        return;
       }
-    );
+
+      message.textContent = "";
+
+      await updateLoginState();
+    });
 
   document
     .getElementById("logout-button")
-    .addEventListener(
-      "click",
-      async () => {
+    .addEventListener("click", async () => {
 
-        await client.auth.signOut();
+      await client.auth.signOut();
 
-        await updateLoginState();
-      }
-    );
+      await updateLoginState();
+    });
 
   document
     .getElementById("create-topic-button")
-    .addEventListener(
-      "click",
-      async () => {
+    .addEventListener("click", async () => {
 
-        const title =
-          document
-            .getElementById("topic-title")
-            .value
-            .trim();
-
-        const category =
-          document
-            .getElementById("topic-category")
-            .value
-            .trim();
-
-        const description =
-          document
-            .getElementById("topic-description")
-            .value
-            .trim();
-
-        const message =
-          document
-            .getElementById("admin-message");
-
-        if (!title) {
-
-          message.textContent =
-            "タイトルを入力してください。";
-
-          return;
-        }
-
-        message.textContent =
-          "作成しています...";
-
-        const { error } =
-          await client
-            .from("topics")
-            .insert({
-              title,
-              category:
-                category || null,
-              description:
-                description || null
-            });
-
-        if (error) {
-
-          message.textContent =
-            "トピックを作成できませんでした。";
-
-          console.error(error);
-          return;
-        }
-
+      const title =
         document
           .getElementById("topic-title")
-          .value = "";
+          .value
+          .trim();
 
+      const category =
         document
           .getElementById("topic-category")
-          .value = "";
+          .value
+          .trim();
 
+      const description =
         document
           .getElementById("topic-description")
-          .value = "";
+          .value
+          .trim();
 
+      const message =
+        document.getElementById("admin-message");
+
+      if (!title) {
         message.textContent =
-          "トピックを作成しました！";
-
-        await loadTopics();
+          "タイトルを入力してください。";
+        return;
       }
-    );
+
+      message.textContent =
+        "作成しています...";
+
+      const { error } =
+        await client
+          .from("topics")
+          .insert({
+            title,
+            category: category || null,
+            description: description || null
+          });
+
+      if (error) {
+        message.textContent =
+          "トピックを作成できませんでした。";
+
+        console.error(error);
+        return;
+      }
+
+      document.getElementById("topic-title").value = "";
+      document.getElementById("topic-category").value = "";
+      document.getElementById("topic-description").value = "";
+
+      message.textContent =
+        "トピックを作成しました！";
+
+      await loadTopics();
+    });
 
   client.auth.onAuthStateChange(() => {
     updateLoginState();
