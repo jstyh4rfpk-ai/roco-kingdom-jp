@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>ロコキングダム掲示板</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #eef8ff;
+      color: #17324d;
+    }
+
+    header {
+      padding: 25px 18px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg,#43a9ff,#73cbff);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 27px;
+    }
+
+    main {
+      width: min(900px, calc(100% - 24px));
+      margin: 22px auto 50px;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: #1478c9;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .panel {
+      background: white;
+      padding: 20px;
+      margin-bottom: 18px;
+      border-radius: 18px;
+      box-shadow: 0 6px 22px rgba(0,0,0,.07);
+    }
+
+    .topic-title {
+      margin: 0 0 10px;
+      font-size: 25px;
+    }
+
+    .topic-meta {
+      color: #718397;
+      font-size: 14px;
+    }
+
+    .topic-description {
+      margin-top: 14px;
+      line-height: 1.7;
+    }
+
+    .comment {
+      padding: 16px 4px;
+      border-bottom: 1px solid #dce7ef;
+    }
+
+    .comment:last-child {
+      border-bottom: 0;
+    }
+
+    .comment-head {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .comment-number {
+      color: #1478c9;
+      font-weight: 800;
+      margin-right: 5px;
+    }
+
+    .comment-name {
+      color: #278843;
+      font-weight: 700;
+    }
+
+    .comment-date {
+      color: #788b9e;
+      margin-left: 7px;
+    }
+
+    .comment-body {
+      white-space: pre-wrap;
+      line-height: 1.7;
+      font-size: 16px;
+      overflow-wrap: anywhere;
+    }
+
+    input,
+    textarea,
+    button {
+      width: 100%;
+      font: inherit;
+    }
+
+    input,
+    textarea {
+      border: 1px solid #cbd8e4;
+      border-radius: 11px;
+      padding: 13px;
+      margin: 7px 0;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      border: 0;
+      border-radius: 11px;
+      padding: 13px;
+      margin-top: 8px;
+      color: white;
+      background: #2398ed;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .delete-button {
+      width: auto;
+      padding: 7px 12px;
+      margin-top: 10px;
+      background: #df5353;
+      font-size: 13px;
+    }
+
+    .status {
+      color: #718397;
+      font-size: 14px;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>💬 ロコキングダム掲示板</h1>
+</header>
+
+<main>
+
+  <a class="back" href="bbs.html">← トピック一覧へ戻る</a>
+
+  <section class="panel">
+    <h2 class="topic-title" id="topic-title">
+      読み込み中...
+    </h2>
+
+    <div class="topic-meta" id="topic-meta"></div>
+    <div class="topic-description" id="topic-description"></div>
+  </section>
+
+  <section class="panel">
+    <h2>コメント</h2>
+
+    <p class="status" id="comment-status">
+      読み込み中...
+    </p>
+
+    <div id="comments"></div>
+  </section>
+
+  <section class="panel">
+    <h2>✏️ コメントを書く</h2>
+
+    <input
+      id="comment-name"
+      type="text"
+      maxlength="30"
+      placeholder="名前（空欄なら名無しさん）"
+    >
+
+    <textarea
+      id="comment-body"
+      maxlength="1000"
+      placeholder="コメントを入力してください"
+    ></textarea>
+
+    <button id="submit-comment">
+      コメントを投稿
+    </button>
+
+    <p class="status" id="post-message"></p>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const SUPABASE_URL =
+    "https://vjdttnlrkceesmmvbnym.supabase.co";
+
+  const SUPABASE_KEY =
+    "sb_publishable_smTxr916q6a0_c_-PuOY5w_JDTAxziW";
+
+  const ADMIN_UID =
+    "5ceedf79-fee7-4159-bb82-a19848e5858f";
+
+  const client = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  const params =
+    new URLSearchParams(location.search);
+
+  const topicId =
+    Number(params.get("id"));
+
+  let isAdmin = false;
+  let currentTopic = null;
+
+  function escapeHTML(value) {
+    return String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function formatDate(value) {
+    return new Date(value).toLocaleString(
+      "ja-JP",
+      {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      }
+    );
+  }
+
+  async function checkAdmin() {
+    const {
+      data: { session }
+    } = await client.auth.getSession();
+
+    isAdmin =
+      session?.user?.id === ADMIN_UID;
+  }
+
+  async function loadTopic() {
+
+    if (!topicId) {
+      document.getElementById("topic-title")
+        .textContent = "トピックが見つかりません。";
+      return;
+    }
+
+    const { data, error } = await client
+      .from("topics")
+      .select("*")
+      .eq("id", topicId)
+      .single();
+
+    if (error) {
+      document.getElementById("topic-title")
+        .textContent = "トピックを読み込めませんでした。";
+      console.error(error);
+      return;
+    }
+
+    currentTopic = data;
+
+    document.getElementById("topic-title")
+      .textContent = data.title;
+
+    document.getElementById("topic-meta")
+      .textContent =
+        `${data.category || "その他"} ・ ${formatDate(data.created_at)}`;
+
+    document.getElementById("topic-description")
+      .textContent = data.description || "";
+  }
+
+  async function loadComments() {
+
+    const status =
+      document.getElementById("comment-status");
+
+    status.textContent = "読み込み中...";
+
+    const { data, error } = await client
+      .from("comments")
+      .select("*")
+      .eq("topic_id", topicId)
+      .order("created_at", {
+        ascending: true
+      })
+      .order("id", {
+        ascending: true
+      });
+
+    if (error) {
+      status.textContent =
+        "コメントを読み込めませんでした。";
+      console.error(error);
+      return;
+    }
+
+    if (!data.length) {
+      status.textContent =
+        "まだコメントはありません。";
+      document.getElementById("comments").innerHTML = "";
+      return;
+    }
+
+    status.textContent =
+      `コメント(${data.length}件)`;
+
+    document.getElementById("comments").innerHTML =
+      data.map((comment, index) => {
+
+        const deleteButton = isAdmin
+          ? `
+            <button
+              class="delete-button"
+              onclick="deleteComment(${comment.id})"
+            >
+              管理人：削除
+            </button>
+          `
+          : "";
+
+        return `
+          <div class="comment">
+
+            <div class="comment-head">
+
+              <span class="comment-number">
+                ${index + 1}:
+              </span>
+
+              <span class="comment-name">
+                ${escapeHTML(comment.name || "名無しさん")}
+              </span>
+
+              <span class="comment-date">
+                ${formatDate(comment.created_at)}
+              </span>
+
+            </div>
+
+            <div class="comment-body">
+              ${escapeHTML(comment.body)}
+            </div>
+
+            ${deleteButton}
+
+          </div>
+        `;
+
+      }).join("");
+  }
+
+  document
+    .getElementById("submit-comment")
+    .addEventListener("click", async () => {
+
+      const name =
+        document
+          .getElementById("comment-name")
+          .value
+          .trim();
+
+      const body =
+        document
+          .getElementById("comment-body")
+          .value
+          .trim();
+
+      const message =
+        document.getElementById("post-message");
+
+      if (!body) {
+        message.textContent =
+          "コメントを入力してください。";
+        return;
+      }
+
+      if (!currentTopic) {
+        message.textContent =
+          "トピックを読み込めていません。";
+        return;
+      }
+
+      if (!currentTopic.is_open) {
+        message.textContent =
+          "このトピックはコメント受付を終了しています。";
+        return;
+      }
+
+      message.textContent =
+        "投稿しています...";
+
+      const { error } = await client
+        .from("comments")
+        .insert({
+          topic_id: topicId,
+          name: name || "名無しさん",
+          body
+        });
+
+      if (error) {
+        message.textContent =
+          "投稿できませんでした。";
+        console.error(error);
+        return;
+      }
+
+      document.getElementById("comment-body")
+        .value = "";
+
+      message.textContent =
+        "投稿しました！";
+
+      await loadComments();
+    });
+
+  async function deleteComment(id) {
+
+    if (!isAdmin) {
+      return;
+    }
+
+    const ok = confirm(
+      "このコメントを削除しますか？"
+    );
+
+    if (!ok) {
+      return;
+    }
+
+    const { error } = await client
+      .from("comments")
+      .delete()
+      .eq("id", id);
+
+    if (error) {
+      alert("削除できませんでした。");
+      console.error(error);
+      return;
+    }
+
+    await loadComments();
+  }
+
+  async function start() {
+    await checkAdmin();
+    await loadTopic();
+    await loadComments();
+  }
+
+  start();
+</script>
+
+</body>
+</html>
