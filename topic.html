@@ -103,6 +103,11 @@
       overflow-wrap: anywhere;
     }
 
+    .deleted {
+      color: #8a98a5;
+      font-style: italic;
+    }
+
     input,
     textarea,
     button {
@@ -145,10 +150,6 @@
     .status {
       color: #718397;
       font-size: 14px;
-    }
-
-    .hidden {
-      display: none;
     }
   </style>
 </head>
@@ -224,11 +225,8 @@
     SUPABASE_KEY
   );
 
-  const params =
-    new URLSearchParams(location.search);
-
-  const topicId =
-    Number(params.get("id"));
+  const params = new URLSearchParams(location.search);
+  const topicId = Number(params.get("id"));
 
   let isAdmin = false;
   let currentTopic = null;
@@ -260,12 +258,10 @@
       data: { session }
     } = await client.auth.getSession();
 
-    isAdmin =
-      session?.user?.id === ADMIN_UID;
+    isAdmin = session?.user?.id === ADMIN_UID;
   }
 
   async function loadTopic() {
-
     if (!topicId) {
       document.getElementById("topic-title")
         .textContent = "トピックが見つかりません。";
@@ -299,7 +295,6 @@
   }
 
   async function loadComments() {
-
     const status =
       document.getElementById("comment-status");
 
@@ -309,10 +304,7 @@
       .from("comments")
       .select("*")
       .eq("topic_id", topicId)
-      .order("created_at", {
-        ascending: true
-      })
-      .order("id", {
+      .order("comment_no", {
         ascending: true
       });
 
@@ -334,18 +326,24 @@
       `コメント(${data.length}件)`;
 
     document.getElementById("comments").innerHTML =
-      data.map((comment, index) => {
+      data.map(comment => {
 
-        const deleteButton = isAdmin
-          ? `
-            <button
-              class="delete-button"
-              onclick="deleteComment(${comment.id})"
-            >
-              管理人：削除
-            </button>
-          `
-          : "";
+        const deleteButton =
+          isAdmin && !comment.is_deleted
+            ? `
+              <button
+                class="delete-button"
+                onclick="deleteComment(${comment.id})"
+              >
+                管理人：削除
+              </button>
+            `
+            : "";
+
+        const bodyClass =
+          comment.is_deleted
+            ? "comment-body deleted"
+            : "comment-body";
 
         return `
           <div class="comment">
@@ -353,7 +351,7 @@
             <div class="comment-head">
 
               <span class="comment-number">
-                ${index + 1}:
+                ${comment.comment_no}:
               </span>
 
               <span class="comment-name">
@@ -366,7 +364,7 @@
 
             </div>
 
-            <div class="comment-body">
+            <div class="${bodyClass}">
               ${escapeHTML(comment.body)}
             </div>
 
@@ -443,13 +441,12 @@
     });
 
   async function deleteComment(id) {
-
     if (!isAdmin) {
       return;
     }
 
     const ok = confirm(
-      "このコメントを削除しますか？"
+      "このコメントを削除済みにしますか？"
     );
 
     if (!ok) {
@@ -458,7 +455,11 @@
 
     const { error } = await client
       .from("comments")
-      .delete()
+      .update({
+        is_deleted: true,
+        name: "削除済み",
+body: "このコメントは削除されました"
+      })
       .eq("id", id);
 
     if (error) {
