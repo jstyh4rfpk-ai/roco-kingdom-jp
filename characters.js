@@ -9,275 +9,537 @@
  日本版で正式名称が判明していない名称は仮表記。
  日本版正式名称発表後、順次更新します。
 
- キャラクター追加時は、このファイルにデータを
- 追加するだけで図鑑・詳細ページへ反映できます。
+ データ基準：
+ 中国版 洛克王国：世界 BWIKI
+
+ 最終照合：
+ 2026-10-04
 ==================================================
 */
 
 const characters = [
 
-  /* ==========================================
-     NO.001 迪莫
-  ========================================== */
+/* ==================================================
+   NO.001 迪莫
+================================================== */
 
-  {
-    id: 1,
+{
+  id: 1,
 
-    name: "ディモ",
-    nameStatus: "仮",
+  name: "ディモ",
+  nameStatus: "仮",
 
-    chineseName: "迪莫",
-    englishName: "Dimo",
+  chineseName: "迪莫",
+  englishName: "Dimo",
 
-    type: ["light"],
-    typeName: ["光"],
+  type: ["light"],
+  typeName: ["光"],
 
-    total: 582,
+  total: 582,
 
-    stats: {
-      hp: 120,
-      attack: 80,
-      magicAttack: 80,
-      defense: 105,
-      magicDefense: 105,
-      speed: 92
-    },
-
-    ability: {
-      chineseName: "最好的伙伴",
-      name: "最高のパートナー",
-      description:
-        "弱点を突くダメージを与えた後、攻撃・防御・速度が20％上昇し、エネルギーを2回復する。"
-    },
-
-    acquisition:
-      "中国版ではストーリー進行で入手。",
-
-    evolution: [
-      "聖光ディモ（仮）",
-      "聖草ディモ（仮）",
-      "聖火ディモ（仮）",
-      "聖水ディモ（仮）"
-    ],
-
-    skills: [
-
-      {
-        level: 1,
-        chineseName: "猛烈撞击",
-        name: "猛烈な体当たり（仮）",
-        type: "普通",
-        category: "物理",
-        power: 65,
-        cost: 1,
-        description:
-          "敵1体に物理ダメージを与える。"
-      },
-
-      {
-        level: 1,
-        chineseName: "闪光",
-        name: "閃光（仮）",
-        type: "光",
-        category: "魔法",
-        power: 60,
-        cost: 1,
-        description:
-          "敵1体に魔法ダメージを与える。"
-      },
-
-      {
-        level: 9,
-        chineseName: "光球",
-        name: "光球（仮）",
-        type: "光",
-        category: "魔法",
-        power: 80,
-        cost: 2,
-        description:
-          "敵1体に魔法ダメージを与える。"
-      },
-
-      {
-        level: 11,
-        chineseName: "火焰箭",
-        name: "火炎の矢（仮）",
-        type: "火",
-        category: "物理",
-        power: 80,
-        cost: 2,
-        description:
-          "敵1体に物理ダメージを与える。"
-      },
-
-      {
-        level: 40,
-        chineseName: "放晴",
-        name: "晴天（仮）",
-        type: "光",
-        category: "状態",
-        power: null,
-        cost: 1,
-        description:
-          "光属性技を強化する状態技。"
-      },
-
-      {
-        level: 47,
-        chineseName: "光刃",
-        name: "光刃（仮）",
-        type: "光",
-        category: "物理",
-        power: 120,
-        cost: 4,
-        description:
-          "敵1体に強力な物理ダメージを与える。"
-      }
-
-    ],
-
-    image: null
+  stats: {
+    hp: 120,
+    attack: 80,
+    magicAttack: 80,
+    defense: 105,
+    magicDefense: 105,
+    speed: 92
   },
 
-
-  /* ==========================================
-     NO.002 喵喵
-  ========================================== */
-
-  {
-    id: 2,
-
-    name: "ニャーニャー",
-    nameStatus: "仮",
-
-    chineseName: "喵喵",
-    englishName: "",
-
-    type: ["grass"],
-    typeName: ["草"],
-
-    total: 370,
-
-    stats: {
-      hp: 65,
-      attack: 66,
-      magicAttack: 66,
-      defense: 49,
-      magicDefense: 91,
-      speed: 33
-    },
-
-    ability: {
-      chineseName: "氧循环",
-      name: "酸素循環",
-      description:
-        "草属性の技を使用した後、自身のHPを10％回復する。"
-    },
-
-    acquisition:
-      "中国版ではフィールド出現、精霊卵など複数の入手方法がある。",
-
-    evolution: [
-      "Lv.16 → 喵呜",
-      "Lv.32 → 魔力猫"
-    ],
-
-    skills: [],
-
-    image: null
+  ability: {
+    chineseName: "最好的伙伴",
+    name: "最高のパートナー",
+    description:
+      "弱点を突くダメージを与えた後、攻撃・防御・速度が20％上昇し、エネルギーを2回復する。"
   },
 
+  acquisition:
+    "中国版で入手可能。詳細な入手条件は整理中です。",
 
-  /* ==========================================
-     NO.003 喵呜
-  ========================================== */
+  evolution: [
+    "👑 首領形態 → 聖光ディモ（仮）",
+    "👑 首領形態 → 聖草ディモ（仮）",
+    "👑 首領形態 → 聖火ディモ（仮）",
+    "👑 首領形態 → 聖水ディモ（仮）"
+  ],
 
-  {
-    id: 3,
+  skills: [],
 
-    name: "ニャーウ",
-    nameStatus: "仮",
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
 
-    chineseName: "喵呜",
-    englishName: "",
+  image: null
+},
 
-    type: ["grass"],
-    typeName: ["草"],
 
-    total: 490,
+/* ==================================================
+   NO.002 喵喵
+================================================== */
 
-    stats: {
-      hp: 85,
-      attack: 87,
-      magicAttack: 87,
-      defense: 65,
-      magicDefense: 121,
-      speed: 45
-    },
+{
+  id: 2,
 
-    ability: null,
+  name: "ニャーニャー",
+  nameStatus: "仮",
 
-    acquisition:
-      "喵喵から進化。",
+  chineseName: "喵喵",
+  englishName: "",
 
-    evolution: [
-      "Lv.32 → 魔力猫"
-    ],
+  type: ["grass"],
+  typeName: ["草"],
 
-    skills: [],
+  total: 370,
 
-    image: null
+  stats: {
+    hp: 65,
+    attack: 66,
+    magicAttack: 66,
+    defense: 49,
+    magicDefense: 91,
+    speed: 33
   },
 
+  ability: {
+    chineseName: "氧循环",
+    name: "酸素循環",
+    description:
+      "草属性の技を使用した後、自身のHPを10％回復する。"
+  },
 
-  /* ==========================================
-     NO.004 魔力猫
-  ========================================== */
+  acquisition:
+    "中国版で入手可能。詳細な入手場所は整理中です。",
 
-  {
-    id: 4,
+  evolution: [
+    "Lv.16 → 喵呜（仮）",
+    "Lv.32 → 魔力猫（仮）"
+  ],
 
-    name: "魔力猫",
-    nameStatus: "仮",
+  skills: [],
 
-    chineseName: "魔力猫",
-    englishName: "",
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
 
-    type: ["grass"],
-    typeName: ["草"],
+  image: null
+},
 
-    total: 613,
 
-    stats: {
-      hp: 108,
-      attack: 109,
-      magicAttack: 109,
-      defense: 81,
-      magicDefense: 151,
-      speed: 55
-    },
+/* ==================================================
+   NO.003 喵呜
+================================================== */
 
-    ability: null,
+{
+  id: 3,
 
-    acquisition:
-      "喵呜から進化。",
+  name: "ニャーウ",
+  nameStatus: "仮",
 
-    evolution: [
-      "葉冕魔力猫（仮）",
-      "武斗酷猫（仮）"
-    ],
+  chineseName: "喵呜",
+  englishName: "",
 
-    skills: [],
+  type: ["grass"],
+  typeName: ["草"],
 
-    image: null
-  }
+  total: 490,
+
+  stats: {
+    hp: 86,
+    attack: 87,
+    magicAttack: 87,
+    defense: 65,
+    magicDefense: 121,
+    speed: 44
+  },
+
+  ability: {
+    chineseName: "氧循环",
+    name: "酸素循環",
+    description:
+      "草属性の技を使用した後、自身のHPを10％回復する。"
+  },
+
+  acquisition:
+    "喵喵をLv.16まで育成すると進化。",
+
+  evolution: [
+    "Lv.32 → 魔力猫（仮）"
+  ],
+
+  skills: [],
+
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+},
+
+
+/* ==================================================
+   NO.004 魔力猫
+================================================== */
+
+{
+  id: 4,
+
+  name: "魔力猫",
+  nameStatus: "仮",
+
+  chineseName: "魔力猫",
+  englishName: "",
+
+  type: ["grass"],
+  typeName: ["草"],
+
+  total: 613,
+
+  stats: {
+    hp: 108,
+    attack: 109,
+    magicAttack: 109,
+    defense: 81,
+    magicDefense: 151,
+    speed: 55
+  },
+
+  ability: {
+    chineseName: "氧循环",
+    name: "酸素循環",
+    description:
+      "草属性の技を使用した後、自身のHPを10％回復する。"
+  },
+
+  acquisition:
+    "喵呜をLv.32まで育成すると進化。",
+
+  evolution: [
+    "👑 首領形態 → 葉冕魔力猫（仮）"
+  ],
+
+  skills: [],
+
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+},
+
+
+/* ==================================================
+   NO.005 火花
+================================================== */
+
+{
+  id: 5,
+
+  name: "火花",
+  nameStatus: "仮",
+
+  chineseName: "火花",
+  englishName: "",
+
+  type: ["fire"],
+  typeName: ["火"],
+
+  total: 368,
+
+  stats: {
+    hp: 70,
+    attack: 84,
+    magicAttack: 37,
+    defense: 56,
+    magicDefense: 43,
+    speed: 78
+  },
+
+  ability: {
+    chineseName: "助燃",
+    name: "燃焼促進",
+    description:
+      "火属性の技を使用した後、物攻と魔攻が20％上昇する。"
+  },
+
+  acquisition:
+    "中国版で入手可能。詳細な入手場所は整理中です。",
+
+  evolution: [
+    "Lv.16 → 焰火（仮）",
+    "Lv.36 → 火神（仮）"
+  ],
+
+  skills: [],
+
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+},
+
+
+/* ==================================================
+   NO.006 焰火
+================================================== */
+
+{
+  id: 6,
+
+  name: "焰火",
+  nameStatus: "仮",
+
+  chineseName: "焰火",
+  englishName: "",
+
+  type: ["fire"],
+  typeName: ["火"],
+
+  total: 490,
+
+  stats: {
+    hp: 93,
+    attack: 111,
+    magicAttack: 49,
+    defense: 75,
+    magicDefense: 58,
+    speed: 104
+  },
+
+  ability: {
+    chineseName: "助燃",
+    name: "燃焼促進",
+    description:
+      "火属性の技を使用した後、物攻と魔攻が20％上昇する。"
+  },
+
+  acquisition:
+    "火花をLv.16まで育成すると進化。",
+
+  evolution: [
+    "Lv.36 → 火神（仮）"
+  ],
+
+  skills: [],
+
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+},
+
+
+/* ==================================================
+   NO.007 火神
+================================================== */
+
+{
+  id: 7,
+
+  name: "火神",
+  nameStatus: "仮",
+
+  chineseName: "火神",
+  englishName: "",
+
+  type: ["fire"],
+  typeName: ["火"],
+
+  total: 613,
+
+  stats: {
+    hp: 117,
+    attack: 139,
+    magicAttack: 61,
+    defense: 94,
+    magicDefense: 72,
+    speed: 130
+  },
+
+  ability: {
+    chineseName: "助燃",
+    name: "燃焼促進",
+    description:
+      "火属性の技を使用した後、物攻と魔攻が20％上昇する。"
+  },
+
+  acquisition:
+    "焰火をLv.36まで育成すると進化。",
+
+  evolution: [
+    "👑 首領形態 → 烈火戦神（仮）"
+  ],
+
+  skills: [],
+
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+},
+
+
+/* ==================================================
+   NO.008 水蓝蓝
+================================================== */
+
+{
+  id: 8,
+
+  name: "水藍藍",
+  nameStatus: "仮",
+
+  chineseName: "水蓝蓝",
+  englishName: "",
+
+  type: ["water"],
+  typeName: ["水"],
+
+  total: 372,
+
+  stats: {
+    hp: 75,
+    attack: 35,
+    magicAttack: 76,
+    defense: 56,
+    magicDefense: 79,
+    speed: 51
+  },
+
+  ability: {
+    chineseName: "浸润",
+    name: "浸潤",
+    description:
+      "水属性の技を使用した後、すべての技のエネルギー消費量が1減少する。"
+  },
+
+  acquisition:
+    "中国版で入手可能。詳細な入手方法は整理中です。",
+
+  evolution: [
+    "Lv.16 → 波波拉（仮）",
+    "Lv.36 → 水灵（仮）"
+  ],
+
+  skills: [],
+
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+},
+
+
+/* ==================================================
+   NO.009 波波拉
+================================================== */
+
+{
+  id: 9,
+
+  name: "波波拉",
+  nameStatus: "仮",
+
+  chineseName: "波波拉",
+  englishName: "",
+
+  type: ["water"],
+  typeName: ["水"],
+
+  total: 497,
+
+  stats: {
+    hp: 100,
+    attack: 46,
+    magicAttack: 102,
+    defense: 75,
+    magicDefense: 106,
+    speed: 68
+  },
+
+  ability: {
+    chineseName: "浸润",
+    name: "浸潤",
+    description:
+      "水属性の技を使用した後、すべての技のエネルギー消費量が1減少する。"
+  },
+
+  acquisition:
+    "水蓝蓝をLv.16まで育成すると進化。",
+
+  evolution: [
+    "Lv.36 → 水灵（仮）"
+  ],
+
+  skills: [],
+
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+},
+
+
+/* ==================================================
+   NO.010 水灵
+================================================== */
+
+{
+  id: 10,
+
+  name: "水霊",
+  nameStatus: "仮",
+
+  chineseName: "水灵",
+  englishName: "",
+
+  type: ["water"],
+  typeName: ["水"],
+
+  total: 621,
+
+  stats: {
+    hp: 125,
+    attack: 58,
+    magicAttack: 127,
+    defense: 94,
+    magicDefense: 132,
+    speed: 85
+  },
+
+  ability: {
+    chineseName: "浸润",
+    name: "浸潤",
+    description:
+      "水属性の技を使用した後、すべての技のエネルギー消費量が1減少する。"
+  },
+
+  acquisition:
+    "波波拉をLv.36まで育成すると進化。",
+
+  evolution: [
+    "👑 首領形態あり"
+  ],
+
+  skills: [],
+
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+}
 
 ];
 
 
 /*
 ==================================================
- 属性表示設定
+ 属性表示
 ==================================================
 */
 
