@@ -3,111 +3,683 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Roco Kingdom（ロコ・キングダム）の日本語非公式情報まとめ。クワックテスト（CBT）、Creator Program、事前登録報酬などを公式情報中心に整理。">
-<title>Roco Kingdom JP Guide | CBT・Creator・限定報酬まとめ</title>
+<meta name="description" content="Roco Kingdom（ロコ・キングダム）の日本語非公式情報まとめ。クワックテスト、Creator Program、事前登録・限定報酬、公式ニュースを整理。">
+<title>Roco Kingdom JP Guide | CBT・Creator・限定報酬</title>
+
 <style>
-:root{--blue:#1689e8;--ink:#102b45;--muted:#63778b;--bg:#eefaff;--card:#fff;--line:#d8e8f1;--warn:#fff8e8;--green:#eaf8ef}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;color:var(--ink);background:linear-gradient(#e9faff,#f7fcff);line-height:1.75}
-.wrap{max-width:820px;margin:auto;padding:42px 20px 80px}.hero{text-align:center;padding:35px 0 25px}.badge{display:inline-block;background:white;border:1px solid #b7ddeb;border-radius:999px;padding:7px 18px;font-weight:700}.hero h1{font-size:clamp(38px,9vw,64px);line-height:1.05;margin:25px 0 15px}.lead{color:var(--muted);font-size:18px}
-.nav{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:26px 0}.btn{display:inline-block;text-decoration:none;padding:12px 20px;border-radius:14px;font-weight:800;border:1px solid #9ed1ec;color:var(--blue);background:white}.btn.primary{background:var(--blue);color:white;border-color:var(--blue)}
-.notice,.card{border:1px solid var(--line);border-radius:22px;padding:22px;margin:18px 0;background:var(--card);box-shadow:0 8px 28px rgba(32,91,128,.05)}.notice{background:var(--warn);border-color:#ecd08d}.ok{background:var(--green);border-color:#b9dfc4}
-h2{margin:46px 0 12px;font-size:28px}h3{margin:0 0 8px;font-size:21px}.label{font-size:14px;color:var(--muted);font-weight:700}.big{font-size:30px;font-weight:900;line-height:1.3}.status{display:inline-block;font-size:13px;padding:3px 10px;border-radius:999px;background:#e7f5ff;color:#0877c8;font-weight:800;margin-bottom:8px}
-ul{padding-left:22px}.source{font-size:14px;color:var(--muted)}.source a{color:#1679bd}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.grid .card{margin:0}.footer{text-align:center;color:var(--muted);font-size:13px;margin-top:55px}
-@media(max-width:600px){.grid{grid-template-columns:1fr}.wrap{padding:25px 17px 60px}.hero{padding-top:25px}.lead{font-size:16px}}
+:root{
+  --blue:#1689e8;
+  --blue2:#66c7ff;
+  --ink:#102b45;
+  --muted:#63778b;
+  --card:rgba(255,255,255,.94);
+  --line:#d8e8f1;
+  --warn:#fff8e8;
+  --green:#eaf8ef;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;
+  color:var(--ink);
+  background:
+    linear-gradient(rgba(238,250,255,.91),rgba(247,252,255,.96)),
+    url("IMG_0596.png") center top/520px auto fixed;
+  line-height:1.75;
+}
+
+.wrap{
+  max-width:850px;
+  margin:auto;
+  padding:25px 18px 80px;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:30px 12px 32px;
+  position:relative;
+  overflow:hidden;
+  border-radius:30px;
+  margin-bottom:22px;
+  background:
+    linear-gradient(rgba(230,249,255,.72),rgba(255,255,255,.92)),
+    url("IMG_0596.png") center 32%/cover;
+  box-shadow:0 15px 45px rgba(25,100,150,.13);
+}
+
+.hero-character{
+  width:130px;
+  height:130px;
+  object-fit:cover;
+  border-radius:50%;
+  border:5px solid white;
+  box-shadow:0 8px 25px rgba(0,0,0,.15);
+  margin-bottom:14px;
+}
+
+.badge{
+  display:inline-block;
+  background:rgba(255,255,255,.94);
+  border:1px solid #a9d8ec;
+  border-radius:999px;
+  padding:7px 18px;
+  font-weight:800;
+}
+
+.hero h1{
+  font-size:clamp(38px,9vw,65px);
+  line-height:1.05;
+  margin:20px 0 15px;
+  text-shadow:0 2px 12px rgba(255,255,255,.9);
+}
+
+.lead{
+  color:#425e73;
+  font-size:18px;
+  font-weight:600;
+}
+
+.nav{
+  display:flex;
+  gap:9px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin:25px 0 5px;
+}
+
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  padding:12px 19px;
+  border-radius:14px;
+  font-weight:800;
+  border:1px solid #9ed1ec;
+  color:var(--blue);
+  background:white;
+  margin:4px 2px;
+}
+
+.btn.primary{
+  background:var(--blue);
+  color:white;
+  border-color:var(--blue);
+}
+
+.notice,.card{
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:22px;
+  margin:18px 0;
+  background:var(--card);
+  box-shadow:0 8px 28px rgba(32,91,128,.07);
+  backdrop-filter:blur(7px);
+}
+
+.notice{
+  background:rgba(255,248,232,.96);
+  border-color:#ecd08d;
+}
+
+.ok{
+  background:rgba(234,248,239,.96);
+  border-color:#b9dfc4;
+}
+
+.alert{
+  background:#fff1f1;
+  border-color:#efc0c0;
+}
+
+h2{
+  margin:48px 0 12px;
+  font-size:28px;
+}
+
+h3{
+  margin:4px 0 8px;
+  font-size:21px;
+}
+
+.label{
+  font-size:14px;
+  color:var(--muted);
+  font-weight:700;
+}
+
+.big{
+  font-size:29px;
+  font-weight:900;
+  line-height:1.3;
+}
+
+.status{
+  display:inline-block;
+  font-size:13px;
+  padding:3px 10px;
+  border-radius:999px;
+  background:#e7f5ff;
+  color:#0877c8;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.important{
+  display:inline-block;
+  background:#fff0bd;
+  color:#7a5700;
+  padding:3px 9px;
+  border-radius:9px;
+  font-weight:800;
+  font-size:13px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.grid .card{margin:0}
+
+ul,ol{padding-left:22px}
+
+.source{
+  font-size:13px;
+  color:var(--muted);
+  border-top:1px solid #e6eef3;
+  padding-top:12px;
+  margin-top:18px;
+}
+
+.source a{color:#1679bd}
+
+.timeline{
+  border-left:4px solid #8fd0f4;
+  padding-left:20px;
+  margin-left:8px;
+}
+
+.timeline-item{
+  margin:20px 0;
+}
+
+.date{
+  color:var(--blue);
+  font-weight:900;
+}
+
+.news{
+  display:block;
+  text-decoration:none;
+  color:var(--ink);
+  border-bottom:1px solid #e1ebf0;
+  padding:13px 0;
+}
+
+.news:last-child{border-bottom:0}
+
+.news strong{color:#1679bd}
+
+.linkbox a{
+  display:block;
+  padding:13px 4px;
+  color:#1679bd;
+  font-weight:750;
+  text-decoration:none;
+  border-bottom:1px solid #e2ebef;
+}
+
+.linkbox a:last-child{border:0}
+
+.footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:55px;
+  padding:25px 5px;
+}
+
+@media(max-width:600px){
+  .grid{grid-template-columns:1fr}
+  .wrap{padding:18px 14px 60px}
+  .hero{padding:27px 12px}
+  .lead{font-size:16px}
+  .hero-character{width:110px;height:110px}
+}
 </style>
 </head>
+
 <body>
 <main class="wrap">
+
 <section class="hero">
-<span class="badge">非公式・日本語情報まとめ</span>
+
+<img class="hero-character" src="IMG_0596.png" alt="Roco Kingdom">
+
+<br>
+
+<span class="badge">非公式 🇯🇵 日本語情報まとめ</span>
+
 <h1>Roco Kingdom<br>JP Guide</h1>
-<p class="lead">CBT、Creator Program、事前登録・限定報酬など「取り逃したくない情報」を、公式発表を優先して整理します。</p>
+
+<p class="lead">
+CBT・Creator Program・事前登録・限定報酬など、<br>
+「取り逃したくない情報」を公式発表中心に整理。
+</p>
+
 <div class="nav">
-<a class="btn primary" href="#cbt">CBTを見る</a>
-<a class="btn" href="#creator">Creatorを見る</a>
-<a class="btn" href="#rewards">報酬を見る</a>
+<a class="btn primary" href="#now">今やること</a>
+<a class="btn" href="#cbt">CBT</a>
+<a class="btn" href="#creator">Creator</a>
+<a class="btn" href="#rewards">限定報酬</a>
+<a class="btn" href="#news">NEWS</a>
 </div>
+
 </section>
+
 
 <div class="notice">
-<strong>情報の扱い：</strong>公式サイトで確認できた内容を「公式確認済み」として掲載します。Discord・SNSなどの未確認情報は、公式情報と混同しないよう分けて扱います。
+<strong>📖 このサイトについて</strong><br>
+公式サイト・公式ニュース等で確認できた情報を
+「公式確認済み」として掲載しています。<br>
+Discord・SNS・コミュニティ等の未確認情報は、
+公式情報と混同しないよう区別して掲載します。
 </div>
+
+
+<section id="now">
 
 <h2>📌 今やること</h2>
+
 <div class="card ok">
 <span class="status">公式確認済み</span>
-<h3>クワックテストに応募＋友達招待</h3>
-<p>応募アンケートへの回答が参加資格の選考対象になるために必要です。さらに、招待リンク経由で事前登録した友達が多いほど、条件を満たす応募者の中で優先されると公式に案内されています。</p>
-<a class="btn primary" href="https://rocokingdom.com/ja/" target="_blank" rel="noopener">公式サイトを開く</a>
+
+<h3>① クワックテストへ応募</h3>
+
+<p>
+公式サイトの「テストに応募」からアンケートに回答。
+アンケート回答はテスト参加資格の選考に必要です。
+</p>
+
+<p>
+<strong>テストへ応募するとゲームの事前登録も同時に完了します。</strong>
+別途事前登録する必要はありません。
+</p>
+
+<a class="btn primary"
+href="https://rocokingdom.com/ja/"
+target="_blank" rel="noopener">
+公式サイトへ
+</a>
 </div>
 
-<section id="cbt">
-<h2>🦆 クワックテスト（CBT）</h2>
-<div class="grid">
-<div class="card"><div class="label">募集期間</div><div class="big">8/26 → 10/20</div><div>2026年</div></div>
-<div class="card"><div class="label">対応候補</div><div class="big">iOS / Android / PC</div><div>応募フォームで選択可能</div></div>
-</div>
-<div class="card">
+
+<div class="card ok">
 <span class="status">公式確認済み</span>
-<h3>選考について</h3>
-<ul>
-<li>「テストに応募」からアンケートへ回答。</li>
-<li>「お友達を招待」から事前登録へ招待可能。</li>
-<li>公式は、条件を満たす場合に成功した友達招待数が多い応募者を優先すると案内。</li>
-<li>当選結果は募集期間終了後、公式サイトと登録メールアドレスへ案内予定。</li>
-</ul>
-<p class="source">出典：<a href="https://rocokingdom.com/ja/" target="_blank" rel="noopener">Roco Kingdom 公式サイト</a></p>
+
+<h3>② 友達招待</h3>
+
+<p>
+テスト応募後、「お友達を招待」から専用リンクを利用できます。
+</p>
+
+<p>
+条件を満たしている応募者について、
+<strong>成功した事前登録招待数が多いプレイヤーが優先的に選出される</strong>
+と公式に案内されています。
+</p>
+
+<span class="important">招待数は選考に関係あり</span>
 </div>
-<div class="card">
-<h3>応募フォームで確認できる項目</h3>
-<p>希望プラットフォーム、端末情報、最近遊んだゲームジャンル、Roco Kingdomを知った経路など。希望言語には日本語も用意されています。</p>
-</div>
+
 </section>
 
-<section id="creator">
-<h2>🎨 Creator Program</h2>
+
+<section id="cbt">
+
+<h2>🦆 クワックテスト（CBT）</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="label">募集期間</div>
+<div class="big">8/26 → 10/20</div>
+<div>2026年</div>
+</div>
+
+<div class="card">
+<div class="label">CBT開始</div>
+<div class="big">10/27</div>
+<div>2026年・公式News掲載</div>
+</div>
+
+<div class="card">
+<div class="label">対象</div>
+<div class="big">iOS / Android / PC</div>
+<div>応募フォームで選択可能</div>
+</div>
+
+<div class="card">
+<div class="label">希望言語</div>
+<div class="big">日本語あり</div>
+<div>英語 / 日本語</div>
+</div>
+
+</div>
+
+
 <div class="card">
 <span class="status">公式確認済み</span>
-<h3>応募の目安</h3>
+
+<h3>参加資格の選考</h3>
+
+<ul>
+<li>「テストに応募」からアンケートへ回答。</li>
+<li>アンケート回答は参加資格の選考に必要。</li>
+<li>応募後に友達招待リンクを利用可能。</li>
+<li>条件を満たす場合、成功した友達招待数が多い応募者が優先。</li>
+<li>結果は募集期間終了後、公式サイトおよび登録メールへ案内予定。</li>
+</ul>
+
+<p class="source">
+出典：
+<a href="https://rocokingdom.com/ja/" target="_blank" rel="noopener">
+Roco Kingdom 日本語公式サイト
+</a>
+</p>
+</div>
+
+
+<div class="card">
+<h3>📱 応募フォームで確認される内容</h3>
+
+<ul>
+<li>希望プラットフォーム</li>
+<li>iOS端末モデル</li>
+<li>Android RAM容量</li>
+<li>PC GPU</li>
+<li>直近6か月で遊んだゲームジャンル</li>
+<li>Roco Kingdomを知った経路</li>
+<li>希望言語</li>
+</ul>
+
+<p>
+PCではGTX 1050 / 1650クラスから
+RTX 4070等のハイエンドGPUまで選択肢が用意されています。
+</p>
+</div>
+
+</section>
+
+
+<section id="rewards">
+
+<h2>🎁 取り逃し注意</h2>
+
+<div class="card">
+<span class="status">公式確認済み</span>
+
+<h3>事前登録限定報酬</h3>
+
+<p>
+公式サイトで事前登録し、
+<strong>Open Beta開始後にゲームをダウンロード</strong>すると、
+事前登録限定報酬の獲得案内があります。
+</p>
+
+<p>
+日本語公式ページでは
+<strong>限定ロコカード「ネオキージ」</strong>が案内されています。
+</p>
+
+<div class="notice">
+<strong>⚠️ Level Infiniteアカウントに注意</strong><br>
+登録メールアドレスは正式サービス後のログインや
+ゲーム内報酬の受け取りにも使用すると公式が案内しています。
+メールアドレスを忘れないようにしましょう。
+</div>
+
+<a class="btn primary"
+href="https://rocokingdom.com/ja/"
+target="_blank" rel="noopener">
+事前登録・公式サイト
+</a>
+</div>
+
+</section>
+
+
+<section id="creator">
+
+<h2>🎨 Creator Program</h2>
+
+<div class="card">
+
+<span class="status">公式確認済み</span>
+
+<h3>Creator応募の目安</h3>
+
 <ul>
 <li>居住国で成人年齢に達していること。</li>
 <li>Roco Kingdomへの強い関心があること。</li>
-<li>メインのプラットフォームで継続的にコンテンツを制作していること。</li>
-<li><strong>SNSフォロワー1,000人以上</strong>、または<strong>直近1か月に同時視聴50人以上で配信</strong>のいずれか。</li>
+<li>メインプラットフォームで継続的にコンテンツ制作。</li>
+<li><strong>SNSフォロワー1,000人以上</strong></li>
+<li>または<strong>直近1か月に同時視聴50人以上で配信</strong></li>
 </ul>
-<div class="notice"><strong>重要：</strong>公式は、上記の最低目安を満たしていなくても応募を歓迎しており、質の高いコンテンツを作る可能性があるCreatorは招待される場合があると明記しています。</div>
+
+<div class="notice">
+<strong>💡 条件未達でも応募可能</strong><br>
+公式は最低目安を満たしていないCreatorからの応募も歓迎しています。
+高品質なコンテンツを制作する可能性があるCreatorは
+招待される場合があると案内されています。
+</div>
+
 <h3>参加手順</h3>
+
 <ol>
 <li>公式Creator Serverへ参加。</li>
 <li>サーバー参加後に応募フォームを記入。</li>
-<li>審査を待ち、承認されると「Creator」ロールが付与されます。</li>
+<li>審査を待つ。</li>
+<li>承認されると「Creator」ロールが付与。</li>
 </ol>
-<p><strong>案内されている特典：</strong>Traffic Boost / Cash Rewards / Asset Support / Content Guide</p>
-<a class="btn primary" href="https://rocokingdom.com/creator/index.html?lang=en" target="_blank" rel="noopener">Creator公式ページ</a>
+
+<h3>Creator Benefits</h3>
+
+<ul>
+<li>Traffic Boost</li>
+<li>Cash Rewards</li>
+<li>Asset Support</li>
+<li>Content Guide</li>
+</ul>
+
+<a class="btn primary"
+href="https://rocokingdom.com/creator/index.html?lang=en"
+target="_blank" rel="noopener">
+Creator公式ページ
+</a>
+
 </div>
 </section>
 
-<section id="rewards">
-<h2>🎁 取り逃し注意</h2>
+
+<section id="about">
+
+<h2>🌏 Roco Kingdomとは？</h2>
+
 <div class="card">
-<span class="status">公式確認済み</span>
-<h3>事前登録報酬</h3>
-<p>公式サイトで事前登録し、<strong>Open Beta開始後にゲームをダウンロード</strong>すると、限定ネームカードの獲得案内があります。</p>
-<p>事前登録時に使用したLevel Infiniteアカウントのメールアドレスは、正式サービス後のログインやゲーム内報酬受け取りにも使う旨が案内されているため、変更・紛失に注意。</p>
-<a class="btn" href="https://rocokingdom.com/ja/" target="_blank" rel="noopener">事前登録ページ</a>
+
+<p>
+Roco Kingdomは、
+<strong>オープンワールド・クリーチャー収集RPG</strong>。
+ジニ（Jinies）たちと一緒に広大な世界を冒険します。
+</p>
+
+<ul>
+<li>400種類以上のジニ</li>
+<li>広大なオープンワールド</li>
+<li>フレンドと一緒に遊べるマルチプレイ</li>
+<li>戦略性を重視したPvP</li>
+<li>魔法学院から始まる冒険</li>
+<li>ジニとのコーディネート</li>
+<li>家づくりなどの生活要素</li>
+</ul>
+
+<p>
+Steam公式ページでは開発・パブリッシャーとして
+<strong>MoreFun Studios</strong>が掲載されています。
+</p>
+
 </div>
 </section>
+
+
+<section id="news">
+
+<h2>📰 公式ニュース</h2>
+
+<div class="card">
+
+<a class="news"
+href="https://rocokingdom.com/m/en/news/"
+target="_blank" rel="noopener">
+<strong>2026.08.26</strong><br>
+Roco Kingdom Closed Beta Arrives Oct 27
+</a>
+
+<a class="news"
+href="https://rocokingdom.com/m/en/news/"
+target="_blank" rel="noopener">
+<strong>2026.08.26</strong><br>
+Roco Kingdom Closed Beta Test FAQ
+</a>
+
+<a class="news"
+href="https://rocokingdom.com/m/en/news/"
+target="_blank" rel="noopener">
+<strong>2026.09.08</strong><br>
+The World Where We Meet | Dev Talk
+</a>
+
+<a class="news"
+href="https://rocokingdom.com/m/en/news/"
+target="_blank" rel="noopener">
+<strong>2026.08.26</strong><br>
+Global Creator Recruitment Now Open
+</a>
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2>📅 スケジュール</h2>
+
+<div class="card timeline">
+
+<div class="timeline-item">
+<div class="date">2026年8月26日</div>
+<strong>クワックテスト募集開始</strong>
+</div>
+
+<div class="timeline-item">
+<div class="date">2026年10月20日</div>
+<strong>クワックテスト募集終了</strong>
+</div>
+
+<div class="timeline-item">
+<div class="date">2026年10月27日</div>
+<strong>クローズドβテスト開始予定</strong>
+</div>
+
+<div class="timeline-item">
+<div class="date">今後</div>
+<strong>Open Beta / 正式サービス</strong><br>
+公式からの追加発表を確認。
+</div>
+
+</div>
+
+</section>
+
+
+<section>
 
 <h2>🔗 公式リンク</h2>
-<div class="card">
-<p><a href="https://rocokingdom.com/ja/" target="_blank" rel="noopener">Roco Kingdom 日本語公式サイト</a></p>
-<p><a href="https://rocokingdom.com/creator/index.html?lang=en" target="_blank" rel="noopener">Global Creator Program</a></p>
+
+<div class="card linkbox">
+
+<a href="https://rocokingdom.com/ja/"
+target="_blank" rel="noopener">
+🌐 Roco Kingdom 日本語公式サイト ↗
+</a>
+
+<a href="https://rocokingdom.com/m/en/news/"
+target="_blank" rel="noopener">
+📰 Roco Kingdom News Center ↗
+</a>
+
+<a href="https://rocokingdom.com/creator/index.html?lang=en"
+target="_blank" rel="noopener">
+🎨 Global Creator Program ↗
+</a>
+
+<a href="https://rocokingdom.com/steam/"
+target="_blank" rel="noopener">
+🎮 Roco Kingdom Steam案内 ↗
+</a>
+
 </div>
 
-<div class="footer">
-<p>最終確認：2026年10月3日</p>
-<p>本サイトは非公式ファンサイトです。Roco Kingdom、Tencent、MoreFun Studios等とは関係ありません。最新・最終的な情報は必ず公式発表をご確認ください。</p>
+</section>
+
+
+<section>
+
+<h2>📝 更新履歴</h2>
+
+<div class="card">
+
+<p>
+<strong>2026/10/03</strong><br>
+サイト公開。CBT・Creator Program・事前登録報酬・公式ニュースを整理。
+</p>
+
+<p>
+<strong>2026/10/03</strong><br>
+クワックテスト募集期間、10月27日CBT開始情報、
+友達招待による選考優先情報を追加。
+</p>
+
+<p>
+<strong>2026/10/03</strong><br>
+Creator Program参加条件・特典・応募手順を追加。
+</p>
+
 </div>
+
+</section>
+
+
+<div class="footer">
+
+<p><strong>最終情報確認：2026年10月3日</strong></p>
+
+<p>
+本サイトは非公式ファンサイトです。<br>
+Roco Kingdom、Tencent、MoreFun Studios等とは関係ありません。<br>
+最新・最終的な情報については必ず公式発表をご確認ください。
+</p>
+
+<p>Roco Kingdom JP Guide 🇯🇵</p>
+
+</div>
+
 </main>
 </body>
 </html>
