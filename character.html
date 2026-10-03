@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>キャラクター詳細 | ロコキングダム速報</title>
+
+<meta name="description"
+content="Roco Kingdom（洛克王国：世界）のキャラクター性能・種族値・特性・技・進化・入手方法を日本語でまとめています。">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+  color: #17324d;
+  line-height: 1.7;
+  background: #f1f8fd;
+}
+
+header {
+  padding: 25px 16px;
+  text-align: center;
+  color: white;
+  background: linear-gradient(135deg,#50b7f0,#79d4ff);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+header p {
+  margin: 5px 0 0;
+  font-size: 13px;
+}
+
+.back {
+  display: block;
+  padding: 14px 18px;
+  background: white;
+  border-bottom: 1px solid #dceaf4;
+  color: #1677d2;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+main {
+  width: min(850px, calc(100% - 24px));
+  margin: 18px auto 50px;
+}
+
+.card {
+  margin-bottom: 16px;
+  padding: 19px;
+  background: white;
+  border: 1px solid #dceaf3;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(30,90,130,.08);
+}
+
+.card h2 {
+  margin: 0 0 14px;
+  font-size: 20px;
+}
+
+/* キャラ上部 */
+
+.hero {
+  text-align: center;
+  overflow: hidden;
+}
+
+.character-image {
+  height: 220px;
+  margin: -19px -19px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at center,#fff,#e5f5ff);
+  font-size: 85px;
+}
+
+.character-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 15px;
+}
+
+.no {
+  color: #7890a4;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.name {
+  margin: 3px 0 0;
+  font-size: 29px;
+  font-weight: 900;
+  color: #126fc1;
+}
+
+.cn {
+  margin-top: 2px;
+  color: #7b90a2;
+  font-size: 13px;
+}
+
+.types {
+  margin-top: 10px;
+}
+
+.type {
+  display: inline-block;
+  margin: 2px;
+  padding: 5px 15px;
+  border-radius: 999px;
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.type-normal { background:#929292; }
+.type-grass { background:#58ad55; }
+.type-fire { background:#ed6253; }
+.type-water { background:#479fe8; }
+.type-light { background:#e4ad25; }
+.type-ground { background:#aa8151; }
+.type-ice { background:#68c6dc; }
+.type-dragon { background:#7654b5; }
+.type-electric { background:#e4b91f; }
+.type-poison { background:#985ca9; }
+.type-bug { background:#82a938; }
+.type-fighting { background:#c46d3b; }
+.type-wing { background:#78a7d1; }
+.type-cute { background:#e77aa6; }
+.type-ghost { background:#756294; }
+.type-dark { background:#62536e; }
+.type-machine { background:#6e8290; }
+.type-illusion { background:#a767b5; }
+
+.total {
+  margin-top: 10px;
+  font-weight: 900;
+}
+
+/* ステータス */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 8px;
+}
+
+.stat {
+  padding: 12px 5px;
+  text-align: center;
+  border-radius: 12px;
+  background: #f2f8fc;
+}
+
+.stat-name {
+  display: block;
+  color: #6b8396;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.stat-value {
+  display: block;
+  margin-top: 2px;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+/* 特性 */
+
+.trait {
+  padding: 15px;
+  border-radius: 13px;
+  background: #fff9e6;
+  border: 1px solid #efd98b;
+}
+
+.trait strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #a97200;
+}
+
+.original {
+  color: #7b8c99;
+  font-size: 12px;
+}
+
+/* 技 */
+
+.skill {
+  padding: 14px 0;
+  border-bottom: 1px solid #e4edf3;
+}
+
+.skill:last-child {
+  border-bottom: 0;
+}
+
+.skill-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.skill-name {
+  font-weight: 900;
+  color: #126fc1;
+}
+
+.skill-level {
+  color: #7890a3;
+  font-size: 11px;
+}
+
+.skill-original {
+  margin-top: 2px;
+  color: #8a9ba8;
+  font-size: 11px;
+}
+
+.skill-tags {
+  margin: 6px 0;
+}
+
+.tag {
+  display: inline-block;
+  margin: 2px 3px 2px 0;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #edf4f8;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.skill-effect {
+  color: #4f687b;
+  font-size: 13px;
+}
+
+/* 進化 */
+
+.evolution-item {
+  margin: 7px 0;
+  padding: 12px;
+  text-align: center;
+  border-radius: 12px;
+  background: #edf8ff;
+  color: #126fc1;
+  font-weight: 800;
+}
+
+.notice {
+  padding: 15px;
+  border-radius: 14px;
+  background: #fff9e7;
+  border: 1px solid #efdb96;
+  color: #66582b;
+  font-size: 12px;
+}
+
+.empty {
+  color: #8194a3;
+  font-size: 13px;
+}
+
+.error {
+  padding: 30px 20px;
+  text-align: center;
+  background: white;
+  border-radius: 18px;
+}
+
+@media (max-width:400px) {
+  .character-image {
+    height: 190px;
+  }
+
+  .name {
+    font-size: 25px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🐾 キャラクター詳細</h1>
+  <p>ロコキングダム速報 攻略図鑑</p>
+</header>
+
+<a class="back" href="pokedex.html">
+  ← キャラ図鑑へ戻る
+</a>
+
+<main id="content">
+  <div class="card">
+    読み込み中...
+  </div>
+</main>
+
+<script src="characters.js"></script>
+
+<script>
+
+/* URLの ?id=○ を取得 */
+
+const params =
+  new URLSearchParams(window.location.search);
+
+const characterId =
+  Number(params.get("id"));
+
+const character =
+  characters.find(
+    c => c.id === characterId
+  );
+
+const content =
+  document.getElementById("content");
+
+
+/* キャラが見つからない場合 */
+
+if (!character) {
+
+  content.innerHTML = `
+    <div class="error">
+      <h2>キャラクターが見つかりません</h2>
+
+      <p>
+        指定されたキャラクターデータがありません。
+      </p>
+
+      <a href="pokedex.html">
+        キャラ図鑑へ戻る
+      </a>
+    </div>
+  `;
+
+} else {
+
+  /* ページタイトル変更 */
+
+  document.title =
+    `${character.name}の性能・技 | ロコキングダム速報`;
+
+
+  /* 画像 */
+
+  let imageHTML = "";
+
+  if (character.image) {
+
+    imageHTML = `
+      <img
+        src="${character.image}"
+        alt="${character.name}">
+    `;
+
+  } else {
+
+    const firstType =
+      character.type[0];
+
+    const icon =
+      typeData[firstType]?.icon || "🐾";
+
+    imageHTML = icon;
+  }
+
+
+  /* 属性 */
+
+  const typeHTML =
+    character.type.map(
+      (type, index) => {
+
+        const name =
+          character.typeName[index]
+          || typeData[type]?.name
+          || type;
+
+        return `
+          <span class="type type-${type}">
+            ${typeData[type]?.icon || ""}
+            ${name}
+          </span>
+        `;
+
+      }
+    ).join("");
+
+
+  /* 特性 */
+
+  let abilityHTML = "";
+
+  if (character.ability) {
+
+    abilityHTML = `
+      <div class="trait">
+
+        <strong>
+          ${character.ability.name}
+          ${character.nameStatus === "仮" ? "（仮）" : ""}
+        </strong>
+
+        <div class="original">
+          中国名：${character.ability.chineseName}
+        </div>
+
+        <p>
+          ${character.ability.description}
+        </p>
+
+      </div>
+    `;
+
+  } else {
+
+    abilityHTML = `
+      <p class="empty">
+        現在データ整理中です。
+      </p>
+    `;
+  }
+
+
+  /* 技 */
+
+  let skillsHTML = "";
+
+  if (
+    character.skills &&
+    character.skills.length > 0
+  ) {
+
+    skillsHTML =
+      character.skills.map(
+        skill => {
+
+          const power =
+            skill.power === null
+            ? ""
+            : `<span class="tag">
+                 威力 ${skill.power}
+               </span>`;
+
+          return `
+            <div class="skill">
+
+              <div class="skill-top">
+
+                <span class="skill-name">
+                  ${skill.name}
+                </span>
+
+                <span class="skill-level">
+                  Lv.${skill.level}
+                </span>
+
+              </div>
+
+              <div class="skill-original">
+                中国名：${skill.chineseName}
+              </div>
+
+              <div class="skill-tags">
+
+                <span class="tag">
+                  ${skill.type}
+                </span>
+
+                <span class="tag">
+                  ${skill.category}
+                </span>
+
+                ${power}
+
+                <span class="tag">
+                  消費 ${skill.cost}
+                </span>
+
+              </div>
+
+              <div class="skill-effect">
+                ${skill.description}
+              </div>
+
+            </div>
+          `;
+
+        }
+      ).join("");
+
+  } else {
+
+    skillsHTML = `
+      <p class="empty">
+        技データは現在整理中です。
+      </p>
+    `;
+  }
+
+
+  /* 進化 */
+
+  let evolutionHTML = "";
+
+  if (
+    character.evolution &&
+    character.evolution.length > 0
+  ) {
+
+    evolutionHTML =
+      character.evolution.map(
+        evo => `
+          <div class="evolution-item">
+            ${evo}
+          </div>
+        `
+      ).join("");
+
+  } else {
+
+    evolutionHTML = `
+      <p class="empty">
+        進化情報は現在整理中です。
+      </p>
+    `;
+  }
+
+
+  /* ページ本体 */
+
+  content.innerHTML = `
+
+    <section class="card hero">
+
+      <div class="character-image">
+        ${imageHTML}
+      </div>
+
+      <div class="no">
+        NO.${String(character.id).padStart(3,"0")}
+      </div>
+
+      <div class="name">
+        ${character.name}
+        ${character.nameStatus === "仮" ? "（仮）" : ""}
+      </div>
+
+      <div class="cn">
+        中国名：${character.chineseName}
+        ${character.englishName
+          ? ` / ${character.englishName}`
+          : ""}
+      </div>
+
+      <div class="types">
+        ${typeHTML}
+      </div>
+
+      <div class="total">
+        種族値合計 ${character.total}
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>📊 基本ステータス</h2>
+
+      <div class="stats">
+
+        <div class="stat">
+          <span class="stat-name">HP</span>
+          <span class="stat-value">
+            ${character.stats.hp}
+          </span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-name">物攻</span>
+          <span class="stat-value">
+            ${character.stats.attack}
+          </span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-name">魔攻</span>
+          <span class="stat-value">
+            ${character.stats.magicAttack}
+          </span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-name">物防</span>
+          <span class="stat-value">
+            ${character.stats.defense}
+          </span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-name">魔防</span>
+          <span class="stat-value">
+            ${character.stats.magicDefense}
+          </span>
+        </div>
+
+        <div class="stat">
+          <span class="stat-name">速度</span>
+          <span class="stat-value">
+            ${character.stats.speed}
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>🌟 特性</h2>
+
+      ${abilityHTML}
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>⚡ 習得技</h2>
+
+      ${skillsHTML}
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>🌱 進化・形態</h2>
+
+      ${evolutionHTML}
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>🎁 入手方法</h2>
+
+      <p>
+        ${character.acquisition
+          || "現在データ整理中です。"}
+      </p>
+
+    </section>
+
+
+    <div class="notice">
+
+      <strong>
+        🇨🇳 中国版データについて
+      </strong>
+
+      <br><br>
+
+      このページは中国版
+      「洛克王国：世界」の情報をもとに、
+      日本ユーザー向けに整理しています。
+
+      <br><br>
+
+      日本版で正式名称が確認できていない名称には
+      仮表記を使用しています。
+
+      <br><br>
+
+      中国版アップデートによって
+      ステータス・特性・技などが
+      変更される場合があります。
+
+    </div>
+
+  `;
+
+}
+
+</script>
+
+</body>
+</html>
