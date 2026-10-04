@@ -65,6 +65,41 @@ header p{
 
 
 /* ========================================
+   ページ内ジャンプ
+======================================== */
+.detail-nav{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:10px 12px;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid #dceaf4;
+  box-shadow:0 3px 12px rgba(30,90,130,.07);
+  scrollbar-width:none;
+}
+.detail-nav::-webkit-scrollbar{display:none}
+.detail-nav a{
+  flex:0 0 auto;
+  padding:8px 11px;
+  border-radius:999px;
+  background:#edf5fa;
+  color:#39718f;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:900;
+}
+.detail-nav a:active{
+  background:#1689e8;
+  color:white;
+}
+.jump-target{
+  scroll-margin-top:72px;
+}
+
+/* ========================================
    メイン
 ======================================== */
 
@@ -668,6 +703,15 @@ main{
 <a class="back" href="pokedex.html">
   ← キャラ図鑑へ戻る
 </a>
+
+<nav class="detail-nav" aria-label="詳細ページ内メニュー">
+  <a href="#statsSection">📊 ステータス</a>
+  <a href="#matchupSection">⚔️ 属性相性</a>
+  <a href="#traitSection">✨ 特性</a>
+  <a href="#skillsSection">📖 技</a>
+  <a href="#evolutionSection">🌱 進化</a>
+  <a href="#obtainSection">🎁 入手方法</a>
+</nav>
 
 <main id="content">
   <div class="card">
@@ -2452,7 +2496,7 @@ content.innerHTML = `
 ${formsHTML}
 
 
-<section class="card">
+<section class="card jump-target" id="statsSection">
 
   <h2>
     📊 基本ステータス
@@ -2463,7 +2507,7 @@ ${formsHTML}
 </section>
 
 
-<section class="card matchup-card">
+<section class="card matchup-card jump-target" id="matchupSection">
 
   <h2>
     ⚔️ 属性相性
@@ -2474,7 +2518,7 @@ ${formsHTML}
 </section>
 
 
-<section class="card">
+<section class="card jump-target" id="traitSection">
 
   <h2>
     🌟 特性
@@ -2485,7 +2529,7 @@ ${formsHTML}
 </section>
 
 
-<section class="card">
+<section class="card jump-target" id="skillsSection">
 
   <h2>
     ⚡ 技・スキル
@@ -2496,7 +2540,7 @@ ${formsHTML}
 </section>
 
 
-<section class="card evolution-card">
+<section class="card evolution-card jump-target" id="evolutionSection">
 
   <h2>
     🌱 進化系統
@@ -2507,7 +2551,7 @@ ${formsHTML}
 </section>
 
 
-<section class="card">
+<section class="card jump-target" id="obtainSection">
 
   <h2>
     🎁 入手方法
