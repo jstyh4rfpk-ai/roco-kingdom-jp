@@ -1990,6 +1990,43 @@ else{
 
 
 /* ==========================================
+   最近見たキャラクターへ保存
+========================================== */
+const RECENT_STORAGE_KEY = "rocoKingdomPokedexRecent";
+
+try{
+
+  const saved =
+    JSON.parse(
+      localStorage.getItem(RECENT_STORAGE_KEY) || "[]"
+    );
+
+  const recentKeys =
+    Array.isArray(saved)
+    ? saved.map(String)
+    : [];
+
+  const currentKey =
+    String(character.key);
+
+  const updated =
+    [
+      currentKey,
+      ...recentKeys.filter(key => key !== currentKey)
+    ]
+    .slice(0,8);
+
+  localStorage.setItem(
+    RECENT_STORAGE_KEY,
+    JSON.stringify(updated)
+  );
+
+}catch(error){
+  // localStorageが利用できない環境では履歴保存だけスキップ
+}
+
+
+/* ==========================================
    ページタイトル
 ========================================== */
 

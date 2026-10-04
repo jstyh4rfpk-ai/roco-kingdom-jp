@@ -379,6 +379,90 @@ main{
 }
 
 /* ========================================
+   最近見たキャラクター
+======================================== */
+.recent-section{
+  padding:17px;
+  margin-bottom:17px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:18px;
+  box-shadow:0 4px 16px rgba(30,90,130,.07);
+}
+.recent-title{
+  margin-bottom:4px;
+  font-weight:900;
+}
+.recent-help{
+  margin-bottom:11px;
+  color:#72899b;
+  font-size:12px;
+}
+.recent-list{
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  padding-bottom:4px;
+  scrollbar-width:thin;
+}
+.recent-empty{
+  color:#8194a3;
+  font-size:13px;
+}
+.recent-item{
+  flex:0 0 132px;
+  overflow:hidden;
+  border:1px solid #dceaf3;
+  border-radius:14px;
+  background:#f8fcff;
+  color:inherit;
+  text-decoration:none;
+}
+.recent-image{
+  height:86px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:radial-gradient(circle at center,#fff,#e7f6ff);
+  font-size:38px;
+}
+.recent-image img{
+  width:100%;
+  height:100%;
+  padding:6px;
+  object-fit:contain;
+}
+.recent-info{
+  padding:8px;
+}
+.recent-no{
+  color:#7d94a6;
+  font-size:9px;
+  font-weight:800;
+}
+.recent-name{
+  margin-top:1px;
+  color:#126fc1;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.recent-clear-btn{
+  margin-top:11px;
+  padding:7px 11px;
+  border:0;
+  border-radius:999px;
+  background:#edf5fa;
+  color:#617a8e;
+  font-size:11px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+/* ========================================
    件数
 ======================================== */
 
@@ -908,6 +992,20 @@ main{
 </section>
 
 <!-- ======================================
+     最近見たキャラクター
+====================================== -->
+<section class="recent-section">
+  <div class="recent-title">🕘 最近見たキャラクター</div>
+  <div class="recent-help">詳細ページを開いたキャラクターを新しい順に表示します。</div>
+  <div class="recent-list" id="recentList">
+    <span class="recent-empty">まだ閲覧履歴がありません。</span>
+  </div>
+  <button type="button" class="recent-clear-btn" id="recentClearBtn">
+    履歴をクリア
+  </button>
+</section>
+
+<!-- ======================================
      件数
 ====================================== -->
 
@@ -1017,6 +1115,8 @@ const compareModal = document.getElementById("compareModal");
 const compareCloseBtn = document.getElementById("compareCloseBtn");
 const compareContent = document.getElementById("compareContent");
 const resetFilterBtn = document.getElementById("resetFilterBtn");
+const recentList = document.getElementById("recentList");
+const recentClearBtn = document.getElementById("recentClearBtn");
 
 const count =
   document.getElementById(
@@ -2205,6 +2305,78 @@ compareModal.addEventListener("click", event => {
 });
 
 updateCompareUI();
+
+
+/* ==========================================
+   最近見たキャラクター
+========================================== */
+const RECENT_STORAGE_KEY = "rocoKingdomPokedexRecent";
+
+function loadRecentKeys(){
+  try{
+    const saved = JSON.parse(
+      localStorage.getItem(RECENT_STORAGE_KEY) || "[]"
+    );
+
+    return Array.isArray(saved)
+      ? saved.map(String).slice(0,8)
+      : [];
+  }catch(error){
+    return [];
+  }
+}
+
+function renderRecentCharacters(){
+
+  const recentKeys = loadRecentKeys();
+
+  const recentCharacters =
+    recentKeys
+      .map(key => characters.find(character => character.key === key))
+      .filter(Boolean);
+
+  if(recentCharacters.length === 0){
+    recentList.innerHTML =
+      `<span class="recent-empty">まだ閲覧履歴がありません。</span>`;
+    recentClearBtn.style.display = "none";
+    return;
+  }
+
+  recentClearBtn.style.display = "inline-block";
+
+  recentList.innerHTML =
+    recentCharacters
+      .map(character => {
+
+        const dexNo = getDexNo(character);
+        const name = getDisplayName(character);
+
+        return `
+          <a
+            class="recent-item"
+            href="character.html?key=${encodeURIComponent(character.key)}">
+
+            <div class="recent-image">
+              ${createImage(character)}
+            </div>
+
+            <div class="recent-info">
+              <div class="recent-no">NO.${dexNo}</div>
+              <div class="recent-name">${name}</div>
+            </div>
+
+          </a>
+        `;
+      })
+      .join("");
+}
+
+recentClearBtn.addEventListener("click", () => {
+  localStorage.removeItem(RECENT_STORAGE_KEY);
+  renderRecentCharacters();
+});
+
+renderRecentCharacters();
 
 
 /* ==========================================
