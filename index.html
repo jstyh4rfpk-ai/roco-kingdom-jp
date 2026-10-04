@@ -737,7 +737,7 @@
       <h2 class="site-search-title">🔎 サイト内検索</h2>
       <div class="site-search-input-wrap">
         <input id="siteSearchInput" type="search"
-          placeholder="例：CBT、進化、技、キャラ図鑑"
+          placeholder="例：キャラ名、マップ、技、アイテム、CBT"
           autocomplete="off" aria-label="サイト内を検索">
         <button id="siteSearchClear" type="button" aria-label="検索をクリア">クリア</button>
       </div>
@@ -1278,6 +1278,8 @@
 
 
 
+<script src="characters.js"></script>
+
 <script>
 (() => {
   const pages = [
@@ -1294,8 +1296,40 @@
     {title:"⚔️ 技一覧", desc:"技・スキル検索", url:"skills.html", keys:"技 スキル 一覧"},
     {title:"🎒 アイテム", desc:"素材・アイテム情報", url:"items.html", keys:"アイテム 素材"},
     {title:"🗺️ マップ攻略", desc:"エリア・探索情報", url:"map.html", keys:"マップ エリア 探索 攻略"},
-    {title:"🔰 初心者攻略", desc:"序盤ガイド", url:"beginner.html", keys:"初心者 序盤 ガイド 攻略"}
+    {title:"🔰 初心者攻略", desc:"序盤ガイド", url:"beginner.html", keys:"初心者 序盤 ガイド 攻略"},
+    {title:"🗺️ マップ・エリア", desc:"マップ名・エリア名を探す", url:"map.html", keys:"マップ 地図 エリア 場所 フィールド 探索"},
+    {title:"⚔️ 技・スキル", desc:"技名・スキル情報を探す", url:"skills.html", keys:"技 スキル わざ 攻撃"},
+    {title:"🎒 アイテム・素材", desc:"アイテム名・素材を探す", url:"items.html", keys:"アイテム 道具 素材 入手"},
+    {title:"📘 攻略情報", desc:"育成・進化・初心者向け攻略", url:"beginner.html", keys:"攻略 初心者 序盤 育成 進化 レベル"}
   ];
+
+  /* characters.js がある場合は、キャラクターを検索候補へ自動追加 */
+  if (Array.isArray(window.characters)) {
+    window.characters.forEach(character => {
+      const key = String(character.key || "");
+      const dex = String(
+        character.dexNo ?? character.dex ?? character.number ?? character.no ?? ""
+      );
+      const name = String(
+        character.nameJa ?? character.nameJP ?? character.name ?? character.japaneseName ?? ""
+      );
+      const cn = String(
+        character.nameZh ?? character.nameCN ?? character.chineseName ?? ""
+      );
+      const type = Array.isArray(character.types)
+        ? character.types.join(" ")
+        : String(character.type || "");
+
+      if (!key || (!name && !cn)) return;
+
+      pages.push({
+        title: "🐾 " + (name || cn),
+        desc: "キャラクター" + (dex ? "・図鑑NO." + dex : "") + (cn ? "・" + cn : ""),
+        url: "character.html?key=" + encodeURIComponent(key),
+        keys: ["キャラ","キャラクター","図鑑",name,cn,dex,type].join(" ")
+      });
+    });
+  }
 
   const input = document.getElementById("siteSearchInput");
   const results = document.getElementById("siteSearchResults");
@@ -1313,10 +1347,19 @@
       return;
     }
     const words = q.split(/\s+/).filter(Boolean);
-    const found = pages.filter(p => {
-      const hay = (p.title+" "+p.desc+" "+p.keys).toLowerCase();
-      return words.every(w => hay.includes(w));
-    });
+    const found = pages
+      .filter(p => {
+        const hay = (p.title+" "+p.desc+" "+p.keys).toLowerCase();
+        return words.every(w => hay.includes(w));
+      })
+      .sort((a,b) => {
+        const at = a.title.toLowerCase();
+        const bt = b.title.toLowerCase();
+        const aq = at.includes(q) ? 0 : 1;
+        const bq = bt.includes(q) ? 0 : 1;
+        return aq - bq;
+      })
+      .slice(0, 20);
     results.classList.add("show");
     if (!found.length) {
       results.innerHTML = '<div class="site-search-empty">「'+esc(input.value.trim())+'」に一致するページはありません。</div>';
