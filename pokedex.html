@@ -232,6 +232,41 @@ main{
   color:white;
 }
 
+
+/* ========================================
+   並び替え
+======================================== */
+.sort-section{
+  padding:17px;
+  margin-bottom:17px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:18px;
+  box-shadow:0 4px 16px rgba(30,90,130,.07);
+}
+.sort-title{
+  margin-bottom:11px;
+  font-weight:900;
+}
+.sort-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+.sort-btn{
+  padding:8px 12px;
+  border:0;
+  border-radius:999px;
+  background:#edf5fa;
+  color:#29475f;
+  font-weight:700;
+  cursor:pointer;
+}
+.sort-btn.active{
+  background:#1689e8;
+  color:white;
+}
+
 /* ========================================
    件数
 ======================================== */
@@ -707,6 +742,24 @@ main{
 </section>
 
 
+
+<!-- ======================================
+     並び替え
+====================================== -->
+<section class="sort-section">
+  <div class="sort-title">並び替え</div>
+  <div class="sort-buttons">
+    <button class="sort-btn active" data-sort="dex-asc">🔢 図鑑番号順</button>
+    <button class="sort-btn" data-sort="total-desc">⭐ 種族値合計</button>
+    <button class="sort-btn" data-sort="hp-desc">❤️ HP</button>
+    <button class="sort-btn" data-sort="attack-desc">⚔️ 物攻</button>
+    <button class="sort-btn" data-sort="defense-desc">🛡️ 物防</button>
+    <button class="sort-btn" data-sort="magicAttack-desc">🔮 魔攻</button>
+    <button class="sort-btn" data-sort="magicDefense-desc">✨ 魔防</button>
+    <button class="sort-btn" data-sort="speed-desc">💨 速度</button>
+  </div>
+</section>
+
 <!-- ======================================
      件数
 ====================================== -->
@@ -797,6 +850,8 @@ const formFilterButtons = document.querySelectorAll(".form-filter-btn");
 
 const dexRangeButtons = document.querySelectorAll(".dex-range-btn");
 
+const sortButtons = document.querySelectorAll(".sort-btn");
+
 const count =
   document.getElementById(
     "count"
@@ -820,6 +875,7 @@ const formTotal =
 let selectedType = "all";
 let selectedFormFilter = "all";
 let selectedDexRange = "all";
+let selectedSort = "dex-asc";
 
 /* ==========================================
    図鑑番号
@@ -1228,6 +1284,116 @@ function matchesDexRange(character, range){
 }
 
 
+
+/* ==========================================
+   並び替え
+========================================== */
+
+function getNumericStat(character, keys){
+  for(const key of keys){
+    const value = character?.[key];
+
+    if(
+      value !== null
+      &&
+      value !== undefined
+      &&
+      value !== ""
+      &&
+      Number.isFinite(Number(value))
+    ){
+      return Number(value);
+    }
+  }
+
+  return null;
+}
+
+function getSortValue(character, sort){
+  switch(sort){
+
+    case "total-desc":
+      return getNumericStat(character, ["total"]);
+
+    case "hp-desc":
+      return getNumericStat(character, ["hp"]);
+
+    case "attack-desc":
+      return getNumericStat(character, [
+        "attack",
+        "atk",
+        "physicalAttack",
+        "physicalAtk"
+      ]);
+
+    case "defense-desc":
+      return getNumericStat(character, [
+        "defense",
+        "def",
+        "physicalDefense",
+        "physicalDef"
+      ]);
+
+    case "magicAttack-desc":
+      return getNumericStat(character, [
+        "magicAttack",
+        "magicAtk",
+        "spAttack",
+        "spAtk",
+        "specialAttack"
+      ]);
+
+    case "magicDefense-desc":
+      return getNumericStat(character, [
+        "magicDefense",
+        "magicDef",
+        "spDefense",
+        "spDef",
+        "specialDefense"
+      ]);
+
+    case "speed-desc":
+      return getNumericStat(character, ["speed", "spd"]);
+
+    default:
+      return Number(getDexNo(character));
+  }
+}
+
+function sortCharacters(list){
+
+  return [...list].sort((a,b) => {
+
+    if(selectedSort === "dex-asc"){
+      return Number(getDexNo(a)) - Number(getDexNo(b));
+    }
+
+    const aValue = getSortValue(a, selectedSort);
+    const bValue = getSortValue(b, selectedSort);
+
+    const aMissing = aValue === null;
+    const bMissing = bValue === null;
+
+    // 未確認値は必ず最後
+    if(aMissing && !bMissing) return 1;
+    if(!aMissing && bMissing) return -1;
+
+    // 両方未確認なら図鑑番号順
+    if(aMissing && bMissing){
+      return Number(getDexNo(a)) - Number(getDexNo(b));
+    }
+
+    // ステータスは高い順
+    if(bValue !== aValue){
+      return bValue - aValue;
+    }
+
+    // 同値なら図鑑番号順
+    return Number(getDexNo(a)) - Number(getDexNo(b));
+  });
+}
+
+
 /* ==========================================
    カード
 ========================================== */
@@ -1469,18 +1635,21 @@ function renderPokedex(){
       }
     );
 
+  const sorted =
+    sortCharacters(filtered);
+
   pokedex.innerHTML =
-    filtered
+    sorted
       .map(
         createCharacterCard
       )
       .join("");
 
   count.textContent =
-    filtered.length;
+    sorted.length;
 
   noResults.style.display =
-    filtered.length === 0
+    sorted.length === 0
     ?
     "block"
     :
@@ -1551,6 +1720,21 @@ dexRangeButtons.forEach(button => {
     dexRangeButtons.forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
     selectedDexRange = button.dataset.range;
+    renderPokedex();
+  });
+});
+
+
+
+/* ==========================================
+   並び替えボタン
+========================================== */
+
+sortButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    sortButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+    selectedSort = button.dataset.sort;
     renderPokedex();
   });
 });
