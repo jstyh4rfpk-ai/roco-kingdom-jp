@@ -1,0 +1,1752 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>キャラ図鑑 | ロコキングダム速報</title>
+
+<meta name="description"
+content="Roco Kingdom（洛克王国：世界）のキャラクター図鑑。中国版のキャラクター、属性、種族値、特性、技、進化、入手方法などを日本語で整理しています。">
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+  color:#17324d;
+  background:#f1f8fd;
+}
+
+/* ========================================
+   ヘッダー
+======================================== */
+
+header{
+  padding:27px 16px;
+  text-align:center;
+  color:white;
+  background:
+    linear-gradient(135deg,#50b7f0,#79d4ff);
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:6px 0 0;
+  font-size:13px;
+}
+
+.back{
+  display:block;
+  padding:14px 18px;
+  background:white;
+  color:#1677d2;
+  text-decoration:none;
+  font-weight:800;
+  border-bottom:1px solid #dceaf4;
+}
+
+/* ========================================
+   メイン
+======================================== */
+
+main{
+  width:min(950px,calc(100% - 24px));
+  margin:20px auto 50px;
+}
+
+.info{
+  padding:19px;
+  margin-bottom:17px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(30,90,130,.08);
+}
+
+.info h2{
+  margin:0 0 8px;
+  font-size:21px;
+}
+
+.info p{
+  margin:0;
+  color:#657f94;
+  font-size:13px;
+  line-height:1.8;
+}
+
+/* ========================================
+   登録状況
+======================================== */
+
+.dex-summary{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:17px;
+}
+
+.summary-box{
+  padding:15px 10px;
+  text-align:center;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:15px;
+  box-shadow:0 4px 14px rgba(30,90,130,.06);
+}
+
+.summary-number{
+  display:block;
+  color:#1689e8;
+  font-size:24px;
+  font-weight:900;
+}
+
+.summary-label{
+  display:block;
+  margin-top:2px;
+  color:#72899b;
+  font-size:11px;
+  font-weight:800;
+}
+
+/* ========================================
+   検索
+======================================== */
+
+.search-box{
+  margin-bottom:14px;
+}
+
+.search-box input{
+  width:100%;
+  padding:15px 16px;
+  border:1px solid #cbdfea;
+  border-radius:14px;
+  outline:none;
+  background:white;
+  color:#17324d;
+  font-size:16px;
+}
+
+.search-box input:focus{
+  border-color:#52afe7;
+  box-shadow:
+    0 0 0 3px rgba(82,175,231,.12);
+}
+
+/* ========================================
+   属性フィルター
+======================================== */
+
+.type-section{
+  padding:17px;
+  margin-bottom:17px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:18px;
+  box-shadow:0 4px 16px rgba(30,90,130,.07);
+}
+
+.type-title{
+  margin-bottom:11px;
+  font-weight:900;
+}
+
+.types{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.type-btn{
+  padding:8px 12px;
+  border:0;
+  border-radius:999px;
+  background:#edf5fa;
+  color:#29475f;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.type-btn.active{
+  background:#1689e8;
+  color:white;
+}
+
+/* ========================================
+   形態フィルター
+======================================== */
+.form-filter-section{padding:17px;margin-bottom:17px;background:white;border:1px solid #dceaf3;border-radius:18px;box-shadow:0 4px 16px rgba(30,90,130,.07)}
+.form-filter-title{margin-bottom:11px;font-weight:900}
+.form-filter-buttons{display:flex;flex-wrap:wrap;gap:7px}
+.form-filter-btn{padding:8px 12px;border:0;border-radius:999px;background:#edf5fa;color:#29475f;font-weight:700;cursor:pointer}
+.form-filter-btn.active{background:#1689e8;color:white}
+
+/* ========================================
+   図鑑番号ジャンプ
+======================================== */
+.dex-range-section{
+  padding:17px;
+  margin-bottom:17px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:18px;
+  box-shadow:0 4px 16px rgba(30,90,130,.07);
+}
+.dex-range-title{
+  margin-bottom:11px;
+  font-weight:900;
+}
+.dex-range-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+.dex-range-btn{
+  padding:8px 12px;
+  border:0;
+  border-radius:999px;
+  background:#edf5fa;
+  color:#29475f;
+  font-weight:700;
+  cursor:pointer;
+}
+.dex-range-btn.active{
+  background:#1689e8;
+  color:white;
+}
+
+
+/* ========================================
+   並び替え
+======================================== */
+.sort-section{
+  padding:17px;
+  margin-bottom:17px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:18px;
+  box-shadow:0 4px 16px rgba(30,90,130,.07);
+}
+.sort-title{
+  margin-bottom:11px;
+  font-weight:900;
+}
+.sort-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+.sort-btn{
+  padding:8px 12px;
+  border:0;
+  border-radius:999px;
+  background:#edf5fa;
+  color:#29475f;
+  font-weight:700;
+  cursor:pointer;
+}
+.sort-btn.active{
+  background:#1689e8;
+  color:white;
+}
+
+/* ========================================
+   件数
+======================================== */
+
+.result-count{
+  margin:16px 4px;
+  color:#647c90;
+  font-size:14px;
+  font-weight:800;
+}
+
+/* ========================================
+   図鑑
+======================================== */
+
+.pokedex{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px;
+}
+
+.character{
+  position:relative;
+  display:block;
+  overflow:hidden;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:17px;
+  box-shadow:
+    0 4px 14px rgba(30,90,130,.07);
+  color:inherit;
+  text-decoration:none;
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease;
+}
+
+.character:active{
+  transform:scale(.97);
+}
+
+.character:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 8px 22px rgba(30,90,130,.13);
+}
+
+/* ========================================
+   未確認カード
+======================================== */
+
+.character-unconfirmed{
+  cursor:default;
+}
+
+.character-unconfirmed:hover{
+  transform:none;
+  box-shadow:
+    0 4px 14px rgba(30,90,130,.07);
+}
+
+.character-unconfirmed:active{
+  transform:none;
+}
+
+/* ========================================
+   キャラ画像
+======================================== */
+
+.character-image{
+  position:relative;
+  height:125px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(
+      circle at center,
+      #fff,
+      #e7f6ff
+    );
+  font-size:55px;
+}
+
+.character-image img{
+  width:100%;
+  height:100%;
+  padding:8px;
+  object-fit:contain;
+}
+
+.detail-badge{
+  position:absolute;
+  right:8px;
+  bottom:7px;
+  padding:3px 8px;
+  border-radius:999px;
+  background:rgba(22,137,232,.93);
+  color:white;
+  font-size:9px;
+  font-weight:900;
+}
+
+/* ========================================
+   複数形態バッジ
+======================================== */
+
+.form-count-badge{
+  position:absolute;
+  left:8px;
+  top:8px;
+  z-index:2;
+  padding:4px 8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.94);
+  border:1px solid #cbe1ef;
+  color:#39718f;
+  font-size:9px;
+  font-weight:900;
+  box-shadow:
+    0 2px 7px rgba(30,90,130,.08);
+}
+
+/* ========================================
+   キャラ情報
+======================================== */
+
+.character-info{
+  padding:12px;
+}
+
+.number{
+  color:#7d94a6;
+  font-size:11px;
+  font-weight:800;
+}
+
+.character-name{
+  margin-top:2px;
+  color:#126fc1;
+  font-size:16px;
+  font-weight:900;
+}
+
+.character-unconfirmed .character-name{
+  color:#7b8e9d;
+}
+
+.chinese-name{
+  margin-top:1px;
+  color:#899ba9;
+  font-size:11px;
+}
+
+.character-types{
+  margin-top:6px;
+}
+
+.type-label{
+  display:inline-block;
+  margin:2px 3px 2px 0;
+  padding:3px 9px;
+  border-radius:999px;
+  color:white;
+  font-size:11px;
+  font-weight:800;
+}
+
+/* ========================================
+   属性色
+======================================== */
+
+.type-normal{background:#929292}
+.type-grass{background:#58ad55}
+.type-fire{background:#ed6253}
+.type-water{background:#479fe8}
+.type-light{background:#e4ad25}
+.type-ground{background:#aa8151}
+.type-ice{background:#68c6dc}
+.type-dragon{background:#7654b5}
+.type-electric{background:#e4b91f}
+.type-poison{background:#985ca9}
+.type-bug{background:#82a938}
+.type-fighting{background:#c46d3b}
+.type-wing{background:#78a7d1}
+.type-cute{background:#e77aa6}
+.type-ghost{background:#756294}
+.type-dark{background:#62536e}
+.type-machine{background:#6e8290}
+.type-illusion{background:#a767b5}
+
+.total{
+  margin-top:7px;
+  color:#617a8e;
+  font-size:12px;
+}
+
+/* ========================================
+   0件
+======================================== */
+
+.no-results{
+  display:none;
+  padding:35px 20px;
+  text-align:center;
+  background:white;
+  border-radius:17px;
+  color:#748b9e;
+}
+
+/* ========================================
+   注意書き
+======================================== */
+
+.translation-note{
+  margin-top:22px;
+  padding:16px;
+  border:1px solid #efdb96;
+  border-radius:14px;
+  background:#fff9e7;
+  color:#66582b;
+  font-size:12px;
+  line-height:1.8;
+}
+
+/* ========================================
+   PC
+======================================== */
+
+@media(min-width:700px){
+
+  .pokedex{
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+
+}
+
+/* ========================================
+   小型スマホ
+======================================== */
+
+@media(max-width:400px){
+
+  .character-image{
+    height:110px;
+  }
+
+  .character-name{
+    font-size:14px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>
+    🐾 ロコキングダム キャラ図鑑
+  </h1>
+
+  <p>
+    Roco Kingdom（洛克王国：世界）
+  </p>
+
+</header>
+
+<a
+  class="back"
+  href="index.html">
+
+  ← ロコキングダム速報へ戻る
+
+</a>
+
+<main>
+
+<section class="info">
+
+  <h2>
+    キャラクター図鑑
+  </h2>
+
+  <p>
+    中国版で実装されているキャラクター情報を
+    日本ユーザー向けに整理しています。
+    図鑑一覧では1つの図鑑番号につき
+    代表形態を1体表示しています。
+    季節形態・首領形態などは、
+    キャラクター詳細ページから切り替えられます。
+  </p>
+
+</section>
+
+<!-- ======================================
+     登録状況
+====================================== -->
+
+<div class="dex-summary">
+
+  <div class="summary-box">
+
+    <span
+      class="summary-number"
+      id="dexTotal">
+
+      0
+
+    </span>
+
+    <span class="summary-label">
+      登録図鑑番号
+    </span>
+
+  </div>
+
+  <div class="summary-box">
+
+    <span
+      class="summary-number"
+      id="formTotal">
+
+      0
+
+    </span>
+
+    <span class="summary-label">
+      登録形態
+    </span>
+
+  </div>
+
+</div>
+
+<!-- ======================================
+     検索
+====================================== -->
+
+<div class="search-box">
+
+  <input
+    id="search"
+    type="search"
+    placeholder="🔍 名前・中国名・図鑑番号から検索">
+
+</div>
+
+<!-- ======================================
+     属性
+====================================== -->
+
+<section class="type-section">
+
+  <div class="type-title">
+    属性から探す
+  </div>
+
+  <div class="types">
+
+    <button class="type-btn active" data-type="all">
+      すべて
+    </button>
+
+    <button class="type-btn" data-type="normal">
+      ⚪ 普通
+    </button>
+
+    <button class="type-btn" data-type="grass">
+      🌿 草
+    </button>
+
+    <button class="type-btn" data-type="fire">
+      🔥 火
+    </button>
+
+    <button class="type-btn" data-type="water">
+      💧 水
+    </button>
+
+    <button class="type-btn" data-type="light">
+      ✨ 光
+    </button>
+
+    <button class="type-btn" data-type="ground">
+      ⛰️ 地
+    </button>
+
+    <button class="type-btn" data-type="ice">
+      ❄️ 氷
+    </button>
+
+    <button class="type-btn" data-type="dragon">
+      🐉 龍
+    </button>
+
+    <button class="type-btn" data-type="electric">
+      ⚡ 電気
+    </button>
+
+    <button class="type-btn" data-type="poison">
+      ☠️ 毒
+    </button>
+
+    <button class="type-btn" data-type="bug">
+      🐛 虫
+    </button>
+
+    <button class="type-btn" data-type="fighting">
+      👊 武
+    </button>
+
+    <button class="type-btn" data-type="wing">
+      🪽 翼
+    </button>
+
+    <button class="type-btn" data-type="cute">
+      💕 萌
+    </button>
+
+    <button class="type-btn" data-type="ghost">
+      👻 幽
+    </button>
+
+    <button class="type-btn" data-type="dark">
+      😈 悪
+    </button>
+
+    <button class="type-btn" data-type="machine">
+      ⚙️ 機械
+    </button>
+
+    <button class="type-btn" data-type="illusion">
+      🔮 幻
+    </button>
+
+  </div>
+
+</section>
+
+<!-- ======================================
+     形態
+====================================== -->
+<section class="form-filter-section">
+  <div class="form-filter-title">形態から探す</div>
+  <div class="form-filter-buttons">
+    <button class="form-filter-btn active" data-form-filter="all">すべて</button>
+    <button class="form-filter-btn" data-form-filter="normal">🐾 通常形態</button>
+    <button class="form-filter-btn" data-form-filter="season">🌸 季節形態</button>
+    <button class="form-filter-btn" data-form-filter="boss">👑 首領形態</button>
+    <button class="form-filter-btn" data-form-filter="other">✨ その他形態</button>
+  </div>
+</section>
+
+<!-- ======================================
+     図鑑番号ジャンプ
+====================================== -->
+<section class="dex-range-section">
+  <div class="dex-range-title">図鑑番号から探す</div>
+  <div class="dex-range-buttons">
+    <button class="dex-range-btn active" data-range="all">すべて</button>
+    <button class="dex-range-btn" data-range="1-100">NO.001〜100</button>
+    <button class="dex-range-btn" data-range="101-200">NO.101〜200</button>
+    <button class="dex-range-btn" data-range="201-300">NO.201〜300</button>
+    <button class="dex-range-btn" data-range="301-400">NO.301〜400</button>
+    <button class="dex-range-btn" data-range="401-500">NO.401〜500</button>
+    <button class="dex-range-btn" data-range="501-625">NO.501〜625</button>
+  </div>
+</section>
+
+
+
+<!-- ======================================
+     並び替え
+====================================== -->
+<section class="sort-section">
+  <div class="sort-title">並び替え</div>
+  <div class="sort-buttons">
+    <button class="sort-btn active" data-sort="dex-asc">🔢 図鑑番号順</button>
+    <button class="sort-btn" data-sort="total-desc">⭐ 種族値合計</button>
+    <button class="sort-btn" data-sort="hp-desc">❤️ HP</button>
+    <button class="sort-btn" data-sort="attack-desc">⚔️ 物攻</button>
+    <button class="sort-btn" data-sort="defense-desc">🛡️ 物防</button>
+    <button class="sort-btn" data-sort="magicAttack-desc">🔮 魔攻</button>
+    <button class="sort-btn" data-sort="magicDefense-desc">✨ 魔防</button>
+    <button class="sort-btn" data-sort="speed-desc">💨 速度</button>
+  </div>
+</section>
+
+<!-- ======================================
+     件数
+====================================== -->
+
+<div class="result-count">
+
+  <span id="count">
+    0
+  </span>
+
+  キャラクター表示中
+
+</div>
+
+<!-- ======================================
+     図鑑
+====================================== -->
+
+<div
+  class="pokedex"
+  id="pokedex">
+</div>
+
+<div
+  class="no-results"
+  id="noResults">
+
+  🔍 条件に一致するキャラクターがいません。
+
+</div>
+
+<div class="translation-note">
+
+  <strong>
+    📌 図鑑について
+  </strong>
+
+  <br><br>
+
+  中国版「洛克王国：世界」の情報をもとに、
+  日本ユーザー向けに独自に整理しています。
+
+  <br><br>
+
+  図鑑一覧では、
+  同じ図鑑番号に複数の形態が存在する場合でも
+  代表形態のみ表示しています。
+
+  <br><br>
+
+  季節形態・特殊形態・首領形態などは
+  キャラクター詳細ページ内の
+  「形態切り替え」から確認できます。
+
+  <br><br>
+
+  日本版で正式名称が確認できていない名称については
+  仮表記を使用しています。
+
+</div>
+
+</main>
+
+<script src="characters.js"></script>
+
+<script>
+
+/* ==========================================
+   HTML
+========================================== */
+
+const pokedex =
+  document.getElementById(
+    "pokedex"
+  );
+
+const search =
+  document.getElementById(
+    "search"
+  );
+
+const buttons =
+  document.querySelectorAll(
+    ".type-btn"
+  );
+
+const formFilterButtons = document.querySelectorAll(".form-filter-btn");
+
+const dexRangeButtons = document.querySelectorAll(".dex-range-btn");
+
+const sortButtons = document.querySelectorAll(".sort-btn");
+
+const count =
+  document.getElementById(
+    "count"
+  );
+
+const noResults =
+  document.getElementById(
+    "noResults"
+  );
+
+const dexTotal =
+  document.getElementById(
+    "dexTotal"
+  );
+
+const formTotal =
+  document.getElementById(
+    "formTotal"
+  );
+
+let selectedType = "all";
+let selectedFormFilter = "all";
+let selectedDexRange = "all";
+let selectedSort = "dex-asc";
+
+/* ==========================================
+   図鑑番号
+========================================== */
+
+function getDexNo(character){
+
+  return (
+    character.dexNo
+    ||
+    String(character.id)
+      .padStart(3,"0")
+  );
+
+}
+
+/* ==========================================
+   同じ番号の全形態
+========================================== */
+
+function getAllForms(character){
+
+  const dexNo =
+    getDexNo(character);
+
+  return characters.filter(
+    item =>
+      getDexNo(item) === dexNo
+  );
+
+}
+
+/* ==========================================
+   代表形態を取得
+
+   優先順位
+   1. main
+   2. boss以外
+   3. 最初のデータ
+========================================== */
+
+function getMainCharacters(){
+
+  const groups =
+    new Map();
+
+  characters.forEach(
+    character => {
+
+      const dexNo =
+        getDexNo(character);
+
+      if(
+        !groups.has(dexNo)
+      ){
+
+        groups.set(
+          dexNo,
+          []
+        );
+
+      }
+
+      groups
+        .get(dexNo)
+        .push(character);
+
+    }
+  );
+
+  const result = [];
+
+  groups.forEach(
+    forms => {
+
+      const main =
+        forms.find(
+          character =>
+            character.form === "main"
+        )
+        ||
+
+        forms.find(
+          character =>
+            character.isBossForm !== true
+        )
+        ||
+
+        forms[0];
+
+      if(main){
+
+        result.push(main);
+
+      }
+
+    }
+  );
+
+  result.sort(
+    (a,b) =>
+      Number(a.id)
+      -
+      Number(b.id)
+  );
+
+  return result;
+
+}
+
+/* ==========================================
+   未確認データ判定
+========================================== */
+
+function isUnconfirmedCharacter(
+  character
+){
+
+  if(!character){
+    return true;
+  }
+
+  const hasName =
+    character.name !== null
+    &&
+    character.name !== undefined
+    &&
+    String(character.name).trim() !== "";
+
+  const hasChineseName =
+    character.chineseName !== null
+    &&
+    character.chineseName !== undefined
+    &&
+    String(character.chineseName).trim() !== "";
+
+  const hasType =
+    Array.isArray(character.type)
+    &&
+    character.type.length > 0;
+
+  /*
+    625まで作成した空枠は、
+    名前・中国名・属性などが未確認なので
+    詳細ページへ移動させない。
+
+    一方、既存キャラで種族値だけ未確認の場合は
+    詳細ページを利用できる。
+  */
+
+  return (
+    !hasName
+    &&
+    !hasChineseName
+    &&
+    !hasType
+  );
+
+}
+
+/* ==========================================
+   表示名
+========================================== */
+
+function getDisplayName(
+  character
+){
+
+  if(
+    character.name === null
+    ||
+    character.name === undefined
+    ||
+    String(character.name).trim() === ""
+  ){
+
+    return "未確認";
+
+  }
+
+  return character.name;
+
+}
+
+/* ==========================================
+   中国名
+========================================== */
+
+function getChineseName(
+  character
+){
+
+  if(
+    character.chineseName === null
+    ||
+    character.chineseName === undefined
+    ||
+    String(character.chineseName).trim() === ""
+  ){
+
+    return "未確認";
+
+  }
+
+  return character.chineseName;
+
+}
+
+/* ==========================================
+   画像
+========================================== */
+
+function createImage(character){
+
+  if(character.image){
+
+    return `
+
+      <img
+        src="${character.image}"
+        alt="${getDisplayName(character)}"
+        loading="lazy">
+
+    `;
+
+  }
+
+  const firstType =
+    character.type?.[0];
+
+  return (
+    typeData[firstType]?.icon
+    ||
+    "🐾"
+  );
+
+}
+
+/* ==========================================
+   属性
+========================================== */
+
+function createTypes(character){
+
+  const types =
+    Array.isArray(character.type)
+    ?
+    character.type
+    :
+    [];
+
+  if(types.length === 0){
+
+    return `
+      <span
+        class="type-label"
+        style="background:#9aaab5">
+        未確認
+      </span>
+    `;
+
+  }
+
+  return types
+    .map(
+      (type,index) => {
+
+        const displayName =
+          character.typeName?.[index]
+          ||
+          typeData[type]?.name
+          ||
+          type;
+
+        const icon =
+          typeData[type]?.icon
+          ||
+          "";
+
+        return `
+
+          <span
+            class="
+              type-label
+              type-${type}
+            ">
+
+            ${icon}
+            ${displayName}
+
+          </span>
+
+        `;
+
+      }
+    )
+    .join("");
+
+}
+
+/* ==========================================
+   検索文字列
+
+   代表形態だけでなく
+   同じ番号の全形態を検索対象にする
+========================================== */
+
+function getSearchText(character){
+
+  const forms =
+    getAllForms(character);
+
+  return forms
+    .map(
+      form => [
+
+        form.id,
+
+        getDexNo(form),
+
+        form.name,
+
+        form.chineseName,
+
+        form.englishName || "",
+
+        form.formName || "",
+
+        form.chineseFormName || "",
+
+        ...(form.typeName || [])
+
+      ]
+      .filter(Boolean)
+      .join(" ")
+    )
+    .join(" ")
+    .toLowerCase();
+
+}
+
+/* ==========================================
+   属性検索
+
+   同じ番号の別形態にその属性があっても
+   検索対象にする
+========================================== */
+
+function matchesType(
+  character,
+  type
+){
+
+  if(type === "all"){
+    return true;
+  }
+
+  const forms =
+    getAllForms(character);
+
+  return forms.some(
+    form =>
+      Array.isArray(form.type)
+      &&
+      form.type.includes(type)
+  );
+
+}
+
+/* ==========================================
+   形態フィルター判定
+========================================== */
+function getFormCategory(form){
+  if(form.isBossForm === true) return "boss";
+  const s=[form.form,form.formName,form.chineseFormName,form.englishName].filter(Boolean).join(" ").toLowerCase();
+  if(/season|spring|summer|autumn|fall|winter|季節|春|夏|秋|冬/.test(s)) return "season";
+  if(form.form === "main" || form.form == null || String(form.form).trim() === "") return "normal";
+  return "other";
+}
+
+function matchesFormFilter(character, filter){
+  if(filter === "all") return true;
+  return getAllForms(character).some(form => getFormCategory(form) === filter);
+}
+
+/* ==========================================
+   図鑑番号範囲
+========================================== */
+function matchesDexRange(character, range){
+
+  if(range === "all"){
+    return true;
+  }
+
+  const dexNumber =
+    Number(getDexNo(character));
+
+  const parts =
+    range.split("-").map(Number);
+
+  return (
+    dexNumber >= parts[0]
+    &&
+    dexNumber <= parts[1]
+  );
+}
+
+
+
+/* ==========================================
+   並び替え
+========================================== */
+
+function getNumericStat(character, keys){
+  for(const key of keys){
+    const value = character?.[key];
+
+    if(
+      value !== null
+      &&
+      value !== undefined
+      &&
+      value !== ""
+      &&
+      Number.isFinite(Number(value))
+    ){
+      return Number(value);
+    }
+  }
+
+  return null;
+}
+
+function getSortValue(character, sort){
+  switch(sort){
+
+    case "total-desc":
+      return getNumericStat(character, ["total"]);
+
+    case "hp-desc":
+      return getNumericStat(character, ["hp"]);
+
+    case "attack-desc":
+      return getNumericStat(character, [
+        "attack",
+        "atk",
+        "physicalAttack",
+        "physicalAtk"
+      ]);
+
+    case "defense-desc":
+      return getNumericStat(character, [
+        "defense",
+        "def",
+        "physicalDefense",
+        "physicalDef"
+      ]);
+
+    case "magicAttack-desc":
+      return getNumericStat(character, [
+        "magicAttack",
+        "magicAtk",
+        "spAttack",
+        "spAtk",
+        "specialAttack"
+      ]);
+
+    case "magicDefense-desc":
+      return getNumericStat(character, [
+        "magicDefense",
+        "magicDef",
+        "spDefense",
+        "spDef",
+        "specialDefense"
+      ]);
+
+    case "speed-desc":
+      return getNumericStat(character, ["speed", "spd"]);
+
+    default:
+      return Number(getDexNo(character));
+  }
+}
+
+function sortCharacters(list){
+
+  return [...list].sort((a,b) => {
+
+    if(selectedSort === "dex-asc"){
+      return Number(getDexNo(a)) - Number(getDexNo(b));
+    }
+
+    const aValue = getSortValue(a, selectedSort);
+    const bValue = getSortValue(b, selectedSort);
+
+    const aMissing = aValue === null;
+    const bMissing = bValue === null;
+
+    // 未確認値は必ず最後
+    if(aMissing && !bMissing) return 1;
+    if(!aMissing && bMissing) return -1;
+
+    // 両方未確認なら図鑑番号順
+    if(aMissing && bMissing){
+      return Number(getDexNo(a)) - Number(getDexNo(b));
+    }
+
+    // ステータスは高い順
+    if(bValue !== aValue){
+      return bValue - aValue;
+    }
+
+    // 同値なら図鑑番号順
+    return Number(getDexNo(a)) - Number(getDexNo(b));
+  });
+}
+
+
+/* ==========================================
+   カード
+========================================== */
+
+function createCharacterCard(
+  character
+){
+
+  const dexNo =
+    getDexNo(character);
+
+  const unconfirmed =
+    isUnconfirmedCharacter(
+      character
+    );
+
+  const displayName =
+    getDisplayName(
+      character
+    );
+
+  const chineseName =
+    getChineseName(
+      character
+    );
+
+  const temporary =
+    !unconfirmed
+    &&
+    character.nameStatus === "仮"
+    ?
+    "（仮）"
+    :
+    "";
+
+  const forms =
+    getAllForms(character);
+
+  const formBadge =
+    !unconfirmed
+    &&
+    forms.length > 1
+    ?
+    `
+      <span class="form-count-badge">
+        🔄 ${forms.length}形態
+      </span>
+    `
+    :
+    "";
+
+  const total =
+    character.total === null
+    ||
+    character.total === undefined
+    ?
+    "未確認"
+    :
+    character.total;
+
+  const detailBadge =
+    unconfirmed
+    ?
+    ""
+    :
+    `
+      <span class="detail-badge">
+        詳細を見る ›
+      </span>
+    `;
+
+  const imageArea = `
+
+    <div class="character-image">
+
+      ${formBadge}
+      ${createImage(character)}
+      ${detailBadge}
+
+    </div>
+
+  `;
+
+  const infoArea = `
+
+    <div class="character-info">
+
+      <div class="number">
+
+        NO.${dexNo}
+
+      </div>
+
+      <div class="character-name">
+
+        ${displayName}
+        ${temporary}
+
+      </div>
+
+      <div class="chinese-name">
+
+        中国名：
+        ${chineseName}
+
+      </div>
+
+      <div class="character-types">
+
+        ${createTypes(character)}
+
+      </div>
+
+      <div class="total">
+
+        種族値合計：
+        ${total}
+
+      </div>
+
+    </div>
+
+  `;
+
+  /*
+    未確認枠は <a> にしない。
+    これでクリックしても
+    character.htmlへ移動しない。
+  */
+
+  if(unconfirmed){
+
+    return `
+
+      <div
+        class="
+          character
+          character-unconfirmed
+        ">
+
+        ${imageArea}
+        ${infoArea}
+
+      </div>
+
+    `;
+
+  }
+
+  /*
+    データ確認済みキャラは
+    今まで通り詳細ページへ移動。
+  */
+
+  return `
+
+    <a
+      class="character"
+      href="character.html?key=${encodeURIComponent(character.key)}">
+
+      ${imageArea}
+      ${infoArea}
+
+    </a>
+
+  `;
+
+}
+
+/* ==========================================
+   代表形態一覧
+========================================== */
+
+const mainCharacters =
+  getMainCharacters();
+
+/* ==========================================
+   登録状況
+========================================== */
+
+dexTotal.textContent =
+  mainCharacters.length;
+
+formTotal.textContent =
+  characters.length;
+
+/* ==========================================
+   描画
+========================================== */
+
+function renderPokedex(){
+
+  const keyword =
+    search.value
+      .trim()
+      .toLowerCase();
+
+  const filtered =
+    mainCharacters.filter(
+      character => {
+
+        const searchMatch =
+          getSearchText(
+            character
+          )
+          .includes(
+            keyword
+          );
+
+        const typeMatch =
+          matchesType(
+            character,
+            selectedType
+          );
+
+        const formMatch =
+          matchesFormFilter(
+            character,
+            selectedFormFilter
+          );
+
+        const rangeMatch =
+          matchesDexRange(
+            character,
+            selectedDexRange
+          );
+
+
+        return (
+          searchMatch
+          &&
+          typeMatch
+          &&
+          formMatch
+          &&
+          rangeMatch
+        );
+
+      }
+    );
+
+  const sorted =
+    sortCharacters(filtered);
+
+  pokedex.innerHTML =
+    sorted
+      .map(
+        createCharacterCard
+      )
+      .join("");
+
+  count.textContent =
+    sorted.length;
+
+  noResults.style.display =
+    sorted.length === 0
+    ?
+    "block"
+    :
+    "none";
+
+}
+
+/* ==========================================
+   検索
+========================================== */
+
+search.addEventListener(
+  "input",
+  renderPokedex
+);
+
+/* ==========================================
+   属性ボタン
+========================================== */
+
+buttons.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        buttons.forEach(
+          btn =>
+            btn.classList.remove(
+              "active"
+            )
+        );
+
+        button.classList.add(
+          "active"
+        );
+
+        selectedType =
+          button.dataset.type;
+
+        renderPokedex();
+
+      }
+    );
+
+  }
+);
+
+/* ==========================================
+   形態ボタン
+========================================== */
+formFilterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    formFilterButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+    selectedFormFilter = button.dataset.formFilter;
+    renderPokedex();
+  });
+});
+
+
+/* ==========================================
+   図鑑番号ボタン
+========================================== */
+dexRangeButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    dexRangeButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+    selectedDexRange = button.dataset.range;
+    renderPokedex();
+  });
+});
+
+
+
+/* ==========================================
+   並び替えボタン
+========================================== */
+
+sortButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    sortButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+    selectedSort = button.dataset.sort;
+    renderPokedex();
+  });
+});
+
+
+/* ==========================================
+   初期表示
+========================================== */
+
+renderPokedex();
+
+</script>
+
+</body>
+</html>
