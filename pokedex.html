@@ -399,6 +399,38 @@ main{
 }
 
 /* ========================================
+   マイ図鑑コンプ率
+======================================== */
+.my-dex-progress{
+  padding:17px;
+  margin-bottom:17px;
+  background:#fff;
+  border:1px solid #dceaf3;
+  border-radius:18px;
+  box-shadow:0 4px 16px rgba(30,90,130,.07);
+}
+.my-dex-progress-title{font-weight:900;margin-bottom:10px}
+.my-dex-progress-main{
+  display:flex;justify-content:space-between;gap:10px;
+  align-items:end;margin-bottom:8px;font-weight:900
+}
+.my-dex-progress-rate{font-size:24px;color:#1689e8}
+.my-dex-progress-bar{
+  height:12px;overflow:hidden;border-radius:999px;
+  background:#e7f0f5;margin-bottom:11px
+}
+.my-dex-progress-fill{
+  height:100%;width:0;border-radius:999px;
+  background:#1689e8;transition:width .3s ease
+}
+.my-dex-progress-sub{
+  display:flex;flex-wrap:wrap;gap:7px;font-size:12px;font-weight:800
+}
+.my-dex-progress-chip{
+  padding:6px 9px;border-radius:999px;background:#edf5fa;color:#45677d
+}
+
+/* ========================================
    マイ図鑑フィルター
 ======================================== */
 .my-dex-filter-section{padding:17px;margin-bottom:17px;background:#fff;border:1px solid #dceaf3;border-radius:18px;box-shadow:0 4px 16px rgba(30,90,130,.07)}
@@ -1065,6 +1097,21 @@ main{
   </button>
 </section>
 
+<section class="my-dex-progress">
+  <div class="my-dex-progress-title">📈 マイ図鑑コンプ率</div>
+  <div class="my-dex-progress-main">
+    <span id="myDexOwnedText">所持 0 / 0体</span>
+    <span class="my-dex-progress-rate" id="myDexRate">0%</span>
+  </div>
+  <div class="my-dex-progress-bar">
+    <div class="my-dex-progress-fill" id="myDexProgressFill"></div>
+  </div>
+  <div class="my-dex-progress-sub">
+    <span class="my-dex-progress-chip" id="myDexTrainingCount">🌱 育成中 0体</span>
+    <span class="my-dex-progress-chip" id="myDexCompleteCount">🏆 育成完了 0体</span>
+  </div>
+</section>
+
 <section class="my-dex-filter-section">
  <div class="my-dex-filter-title">📝 マイ図鑑から探す</div>
  <div class="my-dex-filter-buttons">
@@ -1203,6 +1250,11 @@ const compareModal = document.getElementById("compareModal");
 const compareCloseBtn = document.getElementById("compareCloseBtn");
 const compareContent = document.getElementById("compareContent");
 const resetFilterBtn = document.getElementById("resetFilterBtn");
+const myDexOwnedText=document.getElementById("myDexOwnedText");
+const myDexRate=document.getElementById("myDexRate");
+const myDexProgressFill=document.getElementById("myDexProgressFill");
+const myDexTrainingCount=document.getElementById("myDexTrainingCount");
+const myDexCompleteCount=document.getElementById("myDexCompleteCount");
 const myDexFilterButtons=document.querySelectorAll(".my-dex-filter-btn");
 let currentMyDexFilter="all";
 const recentList = document.getElementById("recentList");
@@ -2126,6 +2178,28 @@ const MY_DEX_STORAGE_KEY="rocoKingdomMyDex";
 function loadMyDex(){
  try{const d=JSON.parse(localStorage.getItem(MY_DEX_STORAGE_KEY)||"{}");return d&&typeof d==="object"&&!Array.isArray(d)?d:{};}catch(e){return {};}
 }
+function renderMyDexProgress(){
+  const data=loadMyDex();
+  const total=mainCharacters.length;
+  let owned=0, training=0, complete=0;
+
+  mainCharacters.forEach(character=>{
+    const status=data[String(character.key)];
+    if(status==="owned" || status==="training" || status==="complete") owned++;
+    if(status==="training") training++;
+    if(status==="complete") complete++;
+  });
+
+  const rate=total ? (owned/total)*100 : 0;
+  const rateText=rate < 10 && rate > 0 ? rate.toFixed(1) : Math.round(rate).toString();
+
+  myDexOwnedText.textContent=`所持 ${owned} / ${total}体`;
+  myDexRate.textContent=`${rateText}%`;
+  myDexProgressFill.style.width=`${Math.min(rate,100)}%`;
+  myDexTrainingCount.textContent=`🌱 育成中 ${training}体`;
+  myDexCompleteCount.textContent=`🏆 育成完了 ${complete}体`;
+}
+
 myDexFilterButtons.forEach(b=>b.addEventListener("click",()=>{
  currentMyDexFilter=b.dataset.myFilter;
  myDexFilterButtons.forEach(x=>x.classList.toggle("active",x===b));
@@ -2137,6 +2211,8 @@ myDexFilterButtons.forEach(b=>b.addEventListener("click",()=>{
 ========================================== */
 
 function renderPokedex(){
+
+  renderMyDexProgress();
 
   const keyword =
     search.value
