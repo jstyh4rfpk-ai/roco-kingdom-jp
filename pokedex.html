@@ -151,6 +151,26 @@ main{
 }
 
 /* ========================================
+   検索・便利機能 開閉
+======================================== */
+.tools-toggle{
+  width:100%;
+  margin-bottom:14px;
+  padding:14px 16px;
+  border:0;
+  border-radius:14px;
+  background:#1689e8;
+  color:white;
+  font-size:15px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 5px 15px rgba(22,137,232,.18);
+}
+.tools-toggle:active{transform:scale(.99)}
+.tools-panel{display:none}
+.tools-panel.open{display:block}
+
+/* ========================================
    属性フィルター
 ======================================== */
 
@@ -814,6 +834,16 @@ main{
 
 </div>
 
+<button
+  type="button"
+  class="tools-toggle"
+  id="toolsToggle"
+  aria-expanded="false">
+  ⚙️ 検索・便利機能を開く ▼
+</button>
+
+<div class="tools-panel" id="toolsPanel">
+
 <!-- ======================================
      属性
 ====================================== -->
@@ -991,6 +1021,8 @@ main{
   </button>
 </section>
 
+</div>
+
 <!-- ======================================
      最近見たキャラクター
 ====================================== -->
@@ -1101,6 +1133,9 @@ const buttons =
   document.querySelectorAll(
     ".type-btn"
   );
+
+const toolsToggle = document.getElementById("toolsToggle");
+const toolsPanel = document.getElementById("toolsPanel");
 
 const formFilterButtons = document.querySelectorAll(".form-filter-btn");
 
@@ -2141,6 +2176,24 @@ search.addEventListener(
   "input",
   renderPokedex
 );
+
+/* ==========================================
+   検索・便利機能 開閉
+========================================== */
+toolsToggle.addEventListener("click", () => {
+  const open = toolsPanel.classList.toggle("open");
+
+  toolsToggle.setAttribute(
+    "aria-expanded",
+    open ? "true" : "false"
+  );
+
+  toolsToggle.textContent =
+    open
+    ? "⚙️ 検索・便利機能を閉じる ▲"
+    : "⚙️ 検索・便利機能を開く ▼";
+});
+
 
 /* ==========================================
    属性ボタン
