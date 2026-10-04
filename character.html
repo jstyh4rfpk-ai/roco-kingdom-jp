@@ -2116,14 +2116,6 @@ try{
 }
 
 
-
-}));
-myDexClear.addEventListener("click",()=>{
-  const data=loadMyDex(); delete data[String(character.key)];
-  localStorage.setItem(MY_DEX_STORAGE_KEY,JSON.stringify(data)); renderMyDexStatus();
-});
-renderMyDexStatus();
-
 /* ==========================================
    ページタイトル
 ========================================== */
