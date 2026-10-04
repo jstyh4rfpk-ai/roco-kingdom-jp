@@ -356,6 +356,29 @@ main{
 .compare-winner{font-weight:900;color:#1689e8}
 
 /* ========================================
+   条件リセット
+======================================== */
+.reset-section{
+  margin-bottom:17px;
+  text-align:center;
+}
+.reset-filter-btn{
+  width:100%;
+  padding:12px 16px;
+  border:1px solid #cbdfea;
+  border-radius:14px;
+  background:white;
+  color:#39718f;
+  font-size:14px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 4px 14px rgba(30,90,130,.06);
+}
+.reset-filter-btn:active{
+  transform:scale(.98);
+}
+
+/* ========================================
    件数
 ======================================== */
 
@@ -873,6 +896,18 @@ main{
 </section>
 
 <!-- ======================================
+     条件リセット
+====================================== -->
+<section class="reset-section">
+  <button
+    type="button"
+    class="reset-filter-btn"
+    id="resetFilterBtn">
+    🔄 条件をすべてリセット
+  </button>
+</section>
+
+<!-- ======================================
      件数
 ====================================== -->
 
@@ -981,6 +1016,7 @@ const compareOpenBtn = document.getElementById("compareOpenBtn");
 const compareModal = document.getElementById("compareModal");
 const compareCloseBtn = document.getElementById("compareCloseBtn");
 const compareContent = document.getElementById("compareContent");
+const resetFilterBtn = document.getElementById("resetFilterBtn");
 
 const count =
   document.getElementById(
@@ -2097,6 +2133,59 @@ favoriteFilterBtn.addEventListener("click", () => {
     : "☆ お気に入りだけ表示";
 
   renderPokedex();
+});
+
+
+/* ==========================================
+   条件をすべてリセット
+========================================== */
+resetFilterBtn.addEventListener("click", () => {
+
+  search.value = "";
+
+  selectedType = "all";
+  buttons.forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.type === "all"
+    );
+  });
+
+  selectedFormFilter = "all";
+  formFilterButtons.forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.formFilter === "all"
+    );
+  });
+
+  selectedDexRange = "all";
+  dexRangeButtons.forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.range === "all"
+    );
+  });
+
+  selectedSort = "dex-asc";
+  sortButtons.forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.sort === "dex-asc"
+    );
+  });
+
+  favoriteOnly = false;
+  favoriteFilterBtn.classList.remove("active");
+  favoriteFilterBtn.textContent =
+    "☆ お気に入りだけ表示";
+
+  renderPokedex();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 });
 
 
