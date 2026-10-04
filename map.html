@@ -1,0 +1,1597 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>マップ攻略 | ロコキングダム速報</title>
+
+<meta name="description"
+content="Roco Kingdom（洛克王国：世界）のマップ、エリア、探索、キャラクター出現場所、収集要素などを日本語で整理する攻略ページです。">
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+
+  color:#17324d;
+  line-height:1.7;
+  background:#f1f8fd;
+}
+
+
+/* =========================
+   ヘッダー
+========================= */
+
+header{
+  padding:28px 16px;
+  text-align:center;
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #50b7f0,
+      #79d4ff
+    );
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:6px 0 0;
+  font-size:13px;
+}
+
+
+/* =========================
+   戻る
+========================= */
+
+.back{
+  display:block;
+
+  padding:14px 18px;
+
+  background:white;
+
+  border-bottom:
+    1px solid #dceaf4;
+
+  color:#1677d2;
+
+  text-decoration:none;
+
+  font-weight:900;
+}
+
+
+/* =========================
+   メイン
+========================= */
+
+main{
+  width:
+    min(920px,calc(100% - 24px));
+
+  margin:
+    20px auto 50px;
+}
+
+.card{
+  margin-bottom:17px;
+
+  padding:20px;
+
+  background:white;
+
+  border:
+    1px solid #dceaf3;
+
+  border-radius:19px;
+
+  box-shadow:
+    0 5px 20px rgba(30,90,130,.08);
+}
+
+.card h2{
+  margin:
+    0 0 12px;
+
+  font-size:21px;
+}
+
+.description{
+  margin:0;
+
+  color:#647e92;
+
+  font-size:13px;
+}
+
+
+/* =========================
+   メニュー
+========================= */
+
+.menu-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:9px;
+
+  margin-top:16px;
+}
+
+.menu-item{
+  padding:
+    15px 8px;
+
+  text-align:center;
+
+  border:
+    1px solid #d5e5ef;
+
+  border-radius:
+    14px;
+
+  background:
+    #f6fbfe;
+}
+
+.menu-icon{
+  display:block;
+
+  margin-bottom:
+    5px;
+
+  font-size:
+    28px;
+}
+
+.menu-title{
+  display:block;
+
+  font-size:
+    13px;
+
+  font-weight:
+    900;
+}
+
+.menu-text{
+  display:block;
+
+  margin-top:
+    3px;
+
+  color:
+    #758b9d;
+
+  font-size:
+    10px;
+}
+
+
+/* =========================
+   検索
+========================= */
+
+.search{
+  width:100%;
+
+  margin-top:
+    16px;
+
+  padding:
+    14px 15px;
+
+  border:
+    1px solid #cbdfea;
+
+  border-radius:
+    13px;
+
+  outline:none;
+
+  background:white;
+
+  color:#17324d;
+
+  font-size:16px;
+}
+
+.search:focus{
+  border-color:#52afe7;
+
+  box-shadow:
+    0 0 0 3px rgba(82,175,231,.12);
+}
+
+
+/* =========================
+   フィルター
+========================= */
+
+.filters{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:6px;
+
+  margin-top:12px;
+}
+
+.filter{
+  padding:
+    7px 11px;
+
+  border:0;
+
+  border-radius:
+    999px;
+
+  background:#edf5fa;
+
+  color:#36546b;
+
+  font-weight:800;
+
+  cursor:pointer;
+}
+
+.filter.active{
+  background:#1689e8;
+  color:white;
+}
+
+
+/* =========================
+   件数
+========================= */
+
+.result{
+  margin-top:12px;
+
+  color:#70879a;
+
+  font-size:12px;
+
+  font-weight:800;
+}
+
+
+/* =========================
+   エリア
+========================= */
+
+.area-list{
+  margin-top:10px;
+}
+
+.area{
+  margin-bottom:13px;
+
+  padding:16px;
+
+  border:
+    1px solid #d9e7ef;
+
+  border-radius:15px;
+
+  background:#f9fcfe;
+}
+
+.area:last-child{
+  margin-bottom:0;
+}
+
+.area-top{
+  display:flex;
+
+  align-items:flex-start;
+
+  justify-content:
+    space-between;
+
+  gap:10px;
+}
+
+.area-name{
+  color:#126fc1;
+
+  font-size:17px;
+
+  font-weight:900;
+}
+
+.area-cn{
+  color:#8497a6;
+
+  font-size:10px;
+}
+
+.area-status{
+  flex-shrink:0;
+
+  padding:
+    4px 8px;
+
+  border-radius:
+    999px;
+
+  background:#edf5fa;
+
+  color:#617a8d;
+
+  font-size:10px;
+
+  font-weight:900;
+}
+
+.tags{
+  margin:
+    8px 0;
+}
+
+.tag{
+  display:inline-block;
+
+  margin:
+    2px 3px 2px 0;
+
+  padding:
+    3px 8px;
+
+  border-radius:
+    999px;
+
+  background:#edf4f8;
+
+  color:#426077;
+
+  font-size:10px;
+
+  font-weight:800;
+}
+
+.area-description{
+  color:#536e82;
+
+  font-size:12px;
+}
+
+.area-info{
+  margin-top:10px;
+
+  padding-top:10px;
+
+  border-top:
+    1px solid #e5edf2;
+
+  color:#6d8395;
+
+  font-size:11px;
+}
+
+.area-info strong{
+  color:#405f77;
+}
+
+
+/* =========================
+   攻略ポイント
+========================= */
+
+.point-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:9px;
+
+  margin-top:14px;
+}
+
+.point{
+  padding:13px;
+
+  border-radius:13px;
+
+  background:#f3f8fb;
+}
+
+.point strong{
+  display:block;
+
+  margin-bottom:3px;
+
+  font-size:13px;
+}
+
+.point span{
+  color:#71879a;
+
+  font-size:10px;
+}
+
+
+/* =========================
+   探索フロー
+========================= */
+
+.flow{
+  margin-top:15px;
+}
+
+.flow-item{
+  position:relative;
+
+  margin-bottom:24px;
+
+  padding:15px;
+
+  border:
+    1px solid #d7e6ef;
+
+  border-radius:14px;
+
+  background:#f9fcfe;
+}
+
+.flow-item:not(:last-child)::after{
+  content:"↓";
+
+  position:absolute;
+
+  left:50%;
+  bottom:-24px;
+
+  transform:
+    translateX(-50%);
+
+  color:#4ba7df;
+
+  font-size:20px;
+
+  font-weight:900;
+}
+
+.flow-title{
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  color:#126fc1;
+
+  font-weight:900;
+}
+
+.flow-number{
+  display:flex;
+
+  width:27px;
+  height:27px;
+
+  align-items:center;
+
+  justify-content:center;
+
+  flex-shrink:0;
+
+  border-radius:50%;
+
+  background:#1689e8;
+
+  color:white;
+
+  font-size:12px;
+}
+
+.flow-text{
+  margin-top:6px;
+
+  color:#60798d;
+
+  font-size:12px;
+}
+
+
+/* =========================
+   準備中
+========================= */
+
+.preparing{
+  padding:
+    22px 15px;
+
+  text-align:center;
+
+  border:
+    1px dashed #bad3e3;
+
+  border-radius:14px;
+
+  background:#f8fbfd;
+
+  color:#70889b;
+
+  font-size:12px;
+}
+
+
+/* =========================
+   0件
+========================= */
+
+.empty{
+  display:none;
+
+  padding:
+    28px 15px;
+
+  text-align:center;
+
+  color:#70889b;
+
+  font-size:13px;
+}
+
+
+/* =========================
+   関連ページ
+========================= */
+
+.link-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:9px;
+
+  margin-top:14px;
+}
+
+.link-button{
+  display:block;
+
+  padding:
+    13px 8px;
+
+  text-align:center;
+
+  border-radius:13px;
+
+  background:#1689e8;
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:12px;
+
+  font-weight:900;
+}
+
+
+/* =========================
+   注意
+========================= */
+
+.notice{
+  padding:16px;
+
+  border:
+    1px solid #efdb96;
+
+  border-radius:14px;
+
+  background:#fff9e7;
+
+  color:#66582b;
+
+  font-size:12px;
+}
+
+
+/* =========================
+   PC
+========================= */
+
+@media(min-width:700px){
+
+  .menu-grid{
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+
+  .point-grid{
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+
+}
+
+
+/* =========================
+   スマホ
+========================= */
+
+@media(max-width:400px){
+
+  .card{
+    padding:16px;
+  }
+
+  .area-top{
+    display:block;
+  }
+
+  .area-status{
+    display:inline-block;
+    margin-top:6px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+  <h1>
+    🗺️ マップ攻略
+  </h1>
+
+  <p>
+    ロコキングダム速報 攻略ガイド
+  </p>
+
+</header>
+
+
+<a
+  class="back"
+  href="index.html">
+
+  ← ロコキングダム速報へ戻る
+
+</a>
+
+
+<main>
+
+
+<!-- =========================
+     マップ概要
+========================= -->
+
+<section class="card">
+
+  <h2>
+    🗺️ ワールド・エリア攻略
+  </h2>
+
+  <p class="description">
+    Roco Kingdomの各エリアについて、
+    キャラクターの出現場所・探索要素・収集物・
+    攻略ポイントなどを順次整理していきます。
+  </p>
+
+
+  <div class="menu-grid">
+
+
+    <div class="menu-item">
+
+      <span class="menu-icon">
+        🐾
+      </span>
+
+      <span class="menu-title">
+        出現キャラ
+      </span>
+
+      <span class="menu-text">
+        エリア別に確認
+      </span>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <span class="menu-icon">
+        📦
+      </span>
+
+      <span class="menu-title">
+        収集物
+      </span>
+
+      <span class="menu-text">
+        アイテム・素材
+      </span>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <span class="menu-icon">
+        👑
+      </span>
+
+      <span class="menu-title">
+        強敵
+      </span>
+
+      <span class="menu-text">
+        ボス・特殊個体
+      </span>
+
+    </div>
+
+
+    <div class="menu-item">
+
+      <span class="menu-icon">
+        🔎
+      </span>
+
+      <span class="menu-title">
+        探索
+      </span>
+
+      <span class="menu-text">
+        発見・ギミック
+      </span>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     検索
+========================= -->
+
+<section class="card">
+
+  <h2>
+    🔍 エリア検索
+  </h2>
+
+
+  <input
+    class="search"
+    id="search"
+    type="search"
+    placeholder="🔍 エリア名・キャラ・アイテムから検索">
+
+
+  <div class="filters">
+
+    <button
+      class="filter active"
+      data-category="all">
+
+      すべて
+
+    </button>
+
+
+    <button
+      class="filter"
+      data-category="草原">
+
+      🌿 草原
+
+    </button>
+
+
+    <button
+      class="filter"
+      data-category="森林">
+
+      🌲 森林
+
+    </button>
+
+
+    <button
+      class="filter"
+      data-category="水辺">
+
+      💧 水辺
+
+    </button>
+
+
+    <button
+      class="filter"
+      data-category="山岳">
+
+      ⛰️ 山岳
+
+    </button>
+
+
+    <button
+      class="filter"
+      data-category="街">
+
+      🏘️ 街
+
+    </button>
+
+
+    <button
+      class="filter"
+      data-category="特殊">
+
+      ✨ 特殊
+
+    </button>
+
+  </div>
+
+
+  <div class="result">
+
+    <span id="count">
+      0
+    </span>
+
+    エリアを表示中
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     エリア一覧
+========================= -->
+
+<section class="card">
+
+  <h2>
+    📍 エリア一覧
+  </h2>
+
+
+  <div
+    class="area-list"
+    id="areaList">
+  </div>
+
+
+  <div
+    class="empty"
+    id="empty">
+
+    🔍 条件に一致するエリアがありません。
+
+  </div>
+
+
+  <div
+    class="preparing"
+    id="preparing">
+
+    🔎 中国版のマップ・エリアデータを整理中です。
+
+    <br><br>
+
+    正式なエリア名、出現キャラクター、
+    収集物などを確認できたものから順次追加します。
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     探索
+========================= -->
+
+<section class="card">
+
+  <h2>
+    🧭 探索の基本
+  </h2>
+
+
+  <div class="flow">
+
+
+    <div class="flow-item">
+
+      <div class="flow-title">
+
+        <span class="flow-number">
+          1
+        </span>
+
+        新しいエリアを探索
+
+      </div>
+
+      <div class="flow-text">
+        ワールドを移動して新しい場所や
+        キャラクターを探します。
+      </div>
+
+    </div>
+
+
+    <div class="flow-item">
+
+      <div class="flow-title">
+
+        <span class="flow-number">
+          2
+        </span>
+
+        出現キャラクターを確認
+
+      </div>
+
+      <div class="flow-text">
+        エリアによって出現するキャラクターが
+        異なる場合があります。
+      </div>
+
+    </div>
+
+
+    <div class="flow-item">
+
+      <div class="flow-title">
+
+        <span class="flow-number">
+          3
+        </span>
+
+        素材・収集物を探す
+
+      </div>
+
+      <div class="flow-text">
+        探索中に入手できる素材やアイテムを
+        回収していきます。
+      </div>
+
+    </div>
+
+
+    <div class="flow-item">
+
+      <div class="flow-title">
+
+        <span class="flow-number">
+          4
+        </span>
+
+        強敵・特殊要素を攻略
+
+      </div>
+
+      <div class="flow-text">
+        特殊な敵や探索要素についても、
+        確認でき次第マップごとに掲載します。
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     攻略ポイント
+========================= -->
+
+<section class="card">
+
+  <h2>
+    🔎 マップページで確認できる情報
+  </h2>
+
+
+  <div class="point-grid">
+
+
+    <div class="point">
+
+      <strong>
+        🐾 出現キャラ
+      </strong>
+
+      <span>
+        キャラクターの出現エリア
+      </span>
+
+    </div>
+
+
+    <div class="point">
+
+      <strong>
+        🎒 アイテム
+      </strong>
+
+      <span>
+        素材や収集物の場所
+      </span>
+
+    </div>
+
+
+    <div class="point">
+
+      <strong>
+        👑 強敵
+      </strong>
+
+      <span>
+        ボスなどの攻略情報
+      </span>
+
+    </div>
+
+
+    <div class="point">
+
+      <strong>
+        🧩 ギミック
+      </strong>
+
+      <span>
+        探索・特殊要素
+      </span>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     関連攻略
+========================= -->
+
+<section class="card">
+
+  <h2>
+    📘 関連攻略
+  </h2>
+
+
+  <div class="link-grid">
+
+
+    <a
+      class="link-button"
+      href="pokedex.html">
+
+      🐾 キャラ図鑑
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="items.html">
+
+      🎒 アイテム
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="training.html">
+
+      🌱 育成・進化
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="skills.html">
+
+      ⚔️ 技一覧
+
+    </a>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     今後
+========================= -->
+
+<section class="card">
+
+  <h2>
+    🔎 今後追加予定
+  </h2>
+
+
+  <div class="preparing">
+
+    ・ワールド全体マップ<br>
+    ・エリア一覧<br>
+    ・キャラクター出現場所<br>
+    ・素材・アイテム入手場所<br>
+    ・ボス・強敵<br>
+    ・探索ギミック<br>
+    ・宝箱・収集要素<br>
+    ・エリア別攻略
+
+    <br><br>
+
+    中国版データを確認しながら
+    順次追加します。
+
+  </div>
+
+</section>
+
+
+<div class="notice">
+
+  <strong>
+    🇨🇳 中国版データについて
+  </strong>
+
+  <br><br>
+
+  本ページは中国版「洛克王国：世界」の
+  マップ情報をもとに整理していく予定です。
+
+  <br><br>
+
+  現在はページ構造を先に作成しているため、
+  未確認のエリア名や出現情報を推測で掲載していません。
+
+  <br><br>
+
+  日本版でマップ名・出現場所・アイテム配置などが
+  異なる場合は、日本版の情報を優先して更新します。
+
+</div>
+
+
+</main>
+
+
+<script>
+
+/*
+==================================================
+ マップ・エリアデータ
+
+ 今後ここへ追加すると自動表示されます。
+==================================================
+*/
+
+const areas = [
+
+  /*
+  追加例
+
+  {
+    name:"エリア名（仮）",
+    chineseName:"中国名",
+    category:"森林",
+    status:"確認済み",
+
+    tags:[
+      "探索",
+      "キャラ出現"
+    ],
+
+    description:
+      "エリアの説明。",
+
+    characters:[
+      "キャラクター名"
+    ],
+
+    items:[
+      "アイテム名"
+    ],
+
+    bosses:[
+      "ボス名"
+    ]
+  }
+
+  */
+
+];
+
+
+/*
+==================================================
+ DOM
+==================================================
+*/
+
+const search =
+  document.getElementById("search");
+
+const areaList =
+  document.getElementById("areaList");
+
+const count =
+  document.getElementById("count");
+
+const empty =
+  document.getElementById("empty");
+
+const preparing =
+  document.getElementById("preparing");
+
+const filters =
+  document.querySelectorAll(".filter");
+
+let selectedCategory =
+  "all";
+
+
+/*
+==================================================
+ 安全な配列表示
+==================================================
+*/
+
+function arrayText(array){
+
+  if(
+    !Array.isArray(array) ||
+    array.length === 0
+  ){
+    return "確認中";
+  }
+
+  return array.join("、");
+
+}
+
+
+/*
+==================================================
+ エリアHTML
+==================================================
+*/
+
+function areaHTML(area){
+
+  const tags =
+
+    Array.isArray(area.tags)
+
+    ? area.tags
+        .map(tag=>
+          `<span class="tag">${tag}</span>`
+        )
+        .join("")
+
+    : "";
+
+
+  return `
+
+    <div class="area">
+
+      <div class="area-top">
+
+        <div>
+
+          <div class="area-name">
+
+            ${area.name || "名称確認中"}
+
+          </div>
+
+
+          ${
+            area.chineseName
+
+            ? `
+
+              <div class="area-cn">
+
+                中国名：
+                ${area.chineseName}
+
+              </div>
+
+            `
+
+            : ""
+          }
+
+        </div>
+
+
+        <span class="area-status">
+
+          ${area.status || "確認中"}
+
+        </span>
+
+      </div>
+
+
+      <div class="tags">
+
+        ${
+          area.category
+
+          ? `<span class="tag">
+               ${area.category}
+             </span>`
+
+          : ""
+        }
+
+        ${tags}
+
+      </div>
+
+
+      <div class="area-description">
+
+        ${area.description || "詳細確認中"}
+
+      </div>
+
+
+      <div class="area-info">
+
+        <strong>
+          🐾 出現：
+        </strong>
+
+        ${arrayText(area.characters)}
+
+        <br>
+
+
+        <strong>
+          🎒 アイテム：
+        </strong>
+
+        ${arrayText(area.items)}
+
+        <br>
+
+
+        <strong>
+          👑 強敵：
+        </strong>
+
+        ${arrayText(area.bosses)}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/*
+==================================================
+ 検索用
+==================================================
+*/
+
+function areaSearchText(area){
+
+  return [
+
+    area.name || "",
+    area.chineseName || "",
+    area.category || "",
+    area.status || "",
+    area.description || "",
+
+    ...(area.tags || []),
+    ...(area.characters || []),
+    ...(area.items || []),
+    ...(area.bosses || [])
+
+  ]
+  .join(" ")
+  .toLowerCase();
+
+}
+
+
+/*
+==================================================
+ 表示
+==================================================
+*/
+
+function render(){
+
+  const keyword =
+
+    search.value
+      .trim()
+      .toLowerCase();
+
+
+  const filtered =
+
+    areas.filter(area=>{
+
+      const keywordMatch =
+
+        areaSearchText(area)
+          .includes(keyword);
+
+
+      const categoryMatch =
+
+        selectedCategory === "all"
+
+        ||
+
+        area.category ===
+          selectedCategory;
+
+
+      return (
+        keywordMatch &&
+        categoryMatch
+      );
+
+    });
+
+
+  areaList.innerHTML =
+
+    filtered
+      .map(areaHTML)
+      .join("");
+
+
+  count.textContent =
+    filtered.length;
+
+
+  empty.style.display =
+
+    areas.length > 0 &&
+    filtered.length === 0
+
+      ? "block"
+
+      : "none";
+
+
+  preparing.style.display =
+
+    areas.length === 0
+
+      ? "block"
+
+      : "none";
+
+}
+
+
+/*
+==================================================
+ 検索
+==================================================
+*/
+
+search.addEventListener(
+  "input",
+  render
+);
+
+
+/*
+==================================================
+ フィルター
+==================================================
+*/
+
+filters.forEach(button=>{
+
+  button.addEventListener(
+    "click",
+    ()=>{
+
+      filters.forEach(btn=>
+
+        btn.classList.remove(
+          "active"
+        )
+
+      );
+
+
+      button.classList.add(
+        "active"
+      );
+
+
+      selectedCategory =
+        button.dataset.category;
+
+
+      render();
+
+    }
+  );
+
+});
+
+
+/*
+==================================================
+ 起動
+==================================================
+*/
+
+render();
+
+</script>
+
+
+</body>
+</html>
