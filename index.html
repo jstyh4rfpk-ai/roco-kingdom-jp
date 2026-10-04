@@ -7,7 +7,7 @@
   <title>ロコキングダム速報 | Roco Kingdom 日本語情報</title>
 
   <meta name="description"
-        content="Roco Kingdom（洛克王国：世界）の日本向け非公式情報サイト。CBT、Creator Program、イベント、事前登録、攻略、キャラクター情報などを日本語でまとめています。">
+        content="Roco Kingdom（洛克王国：世界）の日本向け非公式情報サイト。キャラ図鑑、属性相性、育成、技、アイテム、マップ、初心者攻略、CBT、Creator Program、イベント、最新ニュースなどを日本語でまとめています。">
 
   <meta name="robots" content="index,follow">
 
@@ -19,7 +19,7 @@
   <meta property="og:locale" content="ja_JP">
   <meta property="og:site_name" content="ロコキングダム速報">
   <meta property="og:title" content="ロコキングダム速報｜Roco Kingdom 日本向け情報">
-  <meta property="og:description" content="Roco Kingdom（洛克王国：世界）のCBT、Creator Program、攻略、キャラクター、報酬、公式ニュースなどを日本向けに整理する非公式ファンサイトです。">
+  <meta property="og:description" content="Roco Kingdom（洛克王国：世界）のキャラ図鑑・攻略・CBT・Creator Program・事前登録・報酬・公式ニュースなどを日本向けに整理する非公式ファンサイトです。">
   <meta property="og:url" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/">
   <meta property="og:image" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/645A3AFD-40E9-429D-B26E-D2A823C1581D.png">
   <meta property="og:image:type" content="image/png">
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/645A3AFD-40E9-429D-B26E-D2A823C1581D.png">
   <meta name="twitter:title" content="ロコキングダム速報｜Roco Kingdom 日本向け情報">
-  <meta name="twitter:description" content="CBT・Creator Program・攻略・キャラクター・報酬・公式ニュースなど、Roco Kingdomの情報を日本向けに整理。">
+  <meta name="twitter:description" content="キャラ図鑑・攻略・CBT・Creator Program・事前登録・報酬・公式ニュースなど、Roco Kingdomの情報を日本向けに整理。">
 
   <script type="application/ld+json">
   {
@@ -44,17 +44,16 @@
   </script>
 
   <style>
-
-    *{
-      box-sizing:border-box;
+    * {
+      box-sizing: border-box;
     }
 
-    html{
-      scroll-behavior:smooth;
+    html {
+      scroll-behavior: smooth;
     }
 
-    body{
-      margin:0;
+    body {
+      margin: 0;
 
       font-family:
         -apple-system,
@@ -64,20 +63,19 @@
         "Yu Gothic",
         sans-serif;
 
-      color:#102b45;
-      line-height:1.8;
+      color: #102b45;
+      line-height: 1.8;
 
       background:
         linear-gradient(
-          rgba(240,248,255,.90),
-          rgba(255,255,255,.94)
+          rgba(240, 248, 255, 0.90),
+          rgba(255, 255, 255, 0.94)
         ),
-        url("IMG_0596.png")
-        center top / cover fixed;
+        url("IMG_0596.png") center top / cover fixed;
     }
 
-    a{
-      color:#1677d2;
+    a {
+      color: #1677d2;
     }
 
 
@@ -85,52 +83,54 @@
        ヘッダー
     ========================= */
 
-    header{
-      padding:55px 20px 45px;
-      text-align:center;
+    header {
+      padding: 55px 20px 45px;
+
+      text-align: center;
 
       background:
         linear-gradient(
-          rgba(40,110,180,.28),
-          rgba(40,110,180,.28)
+          rgba(40, 110, 180, 0.28),
+          rgba(40, 110, 180, 0.28)
         ),
         url("52F37108-E234-43A0-BEB0-D8DD6C52AEA7.png")
         center center / cover no-repeat;
 
-      color:white;
+      color: white;
 
       box-shadow:
         0 4px 20px rgba(0,0,0,.12);
     }
 
-    header h1{
-      margin:0;
+    header h1 {
+      margin: 0;
 
       font-size:
-        clamp(34px,9vw,58px);
+        clamp(34px, 9vw, 58px);
 
-      line-height:1.2;
+      line-height: 1.2;
 
       text-shadow:
         0 2px 8px rgba(0,0,0,.15);
     }
 
-    header p{
-      margin:14px 0 0;
-      font-size:17px;
-      font-weight:600;
+    header p {
+      margin: 14px 0 0;
+
+      font-size: 17px;
+
+      font-weight: 600;
     }
 
-    .badge{
-      display:inline-block;
+    .badge {
+      display: inline-block;
 
-      margin-top:18px;
+      margin-top: 18px;
 
       padding:
         7px 16px;
 
-      border-radius:
-        999px;
+      border-radius: 999px;
 
       background:
         rgba(255,255,255,.22);
@@ -138,7 +138,7 @@
       border:
         1px solid rgba(255,255,255,.55);
 
-      font-size:14px;
+      font-size: 14px;
     }
 
 
@@ -146,19 +146,21 @@
        上部ナビ
     ========================= */
 
-    nav{
-      position:sticky;
-      top:0;
-      z-index:10;
+    nav {
+      position: sticky;
 
-      display:grid;
+      top: 0;
+
+      z-index: 10;
+
+      display: grid;
 
       grid-template-columns:
-        repeat(2,1fr);
+        repeat(2, 1fr);
 
-      gap:10px;
+      gap: 10px;
 
-      padding:14px;
+      padding: 14px;
 
       background:
         rgba(255,255,255,.96);
@@ -170,26 +172,41 @@
         0 3px 12px rgba(0,0,0,.08);
     }
 
-    nav a{
-      display:block;
+    nav a {
+      display: block;
 
-      text-align:center;
+      text-align: center;
 
       padding:
         12px 10px;
 
-      border-radius:
-        999px;
+      border-radius: 999px;
 
-      background:
-        #eef8ff;
+      background: #eef8ff;
 
-      color:
-        #17324d;
+      color: #17324d;
 
-      text-decoration:none;
+      text-decoration: none;
 
-      font-weight:700;
+      font-weight: 700;
+
+      white-space: normal;
+
+      transition:
+        transform .15s ease,
+        background .15s ease;
+    }
+
+    nav a:hover {
+      background: #dff2ff;
+
+      transform:
+        translateY(-1px);
+    }
+
+    nav a:active {
+      transform:
+        scale(.97);
     }
 
 
@@ -197,9 +214,9 @@
        メイン
     ========================= */
 
-    main{
+    main {
       width:
-        min(920px,calc(100% - 28px));
+        min(920px, calc(100% - 28px));
 
       margin:
         28px auto 60px;
@@ -210,12 +227,11 @@
        攻略ガイド
     ========================= */
 
-    .guide-section{
+    .guide-section {
       margin:
         20px 0 26px;
 
-      padding:
-        22px;
+      padding: 22px;
 
       background:
         rgba(255,255,255,.96);
@@ -223,80 +239,65 @@
       border:
         1px solid rgba(126,181,220,.32);
 
-      border-radius:
-        22px;
+      border-radius: 22px;
 
       box-shadow:
         0 8px 28px rgba(34,90,130,.10);
     }
 
-    .guide-title{
+    .guide-title {
       margin:
         0 0 18px;
 
-      padding-left:
-        12px;
+      padding-left: 12px;
 
       border-left:
         6px solid #38a8ff;
 
-      font-size:
-        24px;
+      font-size: 24px;
 
-      color:
-        #17324d;
+      color: #17324d;
     }
 
-    .guide-description{
+    .guide-description {
       margin:
         -6px 0 18px;
 
-      color:
-        #60778d;
+      color: #60778d;
 
-      font-size:
-        14px;
+      font-size: 14px;
     }
 
-    .guide-grid{
-      display:grid;
+    .guide-grid {
+      display: grid;
 
       grid-template-columns:
-        repeat(3,1fr);
+        repeat(3, 1fr);
 
-      gap:
-        10px;
+      gap: 10px;
     }
 
-    .guide-item{
-      min-height:
-        110px;
+    .guide-item {
+      min-height: 110px;
 
       padding:
         16px 8px;
 
-      display:flex;
+      display: flex;
 
-      flex-direction:
-        column;
+      flex-direction: column;
 
-      align-items:
-        center;
+      align-items: center;
 
-      justify-content:
-        center;
+      justify-content: center;
 
-      gap:
-        6px;
+      gap: 6px;
 
-      text-align:
-        center;
+      text-align: center;
 
-      text-decoration:
-        none;
+      text-decoration: none;
 
-      color:
-        #17324d;
+      color: #17324d;
 
       background:
         linear-gradient(
@@ -308,22 +309,20 @@
       border:
         1px solid #cfe5f5;
 
-      border-radius:
-        15px;
+      border-radius: 15px;
 
-      font-weight:
-        800;
+      font-weight: 800;
 
-      line-height:
-        1.35;
+      line-height: 1.35;
 
       transition:
         transform .15s ease,
         box-shadow .15s ease,
-        border-color .15s ease;
+        border-color .15s ease,
+        background .15s ease;
     }
 
-    a.guide-item:hover{
+    .guide-item:hover {
       transform:
         translateY(-2px);
 
@@ -332,35 +331,37 @@
 
       border-color:
         #75bee9;
+
+      background:
+        linear-gradient(
+          180deg,
+          #ffffff,
+          #dff3ff
+        );
     }
 
-    a.guide-item:active{
+    .guide-item:active {
       transform:
         scale(.97);
     }
 
-    .guide-icon{
-      font-size:
-        30px;
+    .guide-icon {
+      font-size: 30px;
 
-      line-height:
-        1;
+      line-height: 1;
     }
 
-    .guide-item small{
-      display:block;
+    .guide-item small {
+      display: block;
 
-      color:
-        #7890a5;
+      color: #7890a5;
 
-      font-size:
-        11px;
+      font-size: 11px;
 
-      font-weight:
-        600;
+      font-weight: 600;
     }
 
-    .guide-item.active{
+    .guide-item.active {
       background:
         linear-gradient(
           135deg,
@@ -372,24 +373,24 @@
         2px solid #55afe9;
     }
 
-    .guide-item.recommended{
+    .guide-item.bbs {
       background:
         linear-gradient(
           135deg,
-          #fff9dc,
-          #fffdf3
+          #f1ecff,
+          #fbf9ff
         );
 
       border:
-        2px solid #f0c84d;
+        1px solid #cfc2ff;
     }
 
-    .guide-item.preparing{
-      opacity:
-        .72;
+    .guide-item.bbs:hover {
+      border-color:
+        #9d83ff;
 
-      cursor:
-        default;
+      box-shadow:
+        0 6px 18px rgba(111,83,210,.14);
     }
 
 
@@ -397,12 +398,11 @@
        通常カード
     ========================= */
 
-    .card{
+    .card {
       margin:
         20px 0;
 
-      padding:
-        25px;
+      padding: 25px;
 
       background:
         rgba(255,255,255,.94);
@@ -410,83 +410,73 @@
       border:
         1px solid rgba(126,181,220,.32);
 
-      border-radius:
-        22px;
+      border-radius: 22px;
 
       box-shadow:
         0 8px 28px rgba(34,90,130,.10);
     }
 
-    .card h2{
-      margin-top:
-        0;
+    .card h2 {
+      margin-top: 0;
 
-      margin-bottom:
-        15px;
+      margin-bottom: 15px;
 
-      font-size:
-        24px;
+      font-size: 24px;
     }
 
-    .news{
+    .news {
       border-left:
         6px solid #ff5757;
     }
 
-    .creator{
+    .creator {
       border-left:
         6px solid #8b69ff;
     }
 
-    .cbt{
+    .cbt {
       border-left:
         6px solid #38a8ff;
     }
 
-    .reward{
+    .reward {
       border-left:
         6px solid #ffb52e;
     }
 
-    .official{
+    .official {
       border-left:
         6px solid #40b878;
     }
 
-    .notice{
+    .notice {
       padding:
         15px 17px;
 
       margin:
         15px 0;
 
-      border-radius:
-        14px;
+      border-radius: 14px;
 
-      background:
-        #fff8df;
+      background: #fff8df;
 
       border:
         1px solid #f3d985;
     }
 
-    .date{
-      display:inline-block;
+    .date {
+      display: inline-block;
 
-      margin-bottom:
-        7px;
+      margin-bottom: 7px;
 
-      color:
-        #60778d;
+      color: #60778d;
 
-      font-size:
-        14px;
+      font-size: 14px;
 
-      font-weight:
-        700;
+      font-weight: 700;
     }
 
-    .item{
+    .item {
       padding:
         15px 0;
 
@@ -494,55 +484,43 @@
         1px solid #e5edf3;
     }
 
-    .item:last-child{
-      border-bottom:
-        0;
+    .item:last-child {
+      border-bottom: 0;
     }
 
-    .item strong{
-      display:block;
+    .item strong {
+      display: block;
 
-      font-size:
-        17px;
+      font-size: 17px;
 
-      margin-bottom:
-        4px;
+      margin-bottom: 4px;
     }
 
-    .button{
-      display:block;
+    .button {
+      display: block;
 
-      width:
-        100%;
+      width: 100%;
 
-      margin-top:
-        12px;
+      margin-top: 12px;
 
       padding:
         13px 16px;
 
-      text-align:
-        center;
+      text-align: center;
 
-      text-decoration:
-        none;
+      text-decoration: none;
 
-      border-radius:
-        13px;
+      border-radius: 13px;
 
-      background:
-        #1689e8;
+      background: #1689e8;
 
-      color:
-        white;
+      color: white;
 
-      font-weight:
-        800;
+      font-weight: 800;
     }
 
-    .x-button{
-      background:
-        #111;
+    .x-button {
+      background: #111;
     }
 
 
@@ -550,23 +528,20 @@
        フッター
     ========================= */
 
-    footer{
+    footer {
       padding:
         36px 20px 55px;
 
-      text-align:
-        center;
+      text-align: center;
 
-      color:
-        #60778d;
+      color: #60778d;
 
       background:
         rgba(255,255,255,.90);
     }
 
-    footer strong{
-      color:
-        #28445c;
+    footer strong {
+      color: #28445c;
     }
 
 
@@ -574,63 +549,52 @@
        スマホ
     ========================= */
 
-    @media(max-width:600px){
+    @media (max-width: 600px) {
 
-      header{
-        padding-top:
-          42px;
+      header {
+        padding-top: 42px;
       }
 
-      .guide-section{
+      .guide-section {
         padding:
           17px 12px;
 
-        border-radius:
-          18px;
+        border-radius: 18px;
       }
 
-      .guide-title{
-        font-size:
-          21px;
+      .guide-title {
+        font-size: 21px;
       }
 
-      .guide-description{
-        font-size:
-          13px;
+      .guide-description {
+        font-size: 13px;
       }
 
-      .guide-grid{
-        gap:
-          7px;
+      .guide-grid {
+        gap: 7px;
       }
 
-      .guide-item{
-        min-height:
-          100px;
+      .guide-item {
+        min-height: 100px;
 
         padding:
           12px 5px;
 
-        font-size:
-          13px;
+        font-size: 13px;
       }
 
-      .guide-icon{
-        font-size:
-          27px;
+      .guide-icon {
+        font-size: 27px;
       }
 
-      .card{
-        padding:
-          20px;
+      .card {
+        padding: 20px;
 
-        border-radius:
-          18px;
+        border-radius: 18px;
       }
 
-      .card h2{
-        font-size:
-          21px;
+      .card h2 {
+        font-size: 21px;
       }
 
     }
@@ -662,10 +626,6 @@
 
 <nav>
 
-  <a href="pokedex.html">
-    🐾 キャラ図鑑
-  </a>
-
   <a href="#news">
     🔴 最新速報
   </a>
@@ -682,6 +642,10 @@
     🎁 報酬
   </a>
 
+  <a href="#links">
+    🔗 リンク
+  </a>
+
   <a href="bbs.html">
     💬 掲示板
   </a>
@@ -692,473 +656,503 @@
 <main>
 
 
-<!-- =========================
-     攻略ガイド
-========================= -->
+  <!-- =========================
+       攻略ガイド
+  ========================== -->
 
-<section class="guide-section">
+  <section class="guide-section">
 
-  <h2 class="guide-title">
-    📘 ロコキングダム攻略ガイド
-  </h2>
+    <h2 class="guide-title">
+      📘 ロコキングダム攻略ガイド
+    </h2>
 
-  <p class="guide-description">
-    キャラクター・属性・育成など、
-    Roco Kingdomの攻略情報をまとめています。
-  </p>
-
-
-  <div class="guide-grid">
+    <p class="guide-description">
+      キャラクター・属性・育成・技・アイテム・マップなど、
+      Roco Kingdomの攻略情報をまとめています。
+    </p>
 
 
-    <!-- キャラ図鑑 -->
+    <div class="guide-grid">
+
+
+      <!-- =====================
+           キャラ図鑑
+      ====================== -->
+
+      <a
+        class="guide-item active"
+        href="pokedex.html">
+
+        <span class="guide-icon">
+          🐾
+        </span>
+
+        <span>
+          キャラ図鑑
+        </span>
+
+        <small>
+          中国版データ対応
+        </small>
+
+      </a>
+
+
+      <!-- =====================
+           属性相性
+      ====================== -->
+
+      <a
+        class="guide-item"
+        href="type.html">
+
+        <span class="guide-icon">
+          🔥
+        </span>
+
+        <span>
+          属性相性
+        </span>
+
+        <small>
+          弱点・耐性
+        </small>
+
+      </a>
+
+
+      <!-- =====================
+           おすすめキャラ
+      ====================== -->
+
+      <a
+        class="guide-item"
+        href="ranking.html">
+
+        <span class="guide-icon">
+          ⭐
+        </span>
+
+        <span>
+          おすすめキャラ
+        </span>
+
+        <small>
+          評価・特徴
+        </small>
+
+      </a>
+
+
+      <!-- =====================
+           育成・進化
+      ====================== -->
+
+      <a
+        class="guide-item"
+        href="training.html">
+
+        <span class="guide-icon">
+          🌱
+        </span>
+
+        <span>
+          育成・進化
+        </span>
+
+        <small>
+          レベル・進化
+        </small>
+
+      </a>
+
+
+      <!-- =====================
+           技一覧
+      ====================== -->
+
+      <a
+        class="guide-item"
+        href="skills.html">
+
+        <span class="guide-icon">
+          ⚔️
+        </span>
+
+        <span>
+          技一覧
+        </span>
+
+        <small>
+          技・スキル検索
+        </small>
+
+      </a>
+
+
+      <!-- =====================
+           アイテム
+      ====================== -->
+
+      <a
+        class="guide-item"
+        href="items.html">
+
+        <span class="guide-icon">
+          🎒
+        </span>
+
+        <span>
+          アイテム
+        </span>
+
+        <small>
+          素材・アイテム
+        </small>
+
+      </a>
+
+
+      <!-- =====================
+           マップ攻略
+      ====================== -->
+
+      <a
+        class="guide-item"
+        href="map.html">
+
+        <span class="guide-icon">
+          🗺️
+        </span>
+
+        <span>
+          マップ攻略
+        </span>
+
+        <small>
+          エリア・探索
+        </small>
+
+      </a>
+
+
+      <!-- =====================
+           初心者攻略
+      ====================== -->
+
+      <a
+        class="guide-item"
+        href="beginner.html">
+
+        <span class="guide-icon">
+          🔰
+        </span>
+
+        <span>
+          初心者攻略
+        </span>
+
+        <small>
+          序盤ガイド
+        </small>
+
+      </a>
+
+
+      <!-- =====================
+           攻略掲示板
+      ====================== -->
+
+      <a
+        class="guide-item bbs"
+        href="bbs.html">
+
+        <span class="guide-icon">
+          💬
+        </span>
+
+        <span>
+          攻略掲示板
+        </span>
+
+        <small>
+          情報交換
+        </small>
+
+      </a>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       最新速報
+  ========================== -->
+
+  <section
+    class="card news"
+    id="news">
+
+    <h2>
+      🔴 最新速報
+    </h2>
+
+
+    <div class="item">
+
+      <span class="date">
+        2026/10/04
+      </span>
+
+      <strong>
+        攻略ガイドを拡張しました！
+      </strong>
+
+      キャラ図鑑・属性相性・おすすめキャラ・
+      育成・進化・技一覧・アイテム・マップ攻略・
+      初心者攻略・攻略掲示板へ移動できるようになりました。
+
+    </div>
+
+
+    <div class="item">
+
+      <span class="date">
+        2026/10/03
+      </span>
+
+      <strong>
+        ロコキングダム速報を公開しました！
+      </strong>
+
+      CBT・Creator Program・事前登録・公式ニュースなど、
+      日本向けの情報を整理して掲載していきます。
+
+    </div>
+
+
+    <div class="item">
+
+      <span class="date">
+        2026/10/03
+      </span>
+
+      <strong>
+        クワックテスト関連情報
+      </strong>
+
+      募集期間、CBT開始情報、
+      友達招待による選考優先情報などを整理しました。
+
+    </div>
+
+
+    <div class="item">
+
+      <span class="date">
+        2026/10/03
+      </span>
+
+      <strong>
+        Creator Program情報を追加
+      </strong>
+
+      参加条件・応募方法・特典などを整理しています。
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CBT
+  ========================== -->
+
+  <section
+    class="card cbt"
+    id="cbt">
+
+    <h2>
+      🎮 CBT・テスト情報
+    </h2>
+
+    <p>
+      Roco Kingdomのテスト開催情報や
+      応募・参加条件などをまとめるページです。
+    </p>
+
+
+    <div class="notice">
+
+      <strong>
+        チェックポイント
+      </strong>
+
+      <br>
+
+      ・募集期間<br>
+      ・テスト開始日<br>
+      ・参加条件<br>
+      ・招待関連情報<br>
+      ・テスト限定要素
+
+    </div>
+
+
+    <p>
+      新しい公式情報が確認でき次第、
+      内容を追加・更新します。
+    </p>
+
+  </section>
+
+
+  <!-- =========================
+       Creator Program
+  ========================== -->
+
+  <section
+    class="card creator"
+    id="creator">
+
+    <h2>
+      🎨 Creator Program
+    </h2>
+
+    <p>
+      Roco Kingdom Global Creator Programに関する
+      募集・参加条件・イベント・特典などをまとめます。
+    </p>
+
+
+    <div class="item">
+
+      <strong>
+        Creator Program 募集情報
+      </strong>
+
+      クリエイター向けイベントや
+      応募関連情報を確認しています。
+
+    </div>
+
+
+    <div class="item">
+
+      <strong>
+        Creator向け特典
+      </strong>
+
+      公式発表された内容を中心に掲載します。
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       限定報酬
+  ========================== -->
+
+  <section
+    class="card reward"
+    id="reward">
+
+    <h2>
+      🎁 限定報酬・イベント
+    </h2>
+
+    <p>
+      CBT、事前イベント、Creator Programなどで
+      発表された報酬・特典を整理します。
+    </p>
+
+
+    <div class="notice">
+
+      ⚠️ 正式サービス後にも入手できるか、
+      テスト限定なのか不明なものについては、
+      確定情報として扱わず区別して掲載します。
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       関連リンク
+  ========================== -->
+
+  <section
+    class="card official"
+    id="links">
+
+    <h2>
+      🔗 関連リンク
+    </h2>
+
+    <p>
+      最新情報については
+      公式発表も必ずご確認ください。
+    </p>
+
 
     <a
-      class="guide-item active"
-      href="pokedex.html">
+      class="button x-button"
+      href="https://x.com/mizuse_maria"
+      target="_blank"
+      rel="noopener noreferrer">
 
-      <span class="guide-icon">
-        🐾
-      </span>
-
-      <span>
-        キャラ図鑑
-      </span>
-
-      <small>
-        中国版データ対応
-      </small>
+      𝕏 管理人「ねふ」のXを見る
 
     </a>
 
-
-    <!-- 属性相性 -->
-
-    <a
-      class="guide-item active"
-      href="type.html">
-
-      <span class="guide-icon">
-        🔥
-      </span>
-
-      <span>
-        属性相性
-      </span>
-
-      <small>
-        全18属性対応
-      </small>
-
-    </a>
+  </section>
 
 
-    <!-- おすすめキャラ -->
+  <!-- =========================
+       このサイトについて
+  ========================== -->
 
-    <a
-      class="guide-item recommended"
-      href="ranking.html">
+  <section class="card">
 
-      <span class="guide-icon">
-        ⭐
-      </span>
+    <h2>
+      📢 このサイトについて
+    </h2>
 
-      <span>
-        おすすめキャラ
-      </span>
+    <p>
+      「ロコキングダム速報」は、
+      Roco Kingdomを楽しみにしている日本ユーザー向けに
+      情報を整理する非公式ファンサイトです。
+    </p>
 
-      <small>
-        中国版データ整理中
-      </small>
+    <p>
+      公式発表を確認しながら、
+      キャラクター・攻略・CBT・Creator Program・
+      イベント・報酬などを分かりやすく
+      整理することを目的としています。
+    </p>
 
-    </a>
 
+    <div class="notice">
 
-    <!-- 育成・進化 -->
+      本サイトは非公式ファンサイトです。
 
-    <div class="guide-item preparing">
+      <br>
 
-      <span class="guide-icon">
-        🌱
-      </span>
+      Roco Kingdom、Tencent、
+      MoreFun Studios等とは関係ありません。
 
-      <span>
-        育成・進化
-      </span>
+      <br><br>
 
-      <small>
-        準備中
-      </small>
+      最新・最終的な情報については、
+      必ず公式発表をご確認ください。
 
     </div>
 
-
-    <!-- 技一覧 -->
-
-    <div class="guide-item preparing">
-
-      <span class="guide-icon">
-        ⚔️
-      </span>
-
-      <span>
-        技一覧
-      </span>
-
-      <small>
-        準備中
-      </small>
-
-    </div>
-
-
-    <!-- アイテム -->
-
-    <div class="guide-item preparing">
-
-      <span class="guide-icon">
-        🎒
-      </span>
-
-      <span>
-        アイテム
-      </span>
-
-      <small>
-        準備中
-      </small>
-
-    </div>
-
-
-    <!-- マップ攻略 -->
-
-    <div class="guide-item preparing">
-
-      <span class="guide-icon">
-        🗺️
-      </span>
-
-      <span>
-        マップ攻略
-      </span>
-
-      <small>
-        準備中
-      </small>
-
-    </div>
-
-
-    <!-- 初心者攻略 -->
-
-    <div class="guide-item preparing">
-
-      <span class="guide-icon">
-        🔰
-      </span>
-
-      <span>
-        初心者攻略
-      </span>
-
-      <small>
-        準備中
-      </small>
-
-    </div>
-
-
-    <!-- 掲示板 -->
-
-    <a
-      class="guide-item"
-      href="bbs.html">
-
-      <span class="guide-icon">
-        💬
-      </span>
-
-      <span>
-        攻略掲示板
-      </span>
-
-      <small>
-        情報交換
-      </small>
-
-    </a>
-
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     最新速報
-========================= -->
-
-<section
-  class="card news"
-  id="news">
-
-  <h2>
-    🔴 最新速報
-  </h2>
-
-
-  <div class="item">
-
-    <span class="date">
-      2026/10/04
-    </span>
-
-    <strong>
-      攻略ガイドを拡張
-    </strong>
-
-    キャラ図鑑・属性相性・おすすめキャラなど、
-    攻略情報ページを順次追加しています。
-
-  </div>
-
-
-  <div class="item">
-
-    <span class="date">
-      2026/10/03
-    </span>
-
-    <strong>
-      ロコキングダム速報を公開しました！
-    </strong>
-
-    CBT・Creator Program・事前登録・公式ニュースなど、
-    日本向けの情報を整理して掲載していきます。
-
-  </div>
-
-
-  <div class="item">
-
-    <span class="date">
-      2026/10/03
-    </span>
-
-    <strong>
-      クワックテスト関連情報
-    </strong>
-
-    募集期間、CBT開始情報、友達招待による
-    選考優先情報などを整理しました。
-
-  </div>
-
-
-  <div class="item">
-
-    <span class="date">
-      2026/10/03
-    </span>
-
-    <strong>
-      Creator Program情報を追加
-    </strong>
-
-    参加条件・応募方法・特典などを整理しています。
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     CBT
-========================= -->
-
-<section
-  class="card cbt"
-  id="cbt">
-
-  <h2>
-    🎮 CBT・テスト情報
-  </h2>
-
-  <p>
-    Roco Kingdomのテスト開催情報や
-    応募・参加条件などをまとめるページです。
-  </p>
-
-  <div class="notice">
-
-    <strong>
-      チェックポイント
-    </strong>
-
-    <br>
-
-    ・募集期間<br>
-    ・テスト開始日<br>
-    ・参加条件<br>
-    ・招待関連情報<br>
-    ・テスト限定要素
-
-  </div>
-
-  <p>
-    新しい公式情報が確認でき次第、
-    内容を追加・更新します。
-  </p>
-
-</section>
-
-
-<!-- =========================
-     Creator Program
-========================= -->
-
-<section
-  class="card creator"
-  id="creator">
-
-  <h2>
-    🎨 Creator Program
-  </h2>
-
-  <p>
-    Roco Kingdom Global Creator Programに関する
-    募集・参加条件・イベント・特典などをまとめます。
-  </p>
-
-
-  <div class="item">
-
-    <strong>
-      Creator Program 募集情報
-    </strong>
-
-    クリエイター向けイベントや
-    応募関連情報を確認しています。
-
-  </div>
-
-
-  <div class="item">
-
-    <strong>
-      Creator向け特典
-    </strong>
-
-    公式発表された内容を中心に掲載します。
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     限定報酬
-========================= -->
-
-<section
-  class="card reward"
-  id="reward">
-
-  <h2>
-    🎁 限定報酬・イベント
-  </h2>
-
-  <p>
-    CBT、事前イベント、Creator Programなどで
-    発表された報酬・特典を整理します。
-  </p>
-
-
-  <div class="notice">
-
-    ⚠️ 正式サービス後にも入手できるか、
-    テスト限定なのか不明なものについては、
-    確定情報として扱わず区別して掲載します。
-
-  </div>
-
-</section>
-
-
-<!-- =========================
-     関連リンク
-========================= -->
-
-<section
-  class="card official"
-  id="links">
-
-  <h2>
-    🔗 関連リンク
-  </h2>
-
-  <p>
-    最新情報については
-    公式発表も必ずご確認ください。
-  </p>
-
-
-  <a
-    class="button x-button"
-    href="https://x.com/mizuse_maria"
-    target="_blank"
-    rel="noopener noreferrer">
-
-    𝕏 管理人「ねふ」のXを見る
-
-  </a>
-
-</section>
-
-
-<!-- =========================
-     このサイトについて
-========================= -->
-
-<section class="card">
-
-  <h2>
-    📢 このサイトについて
-  </h2>
-
-  <p>
-    「ロコキングダム速報」は、
-    Roco Kingdomを楽しみにしている
-    日本ユーザー向けに情報を整理する
-    非公式ファンサイトです。
-  </p>
-
-  <p>
-    公式発表を確認しながら、
-    CBT・Creator Program・イベント・報酬・
-    キャラクター・攻略情報などを
-    分かりやすく整理することを目的としています。
-  </p>
-
-
-  <div class="notice">
-
-    本サイトは非公式ファンサイトです。
-
-    <br>
-
-    Roco Kingdom、Tencent、
-    MoreFun Studios等とは関係ありません。
-
-    <br><br>
-
-    最新・最終的な情報については、
-    必ず公式発表をご確認ください。
-
-  </div>
-
-</section>
+  </section>
 
 
 </main>
