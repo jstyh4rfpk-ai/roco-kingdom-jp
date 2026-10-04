@@ -178,7 +178,7 @@ main{
 
 
 /* ========================================
-   確認状況
+   データ確認状況
 ======================================== */
 
 .data-status{
@@ -245,9 +245,6 @@ main{
   text-decoration:none;
   font-size:13px;
   font-weight:900;
-  transition:
-    transform .15s ease,
-    background .15s ease;
 }
 
 .form-button:active{
@@ -417,13 +414,9 @@ main{
   font-weight:900;
 }
 
-.skill-level{
-  color:#7890a3;
-  font-size:11px;
-}
-
+.skill-level,
 .skill-original{
-  color:#8a9ba8;
+  color:#7890a3;
   font-size:11px;
 }
 
@@ -473,7 +466,6 @@ main{
 }
 
 .evolution-stage-label{
-  margin-bottom:1px;
   color:#6b8396;
   font-size:11px;
   font-weight:900;
@@ -499,9 +491,6 @@ main{
   background:linear-gradient(135deg,#f2faff,#e9f6ff);
   color:#126fc1;
   text-decoration:none;
-  transition:
-    transform .15s ease,
-    box-shadow .15s ease;
 }
 
 .evolution-link:after{
@@ -512,14 +501,6 @@ main{
   transform:translateY(-50%);
   font-size:27px;
   font-weight:900;
-}
-
-.evolution-link:hover{
-  box-shadow:0 5px 15px rgba(30,90,130,.10);
-}
-
-.evolution-link:active{
-  transform:scale(.98);
 }
 
 .evolution-current{
@@ -564,24 +545,12 @@ main{
   font-weight:700;
 }
 
-.evolution-current .evolution-note{
-  color:#6b9870;
-}
-
 .evolution-arrow{
   padding:6px 0;
   text-align:center;
   color:#74a87a;
   font-size:23px;
   font-weight:900;
-}
-
-.evolution-none{
-  padding:12px 13px;
-  border-radius:11px;
-  background:#f5f8fa;
-  color:#8194a3;
-  font-size:13px;
 }
 
 .evolution-form-note{
@@ -592,6 +561,99 @@ main{
   border:1px solid #d8eaf5;
   color:#668196;
   font-size:11px;
+}
+
+
+/* ========================================
+   入手方法
+======================================== */
+
+.acquisition-card{
+  border-left:6px solid #f0b23d;
+}
+
+.acquisition-description{
+  margin:-3px 0 15px;
+  color:#70889b;
+  font-size:13px;
+}
+
+.acquisition-box{
+  overflow:hidden;
+  border:1px solid #dce8ef;
+  border-radius:14px;
+  background:#fbfdff;
+}
+
+.acquisition-row{
+  display:grid;
+  grid-template-columns:110px 1fr;
+  border-bottom:1px solid #e6eef3;
+}
+
+.acquisition-row:last-child{
+  border-bottom:0;
+}
+
+.acquisition-label{
+  padding:12px;
+  background:#f3f8fb;
+  color:#6c8496;
+  font-size:12px;
+  font-weight:900;
+}
+
+.acquisition-value{
+  padding:12px;
+  color:#27465e;
+  font-size:13px;
+  font-weight:700;
+}
+
+.acquisition-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+
+.acquisition-tag{
+  display:inline-flex;
+  align-items:center;
+  padding:5px 10px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.acquisition-tag.event{
+  background:#ffe9e9;
+  color:#bd4040;
+}
+
+.acquisition-tag.boss{
+  background:#fff2cf;
+  color:#a56e00;
+}
+
+.acquisition-tag.available{
+  background:#e9f8ed;
+  color:#347445;
+}
+
+.acquisition-tag.unknown{
+  background:#eef3f6;
+  color:#708391;
+}
+
+.acquisition-note{
+  margin-top:12px;
+  padding:11px 12px;
+  border-radius:11px;
+  background:#fff9e9;
+  border:1px solid #f0dda4;
+  color:#66582b;
+  font-size:12px;
 }
 
 
@@ -643,6 +705,10 @@ main{
     grid-template-columns:1fr;
   }
 
+  .acquisition-row{
+    grid-template-columns:95px 1fr;
+  }
+
 }
 
 </style>
@@ -670,42 +736,25 @@ main{
 <script>
 
 /* ==========================================
-   URL
+   URL・キャラクター取得
 ========================================== */
 
-const params =
-  new URLSearchParams(window.location.search);
+const params = new URLSearchParams(window.location.search);
 
-const keyParam =
-  params.get("key");
-
-const idParam =
-  Number(params.get("id"));
-
-
-/* ==========================================
-   キャラクター取得
-========================================== */
+const keyParam = params.get("key");
+const idParam = Number(params.get("id"));
 
 let character = null;
 
 if(keyParam){
-
-  character =
-    characters.find(
-      c => c.key === keyParam
-    );
-
+  character = characters.find(c => c.key === keyParam);
 }
 
 if(!character && idParam){
 
   character =
     characters.find(
-      c =>
-        c.id === idParam
-        &&
-        c.form === "main"
+      c => c.id === idParam && c.form === "main"
     )
     ||
     characters.find(
@@ -714,28 +763,20 @@ if(!character && idParam){
 
 }
 
-const content =
-  document.getElementById("content");
+const content = document.getElementById("content");
 
-
-/* ==========================================
-   共通
-========================================== */
 
 function displayValue(value){
 
   if(
-    value === null
-    ||
-    value === undefined
-    ||
+    value === null ||
+    value === undefined ||
     value === ""
   ){
     return "確認中";
   }
 
   return value;
-
 }
 
 
@@ -746,28 +787,24 @@ function displayValue(value){
 function skillHTML(skill){
 
   const level =
-    skill.level !== undefined
-    &&
+    skill.level !== undefined &&
     skill.level !== null
     ? `Lv.${skill.level}`
     : "";
 
   const power =
-    skill.power === null
-    ||
+    skill.power === null ||
     skill.power === undefined
     ? ""
     : `<span class="tag">威力 ${skill.power}</span>`;
 
   const cost =
-    skill.cost === null
-    ||
+    skill.cost === null ||
     skill.cost === undefined
     ? ""
     : `<span class="tag">消費 ${skill.cost}</span>`;
 
   return `
-
     <div class="skill">
 
       <div class="skill-top">
@@ -785,11 +822,9 @@ function skillHTML(skill){
       ${
         skill.chineseName
         ?
-        `
-        <div class="skill-original">
+        `<div class="skill-original">
           中国名：${skill.chineseName}
-        </div>
-        `
+        </div>`
         :
         ""
       }
@@ -798,18 +833,14 @@ function skillHTML(skill){
 
         ${
           skill.type
-          ?
-          `<span class="tag">${skill.type}</span>`
-          :
-          ""
+          ? `<span class="tag">${skill.type}</span>`
+          : ""
         }
 
         ${
           skill.category
-          ?
-          `<span class="tag">${skill.category}</span>`
-          :
-          ""
+          ? `<span class="tag">${skill.category}</span>`
+          : ""
         }
 
         ${power}
@@ -822,22 +853,15 @@ function skillHTML(skill){
       </div>
 
     </div>
-
   `;
-
 }
 
 
 function skillGroup(title,icon,list){
 
-  if(
-    !list
-    ||
-    list.length === 0
-  ){
+  if(!list || list.length === 0){
 
     return `
-
       <div class="skill-group">
 
         <div class="skill-group-title">
@@ -849,13 +873,11 @@ function skillGroup(title,icon,list){
         </p>
 
       </div>
-
     `;
 
   }
 
   return `
-
     <div class="skill-group">
 
       <div class="skill-group-title">
@@ -871,14 +893,12 @@ function skillGroup(title,icon,list){
       ${list.map(skillHTML).join("")}
 
     </div>
-
   `;
-
 }
 
 
 /* ==========================================
-   形態一覧
+   形態
 ========================================== */
 
 function getRelatedForms(character){
@@ -893,16 +913,11 @@ function getRelatedForms(character){
   keys.forEach(key => {
 
     const form =
-      characters.find(
-        c => c.key === key
-      );
+      characters.find(c => c.key === key);
 
     if(
-      form
-      &&
-      !found.some(
-        item => item.key === form.key
-      )
+      form &&
+      !found.some(item => item.key === form.key)
     ){
       found.push(form);
     }
@@ -912,11 +927,8 @@ function getRelatedForms(character){
   characters.forEach(form => {
 
     if(
-      form.dexNo === character.dexNo
-      &&
-      !found.some(
-        item => item.key === form.key
-      )
+      form.dexNo === character.dexNo &&
+      !found.some(item => item.key === form.key)
     ){
       found.push(form);
     }
@@ -924,14 +936,12 @@ function getRelatedForms(character){
   });
 
   return found;
-
 }
 
 
 function createFormsHTML(character){
 
-  const forms =
-    getRelatedForms(character);
+  const forms = getRelatedForms(character);
 
   if(forms.length <= 1){
     return "";
@@ -947,31 +957,24 @@ function createFormsHTML(character){
         form.isBossForm === true;
 
       const label =
-        form.formName
-        ||
-        form.name;
+        form.formName || form.name;
 
       return `
-
         <a
-          class="
-            form-button
-            ${active ? "active" : ""}
-            ${boss ? "boss" : ""}
-          "
+          class="form-button
+          ${active ? "active" : ""}
+          ${boss ? "boss" : ""}"
           href="character.html?key=${encodeURIComponent(form.key)}">
 
           ${boss ? "👑 " : ""}
           ${label}
 
         </a>
-
       `;
 
     }).join("");
 
   return `
-
     <section class="card forms-card">
 
       <h2>
@@ -988,14 +991,12 @@ function createFormsHTML(character){
       </div>
 
     </section>
-
   `;
-
 }
 
 
 /* ==========================================
-   進化番号抽出
+   進化処理
 ========================================== */
 
 function getEvolutionDexNo(text){
@@ -1005,32 +1006,17 @@ function getEvolutionDexNo(text){
   }
 
   const matches =
-    String(text).match(
-      /\b(\d{1,3})\b/g
-    );
+    String(text).match(/\b(\d{1,3})\b/g);
 
-  if(
-    !matches
-    ||
-    matches.length === 0
-  ){
+  if(!matches || matches.length === 0){
     return null;
   }
 
-  const last =
-    matches[
-      matches.length - 1
-    ];
-
-  return String(last)
-    .padStart(3,"0");
-
+  return String(
+    matches[matches.length - 1]
+  ).padStart(3,"0");
 }
 
-
-/* ==========================================
-   進化系統で使用できる通常形態
-========================================== */
 
 function isEvolutionMainForm(character){
 
@@ -1039,23 +1025,16 @@ function isEvolutionMainForm(character){
   }
 
   if(
-    character.form === "season"
-    ||
-    character.form === "boss"
-    ||
+    character.form === "season" ||
+    character.form === "boss" ||
     character.isBossForm === true
   ){
     return false;
   }
 
   return true;
-
 }
 
-
-/* ==========================================
-   図鑑番号から代表形態を取得
-========================================== */
 
 function getMainEvolutionCharacter(dexNo){
 
@@ -1084,29 +1063,20 @@ function getMainEvolutionCharacter(dexNo){
   const normal =
     sameDex.find(
       c =>
-        c.form !== "season"
-        &&
-        c.form !== "boss"
-        &&
+        c.form !== "season" &&
+        c.form !== "boss" &&
         c.isBossForm !== true
     );
 
   return normal || sameDex[0];
-
 }
 
 
-/* ==========================================
-   evolution配列を解析
-========================================== */
-
-function getRawEvolutionTargets(character){
+function getEvolutionTargets(character){
 
   if(
-    !character
-    ||
-    !Array.isArray(character.evolution)
-    ||
+    !character ||
+    !Array.isArray(character.evolution) ||
     character.evolution.length === 0
   ){
     return [];
@@ -1119,22 +1089,14 @@ function getRawEvolutionTargets(character){
     const dexNo =
       getEvolutionDexNo(text);
 
-    if(!dexNo){
-      return;
-    }
-
     const target =
       getMainEvolutionCharacter(dexNo);
 
     if(
-      target
-      &&
-      target.dexNo !== character.dexNo
-      &&
+      target &&
+      target.dexNo !== character.dexNo &&
       !result.some(
-        item =>
-          item.character.dexNo ===
-          target.dexNo
+        item => item.character.key === target.key
       )
     ){
 
@@ -1148,150 +1110,8 @@ function getRawEvolutionTargets(character){
   });
 
   return result;
-
 }
 
-
-/* ==========================================
-   あるキャラから別キャラへ
-   evolution経由で到達できるか確認
-
-   例：
-   019 → 020 が可能なら true
-========================================== */
-
-function canReachEvolution(
-  startCharacter,
-  targetDexNo,
-  visited = new Set()
-){
-
-  if(!startCharacter){
-    return false;
-  }
-
-  if(
-    visited.has(
-      startCharacter.dexNo
-    )
-  ){
-    return false;
-  }
-
-  const nextVisited =
-    new Set(visited);
-
-  nextVisited.add(
-    startCharacter.dexNo
-  );
-
-  const targets =
-    getRawEvolutionTargets(
-      startCharacter
-    );
-
-  for(const item of targets){
-
-    if(
-      item.character.dexNo ===
-      targetDexNo
-    ){
-      return true;
-    }
-
-    if(
-      canReachEvolution(
-        item.character,
-        targetDexNo,
-        nextVisited
-      )
-    ){
-      return true;
-    }
-
-  }
-
-  return false;
-
-}
-
-
-/* ==========================================
-   「直接」の進化先だけ取得
-
-   重要：
-   018のevolutionに
-   019と020が両方あっても、
-
-   019 → 020
-
-   が成立するなら
-   020は018の直接進化先から除外。
-
-   そのため
-
-   018
-    ↓
-   019
-    ↓
-   020
-
-   になる。
-========================================== */
-
-function getEvolutionTargets(character){
-
-  const rawTargets =
-    getRawEvolutionTargets(character);
-
-  if(rawTargets.length <= 1){
-    return rawTargets;
-  }
-
-  return rawTargets.filter(
-    candidate => {
-
-      /*
-       candidate以外の進化先から
-       candidateへ到達できる場合、
-       candidateは「さらに先の進化」
-       と判断する
-      */
-
-      const hasIntermediate =
-        rawTargets.some(
-          other => {
-
-            if(
-              other.character.dexNo ===
-              candidate.character.dexNo
-            ){
-              return false;
-            }
-
-            return canReachEvolution(
-              other.character,
-              candidate.character.dexNo
-            );
-
-          }
-        );
-
-      return !hasIntermediate;
-
-    }
-  );
-
-}
-
-
-/* ==========================================
-   直接の進化前を逆引き
-
-   ここでも
-   getEvolutionTargets() を使うことで
-   途中段階を飛ばした進化を除外
-========================================== */
 
 function getPreEvolutionCharacters(character){
 
@@ -1304,63 +1124,43 @@ function getPreEvolutionCharacters(character){
 
   const result = [];
 
-  const mainCharacters = [];
-
   characters.forEach(source => {
 
-    if(
-      !isEvolutionMainForm(source)
-    ){
+    if(!isEvolutionMainForm(source)){
       return;
     }
 
-    const representative =
-      getMainEvolutionCharacter(
-        source.dexNo
-      );
-
-    if(
-      representative
-      &&
-      !mainCharacters.some(
-        item =>
-          item.dexNo ===
-          representative.dexNo
-      )
-    ){
-      mainCharacters.push(
-        representative
-      );
+    if(!Array.isArray(source.evolution)){
+      return;
     }
 
-  });
+    source.evolution.forEach(text => {
 
-
-  mainCharacters.forEach(source => {
-
-    const directTargets =
-      getEvolutionTargets(source);
-
-    directTargets.forEach(item => {
+      const targetDex =
+        getEvolutionDexNo(text);
 
       if(
-        item.character.dexNo ===
-        currentDex
-        &&
+        targetDex === currentDex &&
         source.dexNo !== currentDex
       ){
 
+        const mainSource =
+          getMainEvolutionCharacter(
+            source.dexNo
+          );
+
         if(
+          mainSource &&
           !result.some(
-            existing =>
-              existing.character.dexNo ===
-              source.dexNo
+            item =>
+              item.character.key ===
+              mainSource.key
           )
         ){
 
           result.push({
-            character:source,
-            text:item.text
+            character:mainSource,
+            text:text
           });
 
         }
@@ -1372,13 +1172,8 @@ function getPreEvolutionCharacters(character){
   });
 
   return result;
-
 }
 
-
-/* ==========================================
-   進化系統の最初まで戻る
-========================================== */
 
 function findEvolutionRoots(
   character,
@@ -1389,25 +1184,17 @@ function findEvolutionRoots(
     return [];
   }
 
-  if(
-    visited.has(
-      character.dexNo
-    )
-  ){
+  if(visited.has(character.key)){
     return [character];
   }
 
   const nextVisited =
     new Set(visited);
 
-  nextVisited.add(
-    character.dexNo
-  );
+  nextVisited.add(character.key);
 
   const previous =
-    getPreEvolutionCharacters(
-      character
-    );
+    getPreEvolutionCharacters(character);
 
   if(previous.length === 0){
     return [character];
@@ -1429,17 +1216,11 @@ function findEvolutionRoots(
   return roots.filter(
     (item,index,array) =>
       array.findIndex(
-        other =>
-          other.dexNo === item.dexNo
+        other => other.key === item.key
       ) === index
   );
-
 }
 
-
-/* ==========================================
-   進化系統全体を作成
-========================================== */
 
 function buildEvolutionStages(roots){
 
@@ -1454,11 +1235,9 @@ function buildEvolutionStages(roots){
   const globallyVisited =
     new Set();
 
-
   while(
-    currentStage.length > 0
-    &&
-    stages.length < 30
+    currentStage.length > 0 &&
+    stages.length < 20
   ){
 
     const uniqueStage = [];
@@ -1468,27 +1247,16 @@ function buildEvolutionStages(roots){
       if(
         !uniqueStage.some(
           existing =>
-            existing.character.dexNo ===
-            item.character.dexNo
+            existing.character.key ===
+            item.character.key
         )
       ){
-
         uniqueStage.push(item);
-
       }
 
     });
 
-
-    if(uniqueStage.length === 0){
-      break;
-    }
-
-
-    stages.push(
-      uniqueStage
-    );
-
+    stages.push(uniqueStage);
 
     const nextStage = [];
 
@@ -1497,20 +1265,16 @@ function buildEvolutionStages(roots){
       const source =
         item.character;
 
-      globallyVisited.add(
-        source.dexNo
-      );
+      globallyVisited.add(source.key);
 
       const targets =
-        getEvolutionTargets(
-          source
-        );
+        getEvolutionTargets(source);
 
       targets.forEach(targetItem => {
 
         if(
           globallyVisited.has(
-            targetItem.character.dexNo
+            targetItem.character.key
           )
         ){
           return;
@@ -1518,37 +1282,25 @@ function buildEvolutionStages(roots){
 
         const existing =
           nextStage.find(
-            nextItem =>
-              nextItem.character.dexNo ===
-              targetItem.character.dexNo
+            item =>
+              item.character.key ===
+              targetItem.character.key
           );
 
         if(!existing){
-
-          nextStage.push(
-            targetItem
-          );
-
+          nextStage.push(targetItem);
         }
 
       });
 
     });
 
-
-    currentStage =
-      nextStage;
-
+    currentStage = nextStage;
   }
 
   return stages;
-
 }
 
-
-/* ==========================================
-   進化カード
-========================================== */
 
 function evolutionCharacterHTML(
   target,
@@ -1562,7 +1314,6 @@ function evolutionCharacterHTML(
   if(isCurrent){
 
     return `
-
       <div class="evolution-current">
 
         <span class="evolution-number">
@@ -1584,24 +1335,19 @@ function evolutionCharacterHTML(
         ${
           note
           ?
-          `
-          <span class="evolution-note">
+          `<span class="evolution-note">
             ${note}
-          </span>
-          `
+          </span>`
           :
           ""
         }
 
       </div>
-
     `;
 
   }
 
-
   return `
-
     <a
       class="evolution-link"
       href="character.html?key=${encodeURIComponent(target.key)}">
@@ -1625,41 +1371,26 @@ function evolutionCharacterHTML(
       ${
         note
         ?
-        `
-        <span class="evolution-note">
+        `<span class="evolution-note">
           ${note}
-        </span>
-        `
+        </span>`
         :
         ""
       }
 
     </a>
-
   `;
-
 }
 
 
-/* ==========================================
-   進化系統全体表示
-========================================== */
-
 function createEvolutionHTML(character){
-
-  /*
-   季節形態・首領形態の場合は
-   同じ図鑑番号の通常形態を基準にする
-  */
 
   let baseCharacter =
     character;
 
   if(
-    character.form === "season"
-    ||
-    character.form === "boss"
-    ||
+    character.form === "season" ||
+    character.form === "boss" ||
     character.isBossForm === true
   ){
 
@@ -1672,12 +1403,8 @@ function createEvolutionHTML(character){
 
   }
 
-
   const roots =
-    findEvolutionRoots(
-      baseCharacter
-    );
-
+    findEvolutionRoots(baseCharacter);
 
   const stages =
     buildEvolutionStages(
@@ -1686,109 +1413,75 @@ function createEvolutionHTML(character){
       : [baseCharacter]
     );
 
-
-  if(
-    !stages
-    ||
-    stages.length === 0
-  ){
+  if(!stages || stages.length === 0){
 
     return `
-
       <div class="evolution-none">
         進化情報は現在確認中です。
       </div>
-
     `;
 
   }
 
-
   let html = `
-
     <p class="evolution-description">
       通常形態を基準に、進化系統全体を表示しています。
     </p>
 
     <div class="evolution-chain">
-
   `;
 
+  stages.forEach((stage,index) => {
 
-  stages.forEach(
-    (stage,index) => {
+    html += `
+      <div class="evolution-stage">
 
-      html += `
+        <div class="evolution-stage-label">
 
-        <div class="evolution-stage">
-
-          <div class="evolution-stage-label">
-
-            ${
-              stages.length === 1
-              ? "現在"
-              : `進化段階 ${index + 1}`
-            }
-
-          </div>
-
-          <div class="evolution-stage-list">
-
-      `;
-
-
-      stage.forEach(item => {
-
-        html +=
-          evolutionCharacterHTML(
-            item.character,
-            baseCharacter.dexNo,
-            item.text || ""
-          );
-
-      });
-
-
-      html += `
-
-          </div>
+          ${
+            stages.length === 1
+            ? "現在"
+            : `進化段階 ${index + 1}`
+          }
 
         </div>
 
-      `;
+        <div class="evolution-stage-list">
+    `;
 
+    stage.forEach(item => {
 
-      if(
-        index <
-        stages.length - 1
-      ){
+      html +=
+        evolutionCharacterHTML(
+          item.character,
+          baseCharacter.dexNo,
+          item.text || ""
+        );
 
-        html += `
-
-          <div class="evolution-arrow">
-            ↓
-          </div>
-
-        `;
-
-      }
-
-    }
-  );
-
-
-  html += `
-    </div>
-  `;
-
-
-  if(
-    character.key !==
-    baseCharacter.key
-  ){
+    });
 
     html += `
+        </div>
+      </div>
+    `;
 
+    if(index < stages.length - 1){
+
+      html += `
+        <div class="evolution-arrow">
+          ↓
+        </div>
+      `;
+
+    }
+
+  });
+
+  html += `</div>`;
+
+  if(character.key !== baseCharacter.key){
+
+    html += `
       <div class="evolution-form-note">
 
         ※ 現在表示している
@@ -1798,14 +1491,241 @@ function createEvolutionHTML(character){
         基準に表示しています。
 
       </div>
+    `;
 
+  }
+
+  return html;
+}
+
+
+/* ==========================================
+   入手方法
+========================================== */
+
+function acquisitionValue(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+    return "確認中";
+  }
+
+  return value;
+}
+
+
+function createAcquisitionHTML(character){
+
+  const data =
+    character.acquisition;
+
+  /*
+   旧データ互換
+   acquisition:null
+  */
+
+  if(
+    data === null ||
+    data === undefined
+  ){
+
+    return `
+      <p class="empty">
+        現在データ整理中です。
+      </p>
+
+      <div class="acquisition-tags">
+
+        <span class="acquisition-tag unknown">
+          🔎 入手情報確認中
+        </span>
+
+      </div>
     `;
 
   }
 
 
-  return html;
+  /*
+   以前のように文字列で
+   acquisition:"○○で入手"
+   と書いても表示可能
+  */
 
+  if(typeof data === "string"){
+
+    return `
+      <div class="acquisition-box">
+
+        <div class="acquisition-row">
+
+          <div class="acquisition-label">
+            入手方法
+          </div>
+
+          <div class="acquisition-value">
+            ${data}
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  /*
+   新しいオブジェクト形式
+  */
+
+  let statusText = "確認中";
+
+  if(data.status === "available"){
+    statusText = "入手可能";
+  }
+
+  else if(data.status === "unavailable"){
+    statusText = "現在入手不可";
+  }
+
+  else if(data.status === "event"){
+    statusText = "イベント入手";
+  }
+
+
+  let html = `
+
+    <p class="acquisition-description">
+      中国版で確認できた入手情報を掲載しています。
+    </p>
+
+    <div class="acquisition-box">
+
+      <div class="acquisition-row">
+
+        <div class="acquisition-label">
+          入手状況
+        </div>
+
+        <div class="acquisition-value">
+          ${statusText}
+        </div>
+
+      </div>
+
+
+      <div class="acquisition-row">
+
+        <div class="acquisition-label">
+          入手方法
+        </div>
+
+        <div class="acquisition-value">
+          ${acquisitionValue(data.method)}
+        </div>
+
+      </div>
+
+
+      <div class="acquisition-row">
+
+        <div class="acquisition-label">
+          出現エリア
+        </div>
+
+        <div class="acquisition-value">
+          ${acquisitionValue(data.area)}
+        </div>
+
+      </div>
+
+
+      <div class="acquisition-row">
+
+        <div class="acquisition-label">
+          出現条件
+        </div>
+
+        <div class="acquisition-value">
+          ${acquisitionValue(data.condition)}
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="acquisition-tags">
+
+  `;
+
+
+  if(data.status === "available"){
+
+    html += `
+      <span class="acquisition-tag available">
+        ✅ 入手可能
+      </span>
+    `;
+
+  }
+
+
+  if(data.eventLimited === true){
+
+    html += `
+      <span class="acquisition-tag event">
+        🔴 イベント限定
+      </span>
+    `;
+
+  }
+
+
+  if(data.boss === true){
+
+    html += `
+      <span class="acquisition-tag boss">
+        👑 首領関連
+      </span>
+    `;
+
+  }
+
+
+  if(
+    data.status === null ||
+    data.status === undefined ||
+    data.status === "unknown"
+  ){
+
+    html += `
+      <span class="acquisition-tag unknown">
+        🔎 詳細確認中
+      </span>
+    `;
+
+  }
+
+
+  html += `</div>`;
+
+
+  if(data.note){
+
+    html += `
+      <div class="acquisition-note">
+        📝 ${data.note}
+      </div>
+    `;
+
+  }
+
+  return html;
 }
 
 
@@ -1844,29 +1764,20 @@ if(!character){
 
 else{
 
-
-/* ==========================================
-   ページタイトル
-========================================== */
-
 document.title =
   `${character.name}${character.formName ? " "+character.formName : ""} | ロコキングダム速報`;
 
 
-/* ==========================================
-   画像
-========================================== */
+/* 画像 */
 
 let imageHTML;
 
 if(character.image){
 
   imageHTML = `
-
     <img
       src="${character.image}"
       alt="${character.name}">
-
   `;
 
 }else{
@@ -1881,54 +1792,40 @@ if(character.image){
 }
 
 
-/* ==========================================
-   属性
-========================================== */
+/* 属性 */
 
 const typeHTML =
   (character.type || [])
-  .map(
-    (type,index) => {
+  .map((type,index) => {
 
-      const name =
-        character.typeName?.[index]
-        ||
-        typeData[type]?.name
-        ||
-        type;
+    const name =
+      character.typeName?.[index]
+      ||
+      typeData[type]?.name
+      ||
+      type;
 
-      return `
+    return `
+      <span class="type type-${type}">
+        ${typeData[type]?.icon || ""}
+        ${name}
+      </span>
+    `;
 
-        <span class="type type-${type}">
-
-          ${typeData[type]?.icon || ""}
-
-          ${name}
-
-        </span>
-
-      `;
-
-    }
-  )
+  })
   .join("");
 
 
-/* ==========================================
-   データ確認状況
-========================================== */
+/* データ確認状況 */
 
 const confirmed =
-  character.dataStatus ===
-  "confirmed";
+  character.dataStatus === "confirmed";
 
 const dataStatusHTML = `
 
   <div
-    class="
-      data-status
-      ${confirmed ? "confirmed" : "checking"}
-    ">
+    class="data-status
+    ${confirmed ? "confirmed" : "checking"}">
 
     <div class="data-status-title">
 
@@ -1952,13 +1849,10 @@ const dataStatusHTML = `
     </div>
 
   </div>
-
 `;
 
 
-/* ==========================================
-   ステータス
-========================================== */
+/* ステータス */
 
 const stats =
   character.stats || {};
@@ -1966,8 +1860,7 @@ const stats =
 function statValue(value){
 
   return (
-    value === null
-    ||
+    value === null ||
     value === undefined
   )
   ? `<span class="unknown">確認中</span>`
@@ -1981,65 +1874,43 @@ const statsHTML = `
 
     <div class="stat">
       <span class="stat-name">HP</span>
-      <span class="stat-value">
-        ${statValue(stats.hp)}
-      </span>
+      <span class="stat-value">${statValue(stats.hp)}</span>
     </div>
 
     <div class="stat">
       <span class="stat-name">物攻</span>
-      <span class="stat-value">
-        ${statValue(stats.attack)}
-      </span>
+      <span class="stat-value">${statValue(stats.attack)}</span>
     </div>
 
     <div class="stat">
       <span class="stat-name">魔攻</span>
-      <span class="stat-value">
-        ${statValue(stats.magicAttack)}
-      </span>
+      <span class="stat-value">${statValue(stats.magicAttack)}</span>
     </div>
 
     <div class="stat">
       <span class="stat-name">物防</span>
-      <span class="stat-value">
-        ${statValue(stats.defense)}
-      </span>
+      <span class="stat-value">${statValue(stats.defense)}</span>
     </div>
 
     <div class="stat">
       <span class="stat-name">魔防</span>
-      <span class="stat-value">
-        ${statValue(stats.magicDefense)}
-      </span>
+      <span class="stat-value">${statValue(stats.magicDefense)}</span>
     </div>
 
     <div class="stat">
       <span class="stat-name">速度</span>
-      <span class="stat-value">
-        ${statValue(stats.speed)}
-      </span>
+      <span class="stat-value">${statValue(stats.speed)}</span>
     </div>
 
   </div>
-
 `;
 
 
-/* ==========================================
-   属性相性
-========================================== */
+/* 属性相性 */
 
-function matchupTags(
-  list,
-  multiplier
-){
+function matchupTags(list,multiplier){
 
-  if(
-    !list
-    ||
-    list.length === 0
-  ){
+  if(!list || list.length === 0){
 
     return `
       <span class="empty">
@@ -2049,29 +1920,20 @@ function matchupTags(
 
   }
 
-  return list.map(
-    type => {
+  return list.map(type => {
 
-      const data =
-        typeData[type];
+    const data =
+      typeData[type];
 
-      return `
+    return `
+      <span class="matchup-tag">
+        ${data?.icon || ""}
+        ${data?.name || type}
+        ${multiplier}
+      </span>
+    `;
 
-        <span class="matchup-tag">
-
-          ${data?.icon || ""}
-
-          ${data?.name || type}
-
-          ${multiplier}
-
-        </span>
-
-      `;
-
-    }
-  ).join("");
-
+  }).join("");
 }
 
 
@@ -2110,22 +1972,17 @@ const matchupHTML = `
     </div>
 
   </div>
-
 `;
 
 
-/* ==========================================
-   特性
-========================================== */
+/* 特性 */
 
 let abilityHTML;
 
 if(
-  character.ability
-  &&
+  character.ability &&
   (
-    character.ability.name
-    ||
+    character.ability.name ||
     character.ability.chineseName
   )
 ){
@@ -2135,88 +1992,62 @@ if(
     <div class="trait">
 
       <strong>
-
-        ${
-          character.ability.name
-          ||
-          "名称確認中"
-        }
-
+        ${character.ability.name || "名称確認中"}
       </strong>
 
       ${
         character.ability.chineseName
         ?
-        `
-        <div class="original">
-          中国名：
-          ${character.ability.chineseName}
-        </div>
-        `
+        `<div class="original">
+          中国名：${character.ability.chineseName}
+        </div>`
         :
         ""
       }
 
       <div>
-
         ${
           character.ability.description
           ||
           "効果は現在確認中です。"
         }
-
       </div>
 
     </div>
-
   `;
 
 }else{
 
   abilityHTML = `
-
     <p class="empty">
       現在データ整理中です。
     </p>
-
   `;
 
 }
 
 
-/* ==========================================
-   技
-========================================== */
+/* 技 */
 
 let levelSkills = [];
 let stoneSkills = [];
 let bloodlineSkills = [];
 
-if(
-  Array.isArray(character.skills)
-){
+if(Array.isArray(character.skills)){
 
   levelSkills =
     character.skills;
 
-}
-
-else if(character.skills){
+}else if(character.skills){
 
   levelSkills =
-    character.skills.level
-    ||
-    [];
+    character.skills.level || [];
 
   stoneSkills =
-    character.skills.stone
-    ||
-    [];
+    character.skills.stone || [];
 
   bloodlineSkills =
-    character.skills.bloodline
-    ||
-    [];
+    character.skills.bloodline || [];
 
 }
 
@@ -2246,20 +2077,14 @@ const skillsHTML =
   );
 
 
-/* ==========================================
-   形態
-========================================== */
-
 const formsHTML =
   createFormsHTML(character);
 
-
-/* ==========================================
-   進化系統
-========================================== */
-
 const evolutionHTML =
   createEvolutionHTML(character);
+
+const acquisitionHTML =
+  createAcquisitionHTML(character);
 
 
 /* ==========================================
@@ -2279,8 +2104,7 @@ content.innerHTML = `
     NO.${
       character.dexNo
       ||
-      String(character.id)
-        .padStart(3,"0")
+      String(character.id).padStart(3,"0")
     }
 
   </div>
@@ -2406,21 +2230,13 @@ ${formsHTML}
 </section>
 
 
-<section class="card">
+<section class="card acquisition-card">
 
   <h2>
     🎁 入手方法
   </h2>
 
-  <p>
-
-    ${
-      character.acquisition
-      ||
-      "現在データ整理中です。"
-    }
-
-  </p>
+  ${acquisitionHTML}
 
 </section>
 
@@ -2444,7 +2260,7 @@ ${formsHTML}
   <br><br>
 
   中国版アップデートにより、
-  性能が変更される場合があります。
+  性能や入手方法が変更される場合があります。
 
 </div>
 
