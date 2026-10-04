@@ -759,16 +759,7 @@ main{
 </nav>
 
 <main id="content">
-<section class="my-dex-card">
-  <div class="my-dex-title">📝 マイ図鑑</div>
-  <div class="my-dex-help">このキャラクターの育成状況をこの端末に保存できます。</div>
-  <div class="my-dex-buttons">
-    <button type="button" class="my-dex-btn" data-my-status="owned">✅ 所持済み</button>
-    <button type="button" class="my-dex-btn" data-my-status="training">🌱 育成中</button>
-    <button type="button" class="my-dex-btn" data-my-status="complete">🏆 育成完了</button>
-  </div>
-  <button type="button" class="my-dex-clear" id="myDexClear">状態を解除</button>
-</section>
+
   <div class="card">
     読み込み中...
   </div>
@@ -2125,26 +2116,7 @@ try{
 }
 
 
-/* ==========================================
-   マイ図鑑
-========================================== */
-const MY_DEX_STORAGE_KEY = "rocoKingdomMyDex";
-const myDexButtons = document.querySelectorAll("[data-my-status]");
-const myDexClear = document.getElementById("myDexClear");
 
-function loadMyDex(){
-  try{
-    const saved=JSON.parse(localStorage.getItem(MY_DEX_STORAGE_KEY)||"{}");
-    return saved && typeof saved==="object" && !Array.isArray(saved) ? saved : {};
-  }catch(error){ return {}; }
-}
-function renderMyDexStatus(){
-  const status=loadMyDex()[String(character.key)]||"";
-  myDexButtons.forEach(b=>b.classList.toggle("active",b.dataset.myStatus===status));
-}
-myDexButtons.forEach(b=>b.addEventListener("click",()=>{
-  const data=loadMyDex(); data[String(character.key)]=b.dataset.myStatus;
-  localStorage.setItem(MY_DEX_STORAGE_KEY,JSON.stringify(data)); renderMyDexStatus();
 }));
 myDexClear.addEventListener("click",()=>{
   const data=loadMyDex(); delete data[String(character.key)];
@@ -2578,6 +2550,18 @@ content.innerHTML = `
 ${formsHTML}
 
 
+<section class="my-dex-card">
+  <div class="my-dex-title">📝 マイ図鑑</div>
+  <div class="my-dex-help">このキャラクターの育成状況をこの端末に保存できます。</div>
+  <div class="my-dex-buttons">
+    <button type="button" class="my-dex-btn" data-my-status="owned">✅ 所持済み</button>
+    <button type="button" class="my-dex-btn" data-my-status="training">🌱 育成中</button>
+    <button type="button" class="my-dex-btn" data-my-status="complete">🏆 育成完了</button>
+  </div>
+  <button type="button" class="my-dex-clear" id="myDexClear">状態を解除</button>
+</section>
+
+
 <section class="card jump-target" id="statsSection">
 
   <h2>
@@ -2679,6 +2663,70 @@ ${formsHTML}
 </div>
 
 `;
+
+
+/* ==========================================
+   マイ図鑑
+   content.innerHTML 描画後に接続
+========================================== */
+
+const MY_DEX_STORAGE_KEY = "rocoKingdomMyDex";
+const myDexButtons = document.querySelectorAll("[data-my-status]");
+const myDexClear = document.getElementById("myDexClear");
+
+function loadMyDex(){
+  try{
+    const saved = JSON.parse(
+      localStorage.getItem(MY_DEX_STORAGE_KEY) || "{}"
+    );
+    return saved && typeof saved === "object" && !Array.isArray(saved)
+      ? saved
+      : {};
+  }catch(error){
+    return {};
+  }
+}
+
+function renderMyDexStatus(){
+  const status = loadMyDex()[String(character.key)] || "";
+
+  myDexButtons.forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.myStatus === status
+    );
+  });
+}
+
+myDexButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const data = loadMyDex();
+    data[String(character.key)] = button.dataset.myStatus;
+
+    localStorage.setItem(
+      MY_DEX_STORAGE_KEY,
+      JSON.stringify(data)
+    );
+
+    renderMyDexStatus();
+  });
+});
+
+if(myDexClear){
+  myDexClear.addEventListener("click", () => {
+    const data = loadMyDex();
+    delete data[String(character.key)];
+
+    localStorage.setItem(
+      MY_DEX_STORAGE_KEY,
+      JSON.stringify(data)
+    );
+
+    renderMyDexStatus();
+  });
+}
+
+renderMyDexStatus();
 
 }
 
