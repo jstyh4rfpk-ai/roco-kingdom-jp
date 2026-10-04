@@ -199,6 +199,40 @@ main{
 .form-filter-btn.active{background:#1689e8;color:white}
 
 /* ========================================
+   図鑑番号ジャンプ
+======================================== */
+.dex-range-section{
+  padding:17px;
+  margin-bottom:17px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:18px;
+  box-shadow:0 4px 16px rgba(30,90,130,.07);
+}
+.dex-range-title{
+  margin-bottom:11px;
+  font-weight:900;
+}
+.dex-range-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+.dex-range-btn{
+  padding:8px 12px;
+  border:0;
+  border-radius:999px;
+  background:#edf5fa;
+  color:#29475f;
+  font-weight:700;
+  cursor:pointer;
+}
+.dex-range-btn.active{
+  background:#1689e8;
+  color:white;
+}
+
+/* ========================================
    件数
 ======================================== */
 
@@ -657,6 +691,23 @@ main{
 </section>
 
 <!-- ======================================
+     図鑑番号ジャンプ
+====================================== -->
+<section class="dex-range-section">
+  <div class="dex-range-title">図鑑番号から探す</div>
+  <div class="dex-range-buttons">
+    <button class="dex-range-btn active" data-range="all">すべて</button>
+    <button class="dex-range-btn" data-range="1-100">NO.001〜100</button>
+    <button class="dex-range-btn" data-range="101-200">NO.101〜200</button>
+    <button class="dex-range-btn" data-range="201-300">NO.201〜300</button>
+    <button class="dex-range-btn" data-range="301-400">NO.301〜400</button>
+    <button class="dex-range-btn" data-range="401-500">NO.401〜500</button>
+    <button class="dex-range-btn" data-range="501-625">NO.501〜625</button>
+  </div>
+</section>
+
+
+<!-- ======================================
      件数
 ====================================== -->
 
@@ -744,6 +795,8 @@ const buttons =
 
 const formFilterButtons = document.querySelectorAll(".form-filter-btn");
 
+const dexRangeButtons = document.querySelectorAll(".dex-range-btn");
+
 const count =
   document.getElementById(
     "count"
@@ -766,6 +819,7 @@ const formTotal =
 
 let selectedType = "all";
 let selectedFormFilter = "all";
+let selectedDexRange = "all";
 
 /* ==========================================
    図鑑番号
@@ -1152,6 +1206,29 @@ function matchesFormFilter(character, filter){
 }
 
 /* ==========================================
+   図鑑番号範囲
+========================================== */
+function matchesDexRange(character, range){
+
+  if(range === "all"){
+    return true;
+  }
+
+  const dexNumber =
+    Number(getDexNo(character));
+
+  const parts =
+    range.split("-").map(Number);
+
+  return (
+    dexNumber >= parts[0]
+    &&
+    dexNumber <= parts[1]
+  );
+}
+
+
+/* ==========================================
    カード
 ========================================== */
 
@@ -1372,6 +1449,12 @@ function renderPokedex(){
             selectedFormFilter
           );
 
+        const rangeMatch =
+          matchesDexRange(
+            character,
+            selectedDexRange
+          );
+
 
         return (
           searchMatch
@@ -1379,6 +1462,8 @@ function renderPokedex(){
           typeMatch
           &&
           formMatch
+          &&
+          rangeMatch
         );
 
       }
@@ -1453,6 +1538,19 @@ formFilterButtons.forEach(button => {
     formFilterButtons.forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
     selectedFormFilter = button.dataset.formFilter;
+    renderPokedex();
+  });
+});
+
+
+/* ==========================================
+   図鑑番号ボタン
+========================================== */
+dexRangeButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    dexRangeButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+    selectedDexRange = button.dataset.range;
     renderPokedex();
   });
 });
