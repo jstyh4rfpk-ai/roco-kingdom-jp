@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>おすすめキャラ・育成候補 | ロコキングダム速報</title>
+
+<meta name="description"
+content="Roco Kingdom（洛克王国：世界）のおすすめキャラクター・育成候補を紹介。中国版データをもとに性能や役割を日本語で整理しています。">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+  color:#17324d;
+  line-height:1.7;
+  background:#f1f8fd;
+}
+
+header{
+  padding:28px 16px;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#50b7f0,#79d4ff);
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:6px 0 0;
+  font-size:13px;
+}
+
+.back{
+  display:block;
+  padding:14px 18px;
+  background:white;
+  border-bottom:1px solid #dceaf4;
+  color:#1677d2;
+  text-decoration:none;
+  font-weight:900;
+}
+
+main{
+  width:min(900px,calc(100% - 24px));
+  margin:20px auto 50px;
+}
+
+.card{
+  margin-bottom:17px;
+  padding:20px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:19px;
+  box-shadow:0 5px 20px rgba(30,90,130,.08);
+}
+
+.card h2{
+  margin:0 0 12px;
+  font-size:21px;
+}
+
+.intro{
+  color:#637d91;
+  font-size:13px;
+}
+
+/* =========================
+   注意
+========================= */
+
+.warning{
+  padding:15px;
+  margin-top:15px;
+  border:1px solid #efd98b;
+  border-radius:14px;
+  background:#fff9e7;
+  color:#66582b;
+  font-size:12px;
+}
+
+/* =========================
+   更新状況
+========================= */
+
+.status{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:14px;
+  padding:12px 14px;
+  border:1px solid #b8dfc2;
+  border-radius:13px;
+  background:#edf9f0;
+  color:#286b3d;
+  font-size:12px;
+  font-weight:800;
+}
+
+.status-icon{
+  font-size:19px;
+}
+
+/* =========================
+   ランク
+========================= */
+
+.rank-section{
+  margin-top:20px;
+}
+
+.rank-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.rank-badge{
+  display:flex;
+  width:48px;
+  height:48px;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  border-radius:13px;
+  color:white;
+  font-size:25px;
+  font-weight:900;
+}
+
+.rank-s{
+  background:linear-gradient(135deg,#ff5f65,#ff8d69);
+}
+
+.rank-a{
+  background:linear-gradient(135deg,#f2a82c,#f6c957);
+}
+
+.rank-b{
+  background:linear-gradient(135deg,#55a5df,#73c2ee);
+}
+
+.rank-info strong{
+  display:block;
+  font-size:18px;
+}
+
+.rank-info span{
+  color:#70879a;
+  font-size:11px;
+}
+
+/* =========================
+   キャラ
+========================= */
+
+.characters{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+
+.character{
+  display:grid;
+  grid-template-columns:75px 1fr;
+  gap:13px;
+  align-items:center;
+  padding:13px;
+  border:1px solid #dce8f0;
+  border-radius:15px;
+  background:#f9fcfe;
+  color:inherit;
+  text-decoration:none;
+}
+
+.character:active{
+  transform:scale(.98);
+}
+
+.character-icon{
+  display:flex;
+  width:75px;
+  height:75px;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  background:radial-gradient(circle,#fff,#e5f5ff);
+  font-size:39px;
+}
+
+.character-name{
+  color:#126fc1;
+  font-size:17px;
+  font-weight:900;
+}
+
+.character-cn{
+  color:#8497a6;
+  font-size:10px;
+}
+
+.character-tags{
+  margin:5px 0;
+}
+
+.tag{
+  display:inline-block;
+  margin:2px 3px 2px 0;
+  padding:3px 8px;
+  border-radius:999px;
+  background:#eaf3f8;
+  color:#426077;
+  font-size:10px;
+  font-weight:800;
+}
+
+.reason{
+  color:#536e82;
+  font-size:12px;
+}
+
+/* =========================
+   評価基準
+========================= */
+
+.criteria{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+
+.criteria-item{
+  padding:12px;
+  border-radius:13px;
+  background:#f3f8fb;
+}
+
+.criteria-item strong{
+  display:block;
+  margin-bottom:3px;
+  font-size:13px;
+}
+
+.criteria-item span{
+  color:#6e8496;
+  font-size:11px;
+}
+
+/* =========================
+   準備中
+========================= */
+
+.preparing{
+  padding:20px 15px;
+  text-align:center;
+  border:1px dashed #bed4e3;
+  border-radius:14px;
+  background:#f8fbfd;
+  color:#71899b;
+  font-size:13px;
+}
+
+/* =========================
+   PC
+========================= */
+
+@media(min-width:700px){
+
+  .characters{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+/* =========================
+   スマホ
+========================= */
+
+@media(max-width:400px){
+
+  .card{
+    padding:16px;
+  }
+
+  .character{
+    grid-template-columns:65px 1fr;
+  }
+
+  .character-icon{
+    width:65px;
+    height:65px;
+    font-size:34px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>⭐ おすすめキャラ</h1>
+
+  <p>
+    ロコキングダム速報 攻略ガイド
+  </p>
+
+</header>
+
+
+<a class="back" href="index.html">
+  ← ロコキングダム速報へ戻る
+</a>
+
+
+<main>
+
+<section class="card">
+
+  <h2>⭐ おすすめキャラクター</h2>
+
+  <p class="intro">
+    中国版「洛克王国：世界」のキャラクターデータをもとに、
+    性能・特性・技・育成のしやすさなどを確認しながら
+    おすすめ候補を整理しています。
+  </p>
+
+  <div class="warning">
+    <strong>⚠️ 評価について</strong><br><br>
+
+    現在は中国版データの整理を進めている段階です。
+    全キャラクターの性能確認が完了するまでは、
+    最終的なランキングとして確定しません。<br><br>
+
+    日本版サービス開始後は、
+    日本版環境に合わせて評価を更新します。
+  </div>
+
+  <div class="status">
+    <span class="status-icon">🔎</span>
+    <span>
+      中国版キャラクター性能を順次確認中
+    </span>
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>📊 評価基準</h2>
+
+  <div class="criteria">
+
+    <div class="criteria-item">
+      <strong>⚔️ 火力</strong>
+      <span>
+        技威力・攻撃性能
+      </span>
+    </div>
+
+    <div class="criteria-item">
+      <strong>🛡️ 耐久</strong>
+      <span>
+        HP・防御・回復性能
+      </span>
+    </div>
+
+    <div class="criteria-item">
+      <strong>🌟 特性</strong>
+      <span>
+        固有能力の強さ
+      </span>
+    </div>
+
+    <div class="criteria-item">
+      <strong>⚡ 技性能</strong>
+      <span>
+        技構成・追加効果
+      </span>
+    </div>
+
+    <div class="criteria-item">
+      <strong>🔥 属性</strong>
+      <span>
+        弱点・耐性・攻撃範囲
+      </span>
+    </div>
+
+    <div class="criteria-item">
+      <strong>🌱 育成</strong>
+      <span>
+        入手・進化・扱いやすさ
+      </span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <div class="rank-section">
+
+    <div class="rank-title">
+
+      <div class="rank-badge rank-s">
+        S
+      </div>
+
+      <div class="rank-info">
+        <strong>Sランク候補</strong>
+        <span>
+          特に注目したいキャラクター
+        </span>
+      </div>
+
+    </div>
+
+    <div class="preparing">
+      🔎 全キャラクター確認後に掲載予定
+    </div>
+
+  </div>
+
+
+  <div class="rank-section">
+
+    <div class="rank-title">
+
+      <div class="rank-badge rank-a">
+        A
+      </div>
+
+      <div class="rank-info">
+        <strong>Aランク候補</strong>
+        <span>
+          高性能・育成候補
+        </span>
+      </div>
+
+    </div>
+
+    <div class="preparing">
+      🔎 データ整理中
+    </div>
+
+  </div>
+
+
+  <div class="rank-section">
+
+    <div class="rank-title">
+
+      <div class="rank-badge rank-b">
+        B
+      </div>
+
+      <div class="rank-info">
+        <strong>Bランク候補</strong>
+        <span>
+          用途次第で活躍できる候補
+        </span>
+      </div>
+
+    </div>
+
+    <div class="preparing">
+      🔎 データ整理中
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>🐾 現在データ確認済みのキャラ</h2>
+
+  <div class="characters">
+
+    <a class="character"
+       href="character.html?id=1">
+
+      <div class="character-icon">
+        ✨
+      </div>
+
+      <div>
+
+        <div class="character-name">
+          ディモ（仮）
+        </div>
+
+        <div class="character-cn">
+          中国名：迪莫
+        </div>
+
+        <div class="character-tags">
+          <span class="tag">✨ 光</span>
+          <span class="tag">種族値 582</span>
+        </div>
+
+        <div class="reason">
+          多属性技を習得できるため、
+          幅広い属性へ対応できる。
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <a class="character"
+       href="character.html?id=4">
+
+      <div class="character-icon">
+        🌿
+      </div>
+
+      <div>
+
+        <div class="character-name">
+          魔力猫（仮）
+        </div>
+
+        <div class="character-cn">
+          中国名：魔力猫
+        </div>
+
+        <div class="character-tags">
+          <span class="tag">🌿 草</span>
+          <span class="tag">種族値 613</span>
+        </div>
+
+        <div class="reason">
+          高い魔防と草属性技使用後の
+          HP回復特性を持つ。
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <a class="character"
+       href="character.html?id=7">
+
+      <div class="character-icon">
+        🔥
+      </div>
+
+      <div>
+
+        <div class="character-name">
+          火神（仮）
+        </div>
+
+        <div class="character-cn">
+          中国名：火神
+        </div>
+
+        <div class="character-tags">
+          <span class="tag">🔥 火</span>
+          <span class="tag">種族値 613</span>
+        </div>
+
+        <div class="reason">
+          高い物攻と速度を持ち、
+          火属性技使用後に攻撃性能が上昇する。
+        </div>
+
+      </div>
+
+    </a>
+
+
+    <a class="character"
+       href="character.html?id=10">
+
+      <div class="character-icon">
+        💧
+      </div>
+
+      <div>
+
+        <div class="character-name">
+          水霊（仮）
+        </div>
+
+        <div class="character-cn">
+          中国名：水灵
+        </div>
+
+        <div class="character-tags">
+          <span class="tag">💧 水</span>
+          <span class="tag">種族値 621</span>
+        </div>
+
+        <div class="reason">
+          高いHP・魔攻・魔防を持つ
+          バランス型の最終進化候補。
+        </div>
+
+      </div>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<div class="warning">
+
+  <strong>🇨🇳 中国版データについて</strong>
+
+  <br><br>
+
+  本ページは中国版「洛克王国：世界」の情報をもとに、
+  日本ユーザー向けに整理しています。
+
+  <br><br>
+
+  現時点では全キャラクターの性能比較が完了していないため、
+  S・A・Bなどの最終ランキングは確定していません。
+
+  <br><br>
+
+  日本版でバランス調整が行われた場合は、
+  日本版の環境を優先して更新します。
+
+</div>
+
+</main>
+
+</body>
+</html>
