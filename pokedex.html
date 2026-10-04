@@ -2484,6 +2484,14 @@ resetFilterBtn.addEventListener("click", () => {
   favoriteFilterBtn.textContent =
     "☆ お気に入りだけ表示";
 
+  currentMyDexFilter = "all";
+  myDexFilterButtons.forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.myFilter === "all"
+    );
+  });
+
   renderPokedex();
 
   window.scrollTo({
