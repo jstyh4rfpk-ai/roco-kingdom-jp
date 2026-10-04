@@ -2220,6 +2220,113 @@ const characters = [
 
 
 /* ==================================================
+   NO.030 / NO.031 確認済みデータ
+================================================== */
+
+{
+  key:"030-emo-ding",
+  id:30,
+  dexNo:"030",
+  name:null,
+  nameStatus:"未確認",
+  chineseName:"恶魔叮",
+  form:"main",
+  formName:"通常形態",
+  isBossForm:false,
+  type:["dark","wing"],
+  typeName:["悪","翼"],
+  total:452,
+  stats:{
+    hp:90,
+    speed:84,
+    attack:100,
+    magicAttack:42,
+    defense:80,
+    magicDefense:56
+  },
+  ability:{
+    chineseName:"渴求",
+    name:null,
+    description:"登場時、自身に50%吸血を付与する。"
+  },
+  evolution:["031 叮叮恶魔"],
+  forms:["030-emo-ding"],
+  skills:{level:[],stone:[],bloodline:[]},
+  acquisition:null,
+  dataStatus:"partial",
+  image:null
+},
+
+{
+  key:"031-dingding-emo",
+  id:31,
+  dexNo:"031",
+  name:null,
+  nameStatus:"未確認",
+  chineseName:"叮叮恶魔",
+  form:"main",
+  formName:"通常形態",
+  isBossForm:false,
+  type:["dark","wing"],
+  typeName:["悪","翼"],
+  total:576,
+  stats:{
+    hp:117,
+    speed:105,
+    attack:125,
+    magicAttack:53,
+    defense:103,
+    magicDefense:73
+  },
+  ability:{
+    chineseName:"渴求",
+    name:null,
+    description:"登場時、自身に50%吸血を付与する。"
+  },
+  evolution:[],
+  forms:["031-dingding-emo","031-emo-baron"],
+  skills:{level:[],stone:[],bloodline:[]},
+  acquisition:null,
+  dataStatus:"partial",
+  image:null
+},
+
+{
+  key:"031-emo-baron",
+  id:31,
+  dexNo:"031",
+  name:null,
+  nameStatus:"未確認",
+  chineseName:"恶魔男爵",
+  form:"boss",
+  formName:"首領形態",
+  isBossForm:true,
+  type:["dark","wing"],
+  typeName:["悪","翼"],
+  total:596,
+  stats:{
+    hp:117,
+    speed:120,
+    attack:128,
+    magicAttack:55,
+    defense:103,
+    magicDefense:73
+  },
+  ability:{
+    chineseName:"贪得无厌",
+    name:null,
+    description:"登場時、自身に50%吸血を付与する。HPを5%過剰回復するごとに物攻+10%へ変換する。"
+  },
+  evolution:[],
+  forms:["031-dingding-emo","031-emo-baron"],
+  skills:{level:[],stone:[],bloodline:[]},
+  acquisition:null,
+  dataStatus:"partial",
+  image:null
+},
+
+
+/* ==================================================
    NO.032 毛毛
 ================================================== */
 
@@ -2525,48 +2632,70 @@ const characters = [
 },
 
 {
-  key:"036-unconfirmed",
+  key:"036-xiaoshuta",
   id:36,
   dexNo:"036",
   name:null,
   nameStatus:"未確認",
-  chineseName:null,
+  chineseName:"小鼠獭",
   form:"main",
   formName:"通常形態",
   isBossForm:false,
-  type:[],
-  typeName:[],
-  total:null,
-  stats:null,
-  ability:{chineseName:null,name:null,description:null},
-  evolution:[],
-  forms:["036-unconfirmed"],
+  type:["normal","water"],
+  typeName:["普通","水"],
+  total:355,
+  stats:{
+    hp:73,
+    speed:48,
+    attack:57,
+    magicAttack:57,
+    defense:60,
+    magicDefense:60
+  },
+  ability:{
+    chineseName:"保守派",
+    name:null,
+    description:"装備している技の合計消費エネルギーが4未満のとき、自身の物防・魔防+80%。"
+  },
+  evolution:["037 燕尾獭"],
+  forms:["036-xiaoshuta"],
   skills:{level:[],stone:[],bloodline:[]},
   acquisition:null,
-  dataStatus:"unconfirmed",
+  dataStatus:"partial",
   image:null
 },
 
 {
-  key:"037-unconfirmed",
+  key:"037-yanweita",
   id:37,
   dexNo:"037",
   name:null,
   nameStatus:"未確認",
-  chineseName:null,
+  chineseName:"燕尾獭",
   form:"main",
   formName:"通常形態",
   isBossForm:false,
-  type:[],
-  typeName:[],
-  total:null,
-  stats:null,
-  ability:{chineseName:null,name:null,description:null},
+  type:["normal","water"],
+  typeName:["普通","水"],
+  total:477,
+  stats:{
+    hp:97,
+    speed:64,
+    attack:77,
+    magicAttack:77,
+    defense:81,
+    magicDefense:81
+  },
+  ability:{
+    chineseName:"保守派",
+    name:null,
+    description:"装備している技の合計消費エネルギーが4未満のとき、自身の物防・魔防+80%。"
+  },
   evolution:[],
-  forms:["037-unconfirmed"],
+  forms:["037-yanweita"],
   skills:{level:[],stone:[],bloodline:[]},
   acquisition:null,
-  dataStatus:"unconfirmed",
+  dataStatus:"partial",
   image:null
 },
 
