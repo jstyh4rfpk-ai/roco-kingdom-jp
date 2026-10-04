@@ -7,17 +7,12 @@
 <title>属性相性・弱点一覧 | ロコキングダム速報</title>
 
 <meta name="description"
-content="Roco Kingdom（洛克王国：世界）の属性相性・弱点・耐性を日本語で確認できる攻略ページです。">
+content="Roco Kingdom（洛克王国：世界）の全18属性の弱点・耐性・攻撃相性を日本語で確認できる攻略ページです。">
 
 <style>
+*{box-sizing:border-box}
 
-*{
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
   margin:0;
@@ -28,7 +23,6 @@ body{
     "Hiragino Kaku Gothic ProN",
     "Yu Gothic",
     sans-serif;
-
   color:#17324d;
   line-height:1.7;
   background:#f1f8fd;
@@ -62,7 +56,7 @@ header p{
 }
 
 main{
-  width:min(950px,calc(100% - 24px));
+  width:min(980px,calc(100% - 24px));
   margin:20px auto 50px;
 }
 
@@ -80,37 +74,9 @@ main{
   font-size:22px;
 }
 
-.card p{
+.description{
   color:#647e92;
   font-size:13px;
-}
-
-/* =========================
-   説明
-========================= */
-
-.guide{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:9px;
-  margin-top:15px;
-}
-
-.guide-item{
-  padding:12px;
-  text-align:center;
-  border-radius:13px;
-  background:#f2f8fc;
-}
-
-.guide-item strong{
-  display:block;
-  font-size:18px;
-}
-
-.guide-item span{
-  color:#72899b;
-  font-size:11px;
 }
 
 /* =========================
@@ -126,9 +92,7 @@ main{
 .type-card{
   position:relative;
   overflow:hidden;
-  min-height:230px;
-  padding:17px 14px 17px 18px;
-
+  padding:18px 14px 18px 20px;
   background:#f8fbfd;
   border:1px solid #d6e5ef;
   border-radius:17px;
@@ -137,19 +101,19 @@ main{
 .type-card::before{
   content:"";
   position:absolute;
-  top:0;
   left:0;
+  top:0;
+  bottom:0;
   width:7px;
-  height:100%;
-  background:var(--type-color);
+  background:var(--color);
 }
 
 .type-title{
   display:flex;
   align-items:center;
   gap:8px;
-  margin-bottom:15px;
-  font-size:23px;
+  margin-bottom:13px;
+  font-size:22px;
   font-weight:900;
 }
 
@@ -158,9 +122,9 @@ main{
 }
 
 .label{
-  margin-top:12px;
-  margin-bottom:6px;
-  color:#748b9e;
+  margin-top:13px;
+  margin-bottom:7px;
+  color:#70889b;
   font-size:12px;
   font-weight:900;
 }
@@ -174,74 +138,72 @@ main{
 .tag{
   display:inline-flex;
   align-items:center;
-  gap:3px;
+  gap:4px;
   padding:5px 9px;
-  border:1px solid #d2e1eb;
+  border:1px solid #d1e0ea;
   border-radius:999px;
   background:white;
-  color:#27445c;
   font-size:12px;
   font-weight:800;
 }
 
 .none{
-  color:#91a1ae;
+  color:#91a2ae;
   font-size:12px;
 }
 
-/* 色 */
+/* 属性色 */
 
-.normal{--type-color:#999}
-.grass{--type-color:#63ad54}
-.fire{--type-color:#ea6654}
-.water{--type-color:#579ce0}
-.light{--type-color:#e5b32b}
-.ground{--type-color:#a98252}
-.ice{--type-color:#65bdd3}
-.dragon{--type-color:#7552b5}
-.electric{--type-color:#dfb727}
-.poison{--type-color:#985ca9}
-.bug{--type-color:#82a938}
-.fighting{--type-color:#c46d3b}
-.wing{--type-color:#78a7d1}
-.cute{--type-color:#e77aa6}
-.ghost{--type-color:#756294}
-.dark{--type-color:#62536e}
-.machine{--type-color:#6e8290}
-.illusion{--type-color:#a767b5}
+.normal{--color:#999}
+.grass{--color:#63ad54}
+.fire{--color:#ea6654}
+.water{--color:#579ce0}
+.light{--color:#e5b32b}
+.ground{--color:#a98252}
+.ice{--color:#65bdd3}
+.dragon{--color:#7552b5}
+.electric{--color:#dfb727}
+.poison{--color:#985ca9}
+.bug{--color:#82a938}
+.fighting{--color:#c46d3b}
+.wing{--color:#78a7d1}
+.cute{--color:#e77aa6}
+.ghost{--color:#756294}
+.dark{--color:#62536e}
+.machine{--color:#6e8290}
+.illusion{--color:#a767b5}
 
 /* =========================
    相性表
 ========================= */
 
-.table-help{
-  margin:8px 0 14px;
-  padding:11px 13px;
-  border-radius:12px;
-  background:#eef8ff;
-  color:#4e7089;
+.table-note{
+  margin-bottom:14px;
+  padding:12px 14px;
+  border-radius:13px;
+  background:#edf8ff;
+  color:#527189;
   font-size:12px;
 }
 
 .table-scroll{
   overflow-x:auto;
   -webkit-overflow-scrolling:touch;
-  border:1px solid #d9e6ee;
+  border:1px solid #d8e5ee;
   border-radius:14px;
 }
 
 table{
-  border-collapse:collapse;
-  min-width:1160px;
   width:100%;
+  min-width:1180px;
+  border-collapse:collapse;
   background:white;
   font-size:11px;
 }
 
-th,
-td{
-  min-width:55px;
-  height:49px;
+th,td{
+  min-width:56px;
+  height:50px;
   padding:5px;
   text-align:center;
   border-right:1px solid #e3ebf1;
@@ -249,7 +211,7 @@ td{
 }
 
 th{
-  background:#f0f7fb;
+  background:#eff7fb;
   font-weight:900;
 }
 
@@ -263,29 +225,28 @@ thead th{
   position:sticky;
   left:0;
   z-index:1;
-  min-width:75px;
-  background:#f0f7fb;
-  font-weight:900;
+  min-width:78px;
+  background:#eff7fb;
 }
 
 thead .row-head{
   z-index:3;
 }
 
-.super{
-  background:#ffeaea;
-  color:#c33d3d;
+.cell-2{
+  background:#ffe8e8;
+  color:#c53737;
   font-weight:900;
 }
 
-.resist{
-  background:#eaf7ee;
-  color:#317547;
+.cell-half{
+  background:#e7f7ec;
+  color:#2e7746;
   font-weight:900;
 }
 
-.normal-cell{
-  color:#a0adb7;
+.cell-1{
+  color:#9aa8b3;
 }
 
 .legend{
@@ -299,30 +260,27 @@ thead .row-head{
   padding:5px 10px;
   border-radius:999px;
   font-size:11px;
-  font-weight:800;
+  font-weight:900;
 }
 
-.legend-super{
-  background:#ffeaea;
-  color:#c33d3d;
+.legend2{
+  background:#ffe8e8;
+  color:#c53737;
 }
 
-.legend-normal{
-  background:#f2f5f7;
-  color:#728493;
+.legend1{
+  background:#f1f4f6;
+  color:#748594;
 }
 
-.legend-resist{
-  background:#eaf7ee;
-  color:#317547;
+.legend05{
+  background:#e7f7ec;
+  color:#2e7746;
 }
 
-/* =========================
-   注意
-========================= */
-
-.notice{
-  padding:16px;
+.source{
+  margin-top:18px;
+  padding:15px;
   border-radius:14px;
   background:#fff9e7;
   border:1px solid #efdb96;
@@ -330,27 +288,19 @@ thead .row-head{
   font-size:12px;
 }
 
-/* =========================
-   PC
-========================= */
-
-@media(min-width:750px){
-
+@media(min-width:760px){
   .type-grid{
     grid-template-columns:repeat(3,1fr);
   }
-
 }
 
-/* =========================
-   スマホ
-========================= */
-
 @media(max-width:400px){
+  .card{
+    padding:16px;
+  }
 
   .type-card{
-    min-height:220px;
-    padding-left:16px;
+    padding:16px 10px 16px 16px;
   }
 
   .type-title{
@@ -361,9 +311,7 @@ thead .row-head{
     padding:4px 7px;
     font-size:11px;
   }
-
 }
-
 </style>
 </head>
 
@@ -371,7 +319,7 @@ thead .row-head{
 
 <header>
   <h1>🔥 属性相性</h1>
-  <p>ロコキングダム速報 攻略ガイド</p>
+  <p>Roco Kingdom 全18属性</p>
 </header>
 
 <a class="back" href="index.html">
@@ -382,86 +330,57 @@ thead .row-head{
 
 <section class="card">
 
-<h2>🧭 属性相性について</h2>
+  <h2>🧭 全18属性 弱点・耐性</h2>
 
-<p>
-各属性の弱点・耐性を一覧で確認できます。
-下部には全属性を比較できる相性表も掲載しています。
-</p>
+  <p class="description">
+    中国版「洛克王国：世界」の属性関係データをもとに、
+    各属性が攻撃を受けたときの弱点・耐性を表示しています。
+  </p>
 
-<div class="guide">
-
-<div class="guide-item">
-<strong>×2</strong>
-<span>弱点</span>
-</div>
-
-<div class="guide-item">
-<strong>×0.5</strong>
-<span>耐性</span>
-</div>
-
-</div>
+  <div class="type-grid" id="typeGrid"></div>
 
 </section>
 
 
 <section class="card">
 
-<h2>🧭 属性一覧</h2>
+  <h2>⚔️ 全属性相性表</h2>
 
-<div class="type-grid" id="typeGrid"></div>
+  <div class="table-note">
+    ← スマホでは横にスクロールできます。<br>
+    <strong>縦＝攻撃する属性 ／ 横＝攻撃を受ける属性</strong>
+  </div>
 
-</section>
+  <div class="table-scroll">
+    <table id="matchupTable"></table>
+  </div>
 
-
-<section class="card">
-
-<h2>⚔️ 全属性相性表</h2>
-
-<div class="table-help">
-← 横にスクロールできます<br>
-縦＝攻撃属性 ／ 横＝防御属性
-</div>
-
-<div class="table-scroll">
-
-<table id="matchupTable"></table>
-
-</div>
-
-<div class="legend">
-
-<span class="legend-super">
-×2 弱点
-</span>
-
-<span class="legend-normal">
-×1 通常
-</span>
-
-<span class="legend-resist">
-×0.5 耐性
-</span>
-
-</div>
+  <div class="legend">
+    <span class="legend2">×2 効果大</span>
+    <span class="legend1">×1 通常</span>
+    <span class="legend05">×0.5 効果小</span>
+  </div>
 
 </section>
 
 
-<div class="notice">
+<div class="source">
 
-<strong>📌 属性相性について</strong>
+  <strong>📌 データ基準</strong>
 
-<br><br>
+  <br><br>
 
-中国版「洛克王国：世界」の属性情報をもとに、
-日本ユーザー向けに整理しています。
+  中国版「洛克王国：世界」BWIKI
+  TypeRelation の属性関係データをもとに整理しています。
 
-<br><br>
+  <br><br>
 
-日本版で属性名・仕様が変更された場合は、
-正式情報に合わせて更新します。
+  日本版で正式な属性名称・仕様が発表された場合は、
+  日本版の内容に合わせて更新します。
+
+  <br><br>
+
+  最終照合：2026-10-04
 
 </div>
 
@@ -470,625 +389,470 @@ thead .row-head{
 
 <script>
 
-/* ==========================================
-   属性
-========================================== */
+/* ==================================================
+   属性一覧
+================================================== */
 
 const types = [
 
-{
- id:"normal",
- name:"普通",
- icon:"⚪"
-},
-
-{
- id:"grass",
- name:"草",
- icon:"🌿"
-},
-
-{
- id:"fire",
- name:"火",
- icon:"🔥"
-},
-
-{
- id:"water",
- name:"水",
- icon:"💧"
-},
-
-{
- id:"light",
- name:"光",
- icon:"✨"
-},
-
-{
- id:"ground",
- name:"地",
- icon:"⛰️"
-},
-
-{
- id:"ice",
- name:"氷",
- icon:"❄️"
-},
-
-{
- id:"dragon",
- name:"龍",
- icon:"🐉"
-},
-
-{
- id:"electric",
- name:"電気",
- icon:"⚡"
-},
-
-{
- id:"poison",
- name:"毒",
- icon:"☠️"
-},
-
-{
- id:"bug",
- name:"虫",
- icon:"🐛"
-},
-
-{
- id:"fighting",
- name:"武",
- icon:"👊"
-},
-
-{
- id:"wing",
- name:"翼",
- icon:"🪽"
-},
-
-{
- id:"cute",
- name:"萌",
- icon:"💕"
-},
-
-{
- id:"ghost",
- name:"幽",
- icon:"👻"
-},
-
-{
- id:"dark",
- name:"悪",
- icon:"😈"
-},
-
-{
- id:"machine",
- name:"機械",
- icon:"⚙️"
-},
-
-{
- id:"illusion",
- name:"幻",
- icon:"🔮"
-}
+  {id:"normal",   cn:"普通", name:"普通", icon:"⚪"},
+  {id:"grass",    cn:"草",   name:"草",   icon:"🌿"},
+  {id:"fire",     cn:"火",   name:"火",   icon:"🔥"},
+  {id:"water",    cn:"水",   name:"水",   icon:"💧"},
+  {id:"light",    cn:"光",   name:"光",   icon:"✨"},
+  {id:"ground",   cn:"地",   name:"地",   icon:"⛰️"},
+  {id:"ice",      cn:"冰",   name:"氷",   icon:"❄️"},
+  {id:"dragon",   cn:"龙",   name:"龍",   icon:"🐉"},
+  {id:"electric", cn:"电",   name:"電気", icon:"⚡"},
+  {id:"poison",   cn:"毒",   name:"毒",   icon:"☠️"},
+  {id:"bug",      cn:"虫",   name:"虫",   icon:"🐛"},
+  {id:"fighting", cn:"武",   name:"武",   icon:"👊"},
+  {id:"wing",     cn:"翼",   name:"翼",   icon:"🪽"},
+  {id:"cute",     cn:"萌",   name:"萌",   icon:"💕"},
+  {id:"ghost",    cn:"幽",   name:"幽",   icon:"👻"},
+  {id:"dark",     cn:"恶",   name:"悪",   icon:"😈"},
+  {id:"machine",  cn:"机械", name:"機械", icon:"⚙️"},
+  {id:"illusion", cn:"幻",   name:"幻",   icon:"🔮"}
 
 ];
 
 
 /*
 ==================================================
- 防御側から見た相性
+ BWIKI TypeRelation
+
+ attackStrong
+   この属性で攻撃すると ×2
+
+ attackWeak
+   この属性で攻撃すると ×0.5
 
  weakness
-   → その属性から ×2
+   この属性が攻撃を受けた場合 ×2
 
  resistance
-   → その属性から ×0.5
+   この属性が攻撃を受けた場合 ×0.5
 ==================================================
 */
 
-const matchup = {
+const relations = {
 
 normal:{
- weakness:[],
- resistance:[]
+ attackStrong:[],
+ attackWeak:["ground","ghost","machine"],
+ weakness:["fighting"],
+ resistance:["ghost"]
 },
 
 grass:{
- weakness:[
-   "fire",
-   "ice",
-   "poison",
-   "bug",
-   "wing"
- ],
- resistance:[
-   "water",
-   "light",
-   "ground",
-   "electric"
- ]
+ attackStrong:["light","ground","water"],
+ attackWeak:["machine","poison","fire","wing","bug","dragon"],
+ weakness:["ice","poison","fire","wing","bug"],
+ resistance:["light","ground","water","electric"]
 },
 
 fire:{
- weakness:[
-   "water",
-   "ground"
- ],
- resistance:[
-   "grass",
-   "fire",
-   "ice",
-   "bug"
- ]
+ attackStrong:["ice","machine","grass","bug"],
+ attackWeak:["ground","water","dragon"],
+ weakness:["ground","water"],
+ resistance:["ice","machine","grass","cute","bug"]
 },
 
 water:{
- weakness:[
-   "grass",
-   "electric"
- ],
- resistance:[
-   "fire",
-   "water",
-   "ice"
- ]
+ attackStrong:["ground","machine","fire"],
+ attackWeak:["ice","grass","dragon"],
+ weakness:["electric","grass"],
+ resistance:["machine","fire"]
 },
 
 light:{
- weakness:[
-   "grass",
-   "ghost"
- ],
- resistance:[
-   "dark",
-   "illusion"
- ]
+ attackStrong:["ghost","dark"],
+ attackWeak:["ice","grass"],
+ weakness:["ghost","grass"],
+ resistance:["illusion","dark"]
 },
 
 ground:{
- weakness:[
-   "grass",
-   "water",
-   "ice"
- ],
- resistance:[
-   "poison",
-   "electric"
- ]
+ attackStrong:["ice","poison","fire","electric"],
+ attackWeak:["fighting","grass"],
+ weakness:["ice","machine","fighting","water","grass"],
+ resistance:["normal","poison","fire","electric","wing"]
 },
 
 ice:{
- weakness:[
-   "fire",
-   "fighting",
-   "machine"
- ],
- resistance:[
-   "ice"
- ]
+ attackStrong:["ground","wing","grass","dragon"],
+ attackWeak:["ice","machine","fire"],
+ weakness:["ground","machine","fighting","fire"],
+ resistance:["light","water"]
 },
 
 dragon:{
- weakness:[
-   "ice",
-   "dragon",
-   "cute"
- ],
- resistance:[
-   "grass",
-   "fire",
-   "water",
-   "electric"
- ]
+ attackStrong:["dragon"],
+ attackWeak:["machine"],
+ weakness:["ice","cute"],
+ resistance:["water","fire","electric","wing","grass"]
 },
 
 electric:{
- weakness:[
-   "ground"
- ],
- resistance:[
-   "electric",
-   "wing",
-   "machine"
- ]
+ attackStrong:["water","wing"],
+ attackWeak:["ground","electric","grass","dragon"],
+ weakness:["ground"],
+ resistance:["machine","wing"]
 },
 
 poison:{
- weakness:[
-   "ground",
-   "illusion"
- ],
- resistance:[
-   "grass",
-   "poison",
-   "bug",
-   "fighting",
-   "cute"
- ]
+ attackStrong:["grass","cute"],
+ attackWeak:["ground","ghost","machine","poison"],
+ weakness:["ground","illusion","dark"],
+ resistance:["fighting","grass","cute","bug"]
 },
 
 bug:{
- weakness:[
-   "fire",
-   "wing"
- ],
- resistance:[
-   "grass",
-   "ground",
-   "fighting"
- ]
+ attackStrong:["illusion","dark","grass"],
+ attackWeak:["ghost","machine","fighting","poison","fire","wing","cute"],
+ weakness:["fire","wing"],
+ resistance:["fighting","grass"]
 },
 
 fighting:{
- weakness:[
-   "wing",
-   "illusion",
-   "cute"
- ],
- resistance:[
-   "bug",
-   "dark"
- ]
+ attackStrong:["ice","ground","dark","normal","machine"],
+ attackWeak:["illusion","ghost","poison","wing","cute","bug"],
+ weakness:["illusion","wing","cute"],
+ resistance:["ground","dark","bug"]
 },
 
 wing:{
- weakness:[
-   "electric",
-   "ice"
- ],
- resistance:[
-   "grass",
-   "bug",
-   "fighting"
- ]
+ attackStrong:["fighting","grass","bug"],
+ attackWeak:["ground","machine","electric","dragon"],
+ weakness:["ice","electric"],
+ resistance:["fighting","grass","bug"]
 },
 
 cute:{
- weakness:[
-   "poison",
-   "machine"
- ],
- resistance:[
-   "fighting",
-   "bug",
-   "dark"
- ]
+ attackStrong:["dark","fighting","dragon"],
+ attackWeak:["machine","poison","fire"],
+ weakness:["dark","machine","poison"],
+ resistance:["fighting","bug"]
 },
 
 ghost:{
- weakness:[
-   "light",
-   "ghost",
-   "dark"
- ],
- resistance:[
-   "poison",
-   "bug"
- ]
+ attackStrong:["light","illusion","ghost"],
+ attackWeak:["dark","normal"],
+ weakness:["light","dark"],
+ resistance:["normal","fighting","poison","bug"]
 },
 
 dark:{
- weakness:[
-   "fighting",
-   "bug",
-   "cute",
-   "light"
- ],
- resistance:[
-   "ghost",
-   "dark"
- ]
+ attackStrong:["ghost","poison","cute"],
+ attackWeak:["light","dark","fighting"],
+ weakness:["light","fighting","cute","bug"],
+ resistance:["ghost"]
 },
 
 machine:{
- weakness:[
-   "fire",
-   "ground",
-   "fighting"
- ],
+ attackStrong:["ice","ground","cute"],
+ attackWeak:["machine","water","fire","electric"],
+ weakness:["fighting","water","fire"],
  resistance:[
-   "normal",
-   "grass",
    "ice",
+   "illusion",
+   "normal",
+   "poison",
    "wing",
+   "grass",
    "cute",
-   "machine"
+   "bug",
+   "dragon"
  ]
 },
 
 illusion:{
- weakness:[
-   "dark",
-   "bug",
-   "ghost"
- ],
- resistance:[
-   "fighting",
-   "illusion"
- ]
+ attackStrong:["fighting","poison"],
+ attackWeak:["light","illusion","machine"],
+ weakness:["ghost","bug"],
+ resistance:["fighting"]
 }
 
 };
 
 
-/* ==========================================
-   属性を取得
-========================================== */
+/* ==================================================
+   属性取得
+================================================== */
 
 function getType(id){
 
- return types.find(
-   type => type.id === id
- );
+  return types.find(
+    type => type.id === id
+  );
 
 }
 
 
-/* ==========================================
-   タグ
-========================================== */
+/* ==================================================
+   タグ生成
+================================================== */
 
-function createTags(list){
+function tags(list){
 
- if(!list || list.length === 0){
+  if(!list || list.length === 0){
 
-   return `
-     <span class="none">
-       なし
-     </span>
-   `;
+    return `
+      <span class="none">
+        なし
+      </span>
+    `;
 
- }
+  }
 
- return list.map(id=>{
+  return list.map(id=>{
 
-   const type=getType(id);
+    const type=getType(id);
 
-   if(!type){
-     return "";
-   }
+    return `
+      <span class="tag">
+        ${type.icon}
+        ${type.name}
+      </span>
+    `;
 
-   return `
-     <span class="tag">
-       ${type.icon}
-       ${type.name}
-     </span>
-   `;
-
- }).join("");
+  }).join("");
 
 }
 
 
-/* ==========================================
+/* ==================================================
    属性カード
-========================================== */
+================================================== */
 
 function renderCards(){
 
- const grid=
-   document.getElementById("typeGrid");
+  const grid=
+    document.getElementById("typeGrid");
 
- grid.innerHTML=
- types.map(type=>{
+  grid.innerHTML=
+    types.map(type=>{
 
-   const data=
-     matchup[type.id];
+      const relation=
+        relations[type.id];
 
-   return `
+      return `
 
-   <div class="type-card ${type.id}">
+        <article class="type-card ${type.id}">
 
-     <div class="type-title">
+          <div class="type-title">
 
-       <span class="type-icon">
-         ${type.icon}
-       </span>
+            <span class="type-icon">
+              ${type.icon}
+            </span>
 
-       <span>
-         ${type.name}
-       </span>
+            <span>
+              ${type.name}
+            </span>
 
-     </div>
-
-
-     <div class="label">
-       ⚠️ 弱点
-     </div>
-
-     <div class="tags">
-       ${createTags(data.weakness)}
-     </div>
+          </div>
 
 
-     <div class="label">
-       🛡️ 耐性
-     </div>
+          <div class="label">
+            ⚠️ 弱点（受けるダメージ ×2）
+          </div>
 
-     <div class="tags">
-       ${createTags(data.resistance)}
-     </div>
+          <div class="tags">
+            ${tags(relation.weakness)}
+          </div>
 
-   </div>
 
-   `;
+          <div class="label">
+            🛡️ 耐性（受けるダメージ ×0.5）
+          </div>
 
- }).join("");
+          <div class="tags">
+            ${tags(relation.resistance)}
+          </div>
+
+
+          <div class="label">
+            ⚔️ 攻撃で有利（×2）
+          </div>
+
+          <div class="tags">
+            ${tags(relation.attackStrong)}
+          </div>
+
+
+          <div class="label">
+            🔻 攻撃で不利（×0.5）
+          </div>
+
+          <div class="tags">
+            ${tags(relation.attackWeak)}
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
 
 }
 
 
-/* ==========================================
+/* ==================================================
    攻撃倍率
-========================================== */
+
+   BWIKIの「克制」「被抵抗」を基準にする。
+================================================== */
 
 function getMultiplier(
- attacker,
- defender
+  attackerId,
+  defenderId
 ){
 
- const data=
-   matchup[defender];
+  const attacker=
+    relations[attackerId];
 
- if(
-   data.weakness.includes(attacker)
- ){
-   return 2;
- }
+  if(
+    attacker.attackStrong.includes(
+      defenderId
+    )
+  ){
+    return 2;
+  }
 
- if(
-   data.resistance.includes(attacker)
- ){
-   return 0.5;
- }
+  if(
+    attacker.attackWeak.includes(
+      defenderId
+    )
+  ){
+    return 0.5;
+  }
 
- return 1;
-
-}
-
-
-/* ==========================================
-   表セル
-========================================== */
-
-function multiplierCell(value){
-
- if(value === 2){
-
-   return `
-     <td class="super">
-       ×2
-     </td>
-   `;
-
- }
-
- if(value === 0.5){
-
-   return `
-     <td class="resist">
-       ×0.5
-     </td>
-   `;
-
- }
-
- return `
-   <td class="normal-cell">
-     ×1
-   </td>
- `;
+  return 1;
 
 }
 
 
-/* ==========================================
-   相性表
-========================================== */
+/* ==================================================
+   セル
+================================================== */
+
+function cell(multiplier){
+
+  if(multiplier === 2){
+
+    return `
+      <td class="cell-2">
+        ×2
+      </td>
+    `;
+
+  }
+
+  if(multiplier === 0.5){
+
+    return `
+      <td class="cell-half">
+        ×0.5
+      </td>
+    `;
+
+  }
+
+  return `
+    <td class="cell-1">
+      ×1
+    </td>
+  `;
+
+}
+
+
+/* ==================================================
+   全属性相性表
+================================================== */
 
 function renderTable(){
 
- const table=
-   document.getElementById(
-     "matchupTable"
-   );
+  const table=
+    document.getElementById(
+      "matchupTable"
+    );
+
+  let html=`
+
+    <thead>
+
+      <tr>
+
+        <th class="row-head">
+          攻＼防
+        </th>
+
+        ${types.map(type=>`
+
+          <th>
+            ${type.icon}<br>
+            ${type.name}
+          </th>
+
+        `).join("")}
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+  `;
 
 
- /* ヘッダー */
+  types.forEach(attacker=>{
 
- let html=`
+    html+=`
 
- <thead>
+      <tr>
 
- <tr>
+        <th class="row-head">
+          ${attacker.icon}<br>
+          ${attacker.name}
+        </th>
 
- <th class="row-head">
- 攻＼防
- </th>
-
- ${types.map(type=>`
-
- <th>
- ${type.icon}<br>
- ${type.name}
- </th>
-
- `).join("")}
-
- </tr>
-
- </thead>
-
- <tbody>
-
- `;
+    `;
 
 
- /* 攻撃側 */
+    types.forEach(defender=>{
 
- types.forEach(attacker=>{
+      const multiplier=
+        getMultiplier(
+          attacker.id,
+          defender.id
+        );
 
-   html+=`
+      html+=cell(multiplier);
 
-   <tr>
-
-   <th class="row-head">
-     ${attacker.icon}
-     ${attacker.name}
-   </th>
-
-   `;
+    });
 
 
-   /* 防御側 */
+    html+=`
+      </tr>
+    `;
 
-   types.forEach(defender=>{
-
-     const value=
-       getMultiplier(
-         attacker.id,
-         defender.id
-       );
-
-     html+=
-       multiplierCell(value);
-
-   });
+  });
 
 
-   html+=`
-   </tr>
-   `;
-
- });
+  html+=`
+    </tbody>
+  `;
 
 
- html+=`
- </tbody>
- `;
-
-
- table.innerHTML=html;
+  table.innerHTML=html;
 
 }
 
 
-/* ==========================================
+/* ==================================================
    起動
-========================================== */
+================================================== */
 
 renderCards();
 renderTable();
