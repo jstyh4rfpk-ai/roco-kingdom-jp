@@ -2,14 +2,17 @@
 ==================================================
  ロコキングダム速報 キャラクターデータベース
  characters.js
-==================================================
 
- 中国版「洛克王国：世界」の情報をもとに整理。
+ 中国版「洛克王国：世界」BWIKI基準
 
- 日本版で正式名称が判明していない名称は仮表記。
- 日本版正式名称発表後、順次更新します。
+ 対応：
+ ・通常形態
+ ・進化形態
+ ・首領形態
+ ・地区形態
+ ・同一図鑑番号の複数形態
 
- データ基準：
+ 基準データ：
  中国版 洛克王国：世界 BWIKI
 
  最終照合：
@@ -24,13 +27,19 @@ const characters = [
 ================================================== */
 
 {
+  key: "001-dimo",
   id: 1,
+  dexNo: "001",
 
   name: "ディモ",
   nameStatus: "仮",
 
   chineseName: "迪莫",
   englishName: "Dimo",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
 
   type: ["light"],
   typeName: ["光"],
@@ -67,10 +76,18 @@ const characters = [
     "中国版で入手可能。詳細な入手条件は整理中です。",
 
   evolution: [
-    "👑 首領形態 → 聖光ディモ（仮）",
-    "👑 首領形態 → 聖草ディモ（仮）",
-    "👑 首領形態 → 聖火ディモ（仮）",
-    "👑 首領形態 → 聖水ディモ（仮）"
+    "👑 聖光ディモ（首領形態）",
+    "👑 聖草ディモ（首領形態）",
+    "👑 聖火ディモ（首領形態）",
+    "👑 聖水ディモ（首領形態）"
+  ],
+
+  forms: [
+    "001-dimo",
+    "001-holy-light-dimo",
+    "001-holy-grass-dimo",
+    "001-holy-fire-dimo",
+    "001-holy-water-dimo"
   ],
 
   skills: {
@@ -309,7 +326,274 @@ const characters = [
 
     stone: [],
     bloodline: []
+  },
 
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+},
+
+
+/* ==================================================
+   NO.001 聖光迪莫・首領形態
+================================================== */
+
+{
+  key: "001-holy-light-dimo",
+  id: 1,
+  dexNo: "001",
+
+  name: "聖光ディモ",
+  nameStatus: "仮",
+
+  chineseName: "圣光迪莫",
+  englishName: "",
+
+  form: "boss",
+  formName: "首領形態",
+  isBossForm: true,
+
+  type: ["light"],
+  typeName: ["光"],
+
+  total: 596,
+
+  stats: {
+    hp: 122,
+    attack: 84,
+    magicAttack: 84,
+    defense: 107,
+    magicDefense: 107,
+    speed: 92
+  },
+
+  ability: {
+    chineseName: "裁决",
+    name: "裁決（仮）",
+    description:
+      "弱点を突くダメージを与えた後、攻撃・防御・速度が20％上昇し、エネルギーを2回復する。最初の技が光属性の願力衝撃に置き換わる。"
+  },
+
+  acquisition:
+    "ディモの首領形態。",
+
+  evolution: [],
+
+  forms: [
+    "001-dimo",
+    "001-holy-light-dimo",
+    "001-holy-grass-dimo",
+    "001-holy-fire-dimo",
+    "001-holy-water-dimo"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+},
+
+
+/* ==================================================
+   NO.001 聖草迪莫・首領形態
+================================================== */
+
+{
+  key: "001-holy-grass-dimo",
+  id: 1,
+  dexNo: "001",
+
+  name: "聖草ディモ",
+  nameStatus: "仮",
+
+  chineseName: "圣草迪莫",
+  englishName: "",
+
+  form: "boss",
+  formName: "首領形態",
+  isBossForm: true,
+
+  type: ["light", "grass"],
+  typeName: ["光", "草"],
+
+  total: 594,
+
+  stats: {
+    hp: 132,
+    attack: 80,
+    magicAttack: 80,
+    defense: 105,
+    magicDefense: 105,
+    speed: 92
+  },
+
+  ability: {
+    chineseName: "滋养",
+    name: "滋養（仮）",
+    description:
+      "弱点を突くダメージを与えた後、攻撃・防御・速度が20％上昇し、エネルギーを2回復する。最初の技が草属性の願力衝撃に置き換わる。"
+  },
+
+  acquisition:
+    "ディモの首領形態。",
+
+  evolution: [],
+
+  forms: [
+    "001-dimo",
+    "001-holy-light-dimo",
+    "001-holy-grass-dimo",
+    "001-holy-fire-dimo",
+    "001-holy-water-dimo"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+},
+
+
+/* ==================================================
+   NO.001 聖火迪莫・首領形態
+================================================== */
+
+{
+  key: "001-holy-fire-dimo",
+  id: 1,
+  dexNo: "001",
+
+  name: "聖火ディモ",
+  nameStatus: "仮",
+
+  chineseName: "圣火迪莫",
+  englishName: "",
+
+  form: "boss",
+  formName: "首領形態",
+  isBossForm: true,
+
+  type: ["light", "fire"],
+  typeName: ["光", "火"],
+
+  total: 598,
+
+  stats: {
+    hp: 120,
+    attack: 88,
+    magicAttack: 88,
+    defense: 105,
+    magicDefense: 105,
+    speed: 92
+  },
+
+  ability: {
+    chineseName: "点燃",
+    name: "点火（仮）",
+    description:
+      "弱点を突くダメージを与えた後、攻撃・防御・速度が20％上昇し、エネルギーを2回復する。最初の技が火属性の願力衝撃に置き換わる。"
+  },
+
+  acquisition:
+    "ディモの首領形態。",
+
+  evolution: [],
+
+  forms: [
+    "001-dimo",
+    "001-holy-light-dimo",
+    "001-holy-grass-dimo",
+    "001-holy-fire-dimo",
+    "001-holy-water-dimo"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  dataStatus: "confirmed",
+  dataVersion: "中国版 S4",
+  checkedDate: "2026-10-04",
+
+  image: null
+},
+
+
+/* ==================================================
+   NO.001 聖水迪莫・首領形態
+================================================== */
+
+{
+  key: "001-holy-water-dimo",
+  id: 1,
+  dexNo: "001",
+
+  name: "聖水ディモ",
+  nameStatus: "仮",
+
+  chineseName: "圣水迪莫",
+  englishName: "",
+
+  form: "boss",
+  formName: "首領形態",
+  isBossForm: true,
+
+  type: ["light", "water"],
+  typeName: ["光", "水"],
+
+  total: 598,
+
+  stats: {
+    hp: 120,
+    attack: 80,
+    magicAttack: 80,
+    defense: 113,
+    magicDefense: 113,
+    speed: 92
+  },
+
+  ability: {
+    chineseName: "净化",
+    name: "浄化（仮）",
+    description:
+      "弱点を突くダメージを与えた後、攻撃・防御・速度が20％上昇し、エネルギーを2回復する。最初の技が水属性の願力衝撃に置き換わる。"
+  },
+
+  acquisition:
+    "ディモの首領形態。",
+
+  evolution: [],
+
+  forms: [
+    "001-dimo",
+    "001-holy-light-dimo",
+    "001-holy-grass-dimo",
+    "001-holy-fire-dimo",
+    "001-holy-water-dimo"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
   },
 
   dataStatus: "confirmed",
@@ -325,13 +609,19 @@ const characters = [
 ================================================== */
 
 {
+  key: "002-miaomiao",
   id: 2,
+  dexNo: "002",
 
   name: "ニャーニャー",
   nameStatus: "仮",
 
   chineseName: "喵喵",
   englishName: "",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
 
   type: ["grass"],
   typeName: ["草"],
@@ -377,6 +667,10 @@ const characters = [
     "Lv.32 → 魔力猫（仮）"
   ],
 
+  forms: [
+    "002-miaomiao"
+  ],
+
   skills: {
 
     level: [
@@ -577,7 +871,6 @@ const characters = [
 
     stone: [],
     bloodline: []
-
   },
 
   dataStatus: "confirmed",
@@ -593,13 +886,19 @@ const characters = [
 ================================================== */
 
 {
+  key: "003-miaowu",
   id: 3,
+  dexNo: "003",
 
   name: "ニャーウ",
   nameStatus: "仮",
 
   chineseName: "喵呜",
   englishName: "",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
 
   type: ["grass"],
   typeName: ["草"],
@@ -615,21 +914,6 @@ const characters = [
     speed: 44
   },
 
-  weaknesses: [
-    "fire",
-    "ice",
-    "poison",
-    "bug",
-    "wing"
-  ],
-
-  resistances: [
-    "water",
-    "light",
-    "ground",
-    "electric"
-  ],
-
   ability: {
     chineseName: "氧循环",
     name: "酸素循環",
@@ -644,207 +928,14 @@ const characters = [
     "Lv.32 → 魔力猫（仮）"
   ],
 
+  forms: [
+    "003-miaowu"
+  ],
+
   skills: {
-
-    level: [
-
-      {
-        level: 1,
-        chineseName: "抓挠",
-        name: "ひっかき（仮）",
-        type: "普通",
-        category: "物攻",
-        power: 35,
-        cost: 0,
-        description:
-          "物理ダメージを与え、自身のエネルギーを1回復する。"
-      },
-
-      {
-        level: 1,
-        chineseName: "休息回复",
-        name: "休息回復（仮）",
-        type: "普通",
-        category: "状態",
-        power: null,
-        cost: 2,
-        description:
-          "自身のHPを30％回復する。"
-      },
-
-      {
-        level: 6,
-        chineseName: "棘突",
-        name: "棘突（仮）",
-        type: "草",
-        category: "魔攻",
-        power: 100,
-        cost: 3,
-        description:
-          "敵の精霊に魔法ダメージを与える。"
-      },
-
-      {
-        level: 7,
-        chineseName: "扫尾",
-        name: "テールスイープ（仮）",
-        type: "普通",
-        category: "物攻",
-        power: 90,
-        cost: 2,
-        description:
-          "敵の精霊に物理ダメージを与える。"
-      },
-
-      {
-        level: 8,
-        chineseName: "藤绞",
-        name: "ツタ締め（仮）",
-        type: "草",
-        category: "物攻",
-        power: 80,
-        cost: 4,
-        description:
-          "物理ダメージを与え、自身のエネルギーを5回復する。"
-      },
-
-      {
-        level: 10,
-        chineseName: "防御",
-        name: "防御（仮）",
-        type: "普通",
-        category: "防御",
-        power: null,
-        cost: 1,
-        description:
-          "受けるダメージを70％軽減し、攻撃に対応する。"
-      },
-
-      {
-        level: 12,
-        chineseName: "徒长",
-        name: "徒長（仮）",
-        type: "草",
-        category: "状態",
-        power: null,
-        cost: 2,
-        description:
-          "自身のエネルギーを10回復する。"
-      },
-
-      {
-        level: 17,
-        chineseName: "叶绿光束",
-        name: "葉緑光線（仮）",
-        type: "草",
-        category: "魔攻",
-        power: 120,
-        cost: 4,
-        description:
-          "敵の精霊に魔法ダメージを与える。"
-      },
-
-      {
-        level: 21,
-        chineseName: "酶浓度调整",
-        name: "酵素濃度調整（仮）",
-        type: "草",
-        category: "防御",
-        power: null,
-        cost: 3,
-        description:
-          "受けるダメージを80％軽減する。攻撃に対応した場合、自身のHPを20％回復する。"
-      },
-
-      {
-        level: 29,
-        chineseName: "筛管奔流",
-        name: "師管奔流（仮）",
-        type: "草",
-        category: "物攻",
-        power: 80,
-        cost: 3,
-        description:
-          "物理ダメージを与える。自身のHPが80％を超えている場合、この技の威力が75上昇する。"
-      },
-
-      {
-        level: 30,
-        chineseName: "盛开",
-        name: "開花（仮）",
-        type: "草",
-        category: "状態",
-        power: null,
-        cost: 1,
-        description:
-          "自身の全技の威力を30上昇させる。防御に対応した場合、威力上昇量が60になる。"
-      },
-
-      {
-        level: 36,
-        chineseName: "孢子",
-        name: "胞子（仮）",
-        type: "草",
-        category: "状態",
-        power: null,
-        cost: 3,
-        description:
-          "敵に寄生を3層付与する。"
-      },
-
-      {
-        level: 42,
-        chineseName: "仙人掌刺击",
-        name: "サボテン刺突（仮）",
-        type: "草",
-        category: "物攻",
-        power: 150,
-        cost: 6,
-        description:
-          "敵の精霊に物理ダメージを与える。"
-      },
-
-      {
-        level: 48,
-        chineseName: "丰饶",
-        name: "豊穣（仮）",
-        type: "草",
-        category: "状態",
-        power: null,
-        cost: 3,
-        description:
-          "自身の物攻と魔攻を140％上昇させる。"
-      },
-
-      {
-        level: 49,
-        chineseName: "光合作用",
-        name: "光合成（仮）",
-        type: "草",
-        category: "状態",
-        power: null,
-        cost: 4,
-        description:
-          "自身に光合印記を1層付与する。"
-      },
-
-      {
-        level: 50,
-        chineseName: "光能聚集",
-        name: "光エネルギー集積（仮）",
-        type: "草",
-        category: "魔攻",
-        power: 100,
-        cost: 7,
-        description:
-          "魔法ダメージを与える。他の草属性技を使用するたび、この技の威力が恒久的に60上昇する。"
-      }
-
-    ],
-
+    level: [],
     stone: [],
     bloodline: []
-
   },
 
   dataStatus: "confirmed",
@@ -860,13 +951,19 @@ const characters = [
 ================================================== */
 
 {
+  key: "004-magic-cat",
   id: 4,
+  dexNo: "004",
 
   name: "魔力猫",
   nameStatus: "仮",
 
   chineseName: "魔力猫",
   englishName: "",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
 
   type: ["grass"],
   typeName: ["草"],
@@ -893,10 +990,18 @@ const characters = [
     "喵呜をLv.32まで育成すると進化。",
 
   evolution: [
-    "👑 首領形態 → 葉冕魔力猫（仮）"
+    "👑 首領形態あり"
   ],
 
-  skills: [],
+  forms: [
+    "004-magic-cat"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
 
   dataStatus: "confirmed",
   dataVersion: "中国版 S4",
@@ -911,13 +1016,19 @@ const characters = [
 ================================================== */
 
 {
+  key: "005-huohua",
   id: 5,
+  dexNo: "005",
 
   name: "火花",
   nameStatus: "仮",
 
   chineseName: "火花",
   englishName: "",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
 
   type: ["fire"],
   typeName: ["火"],
@@ -948,7 +1059,15 @@ const characters = [
     "Lv.36 → 火神（仮）"
   ],
 
-  skills: [],
+  forms: [
+    "005-huohua"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
 
   dataStatus: "confirmed",
   dataVersion: "中国版 S4",
@@ -963,13 +1082,19 @@ const characters = [
 ================================================== */
 
 {
+  key: "006-yanhuo",
   id: 6,
+  dexNo: "006",
 
   name: "焰火",
   nameStatus: "仮",
 
   chineseName: "焰火",
   englishName: "",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
 
   type: ["fire"],
   typeName: ["火"],
@@ -999,7 +1124,15 @@ const characters = [
     "Lv.36 → 火神（仮）"
   ],
 
-  skills: [],
+  forms: [
+    "006-yanhuo"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
 
   dataStatus: "confirmed",
   dataVersion: "中国版 S4",
@@ -1014,13 +1147,19 @@ const characters = [
 ================================================== */
 
 {
+  key: "007-fire-god",
   id: 7,
+  dexNo: "007",
 
   name: "火神",
   nameStatus: "仮",
 
   chineseName: "火神",
   englishName: "",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
 
   type: ["fire"],
   typeName: ["火"],
@@ -1047,10 +1186,18 @@ const characters = [
     "焰火をLv.36まで育成すると進化。",
 
   evolution: [
-    "👑 首領形態 → 烈火戦神（仮）"
+    "👑 首領形態あり"
   ],
 
-  skills: [],
+  forms: [
+    "007-fire-god"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
 
   dataStatus: "confirmed",
   dataVersion: "中国版 S4",
@@ -1065,13 +1212,19 @@ const characters = [
 ================================================== */
 
 {
+  key: "008-shuilanlan",
   id: 8,
+  dexNo: "008",
 
   name: "水藍藍",
   nameStatus: "仮",
 
   chineseName: "水蓝蓝",
   englishName: "",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
 
   type: ["water"],
   typeName: ["水"],
@@ -1102,7 +1255,15 @@ const characters = [
     "Lv.36 → 水灵（仮）"
   ],
 
-  skills: [],
+  forms: [
+    "008-shuilanlan"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
 
   dataStatus: "confirmed",
   dataVersion: "中国版 S4",
@@ -1117,13 +1278,19 @@ const characters = [
 ================================================== */
 
 {
+  key: "009-bobola",
   id: 9,
+  dexNo: "009",
 
   name: "波波拉",
   nameStatus: "仮",
 
   chineseName: "波波拉",
   englishName: "",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
 
   type: ["water"],
   typeName: ["水"],
@@ -1153,7 +1320,15 @@ const characters = [
     "Lv.36 → 水灵（仮）"
   ],
 
-  skills: [],
+  forms: [
+    "009-bobola"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
 
   dataStatus: "confirmed",
   dataVersion: "中国版 S4",
@@ -1168,13 +1343,19 @@ const characters = [
 ================================================== */
 
 {
+  key: "010-water-spirit",
   id: 10,
+  dexNo: "010",
 
   name: "水霊",
   nameStatus: "仮",
 
   chineseName: "水灵",
   englishName: "",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
 
   type: ["water"],
   typeName: ["水"],
@@ -1201,10 +1382,19 @@ const characters = [
     "波波拉をLv.36まで育成すると進化。",
 
   evolution: [
-    "👑 首領形態あり"
+    "👑 聖水守護（首領形態）"
   ],
 
-  skills: [],
+  forms: [
+    "010-water-spirit",
+    "010-holy-water-guardian"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
 
   dataStatus: "confirmed",
   dataVersion: "中国版 S4",
