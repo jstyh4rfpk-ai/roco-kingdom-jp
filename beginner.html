@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>初心者攻略 | ロコキングダム速報</title>
+
+<meta name="description"
+content="Roco Kingdom（洛克王国：世界）をこれから始める初心者向け攻略ページ。序盤の進め方、キャラクター、属性、育成、探索などを日本語で整理しています。">
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+  color:#17324d;
+  line-height:1.75;
+  background:#f1f8fd;
+}
+
+/* =========================
+   ヘッダー
+========================= */
+
+header{
+  padding:28px 16px;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#50b7f0,#79d4ff);
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:6px 0 0;
+  font-size:13px;
+}
+
+/* =========================
+   戻る
+========================= */
+
+.back{
+  display:block;
+  padding:14px 18px;
+  background:white;
+  border-bottom:1px solid #dceaf4;
+  color:#1677d2;
+  text-decoration:none;
+  font-weight:900;
+}
+
+/* =========================
+   メイン
+========================= */
+
+main{
+  width:min(900px,calc(100% - 24px));
+  margin:20px auto 50px;
+}
+
+.card{
+  margin-bottom:17px;
+  padding:20px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:19px;
+  box-shadow:0 5px 20px rgba(30,90,130,.08);
+}
+
+.card h2{
+  margin:0 0 12px;
+  font-size:21px;
+}
+
+.card h3{
+  margin:18px 0 7px;
+  font-size:16px;
+}
+
+.description{
+  margin:0;
+  color:#647e92;
+  font-size:13px;
+}
+
+/* =========================
+   初心者メニュー
+========================= */
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-top:16px;
+}
+
+.menu{
+  padding:15px 8px;
+  text-align:center;
+  border:1px solid #d5e5ef;
+  border-radius:14px;
+  background:#f6fbfe;
+}
+
+.menu-icon{
+  display:block;
+  margin-bottom:5px;
+  font-size:28px;
+}
+
+.menu-title{
+  display:block;
+  font-size:13px;
+  font-weight:900;
+}
+
+.menu-text{
+  display:block;
+  margin-top:3px;
+  color:#758b9d;
+  font-size:10px;
+}
+
+/* =========================
+   最初にやること
+========================= */
+
+.steps{
+  margin-top:15px;
+}
+
+.step{
+  position:relative;
+  margin-bottom:24px;
+  padding:16px;
+  border:1px solid #d7e6ef;
+  border-radius:15px;
+  background:#f9fcfe;
+}
+
+.step:not(:last-child)::after{
+  content:"↓";
+  position:absolute;
+  left:50%;
+  bottom:-24px;
+  transform:translateX(-50%);
+  color:#4ba7df;
+  font-size:20px;
+  font-weight:900;
+}
+
+.step-head{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.step-number{
+  display:flex;
+  width:30px;
+  height:30px;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  border-radius:50%;
+  background:#1689e8;
+  color:white;
+  font-size:13px;
+  font-weight:900;
+}
+
+.step-title{
+  color:#126fc1;
+  font-weight:900;
+}
+
+.step-text{
+  margin-top:7px;
+  color:#60798d;
+  font-size:12px;
+}
+
+/* =========================
+   ポイント
+========================= */
+
+.point-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-top:14px;
+}
+
+.point{
+  padding:13px;
+  border-radius:13px;
+  background:#f3f8fb;
+}
+
+.point strong{
+  display:block;
+  margin-bottom:3px;
+  font-size:13px;
+}
+
+.point span{
+  color:#71879a;
+  font-size:10px;
+}
+
+/* =========================
+   チェックリスト
+========================= */
+
+.check-list{
+  margin-top:12px;
+}
+
+.check{
+  display:flex;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #e5edf2;
+}
+
+.check:last-child{
+  border-bottom:0;
+}
+
+.check-icon{
+  flex-shrink:0;
+  font-size:18px;
+}
+
+.check-text{
+  color:#536e82;
+  font-size:12px;
+}
+
+.check-text strong{
+  display:block;
+  color:#284b66;
+  font-size:13px;
+}
+
+/* =========================
+   属性
+========================= */
+
+.type-box{
+  margin-top:14px;
+  padding:16px;
+  border:1px solid #d7e6ef;
+  border-radius:15px;
+  background:#f8fcfe;
+}
+
+.type-example{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  margin:13px 0;
+  font-weight:900;
+}
+
+.type-arrow{
+  color:#1689e8;
+}
+
+.type-note{
+  color:#657e91;
+  font-size:11px;
+  text-align:center;
+}
+
+/* =========================
+   関連攻略
+========================= */
+
+.link-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-top:14px;
+}
+
+.link-button{
+  display:flex;
+  min-height:55px;
+  padding:10px 7px;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  border-radius:13px;
+  background:#1689e8;
+  color:white;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:900;
+}
+
+/* =========================
+   おすすめ
+========================= */
+
+.recommend{
+  margin-top:14px;
+  padding:16px;
+  border:1px solid #eed684;
+  border-radius:15px;
+  background:linear-gradient(135deg,#fff9df,#fffdf5);
+}
+
+.recommend-title{
+  color:#92700f;
+  font-weight:900;
+}
+
+.recommend-text{
+  margin-top:5px;
+  color:#716337;
+  font-size:12px;
+}
+
+/* =========================
+   注意
+========================= */
+
+.notice{
+  padding:16px;
+  border:1px solid #efdb96;
+  border-radius:14px;
+  background:#fff9e7;
+  color:#66582b;
+  font-size:12px;
+}
+
+/* =========================
+   準備中
+========================= */
+
+.preparing{
+  margin-top:14px;
+  padding:20px 15px;
+  text-align:center;
+  border:1px dashed #bad3e3;
+  border-radius:14px;
+  background:#f8fbfd;
+  color:#70889b;
+  font-size:12px;
+}
+
+/* =========================
+   PC
+========================= */
+
+@media(min-width:700px){
+
+  .menu-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .point-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .link-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+}
+
+/* =========================
+   スマホ
+========================= */
+
+@media(max-width:400px){
+
+  .card{
+    padding:16px;
+  }
+
+  .card h2{
+    font-size:19px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<header>
+
+  <h1>🔰 初心者攻略</h1>
+
+  <p>
+    ロコキングダム速報 攻略ガイド
+  </p>
+
+</header>
+
+
+<a class="back" href="index.html">
+  ← ロコキングダム速報へ戻る
+</a>
+
+
+<main>
+
+
+<!-- =========================
+     初心者ガイド
+========================= -->
+
+<section class="card">
+
+  <h2>🔰 初心者ガイド</h2>
+
+  <p class="description">
+    Roco Kingdomをこれから始める人向けに、
+    最初に知っておきたい基本情報や
+    序盤の進め方をまとめていきます。
+  </p>
+
+
+  <div class="menu-grid">
+
+    <div class="menu">
+
+      <span class="menu-icon">
+        🐾
+      </span>
+
+      <span class="menu-title">
+        キャラクター
+      </span>
+
+      <span class="menu-text">
+        仲間を集める
+      </span>
+
+    </div>
+
+
+    <div class="menu">
+
+      <span class="menu-icon">
+        ⚔️
+      </span>
+
+      <span class="menu-title">
+        バトル
+      </span>
+
+      <span class="menu-text">
+        技と属性を理解
+      </span>
+
+    </div>
+
+
+    <div class="menu">
+
+      <span class="menu-icon">
+        🌱
+      </span>
+
+      <span class="menu-title">
+        育成
+      </span>
+
+      <span class="menu-text">
+        レベル・進化
+      </span>
+
+    </div>
+
+
+    <div class="menu">
+
+      <span class="menu-icon">
+        🗺️
+      </span>
+
+      <span class="menu-title">
+        探索
+      </span>
+
+      <span class="menu-text">
+        世界を冒険
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     最初にやること
+========================= -->
+
+<section class="card">
+
+  <h2>🚀 最初にやること</h2>
+
+  <div class="steps">
+
+
+    <div class="step">
+
+      <div class="step-head">
+
+        <span class="step-number">
+          1
+        </span>
+
+        <span class="step-title">
+          基本操作を覚える
+        </span>
+
+      </div>
+
+      <div class="step-text">
+        移動・探索・バトルなど、
+        ゲームの基本操作を確認しながら進めます。
+      </div>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-head">
+
+        <span class="step-number">
+          2
+        </span>
+
+        <span class="step-title">
+          キャラクターを集める
+        </span>
+
+      </div>
+
+      <div class="step-text">
+        冒険を進めながらキャラクターを集め、
+        それぞれの属性や特徴を確認します。
+      </div>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-head">
+
+        <span class="step-number">
+          3
+        </span>
+
+        <span class="step-title">
+          属性相性を覚える
+        </span>
+
+      </div>
+
+      <div class="step-text">
+        バトルでは属性相性が重要です。
+        相手の弱点を確認して有利な属性で戦います。
+      </div>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-head">
+
+        <span class="step-number">
+          4
+        </span>
+
+        <span class="step-title">
+          キャラクターを育成する
+        </span>
+
+      </div>
+
+      <div class="step-text">
+        よく使うキャラクターを育てて、
+        レベルアップや進化、技習得を進めます。
+      </div>
+
+    </div>
+
+
+    <div class="step">
+
+      <div class="step-head">
+
+        <span class="step-number">
+          5
+        </span>
+
+        <span class="step-title">
+          マップを探索する
+        </span>
+
+      </div>
+
+      <div class="step-text">
+        新しいエリアを探索して、
+        キャラクター・素材・アイテム・
+        特殊な探索要素を探します。
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     覚えておきたいこと
+========================= -->
+
+<section class="card">
+
+  <h2>💡 最初に覚えておきたいこと</h2>
+
+
+  <div class="point-grid">
+
+
+    <div class="point">
+
+      <strong>
+        🔥 属性
+      </strong>
+
+      <span>
+        弱点・耐性を確認
+      </span>
+
+    </div>
+
+
+    <div class="point">
+
+      <strong>
+        ⚔️ 技
+      </strong>
+
+      <span>
+        威力と消費を確認
+      </span>
+
+    </div>
+
+
+    <div class="point">
+
+      <strong>
+        🌱 進化
+      </strong>
+
+      <span>
+        条件を満たして強化
+      </span>
+
+    </div>
+
+
+    <div class="point">
+
+      <strong>
+        🗺️ 探索
+      </strong>
+
+      <span>
+        新しい発見を探す
+      </span>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     属性
+========================= -->
+
+<section class="card">
+
+  <h2>🔥 属性相性を理解しよう</h2>
+
+  <p class="description">
+    キャラクターや技には属性があり、
+    相手との相性によって戦いやすさが変わります。
+  </p>
+
+
+  <div class="type-box">
+
+    <div class="type-example">
+
+      <span>
+        🔥 火
+      </span>
+
+      <span class="type-arrow">
+        →
+      </span>
+
+      <span>
+        🌿 草
+      </span>
+
+    </div>
+
+
+    <div class="type-note">
+      属性ごとの詳しい弱点・耐性は
+      属性相性ページから確認できます。
+    </div>
+
+  </div>
+
+
+  <a
+    class="link-button"
+    href="type.html"
+    style="margin-top:12px;">
+
+    🔥 属性相性を見る
+
+  </a>
+
+</section>
+
+
+<!-- =========================
+     育成
+========================= -->
+
+<section class="card">
+
+  <h2>🌱 育成はよく使うキャラから</h2>
+
+  <p class="description">
+    最初からすべてのキャラクターを
+    同時に育てる必要はありません。
+  </p>
+
+
+  <div class="recommend">
+
+    <div class="recommend-title">
+      ⭐ 序盤の育成ポイント
+    </div>
+
+    <div class="recommend-text">
+      よく使うキャラクターを中心に育てながら、
+      必要に応じて別属性のキャラクターも
+      育成していくと進めやすくなります。
+    </div>
+
+  </div>
+
+
+  <div class="check-list">
+
+
+    <div class="check">
+
+      <span class="check-icon">
+        ✅
+      </span>
+
+      <div class="check-text">
+
+        <strong>
+          レベルを上げる
+        </strong>
+
+        ステータスを伸ばして
+        新しい技や進化を目指します。
+
+      </div>
+
+    </div>
+
+
+    <div class="check">
+
+      <span class="check-icon">
+        ✅
+      </span>
+
+      <div class="check-text">
+
+        <strong>
+          技を確認する
+        </strong>
+
+        キャラクターによって
+        習得できる技が異なります。
+
+      </div>
+
+    </div>
+
+
+    <div class="check">
+
+      <span class="check-icon">
+        ✅
+      </span>
+
+      <div class="check-text">
+
+        <strong>
+          進化先を確認する
+        </strong>
+
+        レベルなどの条件で
+        次の形態へ進化する場合があります。
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     探索
+========================= -->
+
+<section class="card">
+
+  <h2>🗺️ 探索も重要</h2>
+
+  <p class="description">
+    Roco Kingdomでは、
+    キャラクター育成だけでなく
+    ワールドの探索情報も順次整理していきます。
+  </p>
+
+
+  <div class="check-list">
+
+
+    <div class="check">
+
+      <span class="check-icon">
+        🐾
+      </span>
+
+      <div class="check-text">
+
+        <strong>
+          キャラクターを探す
+        </strong>
+
+        エリアごとの出現情報を確認します。
+
+      </div>
+
+    </div>
+
+
+    <div class="check">
+
+      <span class="check-icon">
+        🎒
+      </span>
+
+      <div class="check-text">
+
+        <strong>
+          素材を集める
+        </strong>
+
+        探索中に入手できる
+        アイテムや素材を集めます。
+
+      </div>
+
+    </div>
+
+
+    <div class="check">
+
+      <span class="check-icon">
+        🔎
+      </span>
+
+      <div class="check-text">
+
+        <strong>
+          特殊な場所を調べる
+        </strong>
+
+        探索ギミックや収集要素も
+        確認していきます。
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     攻略ページ
+========================= -->
+
+<section class="card">
+
+  <h2>📘 攻略ページ一覧</h2>
+
+  <p class="description">
+    分からないことがあれば、
+    各攻略ページから詳しい情報を確認できます。
+  </p>
+
+
+  <div class="link-grid">
+
+
+    <a
+      class="link-button"
+      href="pokedex.html">
+
+      🐾 キャラ図鑑
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="type.html">
+
+      🔥 属性相性
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="ranking.html">
+
+      ⭐ おすすめキャラ
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="training.html">
+
+      🌱 育成・進化
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="skills.html">
+
+      ⚔️ 技一覧
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="items.html">
+
+      🎒 アイテム
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="map.html">
+
+      🗺️ マップ攻略
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="bbs.html">
+
+      💬 攻略掲示板
+
+    </a>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     今後
+========================= -->
+
+<section class="card">
+
+  <h2>🔎 今後追加予定</h2>
+
+
+  <div class="preparing">
+
+    ・ゲーム開始直後の詳しい進め方<br>
+    ・序盤おすすめキャラクター<br>
+    ・序盤おすすめ技<br>
+    ・効率的なレベル上げ<br>
+    ・育成素材の集め方<br>
+    ・序盤の探索ルート<br>
+    ・初心者が知っておきたい機能<br>
+    ・よくある質問
+
+    <br><br>
+
+    日本版・中国版の情報を確認しながら
+    順次追加します。
+
+  </div>
+
+</section>
+
+
+<div class="notice">
+
+  <strong>
+    📌 初心者攻略について
+  </strong>
+
+  <br><br>
+
+  現在は攻略ページの基本構造を作成しています。
+
+  <br><br>
+
+  日本版サービス開始後は、
+  実際のゲーム進行・チュートリアル・
+  日本版の仕様に合わせて内容を更新します。
+
+  <br><br>
+
+  未確認の仕様については推測で断定せず、
+  確認できた情報を順次掲載します。
+
+</div>
+
+
+</main>
+
+</body>
+</html>
