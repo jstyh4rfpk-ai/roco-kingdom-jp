@@ -10,7 +10,9 @@
  ・季節形態
  ・首領形態
  ・同一図鑑番号の複数形態
- ・将来621形態まで追加可能
+ ・直接進化 evolutionNext 対応
+ ・進化前は自動逆引き可能
+ ・将来621形態以上まで追加可能
 
  未確認データは推測せず null / 空配列
 ==================================================
@@ -56,6 +58,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "001-dimo",
@@ -108,6 +111,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "001-dimo",
@@ -160,6 +164,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "001-dimo",
@@ -212,6 +217,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "001-dimo",
@@ -264,6 +270,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "001-dimo",
@@ -320,6 +327,10 @@ const characters = [
     "004 魔力猫"
   ],
 
+  evolutionNext: [
+    "003"
+  ],
+
   forms: [
     "002-miaomiao"
   ],
@@ -370,6 +381,10 @@ const characters = [
     "004 魔力猫"
   ],
 
+  evolutionNext: [
+    "004"
+  ],
+
   forms: [
     "003-miaowu"
   ],
@@ -417,6 +432,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "004-magic-cat",
@@ -467,6 +483,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "004-magic-cat",
@@ -517,6 +534,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "004-magic-cat",
@@ -571,6 +589,10 @@ const characters = [
     "007 火神"
   ],
 
+  evolutionNext: [
+    "006"
+  ],
+
   forms: [
     "005-huohua"
   ],
@@ -621,6 +643,10 @@ const characters = [
     "007 火神"
   ],
 
+  evolutionNext: [
+    "007"
+  ],
+
   forms: [
     "006-yanhuo"
   ],
@@ -668,6 +694,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "007-fire-god",
@@ -726,6 +753,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "007-fire-god",
@@ -788,6 +816,10 @@ const characters = [
     "010 水灵"
   ],
 
+  evolutionNext: [
+    "009"
+  ],
+
   forms: [
     "008-shuilanlan"
   ],
@@ -847,6 +879,10 @@ const characters = [
     "010 水灵"
   ],
 
+  evolutionNext: [
+    "010"
+  ],
+
   forms: [
     "009-bobola"
   ],
@@ -903,6 +939,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "010-water-spirit",
@@ -961,6 +998,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "010-water-spirit",
@@ -1020,6 +1058,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "011-yajiji-fluffy",
@@ -1077,6 +1116,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "011-yajiji-fluffy",
@@ -1134,6 +1174,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "011-yajiji-fluffy",
@@ -1191,6 +1232,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "011-yajiji-fluffy",
@@ -1248,6 +1290,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "011-yajiji-fluffy",
@@ -1305,6 +1348,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "011-yajiji-fluffy",
@@ -1372,6 +1416,10 @@ const characters = [
     "014 水泡壳"
   ],
 
+  evolutionNext: [
+    "013"
+  ],
+
   forms: [
     "012-banbanke-normal",
     "012-banbanke-molting"
@@ -1427,6 +1475,12 @@ const characters = [
     "013 咔咔壳",
     "014 水泡壳"
   ],
+
+  /*
+   variantは通常形態の進化情報を参照するため
+   直接進化はここでは持たせない
+  */
+  evolutionNext: [],
 
   forms: [
     "012-banbanke-normal",
@@ -1489,6 +1543,10 @@ const characters = [
     "014 水泡壳"
   ],
 
+  evolutionNext: [
+    "014"
+  ],
+
   forms: [
     "013-kakake-normal",
     "013-kakake-molting"
@@ -1543,6 +1601,8 @@ const characters = [
   evolution: [
     "014 水泡壳"
   ],
+
+  evolutionNext: [],
 
   forms: [
     "013-kakake-normal",
@@ -1602,6 +1662,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "014-shuipaoke-normal",
@@ -1655,6 +1716,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "014-shuipaoke-normal",
@@ -1717,6 +1779,10 @@ const characters = [
     "Lv.32 → 017 花影羚羊"
   ],
 
+  evolutionNext: [
+    "016"
+  ],
+
   forms: [
     "015-zhuiweiyang"
   ],
@@ -1776,6 +1842,10 @@ const characters = [
     "Lv.32 → 017 花影羚羊"
   ],
 
+  evolutionNext: [
+    "017"
+  ],
+
   forms: [
     "016-linglanyang"
   ],
@@ -1832,6 +1902,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "017-huayinglingyang"
@@ -1894,6 +1965,10 @@ const characters = [
     "020 岚鸟"
   ],
 
+  evolutionNext: [
+    "019"
+  ],
+
   forms: [
     "018-xuerongniao",
     "018-xuerongniao-spring",
@@ -1941,6 +2016,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "018-xuerongniao",
@@ -1988,6 +2064,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "018-xuerongniao",
@@ -2035,6 +2112,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "018-xuerongniao",
@@ -2090,6 +2168,10 @@ const characters = [
     "020 岚鸟"
   ],
 
+  evolutionNext: [
+    "020"
+  ],
+
   forms: [
     "019-dongyuque",
     "019-dongyuque-spring",
@@ -2136,6 +2218,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "019-dongyuque",
@@ -2183,6 +2266,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "019-dongyuque",
@@ -2230,6 +2314,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "019-dongyuque",
@@ -2282,6 +2367,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "020-lanniao",
@@ -2330,6 +2416,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "020-lanniao",
@@ -2378,6 +2465,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "020-lanniao",
@@ -2426,6 +2514,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "020-lanniao",
@@ -2473,6 +2562,7 @@ const characters = [
   },
 
   evolution: [],
+  evolutionNext: [],
 
   forms: [
     "020-lanniao",
@@ -2600,7 +2690,7 @@ const typeData = {
 
 /*
 ==================================================
- データ取得用ヘルパー
+ 基本取得ヘルパー
 ==================================================
 */
 
@@ -2619,12 +2709,35 @@ function getCharacterByKey(key) {
 
 
 /*
+ 図鑑番号を必ず3桁にする
+*/
+function normalizeDexNo(dexNo) {
+
+  if (
+    dexNo === null ||
+    dexNo === undefined ||
+    dexNo === ""
+  ) {
+    return null;
+  }
+
+  return String(dexNo)
+    .padStart(3, "0");
+
+}
+
+
+/*
  図鑑番号から全形態を取得
 */
 function getCharactersByDexNo(dexNo) {
 
   const normalized =
-    String(dexNo).padStart(3, "0");
+    normalizeDexNo(dexNo);
+
+  if (!normalized) {
+    return [];
+  }
 
   return characters.filter(
     character =>
@@ -2636,6 +2749,11 @@ function getCharactersByDexNo(dexNo) {
 
 /*
  図鑑番号から代表形態を取得
+
+ 優先順位
+ 1. main
+ 2. bossではない形態
+ 3. 最初の形態
 */
 function getMainCharacterByDexNo(dexNo) {
 
@@ -2646,14 +2764,91 @@ function getMainCharacterByDexNo(dexNo) {
     return null;
   }
 
-  return (
+  const main =
     forms.find(
       character =>
         character.form === "main"
-    )
-    ||
-    forms[0]
-  );
+    );
+
+  if (main) {
+    return main;
+  }
+
+  const normal =
+    forms.find(
+      character =>
+        character.form !== "boss" &&
+        character.isBossForm !== true
+    );
+
+  return normal || forms[0];
+
+}
+
+
+/*
+==================================================
+ 形態取得
+==================================================
+*/
+
+
+/*
+ 同じ図鑑番号の全形態
+*/
+function getRelatedForms(character) {
+
+  if (!character) {
+    return [];
+  }
+
+  const result = [];
+
+  /*
+   formsに登録された順番を優先
+  */
+  if (Array.isArray(character.forms)) {
+
+    character.forms.forEach(key => {
+
+      const form =
+        getCharacterByKey(key);
+
+      if (
+        form &&
+        !result.some(
+          item =>
+            item.key === form.key
+        )
+      ) {
+        result.push(form);
+      }
+
+    });
+
+  }
+
+  /*
+   formsに書き忘れた形態があっても
+   dexNoから自動補完
+  */
+  getCharactersByDexNo(
+    character.dexNo
+  )
+  .forEach(form => {
+
+    if (
+      !result.some(
+        item =>
+          item.key === form.key
+      )
+    ) {
+      result.push(form);
+    }
+
+  });
+
+  return result;
 
 }
 
@@ -2685,6 +2880,316 @@ function getSeasonForms() {
 
 
 /*
+==================================================
+ 進化システム
+==================================================
+*/
+
+
+/*
+ 進化判定に使う基準キャラを取得
+
+ 季節・首領・variantなどを開いていても、
+ 同じ図鑑番号にmainが存在する場合は
+ mainの進化情報を使用する。
+*/
+function getEvolutionBaseCharacter(character) {
+
+  if (!character) {
+    return null;
+  }
+
+  return (
+    getMainCharacterByDexNo(
+      character.dexNo
+    )
+    ||
+    character
+  );
+
+}
+
+
+/*
+ 直接の進化先を取得
+
+ evolutionNextだけを見るため、
+ 002 → 004 のような
+ 「途中を飛ばした誤表示」が起きない。
+*/
+function getDirectEvolutionTargets(character) {
+
+  const base =
+    getEvolutionBaseCharacter(
+      character
+    );
+
+  if (
+    !base ||
+    !Array.isArray(base.evolutionNext)
+  ) {
+    return [];
+  }
+
+  const result = [];
+
+  base.evolutionNext
+    .forEach(dexNo => {
+
+      const target =
+        getMainCharacterByDexNo(
+          dexNo
+        );
+
+      if (
+        target &&
+        !result.some(
+          item =>
+            item.key === target.key
+        )
+      ) {
+        result.push(target);
+      }
+
+    });
+
+  return result;
+
+}
+
+
+/*
+ 直接の進化前を自動逆引き
+
+ evolutionFromを各キャラに
+ 手入力する必要はない。
+*/
+function getDirectPreEvolutionCharacters(character) {
+
+  const base =
+    getEvolutionBaseCharacter(
+      character
+    );
+
+  if (!base) {
+    return [];
+  }
+
+  const currentDex =
+    base.dexNo;
+
+  const result = [];
+
+  /*
+   同じ図鑑番号の形態を何度も調べないため
+   main/代表形態だけを対象にする
+  */
+  getDexNumbers()
+    .forEach(dexNo => {
+
+      const source =
+        getMainCharacterByDexNo(
+          dexNo
+        );
+
+      if (!source) {
+        return;
+      }
+
+      if (
+        !Array.isArray(
+          source.evolutionNext
+        )
+      ) {
+        return;
+      }
+
+      const hasCurrent =
+        source.evolutionNext
+          .some(nextDex => {
+
+            return (
+              normalizeDexNo(nextDex)
+              ===
+              currentDex
+            );
+
+          });
+
+      if (
+        hasCurrent &&
+        !result.some(
+          item =>
+            item.key === source.key
+        )
+      ) {
+        result.push(source);
+      }
+
+    });
+
+  return result;
+
+}
+
+
+/*
+==================================================
+ 進化ルート取得
+
+ 例：
+ 018 → 019 → 020
+
+ character.html以外でも
+ 将来的に利用可能
+==================================================
+*/
+
+
+/*
+ 進化前方向へたどる
+*/
+function getEvolutionAncestors(character) {
+
+  const base =
+    getEvolutionBaseCharacter(
+      character
+    );
+
+  if (!base) {
+    return [];
+  }
+
+  const result = [];
+  const visited = new Set();
+
+  let current = base;
+
+  while (current) {
+
+    if (visited.has(current.dexNo)) {
+      break;
+    }
+
+    visited.add(current.dexNo);
+
+    const previous =
+      getDirectPreEvolutionCharacters(
+        current
+      );
+
+    /*
+     分岐進化の場合は
+     単一路線として決めつけない
+    */
+    if (previous.length !== 1) {
+      break;
+    }
+
+    const prev =
+      previous[0];
+
+    result.unshift(prev);
+
+    current = prev;
+
+  }
+
+  return result;
+
+}
+
+
+/*
+ 進化先方向へたどる
+*/
+function getEvolutionDescendants(character) {
+
+  const base =
+    getEvolutionBaseCharacter(
+      character
+    );
+
+  if (!base) {
+    return [];
+  }
+
+  const result = [];
+  const visited = new Set();
+
+  let current = base;
+
+  while (current) {
+
+    if (visited.has(current.dexNo)) {
+      break;
+    }
+
+    visited.add(current.dexNo);
+
+    const next =
+      getDirectEvolutionTargets(
+        current
+      );
+
+    /*
+     分岐進化の場合は
+     単一路線として決めつけない
+    */
+    if (next.length !== 1) {
+      break;
+    }
+
+    const target =
+      next[0];
+
+    result.push(target);
+
+    current = target;
+
+  }
+
+  return result;
+
+}
+
+
+/*
+ 単一路線の進化系統をまとめて取得
+
+ 例：
+ NO.019を開いても
+ [018,019,020]
+ を返せる
+*/
+function getEvolutionChain(character) {
+
+  const base =
+    getEvolutionBaseCharacter(
+      character
+    );
+
+  if (!base) {
+    return [];
+  }
+
+  return [
+    ...getEvolutionAncestors(base),
+    base,
+    ...getEvolutionDescendants(base)
+  ];
+
+}
+
+
+/*
+==================================================
+ 検索
+==================================================
+*/
+
+
+/*
  属性から検索
 */
 function getCharactersByType(type) {
@@ -2699,7 +3204,7 @@ function getCharactersByType(type) {
 
 
 /*
- 名前検索
+ 名前・番号・形態・属性から検索
 */
 function searchCharacters(keyword) {
 
@@ -2755,7 +3260,11 @@ function getDexNumbers() {
           character.dexNo
       )
     )
-  ];
+  ]
+  .sort(
+    (a,b) =>
+      Number(a) - Number(b)
+  );
 
 }
 
