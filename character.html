@@ -1993,8 +1993,15 @@ else{
    ページタイトル
 ========================================== */
 
+const characterDisplayName =
+  character.name === null ||
+  character.name === undefined ||
+  String(character.name).trim() === ""
+  ? "名前確認中"
+  : character.name;
+
 document.title =
-  `${character.name}${character.formName ? " "+character.formName : ""} | ロコキングダム速報`;
+  `${characterDisplayName}${character.formName ? " "+character.formName : ""} | ロコキングダム速報`;
 
 
 /* ==========================================
@@ -2009,7 +2016,7 @@ if(character.image){
 
     <img
       src="${character.image}"
-      alt="${character.name}"
+      alt="${characterDisplayName}"
     >
 
   `;
@@ -2337,9 +2344,16 @@ content.innerHTML = `
 
   <div class="name">
 
-    ${character.name}
+    ${
+      character.name === null ||
+      character.name === undefined ||
+      String(character.name).trim() === ""
+      ? "名前確認中"
+      : character.name
+    }
 
     ${
+      character.name &&
       character.nameStatus === "仮"
       ? "（仮）"
       : ""
