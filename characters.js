@@ -11,9 +11,7 @@
  ・首領形態
  ・同一図鑑番号の複数形態
  ・属性相性自動計算対応
- ・将来621形態まで追加可能
-
- 未確認データは推測せず null / 空配列
+ ・未確認データは推測せず null / 空配列
 ==================================================
 */
 
@@ -73,15 +71,9 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
-
-
-/* ==================================================
-   NO.001 聖光迪莫
-================================================== */
 
 {
   key: "001-holy-light-dimo",
@@ -125,15 +117,9 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
-
-
-/* ==================================================
-   NO.001 聖草迪莫
-================================================== */
 
 {
   key: "001-holy-grass-dimo",
@@ -177,15 +163,9 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
-
-
-/* ==================================================
-   NO.001 聖火迪莫
-================================================== */
 
 {
   key: "001-holy-fire-dimo",
@@ -229,15 +209,9 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
-
-
-/* ==================================================
-   NO.001 聖水迪莫
-================================================== */
 
 {
   key: "001-holy-water-dimo",
@@ -281,7 +255,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -321,9 +294,7 @@ const characters = [
     "004 魔力猫"
   ],
 
-  forms: [
-    "002-miaomiao"
-  ],
+  forms: ["002-miaomiao"],
 
   skills: {
     level: [],
@@ -332,7 +303,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -367,13 +337,8 @@ const characters = [
     description: null
   },
 
-  evolution: [
-    "004 魔力猫"
-  ],
-
-  forms: [
-    "003-miaowu"
-  ],
+  evolution: ["004 魔力猫"],
+  forms: ["003-miaowu"],
 
   skills: {
     level: [],
@@ -382,7 +347,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -432,15 +396,9 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
-
-
-/* ==================================================
-   NO.004 葉冕魔力猫
-================================================== */
 
 {
   key: "004-leaf-crown-magic-cat",
@@ -482,15 +440,9 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
-
-
-/* ==================================================
-   NO.004 武斗酷猫
-================================================== */
 
 {
   key: "004-wudou-kumao",
@@ -532,7 +484,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -572,9 +523,7 @@ const characters = [
     "007 火神"
   ],
 
-  forms: [
-    "005-huohua"
-  ],
+  forms: ["005-huohua"],
 
   skills: {
     level: [],
@@ -583,7 +532,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -618,13 +566,8 @@ const characters = [
     description: null
   },
 
-  evolution: [
-    "007 火神"
-  ],
-
-  forms: [
-    "006-yanhuo"
-  ],
+  evolution: ["007 火神"],
+  forms: ["006-yanhuo"],
 
   skills: {
     level: [],
@@ -633,7 +576,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -682,15 +624,9 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
-
-
-/* ==================================================
-   NO.007 烈火戦神
-================================================== */
 
 {
   key: "007-fire-war-god",
@@ -740,7 +676,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -789,9 +724,7 @@ const characters = [
     "010 水灵"
   ],
 
-  forms: [
-    "008-shuilanlan"
-  ],
+  forms: ["008-shuilanlan"],
 
   skills: {
     level: [],
@@ -800,7 +733,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -844,13 +776,8 @@ const characters = [
       "水属性の技を使用した後、全技のエネルギー消費が1減少する。"
   },
 
-  evolution: [
-    "010 水灵"
-  ],
-
-  forms: [
-    "009-bobola"
-  ],
+  evolution: ["010 水灵"],
+  forms: ["009-bobola"],
 
   skills: {
     level: [],
@@ -859,7 +786,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -917,15 +843,9 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
-
-
-/* ==================================================
-   NO.010 聖水守護
-================================================== */
 
 {
   key: "010-holy-water-guardian",
@@ -975,7 +895,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -1038,7 +957,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -1095,7 +1013,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -1152,7 +1069,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -1209,7 +1125,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -1266,7 +1181,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -1323,7 +1237,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -1369,8 +1282,8 @@ const characters = [
   },
 
   evolution: [
-    "013 咔咔壳",
-    "014 水泡壳"
+    "Lv.16 → 013 咔咔壳",
+    "Lv.36 → 014 水泡壳"
   ],
 
   forms: [
@@ -1385,7 +1298,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -1425,8 +1337,8 @@ const characters = [
   },
 
   evolution: [
-    "013 咔咔壳",
-    "014 水泡壳"
+    "Lv.16 → 013 咔咔壳",
+    "Lv.36 → 014 水泡壳"
   ],
 
   forms: [
@@ -1441,7 +1353,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -1486,9 +1397,7 @@ const characters = [
       "装備している防御技のエネルギー消費が2減少する。"
   },
 
-  evolution: [
-    "014 水泡壳"
-  ],
+  evolution: ["Lv.36 → 014 水泡壳"],
 
   forms: [
     "013-kakake-normal",
@@ -1502,7 +1411,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -1541,9 +1449,7 @@ const characters = [
     description: null
   },
 
-  evolution: [
-    "014 水泡壳"
-  ],
+  evolution: ["Lv.36 → 014 水泡壳"],
 
   forms: [
     "013-kakake-normal",
@@ -1557,7 +1463,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -1616,7 +1521,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -1669,14 +1573,13 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
 
 
 /* ==================================================
-   NO.015 錐尾羊
+   NO.015 锥尾羊
 ================================================== */
 
 {
@@ -1718,9 +1621,7 @@ const characters = [
     "Lv.32 → 017 花影羚羊"
   ],
 
-  forms: [
-    "015-zhuiweiyang"
-  ],
+  forms: ["015-zhuiweiyang"],
 
   skills: {
     level: [],
@@ -1729,14 +1630,13 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
 
 
 /* ==================================================
-   NO.016 鈴蘭羊
+   NO.016 铃兰羊
 ================================================== */
 
 {
@@ -1773,13 +1673,8 @@ const characters = [
       "自身が悪属性の技を使用した後、敵のエネルギーを2減少させる。"
   },
 
-  evolution: [
-    "Lv.32 → 017 花影羚羊"
-  ],
-
-  forms: [
-    "016-linglanyang"
-  ],
+  evolution: ["Lv.32 → 017 花影羚羊"],
+  forms: ["016-linglanyang"],
 
   skills: {
     level: [],
@@ -1788,7 +1683,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -1833,10 +1727,7 @@ const characters = [
   },
 
   evolution: [],
-
-  forms: [
-    "017-huayinglingyang"
-  ],
+  forms: ["017-huayinglingyang"],
 
   skills: {
     level: [],
@@ -1845,7 +1736,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -1909,7 +1799,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "confirmed",
   image: null
 },
@@ -1957,7 +1846,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -2004,7 +1892,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -2051,7 +1938,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -2087,9 +1973,7 @@ const characters = [
     description: null
   },
 
-  evolution: [
-    "020 岚鸟"
-  ],
+  evolution: ["020 岚鸟"],
 
   forms: [
     "019-dongyuque",
@@ -2105,7 +1989,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -2152,7 +2035,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -2199,7 +2081,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -2246,7 +2127,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -2299,7 +2179,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -2347,7 +2226,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -2395,7 +2273,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -2443,7 +2320,6 @@ const characters = [
   },
 
   acquisition: null,
-
   dataStatus: "partial",
   image: null
 },
@@ -2490,6 +2366,651 @@ const characters = [
   },
 
   acquisition: null,
+  dataStatus: "partial",
+  image: null
+},
+
+
+/* ==================================================
+   NO.021 小灵菇
+================================================== */
+
+{
+  key: "021-xiaolinggu",
+  id: 21,
+  dexNo: "021",
+
+  name: "小霊菇",
+  nameStatus: "仮",
+  chineseName: "小灵菇",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
+
+  type: ["ghost"],
+  typeName: ["幽"],
+
+  total: null,
+  stats: null,
+
+  ability: {
+    chineseName: null,
+    name: null,
+    description: null
+  },
+
+  evolution: [
+    "Lv.20 → 022 幻灵菇",
+    "Lv.32 → 023 幻影灵菇"
+  ],
+
+  forms: ["021-xiaolinggu"],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "partial",
+  image: null
+},
+
+
+/* ==================================================
+   NO.022 幻灵菇
+================================================== */
+
+{
+  key: "022-huanlinggu",
+  id: 22,
+  dexNo: "022",
+
+  name: "幻霊菇",
+  nameStatus: "仮",
+  chineseName: "幻灵菇",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
+
+  type: ["ghost", "grass"],
+  typeName: ["幽", "草"],
+
+  total: null,
+  stats: null,
+
+  ability: {
+    chineseName: null,
+    name: null,
+    description: null
+  },
+
+  evolution: [
+    "Lv.32 → 023 幻影灵菇"
+  ],
+
+  forms: ["022-huanlinggu"],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "partial",
+  image: null
+},
+
+
+/* ==================================================
+   NO.023 幻影灵菇
+================================================== */
+
+{
+  key: "023-huanyinglinggu",
+  id: 23,
+  dexNo: "023",
+
+  name: "幻影霊菇",
+  nameStatus: "仮",
+  chineseName: "幻影灵菇",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
+
+  type: ["ghost", "grass"],
+  typeName: ["幽", "草"],
+
+  total: null,
+  stats: null,
+
+  ability: {
+    chineseName: null,
+    name: null,
+    description: null
+  },
+
+  evolution: [],
+  forms: ["023-huanyinglinggu"],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "partial",
+  image: null
+},
+
+
+/* ==================================================
+   NO.024 石肤蜥
+================================================== */
+
+{
+  key: "024-shifuxi-normal",
+  id: 24,
+  dexNo: "024",
+
+  name: "石膚蜥",
+  nameStatus: "仮",
+  chineseName: "石肤蜥",
+
+  form: "main",
+  formName: "本来の姿",
+  chineseFormName: "本来的样子",
+  isBossForm: false,
+
+  type: ["ground"],
+  typeName: ["地"],
+
+  total: null,
+  stats: null,
+
+  ability: {
+    chineseName: "刺肤",
+    name: "刺皮（仮）",
+    description:
+      "攻撃によるダメージを1回受けるたび、攻撃してきた精霊に威力50の物理ダメージを与える。"
+  },
+
+  evolution: [
+    "025 石刺蜥",
+    "026 石冠王蜥"
+  ],
+
+  forms: [
+    "024-shifuxi-normal",
+    "024-shifuxi-ball-tail"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "partial",
+  image: null
+},
+
+{
+  key: "024-shifuxi-ball-tail",
+  id: 24,
+  dexNo: "024",
+
+  name: "石膚蜥",
+  nameStatus: "仮",
+  chineseName: "石肤蜥",
+
+  form: "variant",
+  formName: "ボール尻尾の姿",
+  chineseFormName: "球球尾巴的样子",
+  isBossForm: false,
+
+  type: ["ground"],
+  typeName: ["地"],
+
+  total: null,
+  stats: null,
+
+  ability: {
+    chineseName: "刺肤",
+    name: "刺皮（仮）",
+    description:
+      "攻撃によるダメージを1回受けるたび、攻撃してきた精霊に威力50の物理ダメージを与える。"
+  },
+
+  evolution: [
+    "025 石刺蜥",
+    "026 石冠王蜥"
+  ],
+
+  forms: [
+    "024-shifuxi-normal",
+    "024-shifuxi-ball-tail"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "partial",
+  image: null
+},
+
+
+/* ==================================================
+   NO.025 石刺蜥
+================================================== */
+
+{
+  key: "025-shicixi-normal",
+  id: 25,
+  dexNo: "025",
+
+  name: "石刺蜥",
+  nameStatus: "仮",
+  chineseName: "石刺蜥",
+
+  form: "main",
+  formName: "本来の姿",
+  chineseFormName: "本来的样子",
+  isBossForm: false,
+
+  type: ["ground"],
+  typeName: ["地"],
+
+  total: null,
+  stats: null,
+
+  ability: {
+    chineseName: "刺肤",
+    name: "刺皮（仮）",
+    description:
+      "攻撃によるダメージを1回受けるたび、攻撃してきた精霊に威力50の物理ダメージを与える。"
+  },
+
+  evolution: ["026 石冠王蜥"],
+
+  forms: [
+    "025-shicixi-normal",
+    "025-shicixi-ball-tail"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "partial",
+  image: null
+},
+
+{
+  key: "025-shicixi-ball-tail",
+  id: 25,
+  dexNo: "025",
+
+  name: "石刺蜥",
+  nameStatus: "仮",
+  chineseName: "石刺蜥",
+
+  form: "variant",
+  formName: "ボール尻尾の姿",
+  chineseFormName: "球球尾巴的样子",
+  isBossForm: false,
+
+  type: ["ground"],
+  typeName: ["地"],
+
+  total: 493,
+
+  stats: {
+    hp: 91,
+    speed: 80,
+    attack: 82,
+    magicAttack: 80,
+    defense: 94,
+    magicDefense: 66
+  },
+
+  ability: {
+    chineseName: "刺肤",
+    name: "刺皮（仮）",
+    description:
+      "攻撃によるダメージを1回受けるたび、攻撃してきた精霊に威力50の物理ダメージを与える。"
+  },
+
+  evolution: ["026 石冠王蜥"],
+
+  forms: [
+    "025-shicixi-normal",
+    "025-shicixi-ball-tail"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "confirmed",
+  image: null
+},
+
+
+/* ==================================================
+   NO.026 石冠王蜥
+================================================== */
+
+{
+  key: "026-shiguanwangxi-normal",
+  id: 26,
+  dexNo: "026",
+
+  name: "石冠王蜥",
+  nameStatus: "仮",
+  chineseName: "石冠王蜥",
+
+  form: "main",
+  formName: "本来の姿",
+  chineseFormName: "本来的样子",
+  isBossForm: false,
+
+  type: ["ground"],
+  typeName: ["地"],
+
+  total: 615,
+
+  stats: {
+    hp: 115,
+    speed: 95,
+    attack: 101,
+    magicAttack: 100,
+    defense: 120,
+    magicDefense: 84
+  },
+
+  ability: {
+    chineseName: "刺肤",
+    name: "刺皮（仮）",
+    description:
+      "攻撃によるダメージを1回受けるたび、攻撃してきた精霊に威力50の物理ダメージを与える。"
+  },
+
+  evolution: [],
+
+  forms: [
+    "026-shiguanwangxi-normal",
+    "026-shiguanwangxi-ball-tail"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "confirmed",
+  image: null
+},
+
+{
+  key: "026-shiguanwangxi-ball-tail",
+  id: 26,
+  dexNo: "026",
+
+  name: "石冠王蜥",
+  nameStatus: "仮",
+  chineseName: "石冠王蜥",
+
+  form: "variant",
+  formName: "ボール尻尾の姿",
+  chineseFormName: "球球尾巴的样子",
+  isBossForm: false,
+
+  type: ["ground"],
+  typeName: ["地"],
+
+  total: 615,
+
+  stats: {
+    hp: 113,
+    speed: 100,
+    attack: 102,
+    magicAttack: 100,
+    defense: 117,
+    magicDefense: 83
+  },
+
+  ability: {
+    chineseName: "刺肤",
+    name: "刺皮（仮）",
+    description:
+      "攻撃によるダメージを1回受けるたび、攻撃してきた精霊に威力50の物理ダメージを与える。"
+  },
+
+  evolution: [],
+
+  forms: [
+    "026-shiguanwangxi-normal",
+    "026-shiguanwangxi-ball-tail"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "confirmed",
+  image: null
+},
+
+
+/* ==================================================
+   NO.027 布是石
+================================================== */
+
+{
+  key: "027-bushishi",
+  id: 27,
+  dexNo: "027",
+
+  name: "布是石",
+  nameStatus: "仮",
+  chineseName: "布是石",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
+
+  type: ["ground"],
+  typeName: ["地"],
+
+  total: null,
+  stats: null,
+
+  ability: {
+    chineseName: "地脉",
+    name: "地脈（仮）",
+    description:
+      "初期エネルギーが0になり、場に出る前に味方の精霊が地属性の技を1回使用するたび、エネルギーを3回復する。"
+  },
+
+  evolution: [
+    "Lv.16 → 028 布是岩",
+    "Lv.32 → 029 布克棱岩"
+  ],
+
+  forms: ["027-bushishi"],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "partial",
+  image: null
+},
+
+
+/* ==================================================
+   NO.028 布是岩
+================================================== */
+
+{
+  key: "028-bushiyan",
+  id: 28,
+  dexNo: "028",
+
+  name: "布是岩",
+  nameStatus: "仮",
+  chineseName: "布是岩",
+
+  form: "main",
+  formName: "通常形態",
+  isBossForm: false,
+
+  type: ["ground"],
+  typeName: ["地"],
+
+  total: null,
+  stats: null,
+
+  ability: {
+    chineseName: "地脉",
+    name: "地脈（仮）",
+    description:
+      "初期エネルギーが0になり、場に出る前に味方の精霊が地属性の技を1回使用するたび、エネルギーを3回復する。"
+  },
+
+  evolution: [
+    "Lv.32 → 029 布克棱岩"
+  ],
+
+  forms: ["028-bushiyan"],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "partial",
+  image: null
+},
+
+
+/* ==================================================
+   NO.029 布克棱岩
+================================================== */
+
+{
+  key: "029-bukelengyan",
+  id: 29,
+  dexNo: "029",
+
+  name: "布克棱岩",
+  nameStatus: "仮",
+  chineseName: "布克棱岩",
+
+  form: "main",
+  formName: "本来の姿",
+  chineseFormName: "本来的样子",
+  isBossForm: false,
+
+  type: ["ground"],
+  typeName: ["地"],
+
+  total: null,
+  stats: null,
+
+  ability: {
+    chineseName: "地脉",
+    name: "地脈（仮）",
+    description:
+      "初期エネルギーが0になり、場に出る前に味方の精霊が地属性の技を1回使用するたび、エネルギーを3回復する。"
+  },
+
+  evolution: [],
+
+  forms: [
+    "029-bukelengyan",
+    "029-mizhang-bulaike"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition: null,
+  dataStatus: "partial",
+  image: null
+},
+
+{
+  key: "029-mizhang-bulaike",
+  id: 29,
+  dexNo: "029",
+
+  name: "迷嶂布莱克",
+  nameStatus: "仮",
+  chineseName: "迷嶂布莱克",
+
+  form: "boss",
+  formName: "首領形態",
+  isBossForm: true,
+
+  type: ["ground"],
+  typeName: ["地"],
+
+  total: null,
+  stats: null,
+
+  ability: {
+    chineseName: null,
+    name: null,
+    description: null
+  },
+
+  evolution: [],
+
+  forms: [
+    "029-bukelengyan",
+    "029-mizhang-bulaike"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
+  acquisition:
+    "迷嶂布莱克の信物を使用して首領化",
 
   dataStatus: "partial",
   image: null
@@ -2603,28 +3124,7 @@ const typeData = {
 ==================================================
  属性相性データ
 
- ★現在は確認中のため空
-
- 中国版「洛克王国：世界」の
- 正確な属性相性を確認できた後に登録する。
-
- 防御側属性 → 攻撃側属性 → 倍率
-
- 例：
-  fire: {
-    water: 2,
-    grass: 0.5
-  }
-
- 倍率：
-  4     = 4倍弱点
-  2     = 弱点
-  1     = 等倍
-  0.5   = 耐性
-  0.25  = 1/4耐性
-  0     = 無効
-
- 未確認データは絶対に推測しない。
+ 未確認データは推測しない。
 ==================================================
 */
 
@@ -2639,11 +3139,6 @@ const typeMatchupData = {
 ==================================================
 */
 
-
-/*
- keyから1形態を取得
-*/
-
 function getCharacterByKey(key){
 
   return characters.find(
@@ -2653,10 +3148,6 @@ function getCharacterByKey(key){
 
 }
 
-
-/*
- 図鑑番号から全形態を取得
-*/
 
 function getCharactersByDexNo(dexNo){
 
@@ -2671,10 +3162,6 @@ function getCharactersByDexNo(dexNo){
 
 }
 
-
-/*
- 図鑑番号から代表形態を取得
-*/
 
 function getMainCharacterByDexNo(dexNo){
 
@@ -2704,10 +3191,6 @@ function getMainCharacterByDexNo(dexNo){
 }
 
 
-/*
- 首領形態のみ取得
-*/
-
 function getBossForms(){
 
   return characters.filter(
@@ -2717,10 +3200,6 @@ function getBossForms(){
 
 }
 
-
-/*
- 季節形態のみ取得
-*/
 
 function getSeasonForms(){
 
@@ -2732,10 +3211,6 @@ function getSeasonForms(){
 }
 
 
-/*
- 属性から検索
-*/
-
 function getCharactersByType(type){
 
   return characters.filter(
@@ -2746,10 +3221,6 @@ function getCharactersByType(type){
 
 }
 
-
-/*
- 名前検索
-*/
 
 function searchCharacters(keyword){
 
@@ -2787,15 +3258,6 @@ function searchCharacters(keyword){
 }
 
 
-/*
-==================================================
- 図鑑番号一覧
-
- 同じ番号に複数形態が存在しても
- 1番号として数える
-==================================================
-*/
-
 function getDexNumbers(){
 
   return [
@@ -2810,12 +3272,6 @@ function getDexNumbers(){
 }
 
 
-/*
-==================================================
- 現在登録されている図鑑番号数
-==================================================
-*/
-
 function getDexCount(){
 
   return getDexNumbers().length;
@@ -2823,24 +3279,12 @@ function getDexCount(){
 }
 
 
-/*
-==================================================
- 現在登録されている総形態数
-==================================================
-*/
-
 function getFormCount(){
 
   return characters.length;
 
 }
 
-
-/*
-==================================================
- 属性一覧
-==================================================
-*/
 
 function getAllTypes(){
 
@@ -2852,9 +3296,6 @@ function getAllTypes(){
 /*
 ==================================================
  単属性の相性取得
-
- defenderType = 防御側属性
- attackerType = 攻撃側属性
 ==================================================
 */
 
@@ -2868,24 +3309,14 @@ function getSingleTypeMultiplier(
       defenderType
     ];
 
-  /*
-   防御側属性そのものが未確認
-  */
-
   if(!defenderData){
     return null;
   }
-
 
   const value =
     defenderData[
       attackerType
     ];
-
-
-  /*
-   攻撃側属性との相性が未確認
-  */
 
   if(
     value === undefined ||
@@ -2893,7 +3324,6 @@ function getSingleTypeMultiplier(
   ){
     return null;
   }
-
 
   return value;
 
@@ -2903,19 +3333,6 @@ function getSingleTypeMultiplier(
 /*
 ==================================================
  複合属性の相性計算
-
- 例：
-
- 属性A ×2
- 属性B ×2
- → ×4
-
- 属性A ×2
- 属性B ×0.5
- → ×1
-
- 1属性でも未確認なら
- 推測せず null を返す
 ==================================================
 */
 
@@ -2931,9 +3348,7 @@ function getCombinedTypeMultiplier(
     return null;
   }
 
-
   let multiplier = 1;
-
 
   for(
     const defenderType
@@ -2946,29 +3361,17 @@ function getCombinedTypeMultiplier(
         attackerType
       );
 
-
-    /*
-     1つでも未確認
-    */
-
     if(value === null){
       return null;
     }
-
-
-    /*
-     無効
-    */
 
     if(value === 0){
       return 0;
     }
 
-
     multiplier *= value;
 
   }
-
 
   return multiplier;
 
@@ -2977,7 +3380,7 @@ function getCombinedTypeMultiplier(
 
 /*
 ==================================================
- キャラクターの属性相性を計算
+ キャラクターの属性相性
 ==================================================
 */
 
@@ -2993,21 +3396,16 @@ function getCharacterTypeMatchups(character){
 
   };
 
-
   if(
     !character ||
     !Array.isArray(character.type) ||
     character.type.length === 0
   ){
-
     return result;
-
   }
-
 
   const allTypes =
     getAllTypes();
-
 
   allTypes.forEach(
     attackerType => {
@@ -3018,11 +3416,6 @@ function getCharacterTypeMatchups(character){
           attackerType
         );
 
-
-      /*
-       未確認
-      */
-
       if(multiplier === null){
 
         result.unknown.push({
@@ -3031,13 +3424,7 @@ function getCharacterTypeMatchups(character){
         });
 
         return;
-
       }
-
-
-      /*
-       無効
-      */
 
       if(multiplier === 0){
 
@@ -3047,13 +3434,7 @@ function getCharacterTypeMatchups(character){
         });
 
         return;
-
       }
-
-
-      /*
-       弱点
-      */
 
       if(multiplier > 1){
 
@@ -3063,13 +3444,7 @@ function getCharacterTypeMatchups(character){
         });
 
         return;
-
       }
-
-
-      /*
-       耐性
-      */
 
       if(multiplier < 1){
 
@@ -3079,13 +3454,7 @@ function getCharacterTypeMatchups(character){
         });
 
         return;
-
       }
-
-
-      /*
-       等倍
-      */
 
       result.neutral.push({
         type: attackerType,
@@ -3095,21 +3464,11 @@ function getCharacterTypeMatchups(character){
     }
   );
 
-
-  /*
-   弱点は倍率が高い順
-  */
-
   result.weaknesses.sort(
     (a,b) =>
       b.multiplier -
       a.multiplier
   );
-
-
-  /*
-   耐性は倍率が低い順
-  */
 
   result.resistances.sort(
     (a,b) =>
@@ -3117,17 +3476,10 @@ function getCharacterTypeMatchups(character){
       b.multiplier
   );
 
-
   return result;
 
 }
 
-
-/*
-==================================================
- keyから属性相性取得
-==================================================
-*/
 
 function getTypeMatchupsByKey(key){
 
@@ -3146,19 +3498,12 @@ function getTypeMatchupsByKey(key){
 
   }
 
-
   return getCharacterTypeMatchups(
     character
   );
 
 }
 
-
-/*
-==================================================
- 図鑑番号から属性相性取得
-==================================================
-*/
 
 function getTypeMatchupsByDexNo(dexNo){
 
@@ -3179,19 +3524,12 @@ function getTypeMatchupsByDexNo(dexNo){
 
   }
 
-
   return getCharacterTypeMatchups(
     character
   );
 
 }
 
-
-/*
-==================================================
- 属性相性データが完全か確認
-==================================================
-*/
 
 function isTypeMatchupComplete(character){
 
@@ -3203,12 +3541,10 @@ function isTypeMatchupComplete(character){
     return false;
   }
 
-
   const result =
     getCharacterTypeMatchups(
       character
     );
-
 
   return (
     result.unknown.length === 0
@@ -3216,12 +3552,6 @@ function isTypeMatchupComplete(character){
 
 }
 
-
-/*
-==================================================
- 属性相性データが1件でも存在するか
-==================================================
-*/
 
 function hasTypeMatchupData(character){
 
@@ -3233,12 +3563,10 @@ function hasTypeMatchupData(character){
     return false;
   }
 
-
   const result =
     getCharacterTypeMatchups(
       character
     );
-
 
   return (
     result.weaknesses.length > 0 ||
@@ -3250,21 +3578,10 @@ function hasTypeMatchupData(character){
 }
 
 
-/*
-==================================================
- デバッグ用
-
- Console：
-
- debugCharacterMatchup("010-water-spirit")
-==================================================
-*/
-
 function debugCharacterMatchup(key){
 
   const character =
     getCharacterByKey(key);
-
 
   if(!character){
 
@@ -3274,15 +3591,12 @@ function debugCharacterMatchup(key){
     );
 
     return;
-
   }
-
 
   const result =
     getCharacterTypeMatchups(
       character
     );
-
 
   console.log(
     "================================"
