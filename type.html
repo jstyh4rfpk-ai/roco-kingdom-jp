@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>属性相性表 | ロコキングダム速報</title>
+
+<meta name="description"
+content="Roco Kingdom（洛克王国：世界）の属性相性を日本語で確認できる攻略ページです。各属性の弱点・耐性などを中国版データをもとに整理しています。">
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+  color:#17324d;
+  line-height:1.7;
+  background:#f1f8fd;
+}
+
+/* =========================
+   ヘッダー
+========================= */
+
+header{
+  padding:28px 16px;
+  text-align:center;
+  color:white;
+  background:
+    linear-gradient(135deg,#ff7a59,#ffb347);
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:5px 0 0;
+  font-size:13px;
+}
+
+.back{
+  display:block;
+  padding:14px 18px;
+  background:white;
+  border-bottom:1px solid #dceaf4;
+  color:#1677d2;
+  text-decoration:none;
+  font-weight:800;
+}
+
+/* =========================
+   メイン
+========================= */
+
+main{
+  width:min(950px,calc(100% - 24px));
+  margin:20px auto 50px;
+}
+
+.card{
+  margin-bottom:17px;
+  padding:19px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(30,90,130,.08);
+}
+
+.card h2{
+  margin:0 0 12px;
+  font-size:21px;
+}
+
+.description{
+  margin:0;
+  color:#657f94;
+  font-size:13px;
+}
+
+/* =========================
+   属性一覧
+========================= */
+
+.type-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.type-button{
+  padding:13px 5px;
+  border:1px solid #d9e7ef;
+  border-radius:14px;
+  background:#f7fbfe;
+  color:#29475f;
+  text-align:center;
+  font-size:13px;
+  font-weight:900;
+  cursor:pointer;
+  transition:.15s;
+}
+
+.type-button:active{
+  transform:scale(.96);
+}
+
+.type-button.active{
+  border-color:#1689e8;
+  background:#1689e8;
+  color:white;
+}
+
+.type-icon{
+  display:block;
+  margin-bottom:3px;
+  font-size:25px;
+}
+
+/* =========================
+   選択属性
+========================= */
+
+.selected-type{
+  padding:20px;
+  text-align:center;
+  border-radius:17px;
+  background:
+    linear-gradient(135deg,#e8f7ff,#f8fcff);
+  border:1px solid #b9ddf3;
+}
+
+.selected-icon{
+  font-size:50px;
+}
+
+.selected-name{
+  margin-top:3px;
+  color:#126fc1;
+  font-size:27px;
+  font-weight:900;
+}
+
+/* =========================
+   相性
+========================= */
+
+.matchup-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+.matchup{
+  padding:15px;
+  border-radius:15px;
+}
+
+.matchup h3{
+  margin:0 0 10px;
+  font-size:15px;
+}
+
+.strong{
+  background:#fff1ed;
+  border:1px solid #f3c0b2;
+}
+
+.weak{
+  background:#fff7df;
+  border:1px solid #eed68b;
+}
+
+.resist{
+  background:#eef9f1;
+  border:1px solid #b7dfc0;
+}
+
+.vulnerable{
+  background:#fff0f0;
+  border:1px solid #f1b7b7;
+}
+
+.match-tag{
+  display:inline-block;
+  margin:3px;
+  padding:5px 9px;
+  border-radius:999px;
+  background:white;
+  font-size:12px;
+  font-weight:800;
+}
+
+.empty{
+  color:#8194a3;
+  font-size:12px;
+}
+
+/* =========================
+   属性早見表
+========================= */
+
+.table-wrap{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+table{
+  width:100%;
+  min-width:760px;
+  border-collapse:collapse;
+  font-size:12px;
+  text-align:center;
+}
+
+th,
+td{
+  padding:9px 6px;
+  border:1px solid #dce7ee;
+}
+
+th{
+  background:#edf7fd;
+  font-weight:900;
+}
+
+.row-title{
+  position:sticky;
+  left:0;
+  z-index:1;
+  background:white;
+  font-weight:900;
+}
+
+.effect-strong{
+  background:#ffe1db;
+  color:#bd3e28;
+  font-weight:900;
+}
+
+.effect-resist{
+  background:#e5f6e9;
+  color:#28723d;
+  font-weight:900;
+}
+
+.effect-normal{
+  color:#9aa9b4;
+}
+
+/* =========================
+   注意
+========================= */
+
+.notice{
+  padding:15px;
+  border-radius:14px;
+  background:#fff9e7;
+  border:1px solid #efdb96;
+  color:#66582b;
+  font-size:12px;
+}
+
+/* =========================
+   スマホ
+========================= */
+
+@media(max-width:500px){
+
+  .type-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .type-button{
+    padding:11px 3px;
+    font-size:12px;
+  }
+
+  .type-icon{
+    font-size:22px;
+  }
+
+  .matchup-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>🔥 属性相性</h1>
+
+  <p>
+    ロコキングダム速報 攻略ガイド
+  </p>
+
+</header>
+
+<a class="back" href="index.html">
+  ← ロコキングダム速報へ戻る
+</a>
+
+<main>
+
+<section class="card">
+
+  <h2>⚔️ 属性相性を調べる</h2>
+
+  <p class="description">
+    属性を選択すると、その属性の攻撃相性・防御相性を確認できます。
+  </p>
+
+</section>
+
+
+<section class="card">
+
+  <div
+    class="type-grid"
+    id="typeGrid">
+  </div>
+
+</section>
+
+
+<section
+  class="card"
+  id="resultCard">
+
+  <div class="selected-type">
+
+    <div
+      class="selected-icon"
+      id="selectedIcon">
+      ✨
+    </div>
+
+    <div
+      class="selected-name"
+      id="selectedName">
+      光
+    </div>
+
+  </div>
+
+
+  <div class="matchup-grid">
+
+    <div class="matchup strong">
+
+      <h3>
+        ⚔️ 攻撃で有利
+      </h3>
+
+      <div id="attackStrong"></div>
+
+    </div>
+
+
+    <div class="matchup weak">
+
+      <h3>
+        🧱 攻撃で不利
+      </h3>
+
+      <div id="attackWeak"></div>
+
+    </div>
+
+
+    <div class="matchup vulnerable">
+
+      <h3>
+        ⚠️ 防御時の弱点
+      </h3>
+
+      <div id="defenseWeak"></div>
+
+    </div>
+
+
+    <div class="matchup resist">
+
+      <h3>
+        🛡️ 防御時の耐性
+      </h3>
+
+      <div id="defenseResist"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>📊 属性相性早見表</h2>
+
+  <p class="description">
+    横が防御側、縦が攻撃側です。
+  </p>
+
+  <br>
+
+  <div class="table-wrap">
+
+    <table id="typeTable"></table>
+
+  </div>
+
+</section>
+
+
+<div class="notice">
+
+  <strong>
+    🇨🇳 中国版データについて
+  </strong>
+
+  <br><br>
+
+  このページは中国版
+  「洛克王国：世界」の情報をもとに
+  日本ユーザー向けに整理しています。
+
+  <br><br>
+
+  属性相性はアップデート等によって
+  変更される可能性があります。
+
+  <br><br>
+
+  日本版サービス開始後、
+  正式仕様を確認して順次更新します。
+
+</div>
+
+</main>
+
+
+<script>
+
+/* ==========================================
+   属性
+========================================== */
+
+const types = {
+
+  normal:{
+    name:"普通",
+    icon:"⚪"
+  },
+
+  grass:{
+    name:"草",
+    icon:"🌿"
+  },
+
+  fire:{
+    name:"火",
+    icon:"🔥"
+  },
+
+  water:{
+    name:"水",
+    icon:"💧"
+  },
+
+  light:{
+    name:"光",
+    icon:"✨"
+  },
+
+  ground:{
+    name:"地",
+    icon:"⛰️"
+  },
+
+  ice:{
+    name:"氷",
+    icon:"❄️"
+  },
+
+  dragon:{
+    name:"龍",
+    icon:"🐉"
+  },
+
+  electric:{
+    name:"電気",
+    icon:"⚡"
+  },
+
+  poison:{
+    name:"毒",
+    icon:"☠️"
+  },
+
+  bug:{
+    name:"虫",
+    icon:"🐛"
+  },
+
+  fighting:{
+    name:"武",
+    icon:"👊"
+  },
+
+  wing:{
+    name:"翼",
+    icon:"🪽"
+  },
+
+  cute:{
+    name:"萌",
+    icon:"💕"
+  },
+
+  ghost:{
+    name:"幽",
+    icon:"👻"
+  },
+
+  dark:{
+    name:"悪",
+    icon:"😈"
+  },
+
+  machine:{
+    name:"機械",
+    icon:"⚙️"
+  },
+
+  illusion:{
+    name:"幻",
+    icon:"🔮"
+  }
+
+};
+
+
+/*
+==========================================
+ 属性相性データ
+
+ 2   = 有利
+ 0.5 = 不利
+ 1   = 等倍
+
+ ※現在は確認済みデータから順次登録する方式。
+==========================================
+*/
+
+const effectiveness = {};
+
+
+/*
+ ディモの光属性について
+ 現在登録している確認済み情報
+*/
+
+effectiveness.light = {
+
+  ghost:2,
+  dark:2,
+
+  grass:0.5,
+  ice:0.5
+
+};
+
+
+/*
+ 防御側から確認済み相性を追加
+*/
+
+const defenseData = {
+
+  light:{
+
+    weak:[
+      "grass",
+      "ghost"
+    ],
+
+    resist:[
+      "dark",
+      "illusion"
+    ]
+
+  }
+
+};
+
+
+/* ==========================================
+   DOM
+========================================== */
+
+const typeGrid =
+  document.getElementById("typeGrid");
+
+const selectedIcon =
+  document.getElementById("selectedIcon");
+
+const selectedName =
+  document.getElementById("selectedName");
+
+const attackStrong =
+  document.getElementById("attackStrong");
+
+const attackWeak =
+  document.getElementById("attackWeak");
+
+const defenseWeak =
+  document.getElementById("defenseWeak");
+
+const defenseResist =
+  document.getElementById("defenseResist");
+
+const typeTable =
+  document.getElementById("typeTable");
+
+
+/* ==========================================
+   タグ
+========================================== */
+
+function createTags(list,multiplier){
+
+  if(!list || list.length===0){
+
+    return `
+      <span class="empty">
+        現在確認中
+      </span>
+    `;
+
+  }
+
+  return list.map(type=>{
+
+    const data=types[type];
+
+    return `
+      <span class="match-tag">
+        ${data.icon}
+        ${data.name}
+        ${multiplier}
+      </span>
+    `;
+
+  }).join("");
+
+}
+
+
+/* ==========================================
+   属性を表示
+========================================== */
+
+function showType(type){
+
+  const data=types[type];
+
+  selectedIcon.textContent=
+    data.icon;
+
+  selectedName.textContent=
+    data.name;
+
+
+  const attackData=
+    effectiveness[type] || {};
+
+
+  const strong=[];
+
+  const weak=[];
+
+
+  Object.entries(attackData)
+  .forEach(([target,value])=>{
+
+    if(value===2){
+      strong.push(target);
+    }
+
+    if(value===0.5){
+      weak.push(target);
+    }
+
+  });
+
+
+  attackStrong.innerHTML=
+    createTags(
+      strong,
+      "×2"
+    );
+
+
+  attackWeak.innerHTML=
+    createTags(
+      weak,
+      "×0.5"
+    );
+
+
+  const defense=
+    defenseData[type] || {
+      weak:[],
+      resist:[]
+    };
+
+
+  defenseWeak.innerHTML=
+    createTags(
+      defense.weak,
+      "×2"
+    );
+
+
+  defenseResist.innerHTML=
+    createTags(
+      defense.resist,
+      "×0.5"
+    );
+
+
+  document
+  .querySelectorAll(".type-button")
+  .forEach(button=>{
+
+    button.classList.toggle(
+      "active",
+      button.dataset.type===type
+    );
+
+  });
+
+}
+
+
+/* ==========================================
+   属性ボタン
+========================================== */
+
+typeGrid.innerHTML=
+
+Object.entries(types)
+.map(([key,data])=>`
+
+  <button
+    class="type-button"
+    data-type="${key}">
+
+    <span class="type-icon">
+      ${data.icon}
+    </span>
+
+    ${data.name}
+
+  </button>
+
+`).join("");
+
+
+document
+.querySelectorAll(".type-button")
+.forEach(button=>{
+
+  button.addEventListener(
+    "click",
+    ()=>{
+
+      showType(
+        button.dataset.type
+      );
+
+    }
+  );
+
+});
+
+
+/* ==========================================
+   相性表
+========================================== */
+
+function createTable(){
+
+  const keys=
+    Object.keys(types);
+
+
+  let html=`
+
+    <tr>
+
+      <th>
+        攻＼防
+      </th>
+
+      ${keys.map(type=>`
+
+        <th title="${types[type].name}">
+          ${types[type].icon}
+        </th>
+
+      `).join("")}
+
+    </tr>
+
+  `;
+
+
+  keys.forEach(attacker=>{
+
+    html+=`
+
+      <tr>
+
+        <td class="row-title">
+
+          ${types[attacker].icon}
+          ${types[attacker].name}
+
+        </td>
+
+    `;
+
+
+    keys.forEach(defender=>{
+
+      const value=
+        effectiveness[attacker]?.[defender]
+        ?? 1;
+
+
+      let className=
+        "effect-normal";
+
+
+      let text="・";
+
+
+      if(value===2){
+
+        className=
+          "effect-strong";
+
+        text="◎";
+
+      }
+
+
+      if(value===0.5){
+
+        className=
+          "effect-resist";
+
+        text="△";
+
+      }
+
+
+      html+=`
+
+        <td class="${className}">
+          ${text}
+        </td>
+
+      `;
+
+    });
+
+
+    html+=`
+      </tr>
+    `;
+
+  });
+
+
+  typeTable.innerHTML=
+    html;
+
+}
+
+
+/* ==========================================
+   初期表示
+========================================== */
+
+createTable();
+
+showType("light");
+
+</script>
+
+</body>
+</html>
