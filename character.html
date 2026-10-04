@@ -10,13 +10,20 @@
 content="Roco Kingdom（洛克王国：世界）のキャラクター性能・種族値・属性相性・特性・技・進化・入手方法を日本語でまとめています。">
 
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,
-  "Helvetica Neue","Hiragino Kaku Gothic ProN",
-  "Yu Gothic",sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
   color:#17324d;
   line-height:1.7;
   background:#f1f8fd;
@@ -29,8 +36,15 @@ header{
   background:linear-gradient(135deg,#50b7f0,#79d4ff);
 }
 
-header h1{margin:0;font-size:28px}
-header p{margin:5px 0 0;font-size:13px}
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:5px 0 0;
+  font-size:13px;
+}
 
 .back{
   display:block;
@@ -61,7 +75,10 @@ main{
   font-size:20px;
 }
 
-/* キャラ */
+
+/* =========================
+   キャラクター
+========================= */
 
 .hero{
   text-align:center;
@@ -74,7 +91,8 @@ main{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:radial-gradient(circle at center,#fff,#e5f5ff);
+  background:
+    radial-gradient(circle at center,#fff,#e5f5ff);
   font-size:85px;
 }
 
@@ -104,7 +122,9 @@ main{
   font-size:13px;
 }
 
-.types{margin-top:10px}
+.types{
+  margin-top:10px;
+}
 
 .type{
   display:inline-block;
@@ -140,7 +160,57 @@ main{
   font-weight:900;
 }
 
-/* 確認状況 */
+
+/* =========================
+   形態切り替え
+========================= */
+
+.form-card{
+  border-left:6px solid #52afe7;
+}
+
+.form-description{
+  margin:-5px 0 13px;
+  color:#71899b;
+  font-size:12px;
+}
+
+.form-buttons{
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+
+.form-button{
+  display:flex;
+  min-height:56px;
+  padding:10px 8px;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  border:1px solid #cfe2ee;
+  border-radius:13px;
+  background:#f3f9fd;
+  color:#29475f;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:900;
+  line-height:1.35;
+}
+
+.form-button.active{
+  border-color:#1689e8;
+  background:#1689e8;
+  color:white;
+  box-shadow:
+    0 4px 12px rgba(22,137,232,.22);
+}
+
+
+/* =========================
+   確認状況
+========================= */
 
 .data-status{
   margin-top:16px;
@@ -171,7 +241,10 @@ main{
   font-size:11px;
 }
 
-/* ステータス */
+
+/* =========================
+   ステータス
+========================= */
 
 .stats{
   display:grid;
@@ -199,7 +272,10 @@ main{
   font-weight:900;
 }
 
-/* 属性相性 */
+
+/* =========================
+   属性相性
+========================= */
 
 .matchup-grid{
   display:grid;
@@ -237,7 +313,10 @@ main{
   font-weight:800;
 }
 
-/* 特性 */
+
+/* =========================
+   特性
+========================= */
 
 .trait{
   padding:15px;
@@ -256,7 +335,10 @@ main{
   font-size:12px;
 }
 
-/* 技 */
+
+/* =========================
+   技
+========================= */
 
 .skill-group{
   margin-top:20px;
@@ -330,7 +412,10 @@ main{
   font-size:13px;
 }
 
-/* その他 */
+
+/* =========================
+   その他
+========================= */
 
 .evolution-item{
   margin:7px 0;
@@ -363,104 +448,531 @@ main{
   border-radius:18px;
 }
 
-@media(max-width:400px){
-  .character-image{height:190px}
-  .name{font-size:25px}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .matchup-grid{grid-template-columns:1fr}
+.error a{
+  color:#1677d2;
+  font-weight:800;
 }
+
+
+/* =========================
+   スマホ
+========================= */
+
+@media(max-width:400px){
+
+  .character-image{
+    height:190px;
+  }
+
+  .name{
+    font-size:25px;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .matchup-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
 </style>
 </head>
+
 
 <body>
 
 <header>
+
   <h1>🐾 キャラクター詳細</h1>
-  <p>ロコキングダム速報 攻略図鑑</p>
+
+  <p>
+    ロコキングダム速報 攻略図鑑
+  </p>
+
 </header>
 
+
 <a class="back" href="pokedex.html">
-← キャラ図鑑へ戻る
+  ← キャラ図鑑へ戻る
 </a>
 
+
 <main id="content">
-  <div class="card">読み込み中...</div>
+
+  <div class="card">
+    読み込み中...
+  </div>
+
 </main>
+
 
 <script src="characters.js"></script>
 
+
 <script>
 
-const params=new URLSearchParams(window.location.search);
-const characterId=Number(params.get("id"));
-const character=characters.find(c=>c.id===characterId);
-const content=document.getElementById("content");
+/* ==================================================
+   基本
+================================================== */
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const requestedKey =
+  params.get("key");
+
+const requestedId =
+  Number(
+    params.get("id")
+  );
+
+const content =
+  document.getElementById("content");
+
+
+/* ==================================================
+   HTMLエスケープ
+================================================== */
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* ==================================================
+   図鑑番号
+================================================== */
+
+function getDexNo(character){
+
+  if(
+    character.dexNo !== undefined &&
+    character.dexNo !== null &&
+    character.dexNo !== ""
+  ){
+
+    return String(
+      character.dexNo
+    ).padStart(3,"0");
+
+  }
+
+  return String(
+    character.id
+  ).padStart(3,"0");
+
+}
+
+
+/* ==================================================
+   最初に表示するキャラクター
+================================================== */
+
+function findRequestedCharacter(){
+
+  /*
+   keyがある場合は
+   keyを最優先
+  */
+
+  if(requestedKey){
+
+    const byKey =
+      characters.find(
+        character =>
+          character.key === requestedKey
+      );
+
+    if(byKey){
+      return byKey;
+    }
+
+  }
+
+
+  /*
+   古いURL
+   ?id=18
+   にも対応
+  */
+
+  if(
+    !Number.isNaN(requestedId)
+  ){
+
+    const sameId =
+      characters.filter(
+        character =>
+          Number(character.id) ===
+          requestedId
+      );
+
+
+    if(sameId.length){
+
+      /*
+       mainを優先
+      */
+
+      const main =
+        sameId.find(
+          character =>
+            character.form === "main"
+        );
+
+      if(main){
+        return main;
+      }
+
+
+      /*
+       通常形態を優先
+      */
+
+      const normal =
+        sameId.find(
+          character =>
+            character.formName ===
+            "通常形態"
+        );
+
+      if(normal){
+        return normal;
+      }
+
+
+      /*
+       本来の姿を優先
+      */
+
+      const original =
+        sameId.find(
+          character =>
+            character.formName ===
+            "本来の姿"
+        );
+
+      if(original){
+        return original;
+      }
+
+
+      return sameId[0];
+
+    }
+
+  }
+
+
+  return null;
+
+}
+
+
+const character =
+  findRequestedCharacter();
+
+
+/* ==================================================
+   同じ図鑑番号の全形態
+================================================== */
+
+function getForms(character){
+
+  if(!character){
+    return [];
+  }
+
+  const dexNo =
+    getDexNo(character);
+
+  return characters.filter(
+    item =>
+      getDexNo(item) === dexNo
+  );
+
+}
+
+
+/* ==================================================
+   形態名
+================================================== */
+
+function getFormLabel(form,index){
+
+  if(form.formName){
+
+    return form.formName;
+
+  }
+
+  if(form.variantName){
+
+    return form.variantName;
+
+  }
+
+  if(form.form === "main"){
+
+    return "通常形態";
+
+  }
+
+  /*
+   形態名がまだ設定されていない場合
+  */
+
+  if(index === 0){
+
+    return "通常形態";
+
+  }
+
+  return `別形態 ${index + 1}`;
+
+}
+
+
+/* ==================================================
+   形態切り替えHTML
+================================================== */
+
+function createFormsHTML(character){
+
+  const forms =
+    getForms(character);
+
+  /*
+   1形態しかない場合は
+   切り替え欄を表示しない
+  */
+
+  if(forms.length <= 1){
+
+    return "";
+
+  }
+
+
+  const buttons =
+    forms.map(
+      (form,index) => {
+
+        const active =
+          form === character;
+
+        const label =
+          getFormLabel(
+            form,
+            index
+          );
+
+
+        const query =
+          new URLSearchParams();
+
+
+        if(form.key){
+
+          query.set(
+            "key",
+            form.key
+          );
+
+        }
+
+
+        query.set(
+          "id",
+          form.id
+        );
+
+
+        return `
+          <a
+            class="form-button ${active ? "active" : ""}"
+            href="character.html?${query.toString()}">
+
+            ${escapeHTML(label)}
+
+          </a>
+        `;
+
+      }
+    )
+    .join("");
+
+
+  return `
+
+    <section class="card form-card">
+
+      <h2>
+        🔄 形態切り替え
+      </h2>
+
+      <p class="form-description">
+        このキャラクターには複数の形態があります。
+        表示したい形態を選択してください。
+      </p>
+
+      <div class="form-buttons">
+
+        ${buttons}
+
+      </div>
+
+    </section>
+
+  `;
+
+}
+
+
+/* ==================================================
+   技
+================================================== */
 
 function skillHTML(skill){
 
   const level =
-    skill.level !== undefined && skill.level !== null
-    ? `Lv.${skill.level}`
-    : "";
+    skill.level !== undefined &&
+    skill.level !== null
+      ? `Lv.${escapeHTML(skill.level)}`
+      : "";
+
 
   const power =
-    skill.power === null || skill.power === undefined
-    ? ""
-    : `<span class="tag">威力 ${skill.power}</span>`;
+    skill.power === null ||
+    skill.power === undefined
+      ? ""
+      : `
+        <span class="tag">
+          威力 ${escapeHTML(skill.power)}
+        </span>
+      `;
+
 
   const cost =
-    skill.cost === null || skill.cost === undefined
-    ? ""
-    : `<span class="tag">消費 ${skill.cost}</span>`;
+    skill.cost === null ||
+    skill.cost === undefined
+      ? ""
+      : `
+        <span class="tag">
+          消費 ${escapeHTML(skill.cost)}
+        </span>
+      `;
+
 
   return `
+
     <div class="skill">
 
       <div class="skill-top">
+
         <span class="skill-name">
-          ${skill.name}
+          ${escapeHTML(
+            skill.name || "名称確認中"
+          )}
         </span>
 
         <span class="skill-level">
           ${level}
         </span>
+
       </div>
 
+
       <div class="skill-original">
-        中国名：${skill.chineseName}
+
+        中国名：
+        ${escapeHTML(
+          skill.chineseName || "確認中"
+        )}
+
       </div>
+
 
       <div class="skill-tags">
 
-        ${skill.type
-          ? `<span class="tag">${skill.type}</span>`
-          : ""}
+        ${
+          skill.type
+            ? `
+              <span class="tag">
+                ${escapeHTML(skill.type)}
+              </span>
+            `
+            : ""
+        }
 
-        ${skill.category
-          ? `<span class="tag">${skill.category}</span>`
-          : ""}
+        ${
+          skill.category
+            ? `
+              <span class="tag">
+                ${escapeHTML(skill.category)}
+              </span>
+            `
+            : ""
+        }
 
         ${power}
+
         ${cost}
 
       </div>
 
+
       <div class="skill-effect">
-        ${skill.description || ""}
+
+        ${escapeHTML(
+          skill.description || ""
+        )}
+
       </div>
 
     </div>
+
   `;
+
 }
 
-function skillGroup(title,icon,list){
 
-  if(!list || list.length===0){
+/* ==================================================
+   技グループ
+================================================== */
+
+function skillGroup(
+  title,
+  icon,
+  list
+){
+
+  if(
+    !Array.isArray(list) ||
+    list.length === 0
+  ){
+
     return `
+
       <div class="skill-group">
 
         <div class="skill-group-title">
-          ${icon} ${title}
+
+          ${icon}
+          ${escapeHTML(title)}
+
         </div>
 
         <p class="empty">
@@ -468,124 +980,278 @@ function skillGroup(title,icon,list){
         </p>
 
       </div>
+
     `;
+
   }
 
+
   return `
+
     <div class="skill-group">
 
       <div class="skill-group-title">
-        ${icon} ${title}
+
+        ${icon}
+        ${escapeHTML(title)}
+
         <span class="skill-count">
           （${list.length}）
         </span>
+
       </div>
 
       ${list.map(skillHTML).join("")}
 
     </div>
+
   `;
+
 }
+
+
+/* ==================================================
+   キャラクターが見つからない
+================================================== */
 
 if(!character){
 
   content.innerHTML=`
+
     <div class="error">
-      <h2>キャラクターが見つかりません</h2>
-      <a href="pokedex.html">キャラ図鑑へ戻る</a>
+
+      <h2>
+        キャラクターが見つかりません
+      </h2>
+
+      <p>
+        URLまたは図鑑データを確認してください。
+      </p>
+
+      <a href="pokedex.html">
+        ← キャラ図鑑へ戻る
+      </a>
+
     </div>
+
   `;
 
 }else{
 
-document.title=
-`${character.name}の性能・技 | ロコキングダム速報`;
 
-/* 画像 */
+/* ==================================================
+   タイトル
+================================================== */
+
+const displayName =
+  character.name ||
+  character.chineseName ||
+  "名称確認中";
+
+
+document.title =
+  `${displayName}の性能・技 | ロコキングダム速報`;
+
+
+/* ==================================================
+   画像
+================================================== */
 
 let imageHTML;
 
-if(character.image){
 
-  imageHTML=
-  `<img src="${character.image}" alt="${character.name}">`;
+if(
+  character.image &&
+  String(character.image).trim() !== ""
+){
+
+  imageHTML=`
+
+    <img
+      src="${escapeHTML(character.image)}"
+      alt="${escapeHTML(displayName)}">
+
+  `;
 
 }else{
 
-  imageHTML=
-  typeData[character.type[0]]?.icon || "🐾";
+  const firstType =
+    Array.isArray(character.type)
+      ? character.type[0]
+      : "normal";
+
+
+  imageHTML =
+    typeData[firstType]?.icon ||
+    "🐾";
 
 }
 
-/* 属性 */
 
-const typeHTML=
-character.type.map((type,index)=>{
+/* ==================================================
+   属性
+================================================== */
 
-  const name=
-  character.typeName[index]
-  || typeData[type]?.name
-  || type;
+const characterTypes =
+  Array.isArray(character.type)
+    ? character.type
+    : [];
 
-  return `
-    <span class="type type-${type}">
-      ${typeData[type]?.icon || ""}
-      ${name}
-    </span>
-  `;
 
-}).join("");
+const typeHTML =
+  characterTypes.map(
+    (type,index) => {
 
-/* 確認状況 */
+      const name =
+        character.typeName?.[index]
+        ||
+        typeData[type]?.name
+        ||
+        type;
 
-const confirmed=
-character.dataStatus==="confirmed";
 
-const dataStatusHTML=`
-<div class="data-status ${confirmed ? "confirmed":"checking"}">
+      return `
+
+        <span
+          class="type type-${escapeHTML(type)}">
+
+          ${escapeHTML(
+            typeData[type]?.icon || ""
+          )}
+
+          ${escapeHTML(name)}
+
+        </span>
+
+      `;
+
+    }
+  )
+  .join("");
+
+
+/* ==================================================
+   種族値合計
+================================================== */
+
+const totalHTML =
+
+  character.total === null ||
+  character.total === undefined ||
+  character.total === ""
+
+    ? "確認中"
+
+    : escapeHTML(
+        character.total
+      );
+
+
+/* ==================================================
+   確認状況
+================================================== */
+
+const confirmed =
+  character.dataStatus ===
+  "confirmed";
+
+
+const dataStatusHTML = `
+
+<div
+  class="data-status ${confirmed ? "confirmed" : "checking"}">
 
   <div class="data-status-title">
-    ${confirmed
-      ? "✅ 中国版データ確認済み"
-      : "⚠️ データ確認中"}
+
+    ${
+      confirmed
+        ? "✅ 中国版データ確認済み"
+        : "⚠️ データ確認中"
+    }
+
   </div>
 
+
   <div class="data-status-detail">
-    ${character.dataVersion || "中国版"}
+
+    ${escapeHTML(
+      character.dataVersion ||
+      "中国版"
+    )}
+
     <br>
-    最終確認：${character.checkedDate || "未設定"}
+
+    最終確認：
+    ${escapeHTML(
+      character.checkedDate ||
+      "未設定"
+    )}
+
   </div>
 
 </div>
+
 `;
 
-/* 属性相性 */
 
-function matchupTags(list,multiplier){
+/* ==================================================
+   属性相性
+================================================== */
 
-  if(!list || list.length===0){
-    return `<span class="empty">現在確認中</span>`;
-  }
+function matchupTags(
+  list,
+  multiplier
+){
 
-  return list.map(type=>{
-
-    const data=typeData[type];
+  if(
+    !Array.isArray(list) ||
+    list.length === 0
+  ){
 
     return `
-      <span class="matchup-tag">
-        ${data?.icon || ""}
-        ${data?.name || type}
-        ${multiplier}
+      <span class="empty">
+        現在確認中
       </span>
     `;
 
+  }
+
+
+  return list.map(type => {
+
+    const data =
+      typeData[type];
+
+
+    return `
+
+      <span class="matchup-tag">
+
+        ${escapeHTML(
+          data?.icon || ""
+        )}
+
+        ${escapeHTML(
+          data?.name || type
+        )}
+
+        ${escapeHTML(multiplier)}
+
+      </span>
+
+    `;
+
   }).join("");
+
 }
 
-const matchupHTML=`
+
+const matchupHTML = `
+
 <div class="matchup-grid">
 
   <div class="matchup weak">
+
     <div class="matchup-title">
       ⚠️ 弱点
     </div>
@@ -594,9 +1260,12 @@ const matchupHTML=`
       character.weaknesses,
       "×2"
     )}
+
   </div>
 
+
   <div class="matchup resist">
+
     <div class="matchup-title">
       🛡️ 耐性
     </div>
@@ -605,176 +1274,366 @@ const matchupHTML=`
       character.resistances,
       "×0.5"
     )}
+
   </div>
 
 </div>
+
 `;
 
-/* 特性 */
+
+/* ==================================================
+   特性
+================================================== */
 
 let abilityHTML;
 
+
 if(character.ability){
 
- abilityHTML=`
- <div class="trait">
+  abilityHTML = `
 
-   <strong>
-     ${character.ability.name}
-     ${character.nameStatus==="仮" ? "（仮）":""}
-   </strong>
+    <div class="trait">
 
-   <div class="original">
-     中国名：${character.ability.chineseName}
-   </div>
+      <strong>
 
-   <div>
-     ${character.ability.description}
-   </div>
+        ${escapeHTML(
+          character.ability.name ||
+          "名称確認中"
+        )}
 
- </div>
- `;
+      </strong>
+
+
+      <div class="original">
+
+        中国名：
+        ${escapeHTML(
+          character.ability.chineseName ||
+          "確認中"
+        )}
+
+      </div>
+
+
+      <div>
+
+        ${escapeHTML(
+          character.ability.description ||
+          "効果を確認中です。"
+        )}
+
+      </div>
+
+    </div>
+
+  `;
 
 }else{
 
- abilityHTML=
- `<p class="empty">現在データ整理中です。</p>`;
+  abilityHTML = `
+    <p class="empty">
+      現在データ整理中です。
+    </p>
+  `;
 
 }
 
-/* 技
-   新方式と旧方式の両方に対応
-*/
 
-let levelSkills=[];
-let stoneSkills=[];
-let bloodlineSkills=[];
+/* ==================================================
+   技
+================================================== */
 
-if(Array.isArray(character.skills)){
+let levelSkills = [];
+let stoneSkills = [];
+let bloodlineSkills = [];
 
-  levelSkills=character.skills;
+
+if(
+  Array.isArray(character.skills)
+){
+
+  levelSkills =
+    character.skills;
 
 }else if(character.skills){
 
-  levelSkills=character.skills.level || [];
-  stoneSkills=character.skills.stone || [];
-  bloodlineSkills=character.skills.bloodline || [];
+  levelSkills =
+    character.skills.level || [];
+
+  stoneSkills =
+    character.skills.stone || [];
+
+  bloodlineSkills =
+    character.skills.bloodline || [];
 
 }
 
-const skillsHTML=
+
+const skillsHTML =
+
   skillGroup(
     "レベル習得",
     "📈",
     levelSkills
   )
+
   +
+
   skillGroup(
     "技能石",
     "💎",
     stoneSkills
   )
+
   +
+
   skillGroup(
     "血脈技",
     "🧬",
     bloodlineSkills
   );
 
-/* 進化 */
+
+/* ==================================================
+   進化
+================================================== */
 
 let evolutionHTML;
 
-if(character.evolution &&
-   character.evolution.length){
 
- evolutionHTML=
- character.evolution.map(evo=>`
-   <div class="evolution-item">
-     ${evo}
-   </div>
- `).join("");
+if(
+  Array.isArray(character.evolution) &&
+  character.evolution.length
+){
+
+  evolutionHTML =
+    character.evolution
+      .map(
+        evolution => `
+
+          <div class="evolution-item">
+
+            ${escapeHTML(evolution)}
+
+          </div>
+
+        `
+      )
+      .join("");
 
 }else{
 
- evolutionHTML=
- `<p class="empty">進化情報は現在整理中です。</p>`;
+  evolutionHTML = `
+
+    <p class="empty">
+      進化情報は現在整理中です。
+    </p>
+
+  `;
 
 }
 
-/* 描画 */
 
-content.innerHTML=`
+/* ==================================================
+   ステータス
+
+   データが無い場合は
+   確認中
+================================================== */
+
+const stats =
+  character.stats || {};
+
+
+function statValue(value){
+
+  if(
+    value === null ||
+    value === undefined ||
+    value === ""
+  ){
+
+    return "確認中";
+
+  }
+
+  return escapeHTML(value);
+
+}
+
+
+/* ==================================================
+   形態切り替え
+================================================== */
+
+const formsHTML =
+  createFormsHTML(character);
+
+
+/* ==================================================
+   描画
+================================================== */
+
+content.innerHTML = `
 
 <section class="card hero">
 
   <div class="character-image">
+
     ${imageHTML}
+
   </div>
+
 
   <div class="no">
-    NO.${String(character.id).padStart(3,"0")}
+
+    NO.${escapeHTML(
+      getDexNo(character)
+    )}
+
   </div>
+
 
   <div class="name">
-    ${character.name}
-    ${character.nameStatus==="仮" ? "（仮）":""}
+
+    ${escapeHTML(displayName)}
+
+    ${
+      character.nameStatus === "仮"
+        ? "（仮）"
+        : ""
+    }
+
   </div>
+
 
   <div class="cn">
-    中国名：${character.chineseName}
-    ${character.englishName
-      ? ` / ${character.englishName}`
-      : ""}
+
+    中国名：
+    ${escapeHTML(
+      character.chineseName ||
+      "確認中"
+    )}
+
+    ${
+      character.englishName
+        ? ` / ${escapeHTML(
+            character.englishName
+          )}`
+        : ""
+    }
+
   </div>
+
 
   <div class="types">
+
     ${typeHTML}
+
   </div>
 
+
   <div class="total">
-    種族値合計 ${character.total}
+
+    種族値合計：
+    ${totalHTML}
+
   </div>
+
 
   ${dataStatusHTML}
 
 </section>
 
 
+${formsHTML}
+
+
 <section class="card">
 
-  <h2>📊 基本ステータス</h2>
+  <h2>
+    📊 基本ステータス
+  </h2>
+
 
   <div class="stats">
 
     <div class="stat">
-      <span class="stat-name">HP</span>
-      <span class="stat-value">${character.stats.hp}</span>
+
+      <span class="stat-name">
+        HP
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.hp)}
+      </span>
+
     </div>
 
-    <div class="stat">
-      <span class="stat-name">物攻</span>
-      <span class="stat-value">${character.stats.attack}</span>
-    </div>
 
     <div class="stat">
-      <span class="stat-name">魔攻</span>
-      <span class="stat-value">${character.stats.magicAttack}</span>
+
+      <span class="stat-name">
+        物攻
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.attack)}
+      </span>
+
     </div>
 
-    <div class="stat">
-      <span class="stat-name">物防</span>
-      <span class="stat-value">${character.stats.defense}</span>
-    </div>
 
     <div class="stat">
-      <span class="stat-name">魔防</span>
-      <span class="stat-value">${character.stats.magicDefense}</span>
+
+      <span class="stat-name">
+        魔攻
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.magicAttack)}
+      </span>
+
     </div>
 
+
     <div class="stat">
-      <span class="stat-name">速度</span>
-      <span class="stat-value">${character.stats.speed}</span>
+
+      <span class="stat-name">
+        物防
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.defense)}
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span class="stat-name">
+        魔防
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.magicDefense)}
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span class="stat-name">
+        速度
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.speed)}
+      </span>
+
     </div>
 
   </div>
@@ -784,7 +1643,9 @@ content.innerHTML=`
 
 <section class="card">
 
-  <h2>⚔️ 属性相性</h2>
+  <h2>
+    ⚔️ 属性相性
+  </h2>
 
   ${matchupHTML}
 
@@ -793,7 +1654,9 @@ content.innerHTML=`
 
 <section class="card">
 
-  <h2>🌟 特性</h2>
+  <h2>
+    🌟 特性
+  </h2>
 
   ${abilityHTML}
 
@@ -802,7 +1665,9 @@ content.innerHTML=`
 
 <section class="card">
 
-  <h2>⚡ 技・スキル</h2>
+  <h2>
+    ⚡ 技・スキル
+  </h2>
 
   ${skillsHTML}
 
@@ -811,7 +1676,9 @@ content.innerHTML=`
 
 <section class="card">
 
-  <h2>🌱 進化・派生形態</h2>
+  <h2>
+    🌱 進化・派生形態
+  </h2>
 
   ${evolutionHTML}
 
@@ -820,11 +1687,17 @@ content.innerHTML=`
 
 <section class="card">
 
-  <h2>🎁 入手方法</h2>
+  <h2>
+    🎁 入手方法
+  </h2>
 
   <p>
-    ${character.acquisition
-      || "現在データ整理中です。"}
+
+    ${escapeHTML(
+      character.acquisition ||
+      "現在データ整理中です。"
+    )}
+
   </p>
 
 </section>
@@ -832,22 +1705,24 @@ content.innerHTML=`
 
 <div class="notice">
 
-<strong>🇨🇳 中国版データについて</strong>
+  <strong>
+    🇨🇳 中国版データについて
+  </strong>
 
-<br><br>
+  <br><br>
 
-中国版「洛克王国：世界」の情報をもとに、
-日本ユーザー向けに整理しています。
+  中国版「洛克王国：世界」の情報をもとに、
+  日本ユーザー向けに整理しています。
 
-<br><br>
+  <br><br>
 
-日本版で正式名称が確認できていない名称には
-仮表記を使用しています。
+  日本版で正式名称が確認できていない名称には
+  仮表記を使用しています。
 
-<br><br>
+  <br><br>
 
-中国版アップデートにより、
-性能が変更される場合があります。
+  中国版アップデートにより、
+  性能が変更される場合があります。
 
 </div>
 
