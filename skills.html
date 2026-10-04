@@ -577,9 +577,6 @@ function collectSkills(){
           ownerId:
             character.id,
 
-          ownerKey:
-            character.key,
-
           ownerName:
             character.name,
 
@@ -587,16 +584,7 @@ function collectSkills(){
             character.chineseName,
 
           group:
-            group.name,
-
-          displayType:
-            skill.typeName || skill.type || "",
-
-          displayCategory:
-            skill.categoryName || skill.category || "",
-
-          displayCost:
-            skill.energy ?? skill.cost ?? null
+            group.name
 
         });
 
@@ -636,10 +624,10 @@ function skillHTML(skill){
       : "";
 
   const cost =
-    skill.displayCost !== null &&
-    skill.displayCost !== undefined
+    (skill.energy ?? skill.cost) !== null &&
+    (skill.energy ?? skill.cost) !== undefined
       ? `<span class="tag">
-          消費 ${skill.displayCost}
+          消費 ${skill.energy ?? skill.cost}
         </span>`
       : "";
 
@@ -652,7 +640,7 @@ function skillHTML(skill){
         <div>
 
           <div class="skill-name">
-            ${skill.name || "名称確認中"}
+            ${skill.name || skill.chineseName || "名称確認中"}
           </div>
 
           <div class="skill-cn">
@@ -671,15 +659,15 @@ function skillHTML(skill){
 
       <div class="tags">
 
-        ${skill.displayType
+        ${(skill.typeName || skill.type)
           ? `<span class="tag">
-              ${skill.displayType}
+              ${skill.typeName || skill.type}
             </span>`
           : ""}
 
-        ${skill.displayCategory
+        ${(skill.categoryName || skill.category)
           ? `<span class="tag">
-              ${skill.displayCategory}
+              ${skill.categoryName || skill.category}
             </span>`
           : ""}
 
@@ -703,8 +691,8 @@ function skillHTML(skill){
 
         習得キャラ：
 
-        <a href="character.html?key=${encodeURIComponent(skill.ownerKey || "")}">
-          ${skill.ownerName || "名前確認中"}
+        <a href="character.html?id=${skill.ownerId}">
+          ${skill.ownerName}
         </a>
 
         ／ 中国名：
@@ -729,10 +717,10 @@ function searchText(skill){
 
     skill.name || "",
     skill.chineseName || "",
-    skill.displayType || "",
-    skill.displayCategory || "",
     skill.type || "",
+    skill.typeName || "",
     skill.category || "",
+    skill.categoryName || "",
     skill.description || "",
     skill.ownerName || "",
     skill.ownerChinese || "",
@@ -766,12 +754,12 @@ function render(){
       const typeMatch =
         selectedType === "all"
         ||
-        skill.displayType === selectedType;
+        (skill.typeName || skill.type) === selectedType;
 
       const categoryMatch =
         selectedCategory === "all"
         ||
-        skill.displayCategory ===
+        (skill.categoryName || skill.category) ===
           selectedCategory;
 
       return (
