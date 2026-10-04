@@ -10,10 +10,13 @@
  ・季節形態
  ・首領形態
  ・同一図鑑番号の複数形態
- ・属性相性自動計算対応
+ ・全18属性の属性相性
+ ・複合属性の相性自動計算
+ ・×4 / ×2 / ×1 / ×0.5 / ×0.25 対応
  ・未確認データは推測せず null / 空配列
 ==================================================
 */
+
 
 const characters = [
 
@@ -2411,7 +2414,7 @@ const typeData = {
   ground:{name:"地",icon:"⛰️"},
   ice:{name:"氷",icon:"❄️"},
   dragon:{name:"龍",icon:"🐉"},
-  electric:{name:"電",icon:"⚡"},
+  electric:{name:"電気",icon:"⚡"},
   poison:{name:"毒",icon:"☠️"},
   bug:{name:"虫",icon:"🐛"},
   fighting:{name:"武",icon:"👊"},
@@ -2427,13 +2430,274 @@ const typeData = {
 
 /*
 ==================================================
- 属性相性データ
+ 属性相性
 
- 未確認データは推測しない。
+ 中国版「洛克王国：世界」
+ BWIKI TypeRelation を基準に整理
+
+ attackStrong
+   この属性で攻撃した場合 ×2
+
+ attackWeak
+   この属性で攻撃した場合 ×0.5
+
+ weakness / resistance は表示確認用。
+ 実際の計算では attackStrong / attackWeak を原本とする。
+==================================================
+*/
+
+const typeRelations = {
+
+normal:{
+  attackStrong:[],
+  attackWeak:["ground","ghost","machine"],
+  weakness:["fighting"],
+  resistance:["ghost"]
+},
+
+grass:{
+  attackStrong:["light","ground","water"],
+  attackWeak:["machine","poison","fire","wing","bug","dragon"],
+  weakness:["ice","poison","fire","wing","bug"],
+  resistance:["light","ground","water","electric"]
+},
+
+fire:{
+  attackStrong:["ice","machine","grass","bug"],
+  attackWeak:["ground","water","dragon"],
+  weakness:["ground","water"],
+  resistance:["ice","machine","grass","cute","bug"]
+},
+
+water:{
+  attackStrong:["ground","machine","fire"],
+  attackWeak:["ice","grass","dragon"],
+  weakness:["electric","grass"],
+  resistance:["machine","fire"]
+},
+
+light:{
+  attackStrong:["ghost","dark"],
+  attackWeak:["ice","grass"],
+  weakness:["ghost","grass"],
+  resistance:["illusion","dark"]
+},
+
+ground:{
+  attackStrong:["ice","poison","fire","electric"],
+  attackWeak:["fighting","grass"],
+  weakness:["ice","machine","fighting","water","grass"],
+  resistance:["normal","poison","fire","electric","wing"]
+},
+
+ice:{
+  attackStrong:["ground","wing","grass","dragon"],
+  attackWeak:["ice","machine","fire"],
+  weakness:["ground","machine","fighting","fire"],
+  resistance:["light","water"]
+},
+
+dragon:{
+  attackStrong:["dragon"],
+  attackWeak:["machine"],
+  weakness:["ice","cute"],
+  resistance:["water","fire","electric","wing","grass"]
+},
+
+electric:{
+  attackStrong:["water","wing"],
+  attackWeak:["ground","electric","grass","dragon"],
+  weakness:["ground"],
+  resistance:["machine","wing"]
+},
+
+poison:{
+  attackStrong:["grass","cute"],
+  attackWeak:["ground","ghost","machine","poison"],
+  weakness:["ground","illusion","dark"],
+  resistance:["fighting","grass","cute","bug"]
+},
+
+bug:{
+  attackStrong:["illusion","dark","grass"],
+  attackWeak:["ghost","machine","fighting","poison","fire","wing","cute"],
+  weakness:["fire","wing"],
+  resistance:["fighting","grass"]
+},
+
+fighting:{
+  attackStrong:["ice","ground","dark","normal","machine"],
+  attackWeak:["illusion","ghost","poison","wing","cute","bug"],
+  weakness:["illusion","wing","cute"],
+  resistance:["ground","dark","bug"]
+},
+
+wing:{
+  attackStrong:["fighting","grass","bug"],
+  attackWeak:["ground","machine","electric","dragon"],
+  weakness:["ice","electric"],
+  resistance:["fighting","grass","bug"]
+},
+
+cute:{
+  attackStrong:["dark","fighting","dragon"],
+  attackWeak:["machine","poison","fire"],
+  weakness:["dark","machine","poison"],
+  resistance:["fighting","bug"]
+},
+
+ghost:{
+  attackStrong:["light","illusion","ghost"],
+  attackWeak:["dark","normal"],
+  weakness:["light","dark"],
+  resistance:["normal","fighting","poison","bug"]
+},
+
+dark:{
+  attackStrong:["ghost","poison","cute"],
+  attackWeak:["light","dark","fighting"],
+  weakness:["light","fighting","cute","bug"],
+  resistance:["ghost"]
+},
+
+machine:{
+  attackStrong:["ice","ground","cute"],
+  attackWeak:["machine","water","fire","electric"],
+  weakness:["fighting","water","fire"],
+  resistance:[
+    "ice",
+    "illusion",
+    "normal",
+    "poison",
+    "wing",
+    "grass",
+    "cute",
+    "bug",
+    "dragon"
+  ]
+},
+
+illusion:{
+  attackStrong:["fighting","poison"],
+  attackWeak:["light","illusion","machine"],
+  weakness:["ghost","bug"],
+  resistance:["fighting"]
+}
+
+};
+
+
+/*
+==================================================
+ 防御側の属性相性データを自動生成
+
+ typeMatchupData[防御属性][攻撃属性]
+
+ 例：
+ typeMatchupData.grass.fire
+ → 2
+
+ 草属性が火属性攻撃を受けた場合 ×2
 ==================================================
 */
 
 const typeMatchupData = {};
+
+
+/*
+==================================================
+ 全属性をまず ×1 で初期化
+==================================================
+*/
+
+Object.keys(typeData).forEach(
+  defenderType => {
+
+    typeMatchupData[
+      defenderType
+    ] = {};
+
+    Object.keys(typeData).forEach(
+      attackerType => {
+
+        typeMatchupData[
+          defenderType
+        ][
+          attackerType
+        ] = 1;
+
+      }
+    );
+
+  }
+);
+
+
+/*
+==================================================
+ attackStrong / attackWeak から
+ 防御倍率を生成
+==================================================
+*/
+
+Object.entries(typeRelations).forEach(
+  ([attackerType,relation]) => {
+
+    /*
+    ------------------------------
+     攻撃有利 ×2
+    ------------------------------
+    */
+
+    relation.attackStrong.forEach(
+      defenderType => {
+
+        if(
+          typeMatchupData[
+            defenderType
+          ]
+        ){
+
+          typeMatchupData[
+            defenderType
+          ][
+            attackerType
+          ] = 2;
+
+        }
+
+      }
+    );
+
+
+    /*
+    ------------------------------
+     攻撃不利 ×0.5
+    ------------------------------
+    */
+
+    relation.attackWeak.forEach(
+      defenderType => {
+
+        if(
+          typeMatchupData[
+            defenderType
+          ]
+        ){
+
+          typeMatchupData[
+            defenderType
+          ][
+            attackerType
+          ] = 0.5;
+
+        }
+
+      }
+    );
+
+  }
+);
 
 
 /*
@@ -2597,6 +2861,12 @@ function getAllTypes(){
 /*
 ==================================================
  単属性の相性取得
+
+ defenderType
+   防御側属性
+
+ attackerType
+   攻撃側属性
 ==================================================
 */
 
@@ -2634,6 +2904,31 @@ function getSingleTypeMultiplier(
 /*
 ==================================================
  複合属性の相性計算
+
+ 例：
+
+ 幽 × 草
+
+ 火攻撃が
+
+ 幽に ×1
+ 草に ×2
+
+ → 最終 ×2
+
+
+ 例：
+
+ 両方が弱点なら
+
+ ×2 × ×2
+ → ×4
+
+
+ 両方が耐性なら
+
+ ×0.5 × ×0.5
+ → ×0.25
 ==================================================
 */
 
@@ -2717,6 +3012,13 @@ function getCharacterTypeMatchups(character){
           attackerType
         );
 
+
+      /*
+      ------------------------------
+       未確認
+      ------------------------------
+      */
+
       if(multiplier === null){
 
         result.unknown.push({
@@ -2726,6 +3028,13 @@ function getCharacterTypeMatchups(character){
 
         return;
       }
+
+
+      /*
+      ------------------------------
+       無効
+      ------------------------------
+      */
 
       if(multiplier === 0){
 
@@ -2737,6 +3046,13 @@ function getCharacterTypeMatchups(character){
         return;
       }
 
+
+      /*
+      ------------------------------
+       弱点
+      ------------------------------
+      */
+
       if(multiplier > 1){
 
         result.weaknesses.push({
@@ -2746,6 +3062,13 @@ function getCharacterTypeMatchups(character){
 
         return;
       }
+
+
+      /*
+      ------------------------------
+       耐性
+      ------------------------------
+      */
 
       if(multiplier < 1){
 
@@ -2757,6 +3080,13 @@ function getCharacterTypeMatchups(character){
         return;
       }
 
+
+      /*
+      ------------------------------
+       等倍
+      ------------------------------
+      */
+
       result.neutral.push({
         type:attackerType,
         multiplier:1
@@ -2765,11 +3095,27 @@ function getCharacterTypeMatchups(character){
     }
   );
 
+
+  /*
+  ------------------------------
+   弱点は倍率が高い順
+   ×4 → ×2
+  ------------------------------
+  */
+
   result.weaknesses.sort(
     (a,b) =>
       b.multiplier -
       a.multiplier
   );
+
+
+  /*
+  ------------------------------
+   耐性は倍率が低い順
+   ×0.25 → ×0.5
+  ------------------------------
+  */
 
   result.resistances.sort(
     (a,b) =>
@@ -2777,10 +3123,17 @@ function getCharacterTypeMatchups(character){
       b.multiplier
   );
 
+
   return result;
 
 }
 
+
+/*
+==================================================
+ keyから属性相性
+==================================================
+*/
 
 function getTypeMatchupsByKey(key){
 
@@ -2805,6 +3158,14 @@ function getTypeMatchupsByKey(key){
 
 }
 
+
+/*
+==================================================
+ 図鑑番号から属性相性
+
+ 代表形態を使用
+==================================================
+*/
 
 function getTypeMatchupsByDexNo(dexNo){
 
@@ -2832,6 +3193,12 @@ function getTypeMatchupsByDexNo(dexNo){
 }
 
 
+/*
+==================================================
+ 属性相性がすべて揃っているか
+==================================================
+*/
+
 function isTypeMatchupComplete(character){
 
   if(
@@ -2853,6 +3220,12 @@ function isTypeMatchupComplete(character){
 
 }
 
+
+/*
+==================================================
+ 属性相性データが存在するか
+==================================================
+*/
 
 function hasTypeMatchupData(character){
 
@@ -2878,6 +3251,101 @@ function hasTypeMatchupData(character){
 
 }
 
+
+/*
+==================================================
+ 属性単体の攻撃相性取得
+
+ 属性相性ページでも使用可能
+==================================================
+*/
+
+function getAttackMultiplier(
+  attackerType,
+  defenderType
+){
+
+  const attacker =
+    typeRelations[
+      attackerType
+    ];
+
+  if(!attacker){
+    return null;
+  }
+
+  if(
+    attacker.attackStrong.includes(
+      defenderType
+    )
+  ){
+    return 2;
+  }
+
+  if(
+    attacker.attackWeak.includes(
+      defenderType
+    )
+  ){
+    return 0.5;
+  }
+
+  return 1;
+
+}
+
+
+/*
+==================================================
+ 属性の弱点一覧
+==================================================
+*/
+
+function getTypeWeaknesses(type){
+
+  const relation =
+    typeRelations[type];
+
+  if(!relation){
+    return [];
+  }
+
+  return relation.weakness || [];
+
+}
+
+
+/*
+==================================================
+ 属性の耐性一覧
+==================================================
+*/
+
+function getTypeResistances(type){
+
+  const relation =
+    typeRelations[type];
+
+  if(!relation){
+    return [];
+  }
+
+  return relation.resistance || [];
+
+}
+
+
+/*
+==================================================
+ デバッグ用
+
+ 例：
+
+ debugCharacterMatchup(
+   "017-huayinglingyang"
+ );
+==================================================
+*/
 
 function debugCharacterMatchup(key){
 
