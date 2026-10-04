@@ -1042,7 +1042,6 @@ const characters = [
   image: null
 },
 
-
 {
   key: "011-yajiji-tight",
   id: 11,
@@ -1099,7 +1098,6 @@ const characters = [
   dataStatus: "partial",
   image: null
 },
-
 
 {
   key: "011-yajiji-wait",
@@ -1158,7 +1156,6 @@ const characters = [
   image: null
 },
 
-
 {
   key: "011-yajiji-get-up",
   id: 11,
@@ -1216,7 +1213,6 @@ const characters = [
   image: null
 },
 
-
 {
   key: "011-yajiji-burning",
   id: 11,
@@ -1273,7 +1269,6 @@ const characters = [
   dataStatus: "partial",
   image: null
 },
-
 
 {
   key: "011-yajiji-king",
@@ -1394,7 +1389,6 @@ const characters = [
   image: null
 },
 
-
 {
   key: "012-banbanke-molting",
   id: 12,
@@ -1512,7 +1506,6 @@ const characters = [
   image: null
 },
 
-
 {
   key: "013-kakake-molting",
   id: 13,
@@ -1626,7 +1619,6 @@ const characters = [
   dataStatus: "confirmed",
   image: null
 },
-
 
 {
   key: "014-shuipaoke-molting",
@@ -1921,7 +1913,6 @@ const characters = [
   image: null
 },
 
-
 {
   key: "018-xuerongniao-spring",
   id: 18,
@@ -1950,13 +1941,25 @@ const characters = [
   },
 
   evolution: [],
-  forms: [],
-  skills: { level: [], stone: [], bloodline: [] },
+
+  forms: [
+    "018-xuerongniao",
+    "018-xuerongniao-spring",
+    "018-xuerongniao-summer",
+    "018-xuerongniao-autumn"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
   acquisition: null,
+
   dataStatus: "partial",
   image: null
 },
-
 
 {
   key: "018-xuerongniao-summer",
@@ -1985,13 +1988,25 @@ const characters = [
   },
 
   evolution: [],
-  forms: [],
-  skills: { level: [], stone: [], bloodline: [] },
+
+  forms: [
+    "018-xuerongniao",
+    "018-xuerongniao-spring",
+    "018-xuerongniao-summer",
+    "018-xuerongniao-autumn"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
   acquisition: null,
+
   dataStatus: "partial",
   image: null
 },
-
 
 {
   key: "018-xuerongniao-autumn",
@@ -2020,9 +2035,22 @@ const characters = [
   },
 
   evolution: [],
-  forms: [],
-  skills: { level: [], stone: [], bloodline: [] },
+
+  forms: [
+    "018-xuerongniao",
+    "018-xuerongniao-spring",
+    "018-xuerongniao-summer",
+    "018-xuerongniao-autumn"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
   acquisition: null,
+
   dataStatus: "partial",
   image: null
 },
@@ -2081,7 +2109,6 @@ const characters = [
   image: null
 },
 
-
 {
   key: "019-dongyuque-spring",
   id: 19,
@@ -2109,13 +2136,25 @@ const characters = [
   },
 
   evolution: [],
-  forms: [],
-  skills: { level: [], stone: [], bloodline: [] },
+
+  forms: [
+    "019-dongyuque",
+    "019-dongyuque-spring",
+    "019-dongyuque-summer",
+    "019-dongyuque-autumn"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
   acquisition: null,
+
   dataStatus: "partial",
   image: null
 },
-
 
 {
   key: "019-dongyuque-summer",
@@ -2144,13 +2183,25 @@ const characters = [
   },
 
   evolution: [],
-  forms: [],
-  skills: { level: [], stone: [], bloodline: [] },
+
+  forms: [
+    "019-dongyuque",
+    "019-dongyuque-spring",
+    "019-dongyuque-summer",
+    "019-dongyuque-autumn"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
   acquisition: null,
+
   dataStatus: "partial",
   image: null
 },
-
 
 {
   key: "019-dongyuque-autumn",
@@ -2179,9 +2230,22 @@ const characters = [
   },
 
   evolution: [],
-  forms: [],
-  skills: { level: [], stone: [], bloodline: [] },
+
+  forms: [
+    "019-dongyuque",
+    "019-dongyuque-spring",
+    "019-dongyuque-summer",
+    "019-dongyuque-autumn"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
   acquisition: null,
+
   dataStatus: "partial",
   image: null
 },
@@ -2239,7 +2303,6 @@ const characters = [
   image: null
 },
 
-
 {
   key: "020-lanniao-spring",
   id: 20,
@@ -2267,13 +2330,26 @@ const characters = [
   },
 
   evolution: [],
-  forms: [],
-  skills: { level: [], stone: [], bloodline: [] },
+
+  forms: [
+    "020-lanniao",
+    "020-lanniao-spring",
+    "020-lanniao-summer",
+    "020-lanniao-autumn",
+    "020-frostwing-lord"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
   acquisition: null,
+
   dataStatus: "partial",
   image: null
 },
-
 
 {
   key: "020-lanniao-summer",
@@ -2302,13 +2378,26 @@ const characters = [
   },
 
   evolution: [],
-  forms: [],
-  skills: { level: [], stone: [], bloodline: [] },
+
+  forms: [
+    "020-lanniao",
+    "020-lanniao-spring",
+    "020-lanniao-summer",
+    "020-lanniao-autumn",
+    "020-frostwing-lord"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
   acquisition: null,
+
   dataStatus: "partial",
   image: null
 },
-
 
 {
   key: "020-lanniao-autumn",
@@ -2337,13 +2426,26 @@ const characters = [
   },
 
   evolution: [],
-  forms: [],
-  skills: { level: [], stone: [], bloodline: [] },
+
+  forms: [
+    "020-lanniao",
+    "020-lanniao-spring",
+    "020-lanniao-summer",
+    "020-lanniao-autumn",
+    "020-frostwing-lord"
+  ],
+
+  skills: {
+    level: [],
+    stone: [],
+    bloodline: []
+  },
+
   acquisition: null,
+
   dataStatus: "partial",
   image: null
 },
-
 
 {
   key: "020-frostwing-lord",
@@ -2374,6 +2476,9 @@ const characters = [
 
   forms: [
     "020-lanniao",
+    "020-lanniao-spring",
+    "020-lanniao-summer",
+    "020-lanniao-autumn",
     "020-frostwing-lord"
   ],
 
