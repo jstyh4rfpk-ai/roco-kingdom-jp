@@ -464,7 +464,6 @@ main{
 .evolution-chain{
   display:flex;
   flex-direction:column;
-  gap:0;
 }
 
 .evolution-stage{
@@ -649,7 +648,6 @@ main{
 </style>
 </head>
 
-
 <body>
 
 <header>
@@ -662,11 +660,9 @@ main{
 </a>
 
 <main id="content">
-
   <div class="card">
     読み込み中...
   </div>
-
 </main>
 
 <script src="characters.js"></script>
@@ -678,17 +674,13 @@ main{
 ========================================== */
 
 const params =
-  new URLSearchParams(
-    window.location.search
-  );
+  new URLSearchParams(window.location.search);
 
 const keyParam =
   params.get("key");
 
 const idParam =
-  Number(
-    params.get("id")
-  );
+  Number(params.get("id"));
 
 
 /* ==========================================
@@ -765,22 +757,14 @@ function skillHTML(skill){
     ||
     skill.power === undefined
     ? ""
-    : `
-      <span class="tag">
-        威力 ${skill.power}
-      </span>
-    `;
+    : `<span class="tag">威力 ${skill.power}</span>`;
 
   const cost =
     skill.cost === null
     ||
     skill.cost === undefined
     ? ""
-    : `
-      <span class="tag">
-        消費 ${skill.cost}
-      </span>
-    `;
+    : `<span class="tag">消費 ${skill.cost}</span>`;
 
   return `
 
@@ -829,7 +813,6 @@ function skillHTML(skill){
         }
 
         ${power}
-
         ${cost}
 
       </div>
@@ -845,11 +828,7 @@ function skillHTML(skill){
 }
 
 
-function skillGroup(
-  title,
-  icon,
-  list
-){
+function skillGroup(title,icon,list){
 
   if(
     !list
@@ -922,8 +901,7 @@ function getRelatedForms(character){
       form
       &&
       !found.some(
-        item =>
-          item.key === form.key
+        item => item.key === form.key
       )
     ){
       found.push(form);
@@ -931,20 +909,13 @@ function getRelatedForms(character){
 
   });
 
-
-  /*
-   formsが未設定の季節形態なども
-   同じ図鑑番号から取得
-  */
-
   characters.forEach(form => {
 
     if(
       form.dexNo === character.dexNo
       &&
       !found.some(
-        item =>
-          item.key === form.key
+        item => item.key === form.key
       )
     ){
       found.push(form);
@@ -991,7 +962,6 @@ function createFormsHTML(character){
           href="character.html?key=${encodeURIComponent(form.key)}">
 
           ${boss ? "👑 " : ""}
-
           ${label}
 
         </a>
@@ -1026,16 +996,6 @@ function createFormsHTML(character){
 
 /* ==========================================
    進化番号抽出
-
-   例
-
-   "019 冬羽雀"
-
-   "Lv.20 → 016 铃兰羊"
-
-   "Lv.32 → 017 花影羚羊"
-
-   最後の数字を図鑑番号として扱う
 ========================================== */
 
 function getEvolutionDexNo(text){
@@ -1069,7 +1029,7 @@ function getEvolutionDexNo(text){
 
 
 /* ==========================================
-   通常形態判定
+   進化系統で使用できる通常形態
 ========================================== */
 
 function isEvolutionMainForm(character){
@@ -1094,7 +1054,7 @@ function isEvolutionMainForm(character){
 
 
 /* ==========================================
-   図鑑番号から通常形態を取得
+   図鑑番号から代表形態を取得
 ========================================== */
 
 function getMainEvolutionCharacter(dexNo){
@@ -1112,11 +1072,6 @@ function getMainEvolutionCharacter(dexNo){
     return null;
   }
 
-
-  /*
-   mainを最優先
-  */
-
   const main =
     sameDex.find(
       c => c.form === "main"
@@ -1125,12 +1080,6 @@ function getMainEvolutionCharacter(dexNo){
   if(main){
     return main;
   }
-
-
-  /*
-   main未設定の場合は
-   季節・首領以外
-  */
 
   const normal =
     sameDex.find(
@@ -1148,10 +1097,10 @@ function getMainEvolutionCharacter(dexNo){
 
 
 /* ==========================================
-   直接の進化先
+   evolution配列を解析
 ========================================== */
 
-function getEvolutionTargets(character){
+function getRawEvolutionTargets(character){
 
   if(
     !character
@@ -1170,10 +1119,12 @@ function getEvolutionTargets(character){
     const dexNo =
       getEvolutionDexNo(text);
 
+    if(!dexNo){
+      return;
+    }
+
     const target =
-      getMainEvolutionCharacter(
-        dexNo
-      );
+      getMainEvolutionCharacter(dexNo);
 
     if(
       target
@@ -1182,8 +1133,8 @@ function getEvolutionTargets(character){
       &&
       !result.some(
         item =>
-          item.character.key ===
-          target.key
+          item.character.dexNo ===
+          target.dexNo
       )
     ){
 
@@ -1202,7 +1153,144 @@ function getEvolutionTargets(character){
 
 
 /* ==========================================
+   あるキャラから別キャラへ
+   evolution経由で到達できるか確認
+
+   例：
+   019 → 020 が可能なら true
+========================================== */
+
+function canReachEvolution(
+  startCharacter,
+  targetDexNo,
+  visited = new Set()
+){
+
+  if(!startCharacter){
+    return false;
+  }
+
+  if(
+    visited.has(
+      startCharacter.dexNo
+    )
+  ){
+    return false;
+  }
+
+  const nextVisited =
+    new Set(visited);
+
+  nextVisited.add(
+    startCharacter.dexNo
+  );
+
+  const targets =
+    getRawEvolutionTargets(
+      startCharacter
+    );
+
+  for(const item of targets){
+
+    if(
+      item.character.dexNo ===
+      targetDexNo
+    ){
+      return true;
+    }
+
+    if(
+      canReachEvolution(
+        item.character,
+        targetDexNo,
+        nextVisited
+      )
+    ){
+      return true;
+    }
+
+  }
+
+  return false;
+
+}
+
+
+/* ==========================================
+   「直接」の進化先だけ取得
+
+   重要：
+   018のevolutionに
+   019と020が両方あっても、
+
+   019 → 020
+
+   が成立するなら
+   020は018の直接進化先から除外。
+
+   そのため
+
+   018
+    ↓
+   019
+    ↓
+   020
+
+   になる。
+========================================== */
+
+function getEvolutionTargets(character){
+
+  const rawTargets =
+    getRawEvolutionTargets(character);
+
+  if(rawTargets.length <= 1){
+    return rawTargets;
+  }
+
+  return rawTargets.filter(
+    candidate => {
+
+      /*
+       candidate以外の進化先から
+       candidateへ到達できる場合、
+       candidateは「さらに先の進化」
+       と判断する
+      */
+
+      const hasIntermediate =
+        rawTargets.some(
+          other => {
+
+            if(
+              other.character.dexNo ===
+              candidate.character.dexNo
+            ){
+              return false;
+            }
+
+            return canReachEvolution(
+              other.character,
+              candidate.character.dexNo
+            );
+
+          }
+        );
+
+      return !hasIntermediate;
+
+    }
+  );
+
+}
+
+
+/* ==========================================
    直接の進化前を逆引き
+
+   ここでも
+   getEvolutionTargets() を使うことで
+   途中段階を飛ばした進化を除外
 ========================================== */
 
 function getPreEvolutionCharacters(character){
@@ -1216,12 +1304,9 @@ function getPreEvolutionCharacters(character){
 
   const result = [];
 
-  characters.forEach(source => {
+  const mainCharacters = [];
 
-    /*
-     季節・首領形態は
-     進化系統から除外
-    */
+  characters.forEach(source => {
 
     if(
       !isEvolutionMainForm(source)
@@ -1229,41 +1314,53 @@ function getPreEvolutionCharacters(character){
       return;
     }
 
+    const representative =
+      getMainEvolutionCharacter(
+        source.dexNo
+      );
+
     if(
-      !Array.isArray(source.evolution)
+      representative
+      &&
+      !mainCharacters.some(
+        item =>
+          item.dexNo ===
+          representative.dexNo
+      )
     ){
-      return;
+      mainCharacters.push(
+        representative
+      );
     }
 
-    source.evolution.forEach(text => {
+  });
 
-      const targetDex =
-        getEvolutionDexNo(text);
+
+  mainCharacters.forEach(source => {
+
+    const directTargets =
+      getEvolutionTargets(source);
+
+    directTargets.forEach(item => {
 
       if(
-        targetDex === currentDex
+        item.character.dexNo ===
+        currentDex
         &&
         source.dexNo !== currentDex
       ){
 
-        const mainSource =
-          getMainEvolutionCharacter(
-            source.dexNo
-          );
-
         if(
-          mainSource
-          &&
           !result.some(
-            item =>
-              item.character.key ===
-              mainSource.key
+            existing =>
+              existing.character.dexNo ===
+              source.dexNo
           )
         ){
 
           result.push({
-            character:mainSource,
-            text:text
+            character:source,
+            text:item.text
           });
 
         }
@@ -1294,7 +1391,7 @@ function findEvolutionRoots(
 
   if(
     visited.has(
-      character.key
+      character.dexNo
     )
   ){
     return [character];
@@ -1304,7 +1401,7 @@ function findEvolutionRoots(
     new Set(visited);
 
   nextVisited.add(
-    character.key
+    character.dexNo
   );
 
   const previous =
@@ -1329,15 +1426,11 @@ function findEvolutionRoots(
 
   });
 
-  /*
-   重複削除
-  */
-
   return roots.filter(
     (item,index,array) =>
       array.findIndex(
         other =>
-          other.key === item.key
+          other.dexNo === item.dexNo
       ) === index
   );
 
@@ -1346,19 +1439,9 @@ function findEvolutionRoots(
 
 /* ==========================================
    進化系統全体を作成
-
-   stage 0
-   ↓
-   stage 1
-   ↓
-   stage 2
-
-   分岐にも対応
 ========================================== */
 
-function buildEvolutionStages(
-  roots
-){
+function buildEvolutionStages(roots){
 
   const stages = [];
 
@@ -1375,7 +1458,7 @@ function buildEvolutionStages(
   while(
     currentStage.length > 0
     &&
-    stages.length < 20
+    stages.length < 30
   ){
 
     const uniqueStage = [];
@@ -1385,8 +1468,8 @@ function buildEvolutionStages(
       if(
         !uniqueStage.some(
           existing =>
-            existing.character.key ===
-            item.character.key
+            existing.character.dexNo ===
+            item.character.dexNo
         )
       ){
 
@@ -1395,6 +1478,11 @@ function buildEvolutionStages(
       }
 
     });
+
+
+    if(uniqueStage.length === 0){
+      break;
+    }
 
 
     stages.push(
@@ -1410,7 +1498,7 @@ function buildEvolutionStages(
         item.character;
 
       globallyVisited.add(
-        source.key
+        source.dexNo
       );
 
       const targets =
@@ -1420,13 +1508,9 @@ function buildEvolutionStages(
 
       targets.forEach(targetItem => {
 
-        /*
-         循環データ対策
-        */
-
         if(
           globallyVisited.has(
-            targetItem.character.key
+            targetItem.character.dexNo
           )
         ){
           return;
@@ -1434,9 +1518,9 @@ function buildEvolutionStages(
 
         const existing =
           nextStage.find(
-            item =>
-              item.character.key ===
-              targetItem.character.key
+            nextItem =>
+              nextItem.character.dexNo ===
+              targetItem.character.dexNo
           );
 
         if(!existing){
@@ -1565,8 +1649,7 @@ function createEvolutionHTML(character){
 
   /*
    季節形態・首領形態の場合は
-   同じ図鑑番号の通常形態を
-   進化系統の基準にする
+   同じ図鑑番号の通常形態を基準にする
   */
 
   let baseCharacter =
@@ -1590,19 +1673,11 @@ function createEvolutionHTML(character){
   }
 
 
-  /*
-   系統の最初を探す
-  */
-
   const roots =
     findEvolutionRoots(
       baseCharacter
     );
 
-
-  /*
-   全段階を作成
-  */
 
   const stages =
     buildEvolutionStages(
@@ -1664,16 +1739,11 @@ function createEvolutionHTML(character){
 
       stage.forEach(item => {
 
-        let note =
-          item.text
-          ||
-          "";
-
         html +=
           evolutionCharacterHTML(
             item.character,
             baseCharacter.dexNo,
-            note
+            item.text || ""
           );
 
       });
@@ -1711,10 +1781,6 @@ function createEvolutionHTML(character){
     </div>
   `;
 
-
-  /*
-   季節・首領形態を見ている場合
-  */
 
   if(
     character.key !==
@@ -1914,80 +1980,45 @@ const statsHTML = `
   <div class="stats">
 
     <div class="stat">
-
-      <span class="stat-name">
-        HP
-      </span>
-
+      <span class="stat-name">HP</span>
       <span class="stat-value">
         ${statValue(stats.hp)}
       </span>
-
     </div>
 
-
     <div class="stat">
-
-      <span class="stat-name">
-        物攻
-      </span>
-
+      <span class="stat-name">物攻</span>
       <span class="stat-value">
         ${statValue(stats.attack)}
       </span>
-
     </div>
 
-
     <div class="stat">
-
-      <span class="stat-name">
-        魔攻
-      </span>
-
+      <span class="stat-name">魔攻</span>
       <span class="stat-value">
         ${statValue(stats.magicAttack)}
       </span>
-
     </div>
 
-
     <div class="stat">
-
-      <span class="stat-name">
-        物防
-      </span>
-
+      <span class="stat-name">物防</span>
       <span class="stat-value">
         ${statValue(stats.defense)}
       </span>
-
     </div>
 
-
     <div class="stat">
-
-      <span class="stat-name">
-        魔防
-      </span>
-
+      <span class="stat-name">魔防</span>
       <span class="stat-value">
         ${statValue(stats.magicDefense)}
       </span>
-
     </div>
 
-
     <div class="stat">
-
-      <span class="stat-name">
-        速度
-      </span>
-
+      <span class="stat-name">速度</span>
       <span class="stat-value">
         ${statValue(stats.speed)}
       </span>
-
     </div>
 
   </div>
@@ -2062,7 +2093,6 @@ const matchupHTML = `
       }
 
     </div>
-
 
     <div class="matchup resist">
 
@@ -2163,9 +2193,7 @@ let stoneSkills = [];
 let bloodlineSkills = [];
 
 if(
-  Array.isArray(
-    character.skills
-  )
+  Array.isArray(character.skills)
 ){
 
   levelSkills =
@@ -2223,9 +2251,7 @@ const skillsHTML =
 ========================================== */
 
 const formsHTML =
-  createFormsHTML(
-    character
-  );
+  createFormsHTML(character);
 
 
 /* ==========================================
@@ -2233,9 +2259,7 @@ const formsHTML =
 ========================================== */
 
 const evolutionHTML =
-  createEvolutionHTML(
-    character
-  );
+  createEvolutionHTML(character);
 
 
 /* ==========================================
@@ -2244,13 +2268,11 @@ const evolutionHTML =
 
 content.innerHTML = `
 
-
 <section class="card hero">
 
   <div class="character-image">
     ${imageHTML}
   </div>
-
 
   <div class="no">
 
@@ -2263,7 +2285,6 @@ content.innerHTML = `
 
   </div>
 
-
   <div class="name">
 
     ${character.name}
@@ -2275,7 +2296,6 @@ content.innerHTML = `
     }
 
   </div>
-
 
   ${
     character.formName
@@ -2297,7 +2317,6 @@ content.innerHTML = `
     ""
   }
 
-
   <div class="cn">
 
     中国名：
@@ -2313,11 +2332,9 @@ content.innerHTML = `
 
   </div>
 
-
   <div class="types">
     ${typeHTML}
   </div>
-
 
   <div class="total">
 
@@ -2325,7 +2342,6 @@ content.innerHTML = `
     ${displayValue(character.total)}
 
   </div>
-
 
   ${dataStatusHTML}
 
