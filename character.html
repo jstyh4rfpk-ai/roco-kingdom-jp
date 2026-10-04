@@ -178,7 +178,7 @@ main{
 
 
 /* ========================================
-   データ確認状況
+   確認状況
 ======================================== */
 
 .data-status{
@@ -391,7 +391,6 @@ main{
 .skill-count{
   color:#71899b;
   font-size:11px;
-  font-weight:700;
 }
 
 .skill{
@@ -500,7 +499,6 @@ main{
   top:50%;
   transform:translateY(-50%);
   font-size:27px;
-  font-weight:900;
 }
 
 .evolution-current{
@@ -527,10 +525,6 @@ main{
   margin-bottom:1px;
   color:#7890a4;
   font-size:10px;
-}
-
-.evolution-current .evolution-number{
-  color:#6b9870;
 }
 
 .evolution-name{
@@ -561,99 +555,6 @@ main{
   border:1px solid #d8eaf5;
   color:#668196;
   font-size:11px;
-}
-
-
-/* ========================================
-   入手方法
-======================================== */
-
-.acquisition-card{
-  border-left:6px solid #f0b23d;
-}
-
-.acquisition-description{
-  margin:-3px 0 15px;
-  color:#70889b;
-  font-size:13px;
-}
-
-.acquisition-box{
-  overflow:hidden;
-  border:1px solid #dce8ef;
-  border-radius:14px;
-  background:#fbfdff;
-}
-
-.acquisition-row{
-  display:grid;
-  grid-template-columns:110px 1fr;
-  border-bottom:1px solid #e6eef3;
-}
-
-.acquisition-row:last-child{
-  border-bottom:0;
-}
-
-.acquisition-label{
-  padding:12px;
-  background:#f3f8fb;
-  color:#6c8496;
-  font-size:12px;
-  font-weight:900;
-}
-
-.acquisition-value{
-  padding:12px;
-  color:#27465e;
-  font-size:13px;
-  font-weight:700;
-}
-
-.acquisition-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:12px;
-}
-
-.acquisition-tag{
-  display:inline-flex;
-  align-items:center;
-  padding:5px 10px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:900;
-}
-
-.acquisition-tag.event{
-  background:#ffe9e9;
-  color:#bd4040;
-}
-
-.acquisition-tag.boss{
-  background:#fff2cf;
-  color:#a56e00;
-}
-
-.acquisition-tag.available{
-  background:#e9f8ed;
-  color:#347445;
-}
-
-.acquisition-tag.unknown{
-  background:#eef3f6;
-  color:#708391;
-}
-
-.acquisition-note{
-  margin-top:12px;
-  padding:11px 12px;
-  border-radius:11px;
-  background:#fff9e9;
-  border:1px solid #f0dda4;
-  color:#66582b;
-  font-size:12px;
 }
 
 
@@ -705,10 +606,6 @@ main{
     grid-template-columns:1fr;
   }
 
-  .acquisition-row{
-    grid-template-columns:95px 1fr;
-  }
-
 }
 
 </style>
@@ -736,10 +633,11 @@ main{
 <script>
 
 /* ==========================================
-   URL・キャラクター取得
+   URL
 ========================================== */
 
-const params = new URLSearchParams(window.location.search);
+const params =
+  new URLSearchParams(window.location.search);
 
 const keyParam = params.get("key");
 const idParam = Number(params.get("id"));
@@ -747,14 +645,17 @@ const idParam = Number(params.get("id"));
 let character = null;
 
 if(keyParam){
-  character = characters.find(c => c.key === keyParam);
+  character =
+    characters.find(c => c.key === keyParam);
 }
 
 if(!character && idParam){
 
   character =
     characters.find(
-      c => c.id === idParam && c.form === "main"
+      c =>
+        c.id === idParam &&
+        c.form === "main"
     )
     ||
     characters.find(
@@ -763,8 +664,13 @@ if(!character && idParam){
 
 }
 
-const content = document.getElementById("content");
+const content =
+  document.getElementById("content");
 
+
+/* ==========================================
+   共通
+========================================== */
 
 function displayValue(value){
 
@@ -805,6 +711,7 @@ function skillHTML(skill){
     : `<span class="tag">消費 ${skill.cost}</span>`;
 
   return `
+
     <div class="skill">
 
       <div class="skill-top">
@@ -822,9 +729,11 @@ function skillHTML(skill){
       ${
         skill.chineseName
         ?
-        `<div class="skill-original">
+        `
+        <div class="skill-original">
           中国名：${skill.chineseName}
-        </div>`
+        </div>
+        `
         :
         ""
       }
@@ -853,6 +762,7 @@ function skillHTML(skill){
       </div>
 
     </div>
+
   `;
 }
 
@@ -862,6 +772,7 @@ function skillGroup(title,icon,list){
   if(!list || list.length === 0){
 
     return `
+
       <div class="skill-group">
 
         <div class="skill-group-title">
@@ -873,11 +784,12 @@ function skillGroup(title,icon,list){
         </p>
 
       </div>
-    `;
 
+    `;
   }
 
   return `
+
     <div class="skill-group">
 
       <div class="skill-group-title">
@@ -893,12 +805,13 @@ function skillGroup(title,icon,list){
       ${list.map(skillHTML).join("")}
 
     </div>
+
   `;
 }
 
 
 /* ==========================================
-   形態
+   形態一覧
 ========================================== */
 
 function getRelatedForms(character){
@@ -941,7 +854,8 @@ function getRelatedForms(character){
 
 function createFormsHTML(character){
 
-  const forms = getRelatedForms(character);
+  const forms =
+    getRelatedForms(character);
 
   if(forms.length <= 1){
     return "";
@@ -960,26 +874,25 @@ function createFormsHTML(character){
         form.formName || form.name;
 
       return `
+
         <a
-          class="form-button
-          ${active ? "active" : ""}
-          ${boss ? "boss" : ""}"
+          class="form-button ${active ? "active" : ""} ${boss ? "boss" : ""}"
           href="character.html?key=${encodeURIComponent(form.key)}">
 
           ${boss ? "👑 " : ""}
           ${label}
 
         </a>
+
       `;
 
     }).join("");
 
   return `
+
     <section class="card forms-card">
 
-      <h2>
-        🔄 形態切り替え
-      </h2>
+      <h2>🔄 形態切り替え</h2>
 
       <p class="forms-description">
         このキャラクターには複数の形態があります。
@@ -991,12 +904,13 @@ function createFormsHTML(character){
       </div>
 
     </section>
+
   `;
 }
 
 
 /* ==========================================
-   進化処理
+   進化番号抽出
 ========================================== */
 
 function getEvolutionDexNo(text){
@@ -1018,6 +932,10 @@ function getEvolutionDexNo(text){
 }
 
 
+/* ==========================================
+   通常形態判定
+========================================== */
+
 function isEvolutionMainForm(character){
 
   if(!character){
@@ -1035,6 +953,10 @@ function isEvolutionMainForm(character){
   return true;
 }
 
+
+/* ==========================================
+   図鑑番号から代表通常形態取得
+========================================== */
 
 function getMainEvolutionCharacter(dexNo){
 
@@ -1072,7 +994,11 @@ function getMainEvolutionCharacter(dexNo){
 }
 
 
-function getEvolutionTargets(character){
+/* ==========================================
+   生の進化先を取得
+========================================== */
+
+function getRawEvolutionTargets(character){
 
   if(
     !character ||
@@ -1096,7 +1022,9 @@ function getEvolutionTargets(character){
       target &&
       target.dexNo !== character.dexNo &&
       !result.some(
-        item => item.character.key === target.key
+        item =>
+          item.character.dexNo ===
+          target.dexNo
       )
     ){
 
@@ -1112,6 +1040,136 @@ function getEvolutionTargets(character){
   return result;
 }
 
+
+/* ==========================================
+   到達可能判定
+
+   sourceからtargetへ
+   別キャラを経由して到達できるか確認する
+
+   例：
+   019 → 020
+
+   が存在する場合、
+
+   018の
+   [019,020]
+
+   の020は直接進化ではなく
+   最終進化先として扱う
+========================================== */
+
+function canReachEvolution(
+  source,
+  targetDex,
+  visited = new Set()
+){
+
+  if(!source){
+    return false;
+  }
+
+  if(visited.has(source.dexNo)){
+    return false;
+  }
+
+  const nextVisited =
+    new Set(visited);
+
+  nextVisited.add(source.dexNo);
+
+  const targets =
+    getRawEvolutionTargets(source);
+
+  for(const item of targets){
+
+    if(
+      item.character.dexNo ===
+      targetDex
+    ){
+      return true;
+    }
+
+    if(
+      canReachEvolution(
+        item.character,
+        targetDex,
+        nextVisited
+      )
+    ){
+      return true;
+    }
+
+  }
+
+  return false;
+}
+
+
+/* ==========================================
+   直接進化先を取得
+
+   ★今回の重要修正★
+
+   同じevolution配列に
+
+   019
+   020
+
+   が入っていても、
+
+   019 → 020
+
+   が成立する場合は
+   020を直接進化先から除外する
+========================================== */
+
+function getEvolutionTargets(character){
+
+  const rawTargets =
+    getRawEvolutionTargets(character);
+
+  if(rawTargets.length <= 1){
+    return rawTargets;
+  }
+
+  return rawTargets.filter(
+    candidate => {
+
+      const candidateDex =
+        candidate.character.dexNo;
+
+      const isReachableThroughOther =
+        rawTargets.some(
+          other => {
+
+            if(
+              other.character.dexNo ===
+              candidateDex
+            ){
+              return false;
+            }
+
+            return canReachEvolution(
+              other.character,
+              candidateDex
+            );
+
+          }
+        );
+
+      return !isReachableThroughOther;
+
+    }
+  );
+}
+
+
+/* ==========================================
+   直接の進化前を逆引き
+
+   ★ここも直接進化先判定を使用
+========================================== */
 
 function getPreEvolutionCharacters(character){
 
@@ -1130,17 +1188,14 @@ function getPreEvolutionCharacters(character){
       return;
     }
 
-    if(!Array.isArray(source.evolution)){
-      return;
-    }
+    const targets =
+      getEvolutionTargets(source);
 
-    source.evolution.forEach(text => {
-
-      const targetDex =
-        getEvolutionDexNo(text);
+    targets.forEach(targetItem => {
 
       if(
-        targetDex === currentDex &&
+        targetItem.character.dexNo ===
+        currentDex &&
         source.dexNo !== currentDex
       ){
 
@@ -1160,7 +1215,7 @@ function getPreEvolutionCharacters(character){
 
           result.push({
             character:mainSource,
-            text:text
+            text:targetItem.text
           });
 
         }
@@ -1174,6 +1229,10 @@ function getPreEvolutionCharacters(character){
   return result;
 }
 
+
+/* ==========================================
+   進化系統の最初まで戻る
+========================================== */
 
 function findEvolutionRoots(
   character,
@@ -1216,11 +1275,16 @@ function findEvolutionRoots(
   return roots.filter(
     (item,index,array) =>
       array.findIndex(
-        other => other.key === item.key
+        other =>
+          other.key === item.key
       ) === index
   );
 }
 
+
+/* ==========================================
+   進化系統全体作成
+========================================== */
 
 function buildEvolutionStages(roots){
 
@@ -1295,12 +1359,17 @@ function buildEvolutionStages(roots){
 
     });
 
-    currentStage = nextStage;
+    currentStage =
+      nextStage;
   }
 
   return stages;
 }
 
+
+/* ==========================================
+   進化カード
+========================================== */
 
 function evolutionCharacterHTML(
   target,
@@ -1314,6 +1383,7 @@ function evolutionCharacterHTML(
   if(isCurrent){
 
     return `
+
       <div class="evolution-current">
 
         <span class="evolution-number">
@@ -1335,19 +1405,22 @@ function evolutionCharacterHTML(
         ${
           note
           ?
-          `<span class="evolution-note">
+          `
+          <span class="evolution-note">
             ${note}
-          </span>`
+          </span>
+          `
           :
           ""
         }
 
       </div>
-    `;
 
+    `;
   }
 
   return `
+
     <a
       class="evolution-link"
       href="character.html?key=${encodeURIComponent(target.key)}">
@@ -1371,17 +1444,24 @@ function evolutionCharacterHTML(
       ${
         note
         ?
-        `<span class="evolution-note">
+        `
+        <span class="evolution-note">
           ${note}
-        </span>`
+        </span>
+        `
         :
         ""
       }
 
     </a>
+
   `;
 }
 
+
+/* ==========================================
+   進化系統表示
+========================================== */
 
 function createEvolutionHTML(character){
 
@@ -1404,7 +1484,9 @@ function createEvolutionHTML(character){
   }
 
   const roots =
-    findEvolutionRoots(baseCharacter);
+    findEvolutionRoots(
+      baseCharacter
+    );
 
   const stages =
     buildEvolutionStages(
@@ -1420,68 +1502,79 @@ function createEvolutionHTML(character){
         進化情報は現在確認中です。
       </div>
     `;
-
   }
 
   let html = `
+
     <p class="evolution-description">
       通常形態を基準に、進化系統全体を表示しています。
     </p>
 
     <div class="evolution-chain">
+
   `;
 
-  stages.forEach((stage,index) => {
-
-    html += `
-      <div class="evolution-stage">
-
-        <div class="evolution-stage-label">
-
-          ${
-            stages.length === 1
-            ? "現在"
-            : `進化段階 ${index + 1}`
-          }
-
-        </div>
-
-        <div class="evolution-stage-list">
-    `;
-
-    stage.forEach(item => {
-
-      html +=
-        evolutionCharacterHTML(
-          item.character,
-          baseCharacter.dexNo,
-          item.text || ""
-        );
-
-    });
-
-    html += `
-        </div>
-      </div>
-    `;
-
-    if(index < stages.length - 1){
+  stages.forEach(
+    (stage,index) => {
 
       html += `
-        <div class="evolution-arrow">
-          ↓
+
+        <div class="evolution-stage">
+
+          <div class="evolution-stage-label">
+
+            ${
+              stages.length === 1
+              ? "現在"
+              : `進化段階 ${index + 1}`
+            }
+
+          </div>
+
+          <div class="evolution-stage-list">
+
+      `;
+
+      stage.forEach(item => {
+
+        html +=
+          evolutionCharacterHTML(
+            item.character,
+            baseCharacter.dexNo,
+            item.text || ""
+          );
+
+      });
+
+      html += `
+          </div>
         </div>
       `;
 
+      if(index < stages.length - 1){
+
+        html += `
+          <div class="evolution-arrow">
+            ↓
+          </div>
+        `;
+
+      }
+
     }
+  );
 
-  });
+  html += `
+    </div>
+  `;
 
-  html += `</div>`;
-
-  if(character.key !== baseCharacter.key){
+  if(
+    character.key !==
+    baseCharacter.key
+  ){
 
     html += `
+
       <div class="evolution-form-note">
 
         ※ 現在表示している
@@ -1491,238 +1584,8 @@ function createEvolutionHTML(character){
         基準に表示しています。
 
       </div>
+
     `;
-
-  }
-
-  return html;
-}
-
-
-/* ==========================================
-   入手方法
-========================================== */
-
-function acquisitionValue(value){
-
-  if(
-    value === null ||
-    value === undefined ||
-    value === ""
-  ){
-    return "確認中";
-  }
-
-  return value;
-}
-
-
-function createAcquisitionHTML(character){
-
-  const data =
-    character.acquisition;
-
-  /*
-   旧データ互換
-   acquisition:null
-  */
-
-  if(
-    data === null ||
-    data === undefined
-  ){
-
-    return `
-      <p class="empty">
-        現在データ整理中です。
-      </p>
-
-      <div class="acquisition-tags">
-
-        <span class="acquisition-tag unknown">
-          🔎 入手情報確認中
-        </span>
-
-      </div>
-    `;
-
-  }
-
-
-  /*
-   以前のように文字列で
-   acquisition:"○○で入手"
-   と書いても表示可能
-  */
-
-  if(typeof data === "string"){
-
-    return `
-      <div class="acquisition-box">
-
-        <div class="acquisition-row">
-
-          <div class="acquisition-label">
-            入手方法
-          </div>
-
-          <div class="acquisition-value">
-            ${data}
-          </div>
-
-        </div>
-
-      </div>
-    `;
-
-  }
-
-
-  /*
-   新しいオブジェクト形式
-  */
-
-  let statusText = "確認中";
-
-  if(data.status === "available"){
-    statusText = "入手可能";
-  }
-
-  else if(data.status === "unavailable"){
-    statusText = "現在入手不可";
-  }
-
-  else if(data.status === "event"){
-    statusText = "イベント入手";
-  }
-
-
-  let html = `
-
-    <p class="acquisition-description">
-      中国版で確認できた入手情報を掲載しています。
-    </p>
-
-    <div class="acquisition-box">
-
-      <div class="acquisition-row">
-
-        <div class="acquisition-label">
-          入手状況
-        </div>
-
-        <div class="acquisition-value">
-          ${statusText}
-        </div>
-
-      </div>
-
-
-      <div class="acquisition-row">
-
-        <div class="acquisition-label">
-          入手方法
-        </div>
-
-        <div class="acquisition-value">
-          ${acquisitionValue(data.method)}
-        </div>
-
-      </div>
-
-
-      <div class="acquisition-row">
-
-        <div class="acquisition-label">
-          出現エリア
-        </div>
-
-        <div class="acquisition-value">
-          ${acquisitionValue(data.area)}
-        </div>
-
-      </div>
-
-
-      <div class="acquisition-row">
-
-        <div class="acquisition-label">
-          出現条件
-        </div>
-
-        <div class="acquisition-value">
-          ${acquisitionValue(data.condition)}
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="acquisition-tags">
-
-  `;
-
-
-  if(data.status === "available"){
-
-    html += `
-      <span class="acquisition-tag available">
-        ✅ 入手可能
-      </span>
-    `;
-
-  }
-
-
-  if(data.eventLimited === true){
-
-    html += `
-      <span class="acquisition-tag event">
-        🔴 イベント限定
-      </span>
-    `;
-
-  }
-
-
-  if(data.boss === true){
-
-    html += `
-      <span class="acquisition-tag boss">
-        👑 首領関連
-      </span>
-    `;
-
-  }
-
-
-  if(
-    data.status === null ||
-    data.status === undefined ||
-    data.status === "unknown"
-  ){
-
-    html += `
-      <span class="acquisition-tag unknown">
-        🔎 詳細確認中
-      </span>
-    `;
-
-  }
-
-
-  html += `</div>`;
-
-
-  if(data.note){
-
-    html += `
-      <div class="acquisition-note">
-        📝 ${data.note}
-      </div>
-    `;
-
   }
 
   return html;
@@ -1788,7 +1651,6 @@ if(character.image){
     ]?.icon
     ||
     "🐾";
-
 }
 
 
@@ -1796,23 +1658,29 @@ if(character.image){
 
 const typeHTML =
   (character.type || [])
-  .map((type,index) => {
+  .map(
+    (type,index) => {
 
-    const name =
-      character.typeName?.[index]
-      ||
-      typeData[type]?.name
-      ||
-      type;
+      const name =
+        character.typeName?.[index]
+        ||
+        typeData[type]?.name
+        ||
+        type;
 
-    return `
-      <span class="type type-${type}">
-        ${typeData[type]?.icon || ""}
-        ${name}
-      </span>
-    `;
+      return `
 
-  })
+        <span class="type type-${type}">
+
+          ${typeData[type]?.icon || ""}
+          ${name}
+
+        </span>
+
+      `;
+
+    }
+  )
   .join("");
 
 
@@ -1823,9 +1691,7 @@ const confirmed =
 
 const dataStatusHTML = `
 
-  <div
-    class="data-status
-    ${confirmed ? "confirmed" : "checking"}">
+  <div class="data-status ${confirmed ? "confirmed" : "checking"}">
 
     <div class="data-status-title">
 
@@ -1849,6 +1715,7 @@ const dataStatusHTML = `
     </div>
 
   </div>
+
 `;
 
 
@@ -1865,7 +1732,6 @@ function statValue(value){
   )
   ? `<span class="unknown">確認中</span>`
   : value;
-
 }
 
 const statsHTML = `
@@ -1903,6 +1769,7 @@ const statsHTML = `
     </div>
 
   </div>
+
 `;
 
 
@@ -1917,25 +1784,29 @@ function matchupTags(list,multiplier){
         現在確認中
       </span>
     `;
-
   }
 
-  return list.map(type => {
+  return list.map(
+    type => {
 
-    const data =
-      typeData[type];
+      const data =
+        typeData[type];
 
-    return `
-      <span class="matchup-tag">
-        ${data?.icon || ""}
-        ${data?.name || type}
-        ${multiplier}
-      </span>
-    `;
+      return `
 
-  }).join("");
+        <span class="matchup-tag">
+
+          ${data?.icon || ""}
+          ${data?.name || type}
+          ${multiplier}
+
+        </span>
+
+      `;
+
+    }
+  ).join("");
 }
-
 
 const matchupHTML = `
 
@@ -1947,12 +1818,7 @@ const matchupHTML = `
         ⚠️ 弱点
       </div>
 
-      ${
-        matchupTags(
-          character.weaknesses,
-          "×2"
-        )
-      }
+      ${matchupTags(character.weaknesses,"×2")}
 
     </div>
 
@@ -1962,16 +1828,12 @@ const matchupHTML = `
         🛡️ 耐性
       </div>
 
-      ${
-        matchupTags(
-          character.resistances,
-          "×0.5"
-        )
-      }
+      ${matchupTags(character.resistances,"×0.5")}
 
     </div>
 
   </div>
+
 `;
 
 
@@ -1998,9 +1860,11 @@ if(
       ${
         character.ability.chineseName
         ?
-        `<div class="original">
+        `
+        <div class="original">
           中国名：${character.ability.chineseName}
-        </div>`
+        </div>
+        `
         :
         ""
       }
@@ -2014,16 +1878,18 @@ if(
       </div>
 
     </div>
+
   `;
 
 }else{
 
   abilityHTML = `
+
     <p class="empty">
       現在データ整理中です。
     </p>
-  `;
 
+  `;
 }
 
 
@@ -2048,9 +1914,7 @@ if(Array.isArray(character.skills)){
 
   bloodlineSkills =
     character.skills.bloodline || [];
-
 }
-
 
 const skillsHTML =
 
@@ -2077,19 +1941,19 @@ const skillsHTML =
   );
 
 
+/* 形態 */
+
 const formsHTML =
   createFormsHTML(character);
+
+
+/* 進化 */
 
 const evolutionHTML =
   createEvolutionHTML(character);
 
-const acquisitionHTML =
-  createAcquisitionHTML(character);
 
-
-/* ==========================================
-   描画
-========================================== */
+/* 描画 */
 
 content.innerHTML = `
 
@@ -2100,13 +1964,11 @@ content.innerHTML = `
   </div>
 
   <div class="no">
-
     NO.${
       character.dexNo
       ||
       String(character.id).padStart(3,"0")
     }
-
   </div>
 
   <div class="name">
@@ -2148,10 +2010,8 @@ content.innerHTML = `
 
     ${
       character.chineseFormName
-      ?
-      ` / ${character.chineseFormName}`
-      :
-      ""
+      ? ` / ${character.chineseFormName}`
+      : ""
     }
 
   </div>
@@ -2230,13 +2090,19 @@ ${formsHTML}
 </section>
 
 
-<section class="card acquisition-card">
+<section class="card">
 
   <h2>
     🎁 入手方法
   </h2>
 
-  ${acquisitionHTML}
+  <p>
+    ${
+      character.acquisition
+      ||
+      "現在データ整理中です。"
+    }
+  </p>
 
 </section>
 
@@ -2260,7 +2126,7 @@ ${formsHTML}
   <br><br>
 
   中国版アップデートにより、
-  性能や入手方法が変更される場合があります。
+  性能が変更される場合があります。
 
 </div>
 
