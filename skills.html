@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>技一覧 | ロコキングダム速報</title>
+
+<meta name="description"
+content="Roco Kingdom（洛克王国：世界）の技・スキルを属性、分類、習得方法などから確認できる攻略ページです。">
+
+<style>
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,
+  "Helvetica Neue","Hiragino Kaku Gothic ProN",
+  "Yu Gothic",sans-serif;
+  color:#17324d;
+  line-height:1.7;
+  background:#f1f8fd;
+}
+
+header{
+  padding:28px 16px;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#50b7f0,#79d4ff);
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:6px 0 0;
+  font-size:13px;
+}
+
+.back{
+  display:block;
+  padding:14px 18px;
+  background:white;
+  border-bottom:1px solid #dceaf4;
+  color:#1677d2;
+  text-decoration:none;
+  font-weight:900;
+}
+
+main{
+  width:min(950px,calc(100% - 24px));
+  margin:20px auto 50px;
+}
+
+.card{
+  margin-bottom:17px;
+  padding:20px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:19px;
+  box-shadow:0 5px 20px rgba(30,90,130,.08);
+}
+
+.card h2{
+  margin:0 0 12px;
+  font-size:21px;
+}
+
+.description{
+  margin:0;
+  color:#647e92;
+  font-size:13px;
+}
+
+/* =========================
+   検索
+========================= */
+
+.search{
+  width:100%;
+  margin-top:16px;
+  padding:14px 15px;
+  border:1px solid #cbdfea;
+  border-radius:13px;
+  outline:none;
+  background:#fff;
+  color:#17324d;
+  font-size:16px;
+}
+
+.search:focus{
+  border-color:#52afe7;
+  box-shadow:0 0 0 3px rgba(82,175,231,.12);
+}
+
+/* =========================
+   フィルター
+========================= */
+
+.filter-title{
+  margin:17px 0 8px;
+  color:#657e91;
+  font-size:12px;
+  font-weight:900;
+}
+
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+.filter{
+  padding:7px 10px;
+  border:0;
+  border-radius:999px;
+  background:#edf5fa;
+  color:#36546b;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.filter.active{
+  background:#1689e8;
+  color:white;
+}
+
+/* =========================
+   件数
+========================= */
+
+.result{
+  margin:14px 2px 0;
+  color:#6e8496;
+  font-size:12px;
+  font-weight:800;
+}
+
+/* =========================
+   技
+========================= */
+
+.skill-list{
+  margin-top:14px;
+}
+
+.skill{
+  padding:15px 2px;
+  border-bottom:1px solid #e3edf3;
+}
+
+.skill:last-child{
+  border-bottom:0;
+}
+
+.skill-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.skill-name{
+  color:#126fc1;
+  font-size:16px;
+  font-weight:900;
+}
+
+.skill-cn{
+  color:#8498a7;
+  font-size:10px;
+}
+
+.skill-level{
+  flex-shrink:0;
+  padding:3px 7px;
+  border-radius:999px;
+  background:#edf5fa;
+  color:#607b90;
+  font-size:10px;
+  font-weight:900;
+}
+
+.tags{
+  margin:7px 0;
+}
+
+.tag{
+  display:inline-block;
+  margin:2px 3px 2px 0;
+  padding:3px 8px;
+  border-radius:999px;
+  background:#edf4f8;
+  color:#405f77;
+  font-size:10px;
+  font-weight:800;
+}
+
+.effect{
+  color:#526d81;
+  font-size:12px;
+}
+
+.owner{
+  margin-top:7px;
+  color:#8193a2;
+  font-size:10px;
+}
+
+/* =========================
+   種類説明
+========================= */
+
+.category-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-top:14px;
+}
+
+.category{
+  padding:13px;
+  border-radius:13px;
+  background:#f3f8fb;
+}
+
+.category strong{
+  display:block;
+  font-size:13px;
+}
+
+.category span{
+  color:#71879a;
+  font-size:10px;
+}
+
+/* =========================
+   0件
+========================= */
+
+.empty{
+  display:none;
+  padding:30px 15px;
+  text-align:center;
+  color:#71899b;
+}
+
+/* =========================
+   注意
+========================= */
+
+.notice{
+  padding:16px;
+  border:1px solid #efdb96;
+  border-radius:14px;
+  background:#fff9e7;
+  color:#66582b;
+  font-size:12px;
+}
+
+/* =========================
+   ボタン
+========================= */
+
+.button{
+  display:block;
+  margin-top:14px;
+  padding:13px;
+  text-align:center;
+  border-radius:13px;
+  background:#1689e8;
+  color:white;
+  text-decoration:none;
+  font-weight:900;
+}
+
+@media(min-width:700px){
+  .category-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+
+@media(max-width:400px){
+  .card{padding:16px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>⚔️ 技一覧</h1>
+  <p>ロコキングダム速報 攻略ガイド</p>
+</header>
+
+<a class="back" href="index.html">
+  ← ロコキングダム速報へ戻る
+</a>
+
+<main>
+
+<section class="card">
+
+  <h2>⚔️ 技・スキル図鑑</h2>
+
+  <p class="description">
+    キャラクターが習得する技を、
+    属性・分類・威力・エネルギー消費などから
+    確認できます。
+  </p>
+
+  <input
+    class="search"
+    id="search"
+    type="search"
+    placeholder="🔍 技名・中国名・キャラ名から検索">
+
+  <div class="filter-title">
+    属性
+  </div>
+
+  <div class="filters" id="typeFilters">
+
+    <button class="filter active" data-type="all">すべて</button>
+    <button class="filter" data-type="普通">⚪ 普通</button>
+    <button class="filter" data-type="草">🌿 草</button>
+    <button class="filter" data-type="火">🔥 火</button>
+    <button class="filter" data-type="水">💧 水</button>
+    <button class="filter" data-type="光">✨ 光</button>
+    <button class="filter" data-type="地">⛰️ 地</button>
+    <button class="filter" data-type="氷">❄️ 氷</button>
+    <button class="filter" data-type="龍">🐉 龍</button>
+    <button class="filter" data-type="電">⚡ 電気</button>
+    <button class="filter" data-type="毒">☠️ 毒</button>
+    <button class="filter" data-type="虫">🐛 虫</button>
+    <button class="filter" data-type="武">👊 武</button>
+    <button class="filter" data-type="翼">🪽 翼</button>
+    <button class="filter" data-type="萌">💕 萌</button>
+    <button class="filter" data-type="幽">👻 幽</button>
+    <button class="filter" data-type="悪">😈 悪</button>
+    <button class="filter" data-type="機械">⚙️ 機械</button>
+    <button class="filter" data-type="幻">🔮 幻</button>
+
+  </div>
+
+  <div class="filter-title">
+    分類
+  </div>
+
+  <div class="filters" id="categoryFilters">
+
+    <button class="filter active" data-category="all">
+      すべて
+    </button>
+
+    <button class="filter" data-category="物攻">
+      ⚔️ 物攻
+    </button>
+
+    <button class="filter" data-category="魔攻">
+      🔮 魔攻
+    </button>
+
+    <button class="filter" data-category="状態">
+      ✨ 状態
+    </button>
+
+    <button class="filter" data-category="防御">
+      🛡️ 防御
+    </button>
+
+  </div>
+
+  <div class="result">
+    <span id="count">0</span> 技を表示中
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>📖 技一覧</h2>
+
+  <div class="skill-list" id="skillList"></div>
+
+  <div class="empty" id="empty">
+    🔍 条件に一致する技がありません。
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>📚 技の分類</h2>
+
+  <div class="category-grid">
+
+    <div class="category">
+      <strong>⚔️ 物攻</strong>
+      <span>物理攻撃系の技</span>
+    </div>
+
+    <div class="category">
+      <strong>🔮 魔攻</strong>
+      <span>魔法攻撃系の技</span>
+    </div>
+
+    <div class="category">
+      <strong>✨ 状態</strong>
+      <span>強化・回復・特殊効果</span>
+    </div>
+
+    <div class="category">
+      <strong>🛡️ 防御</strong>
+      <span>ダメージ軽減など</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="card">
+
+  <h2>🐾 キャラクターから探す</h2>
+
+  <p class="description">
+    キャラクターごとの習得技は
+    キャラ図鑑の詳細ページからも確認できます。
+  </p>
+
+  <a class="button" href="pokedex.html">
+    🐾 キャラ図鑑を見る
+  </a>
+
+</section>
+
+
+<div class="notice">
+
+  <strong>📌 技データについて</strong>
+
+  <br><br>
+
+  現在 `characters.js` に登録されている
+  中国版キャラクターデータから技一覧を自動生成します。
+
+  <br><br>
+
+  今後キャラクターや技を
+  `characters.js` に追加すると、
+  このページにも自動的に反映されます。
+
+  <br><br>
+
+  日本版で正式名称が確認できていない技は
+  仮表記を使用しています。
+
+</div>
+
+</main>
+
+
+<script src="characters.js"></script>
+
+<script>
+
+/* ==========================================
+   HTML
+========================================== */
+
+const search =
+  document.getElementById("search");
+
+const skillList =
+  document.getElementById("skillList");
+
+const count =
+  document.getElementById("count");
+
+const empty =
+  document.getElementById("empty");
+
+const typeButtons =
+  document.querySelectorAll(
+    "#typeFilters .filter"
+  );
+
+const categoryButtons =
+  document.querySelectorAll(
+    "#categoryFilters .filter"
+  );
+
+let selectedType = "all";
+let selectedCategory = "all";
+
+
+/* ==========================================
+   全キャラから技を取得
+========================================== */
+
+function collectSkills(){
+
+  const result=[];
+
+  characters.forEach(character=>{
+
+    if(!character.skills){
+      return;
+    }
+
+    let groups=[];
+
+    /*
+      旧形式
+      skills:[]
+    */
+
+    if(Array.isArray(character.skills)){
+
+      groups.push({
+        name:"レベル習得",
+        skills:character.skills
+      });
+
+    }
+
+    /*
+      新形式
+    */
+
+    else{
+
+      groups.push({
+        name:"レベル習得",
+        skills:
+          character.skills.level || []
+      });
+
+      groups.push({
+        name:"技能石",
+        skills:
+          character.skills.stone || []
+      });
+
+      groups.push({
+        name:"血脈技",
+        skills:
+          character.skills.bloodline || []
+      });
+
+    }
+
+
+    groups.forEach(group=>{
+
+      group.skills.forEach(skill=>{
+
+        result.push({
+
+          ...skill,
+
+          ownerId:
+            character.id,
+
+          ownerName:
+            character.name,
+
+          ownerChinese:
+            character.chineseName,
+
+          group:
+            group.name
+
+        });
+
+      });
+
+    });
+
+  });
+
+  return result;
+
+}
+
+
+const allSkills =
+  collectSkills();
+
+
+/* ==========================================
+   技HTML
+========================================== */
+
+function skillHTML(skill){
+
+  const level =
+    skill.level !== undefined &&
+    skill.level !== null
+      ? `Lv.${skill.level}`
+      : skill.group;
+
+  const power =
+    skill.power !== null &&
+    skill.power !== undefined
+      ? `<span class="tag">
+          威力 ${skill.power}
+        </span>`
+      : "";
+
+  const cost =
+    skill.cost !== null &&
+    skill.cost !== undefined
+      ? `<span class="tag">
+          消費 ${skill.cost}
+        </span>`
+      : "";
+
+  return `
+
+    <div class="skill">
+
+      <div class="skill-top">
+
+        <div>
+
+          <div class="skill-name">
+            ${skill.name || "名称確認中"}
+          </div>
+
+          <div class="skill-cn">
+            中国名：
+            ${skill.chineseName || "確認中"}
+          </div>
+
+        </div>
+
+        <span class="skill-level">
+          ${level}
+        </span>
+
+      </div>
+
+
+      <div class="tags">
+
+        ${skill.type
+          ? `<span class="tag">
+              ${skill.type}
+            </span>`
+          : ""}
+
+        ${skill.category
+          ? `<span class="tag">
+              ${skill.category}
+            </span>`
+          : ""}
+
+        ${power}
+
+        ${cost}
+
+        <span class="tag">
+          ${skill.group}
+        </span>
+
+      </div>
+
+
+      <div class="effect">
+        ${skill.description || ""}
+      </div>
+
+
+      <div class="owner">
+
+        習得キャラ：
+
+        <a href="character.html?id=${skill.ownerId}">
+          ${skill.ownerName}
+        </a>
+
+        ／ 中国名：
+        ${skill.ownerChinese}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* ==========================================
+   検索文字
+========================================== */
+
+function searchText(skill){
+
+  return [
+
+    skill.name || "",
+    skill.chineseName || "",
+    skill.type || "",
+    skill.category || "",
+    skill.description || "",
+    skill.ownerName || "",
+    skill.ownerChinese || "",
+    skill.group || ""
+
+  ]
+  .join(" ")
+  .toLowerCase();
+
+}
+
+
+/* ==========================================
+   表示
+========================================== */
+
+function render(){
+
+  const keyword =
+    search.value
+      .trim()
+      .toLowerCase();
+
+  const filtered =
+    allSkills.filter(skill=>{
+
+      const keywordMatch =
+        searchText(skill)
+        .includes(keyword);
+
+      const typeMatch =
+        selectedType === "all"
+        ||
+        skill.type === selectedType;
+
+      const categoryMatch =
+        selectedCategory === "all"
+        ||
+        skill.category ===
+          selectedCategory;
+
+      return (
+        keywordMatch &&
+        typeMatch &&
+        categoryMatch
+      );
+
+    });
+
+
+  /*
+    レベル順
+  */
+
+  filtered.sort((a,b)=>{
+
+    const aLevel =
+      a.level ?? 999;
+
+    const bLevel =
+      b.level ?? 999;
+
+    return aLevel - bLevel;
+
+  });
+
+
+  skillList.innerHTML =
+    filtered
+      .map(skillHTML)
+      .join("");
+
+
+  count.textContent =
+    filtered.length;
+
+
+  empty.style.display =
+    filtered.length === 0
+      ? "block"
+      : "none";
+
+}
+
+
+/* ==========================================
+   検索
+========================================== */
+
+search.addEventListener(
+  "input",
+  render
+);
+
+
+/* ==========================================
+   属性
+========================================== */
+
+typeButtons.forEach(button=>{
+
+  button.addEventListener(
+    "click",
+    ()=>{
+
+      typeButtons.forEach(btn=>
+        btn.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      selectedType =
+        button.dataset.type;
+
+      render();
+
+    }
+  );
+
+});
+
+
+/* ==========================================
+   分類
+========================================== */
+
+categoryButtons.forEach(button=>{
+
+  button.addEventListener(
+    "click",
+    ()=>{
+
+      categoryButtons.forEach(btn=>
+        btn.classList.remove("active")
+      );
+
+      button.classList.add("active");
+
+      selectedCategory =
+        button.dataset.category;
+
+      render();
+
+    }
+  );
+
+});
+
+
+/* ==========================================
+   起動
+========================================== */
+
+render();
+
+</script>
+
+</body>
+</html>
