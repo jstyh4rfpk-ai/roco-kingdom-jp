@@ -6,8 +6,10 @@
 
 <title>キャラクター詳細 | ロコキングダム速報</title>
 
-<meta name="description"
-content="Roco Kingdom（洛克王国：世界）のキャラクター性能・種族値・属性相性・特性・技・進化・入手方法を日本語でまとめています。">
+<meta
+  name="description"
+  content="Roco Kingdom（洛克王国：世界）のキャラクター性能・種族値・属性相性・特性・技・進化・入手方法を日本語でまとめています。"
+>
 
 <style>
 
@@ -334,6 +336,20 @@ main{
   font-weight:900;
 }
 
+.matchup-subtitle{
+  margin:8px 0 4px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.matchup-subtitle.danger{
+  color:#b33;
+}
+
+.matchup-subtitle.strong{
+  color:#31723b;
+}
+
 .matchup-tag{
   display:inline-block;
   margin:3px;
@@ -342,11 +358,6 @@ main{
   background:white;
   font-size:12px;
   font-weight:800;
-}
-
-.matchup-empty{
-  color:#8194a3;
-  font-size:13px;
 }
 
 
@@ -616,6 +627,7 @@ main{
 </style>
 </head>
 
+
 <body>
 
 <header>
@@ -628,9 +640,11 @@ main{
 </a>
 
 <main id="content">
+
   <div class="card">
     読み込み中...
   </div>
+
 </main>
 
 <script src="characters.js"></script>
@@ -642,16 +656,27 @@ main{
 ========================================== */
 
 const params =
-  new URLSearchParams(window.location.search);
+  new URLSearchParams(
+    window.location.search
+  );
 
-const keyParam = params.get("key");
-const idParam = Number(params.get("id"));
+const keyParam =
+  params.get("key");
+
+const idParam =
+  Number(
+    params.get("id")
+  );
 
 let character = null;
 
 if(keyParam){
+
   character =
-    characters.find(c => c.key === keyParam);
+    characters.find(
+      c => c.key === keyParam
+    );
+
 }
 
 if(!character && idParam){
@@ -688,6 +713,567 @@ function displayValue(value){
   }
 
   return value;
+}
+
+
+/* ==================================================
+   属性相性
+
+   中国版 洛克王国：世界
+   防御側から見た相性
+
+   2   = 弱点
+   0.5 = 耐性
+   記載なし = 等倍
+================================================== */
+
+const typeDefenseData = {
+
+  normal:{
+    fighting:2,
+    ghost:0.5
+  },
+
+  grass:{
+    ice:2,
+    poison:2,
+    fire:2,
+    wing:2,
+    bug:2,
+
+    light:0.5,
+    ground:0.5,
+    water:0.5,
+    electric:0.5
+  },
+
+  fire:{
+    ground:2,
+    water:2,
+
+    ice:0.5,
+    machine:0.5,
+    grass:0.5,
+    cute:0.5,
+    bug:0.5
+  },
+
+  water:{
+    electric:2,
+    grass:2,
+
+    machine:0.5,
+    fire:0.5
+  },
+
+  light:{
+    ghost:2,
+    grass:2,
+
+    illusion:0.5,
+    dark:0.5
+  },
+
+  ground:{
+    ice:2,
+    machine:2,
+    fighting:2,
+    water:2,
+    grass:2,
+
+    normal:0.5,
+    poison:0.5,
+    fire:0.5,
+    electric:0.5,
+    wing:0.5
+  },
+
+  ice:{
+    ground:2,
+    machine:2,
+    fighting:2,
+    fire:2,
+
+    light:0.5,
+    water:0.5
+  },
+
+  dragon:{
+    ice:2,
+    cute:2,
+
+    water:0.5,
+    fire:0.5,
+    electric:0.5,
+    wing:0.5,
+    grass:0.5
+  },
+
+  electric:{
+    ground:2,
+
+    machine:0.5,
+    wing:0.5
+  },
+
+  poison:{
+    ground:2,
+    illusion:2,
+    dark:2,
+
+    fighting:0.5,
+    grass:0.5,
+    cute:0.5,
+    bug:0.5
+  },
+
+  bug:{
+    fire:2,
+    wing:2,
+
+    fighting:0.5,
+    grass:0.5
+  },
+
+  fighting:{
+    illusion:2,
+    wing:2,
+    cute:2,
+
+    ground:0.5,
+    dark:0.5,
+    bug:0.5
+  },
+
+  wing:{
+    ice:2,
+    electric:2,
+
+    fighting:0.5,
+    grass:0.5,
+    bug:0.5
+  },
+
+  cute:{
+    dark:2,
+    machine:2,
+    poison:2,
+
+    fighting:0.5,
+    bug:0.5
+  },
+
+  ghost:{
+    light:2,
+    dark:2,
+
+    normal:0.5,
+    fighting:0.5,
+    poison:0.5,
+    bug:0.5
+  },
+
+  dark:{
+    light:2,
+    fighting:2,
+    cute:2,
+    bug:2,
+
+    ghost:0.5
+  },
+
+  machine:{
+    fighting:2,
+    water:2,
+    fire:2,
+
+    ice:0.5,
+    illusion:0.5,
+    normal:0.5,
+    poison:0.5,
+    wing:0.5,
+    grass:0.5,
+    cute:0.5,
+    bug:0.5,
+    dragon:0.5
+  },
+
+  illusion:{
+    ghost:2,
+    bug:2,
+
+    fighting:0.5
+  }
+
+};
+
+
+/* ==========================================
+   属性表示順
+========================================== */
+
+const battleTypeOrder = [
+
+  "normal",
+  "grass",
+  "fire",
+  "water",
+  "light",
+  "ground",
+  "ice",
+  "dragon",
+  "electric",
+  "poison",
+  "bug",
+  "fighting",
+  "wing",
+  "cute",
+  "ghost",
+  "dark",
+  "machine",
+  "illusion"
+
+];
+
+
+/* ==========================================
+   単属性の防御倍率
+========================================== */
+
+function getSingleDefenseMultiplier(
+  defenderType,
+  attackType
+){
+
+  const table =
+    typeDefenseData[
+      defenderType
+    ];
+
+  if(!table){
+    return 1;
+  }
+
+  const value =
+    table[
+      attackType
+    ];
+
+  if(
+    value === undefined ||
+    value === null
+  ){
+    return 1;
+  }
+
+  return value;
+}
+
+
+/* ==========================================
+   キャラクターの防御倍率
+========================================== */
+
+function getDefenseMultiplier(
+  character,
+  attackType
+){
+
+  if(
+    !character ||
+    !Array.isArray(character.type) ||
+    character.type.length === 0
+  ){
+    return 1;
+  }
+
+  let multiplier = 1;
+
+  character.type.forEach(
+    defenderType => {
+
+      multiplier *=
+        getSingleDefenseMultiplier(
+          defenderType,
+          attackType
+        );
+
+    }
+  );
+
+
+  /*
+   複合属性で
+   2 × 2 = 4 相当の場合は
+   ×3として扱う
+  */
+
+  if(multiplier >= 4){
+    multiplier = 3;
+  }
+
+  return multiplier;
+}
+
+
+/* ==========================================
+   全属性の相性計算
+========================================== */
+
+function calculateMatchups(character){
+
+  const result = {
+
+    tripleWeak:[],
+    weak:[],
+    resist:[],
+    doubleResist:[]
+
+  };
+
+  battleTypeOrder.forEach(
+    attackType => {
+
+      const multiplier =
+        getDefenseMultiplier(
+          character,
+          attackType
+        );
+
+      if(multiplier === 3){
+
+        result.tripleWeak.push(
+          attackType
+        );
+
+      }
+
+      else if(multiplier === 2){
+
+        result.weak.push(
+          attackType
+        );
+
+      }
+
+      else if(multiplier === 0.5){
+
+        result.resist.push(
+          attackType
+        );
+
+      }
+
+      else if(multiplier === 0.25){
+
+        result.doubleResist.push(
+          attackType
+        );
+
+      }
+
+    }
+  );
+
+  return result;
+}
+
+
+/* ==========================================
+   属性相性タグ
+========================================== */
+
+function autoMatchupTags(
+  list,
+  multiplier
+){
+
+  if(
+    !list ||
+    list.length === 0
+  ){
+    return "";
+  }
+
+  return list.map(
+    type => {
+
+      const data =
+        typeData[type];
+
+      return `
+
+        <span class="matchup-tag">
+
+          ${data?.icon || ""}
+
+          ${data?.name || type}
+
+          ${multiplier}
+
+        </span>
+
+      `;
+
+    }
+  ).join("");
+}
+
+
+/* ==========================================
+   属性相性HTML
+========================================== */
+
+function createMatchupHTML(character){
+
+  if(
+    !character ||
+    !Array.isArray(character.type) ||
+    character.type.length === 0
+  ){
+
+    return `
+
+      <p class="empty">
+        属性相性データ確認中です。
+      </p>
+
+    `;
+
+  }
+
+  const matchup =
+    calculateMatchups(
+      character
+    );
+
+
+  let weaknessHTML = "";
+
+
+  if(
+    matchup.tripleWeak.length > 0
+  ){
+
+    weaknessHTML += `
+
+      <div class="matchup-subtitle danger">
+        強い弱点
+      </div>
+
+      ${autoMatchupTags(
+        matchup.tripleWeak,
+        "×3"
+      )}
+
+    `;
+
+  }
+
+
+  if(
+    matchup.weak.length > 0
+  ){
+
+    weaknessHTML +=
+      autoMatchupTags(
+        matchup.weak,
+        "×2"
+      );
+
+  }
+
+
+  if(!weaknessHTML){
+
+    weaknessHTML = `
+
+      <span class="empty">
+        弱点なし
+      </span>
+
+    `;
+
+  }
+
+
+  let resistanceHTML = "";
+
+
+  if(
+    matchup.resist.length > 0
+  ){
+
+    resistanceHTML +=
+      autoMatchupTags(
+        matchup.resist,
+        "×0.5"
+      );
+
+  }
+
+
+  if(
+    matchup.doubleResist.length > 0
+  ){
+
+    resistanceHTML += `
+
+      <div class="matchup-subtitle strong">
+        強い耐性
+      </div>
+
+      ${autoMatchupTags(
+        matchup.doubleResist,
+        "×0.25"
+      )}
+
+    `;
+
+  }
+
+
+  if(!resistanceHTML){
+
+    resistanceHTML = `
+
+      <span class="empty">
+        耐性なし
+      </span>
+
+    `;
+
+  }
+
+
+  return `
+
+    <div class="matchup-grid">
+
+      <div class="matchup weak">
+
+        <div class="matchup-title">
+          ⚠️ 弱点
+        </div>
+
+        ${weaknessHTML}
+
+      </div>
+
+
+      <div class="matchup resist">
+
+        <div class="matchup-title">
+          🛡️ 耐性
+        </div>
+
+        ${resistanceHTML}
+
+      </div>
+
+    </div>
+
+  `;
 }
 
 
@@ -772,9 +1358,16 @@ function skillHTML(skill){
 }
 
 
-function skillGroup(title,icon,list){
+function skillGroup(
+  title,
+  icon,
+  list
+){
 
-  if(!list || list.length === 0){
+  if(
+    !list ||
+    list.length === 0
+  ){
 
     return `
 
@@ -791,6 +1384,7 @@ function skillGroup(title,icon,list){
       </div>
 
     `;
+
   }
 
   return `
@@ -831,22 +1425,31 @@ function getRelatedForms(character){
   keys.forEach(key => {
 
     const form =
-      characters.find(c => c.key === key);
+      characters.find(
+        c => c.key === key
+      );
 
     if(
       form &&
-      !found.some(item => item.key === form.key)
+      !found.some(
+        item =>
+          item.key === form.key
+      )
     ){
       found.push(form);
     }
 
   });
 
+
   characters.forEach(form => {
 
     if(
       form.dexNo === character.dexNo &&
-      !found.some(item => item.key === form.key)
+      !found.some(
+        item =>
+          item.key === form.key
+      )
     ){
       found.push(form);
     }
@@ -876,15 +1479,18 @@ function createFormsHTML(character){
         form.isBossForm === true;
 
       const label =
-        form.formName || form.name;
+        form.formName ||
+        form.name;
 
       return `
 
         <a
           class="form-button ${active ? "active" : ""} ${boss ? "boss" : ""}"
-          href="character.html?key=${encodeURIComponent(form.key)}">
+          href="character.html?key=${encodeURIComponent(form.key)}"
+        >
 
           ${boss ? "👑 " : ""}
+
           ${label}
 
         </a>
@@ -897,7 +1503,9 @@ function createFormsHTML(character){
 
     <section class="card forms-card">
 
-      <h2>🔄 形態切り替え</h2>
+      <h2>
+        🔄 形態切り替え
+      </h2>
 
       <p class="forms-description">
         このキャラクターには複数の形態があります。
@@ -925,14 +1533,21 @@ function getEvolutionDexNo(text){
   }
 
   const matches =
-    String(text).match(/\b(\d{1,3})\b/g);
+    String(text).match(
+      /\b(\d{1,3})\b/g
+    );
 
-  if(!matches || matches.length === 0){
+  if(
+    !matches ||
+    matches.length === 0
+  ){
     return null;
   }
 
   return String(
-    matches[matches.length - 1]
+    matches[
+      matches.length - 1
+    ]
   ).padStart(3,"0");
 }
 
@@ -960,7 +1575,7 @@ function isEvolutionMainForm(character){
 
 
 /* ==========================================
-   図鑑番号から代表通常形態
+   図鑑番号から代表通常形態取得
 ========================================== */
 
 function getMainEvolutionCharacter(dexNo){
@@ -1021,14 +1636,17 @@ function getRawEvolutionTargets(character){
       getEvolutionDexNo(text);
 
     const target =
-      getMainEvolutionCharacter(dexNo);
+      getMainEvolutionCharacter(
+        dexNo
+      );
 
     if(
       target &&
       target.dexNo !== character.dexNo &&
       !result.some(
         item =>
-          item.character.dexNo === target.dexNo
+          item.character.dexNo ===
+          target.dexNo
       )
     ){
 
@@ -1059,22 +1677,31 @@ function canReachEvolution(
     return false;
   }
 
-  if(visited.has(source.dexNo)){
+  if(
+    visited.has(
+      source.dexNo
+    )
+  ){
     return false;
   }
 
   const nextVisited =
     new Set(visited);
 
-  nextVisited.add(source.dexNo);
+  nextVisited.add(
+    source.dexNo
+  );
 
   const targets =
-    getRawEvolutionTargets(source);
+    getRawEvolutionTargets(
+      source
+    );
 
   for(const item of targets){
 
     if(
-      item.character.dexNo === targetDex
+      item.character.dexNo ===
+      targetDex
     ){
       return true;
     }
@@ -1102,7 +1729,9 @@ function canReachEvolution(
 function getEvolutionTargets(character){
 
   const rawTargets =
-    getRawEvolutionTargets(character);
+    getRawEvolutionTargets(
+      character
+    );
 
   if(rawTargets.length <= 1){
     return rawTargets;
@@ -1114,31 +1743,34 @@ function getEvolutionTargets(character){
       const candidateDex =
         candidate.character.dexNo;
 
-      const reachableThroughOther =
-        rawTargets.some(other => {
+      const isReachableThroughOther =
+        rawTargets.some(
+          other => {
 
-          if(
-            other.character.dexNo ===
-            candidateDex
-          ){
-            return false;
+            if(
+              other.character.dexNo ===
+              candidateDex
+            ){
+              return false;
+            }
+
+            return canReachEvolution(
+              other.character,
+              candidateDex
+            );
+
           }
+        );
 
-          return canReachEvolution(
-            other.character,
-            candidateDex
-          );
+      return !isReachableThroughOther;
 
-        });
-
-      return !reachableThroughOther;
     }
   );
 }
 
 
 /* ==========================================
-   進化前を逆引き
+   直接の進化前を逆引き
 ========================================== */
 
 function getPreEvolutionCharacters(character){
@@ -1154,43 +1786,50 @@ function getPreEvolutionCharacters(character){
 
   characters.forEach(source => {
 
-    if(!isEvolutionMainForm(source)){
+    if(
+      !isEvolutionMainForm(source)
+    ){
       return;
     }
 
     const targets =
-      getEvolutionTargets(source);
+      getEvolutionTargets(
+        source
+      );
 
-    targets.forEach(targetItem => {
-
-      if(
-        targetItem.character.dexNo === currentDex &&
-        source.dexNo !== currentDex
-      ){
-
-        const mainSource =
-          getMainEvolutionCharacter(
-            source.dexNo
-          );
+    targets.forEach(
+      targetItem => {
 
         if(
-          mainSource &&
-          !result.some(
-            item =>
-              item.character.key === mainSource.key
-          )
+          targetItem.character.dexNo === currentDex &&
+          source.dexNo !== currentDex
         ){
 
-          result.push({
-            character:mainSource,
-            text:targetItem.text
-          });
+          const mainSource =
+            getMainEvolutionCharacter(
+              source.dexNo
+            );
+
+          if(
+            mainSource &&
+            !result.some(
+              item =>
+                item.character.key ===
+                mainSource.key
+            )
+          ){
+
+            result.push({
+              character:mainSource,
+              text:targetItem.text
+            });
+
+          }
 
         }
 
       }
-
-    });
+    );
 
   });
 
@@ -1199,7 +1838,7 @@ function getPreEvolutionCharacters(character){
 
 
 /* ==========================================
-   進化系統の開始地点
+   進化系統の最初まで戻る
 ========================================== */
 
 function findEvolutionRoots(
@@ -1211,17 +1850,25 @@ function findEvolutionRoots(
     return [];
   }
 
-  if(visited.has(character.key)){
+  if(
+    visited.has(
+      character.key
+    )
+  ){
     return [character];
   }
 
   const nextVisited =
     new Set(visited);
 
-  nextVisited.add(character.key);
+  nextVisited.add(
+    character.key
+  );
 
   const previous =
-    getPreEvolutionCharacters(character);
+    getPreEvolutionCharacters(
+      character
+    );
 
   if(previous.length === 0){
     return [character];
@@ -1251,7 +1898,7 @@ function findEvolutionRoots(
 
 
 /* ==========================================
-   進化段階作成
+   進化系統全体作成
 ========================================== */
 
 function buildEvolutionStages(roots){
@@ -1259,10 +1906,12 @@ function buildEvolutionStages(roots){
   const stages = [];
 
   let currentStage =
-    roots.map(character => ({
-      character:character,
-      text:""
-    }));
+    roots.map(
+      character => ({
+        character:character,
+        text:""
+      })
+    );
 
   const globallyVisited =
     new Set();
@@ -1288,7 +1937,9 @@ function buildEvolutionStages(roots){
 
     });
 
-    stages.push(uniqueStage);
+    stages.push(
+      uniqueStage
+    );
 
     const nextStage = [];
 
@@ -1297,33 +1948,41 @@ function buildEvolutionStages(roots){
       const source =
         item.character;
 
-      globallyVisited.add(source.key);
+      globallyVisited.add(
+        source.key
+      );
 
       const targets =
-        getEvolutionTargets(source);
+        getEvolutionTargets(
+          source
+        );
 
-      targets.forEach(targetItem => {
+      targets.forEach(
+        targetItem => {
 
-        if(
-          globallyVisited.has(
-            targetItem.character.key
-          )
-        ){
-          return;
-        }
-
-        const existing =
-          nextStage.find(
-            item =>
-              item.character.key ===
+          if(
+            globallyVisited.has(
               targetItem.character.key
-          );
+            )
+          ){
+            return;
+          }
 
-        if(!existing){
-          nextStage.push(targetItem);
+          const existing =
+            nextStage.find(
+              item =>
+                item.character.key ===
+                targetItem.character.key
+            );
+
+          if(!existing){
+            nextStage.push(
+              targetItem
+            );
+          }
+
         }
-
-      });
+      );
 
     });
 
@@ -1346,7 +2005,8 @@ function evolutionCharacterHTML(
 ){
 
   const isCurrent =
-    target.dexNo === currentDex;
+    target.dexNo ===
+    currentDex;
 
   if(isCurrent){
 
@@ -1391,7 +2051,8 @@ function evolutionCharacterHTML(
 
     <a
       class="evolution-link"
-      href="character.html?key=${encodeURIComponent(target.key)}">
+      href="character.html?key=${encodeURIComponent(target.key)}"
+    >
 
       <span class="evolution-number">
         NO.${target.dexNo}
@@ -1428,7 +2089,7 @@ function evolutionCharacterHTML(
 
 
 /* ==========================================
-   進化系統
+   進化系統表示
 ========================================== */
 
 function createEvolutionHTML(character){
@@ -1463,12 +2124,17 @@ function createEvolutionHTML(character){
       : [baseCharacter]
     );
 
-  if(!stages || stages.length === 0){
+  if(
+    !stages ||
+    stages.length === 0
+  ){
 
     return `
+
       <div class="empty">
         進化情報は現在確認中です。
       </div>
+
     `;
   }
 
@@ -1515,16 +2181,24 @@ function createEvolutionHTML(character){
       });
 
       html += `
+
           </div>
+
         </div>
+
       `;
 
-      if(index < stages.length - 1){
+      if(
+        index <
+        stages.length - 1
+      ){
 
         html += `
+
           <div class="evolution-arrow">
             ↓
           </div>
+
         `;
 
       }
@@ -1554,6 +2228,7 @@ function createEvolutionHTML(character){
       </div>
 
     `;
+
   }
 
   return html;
@@ -1595,6 +2270,11 @@ if(!character){
 
 else{
 
+
+/* ==========================================
+   ページタイトル
+========================================== */
+
 document.title =
   `${character.name}${character.formName ? " "+character.formName : ""} | ロコキングダム速報`;
 
@@ -1608,9 +2288,12 @@ let imageHTML;
 if(character.image){
 
   imageHTML = `
+
     <img
       src="${character.image}"
-      alt="${character.name}">
+      alt="${character.name}"
+    >
+
   `;
 
 }else{
@@ -1621,6 +2304,7 @@ if(character.image){
     ]?.icon
     ||
     "🐾";
+
 }
 
 
@@ -1645,6 +2329,7 @@ const typeHTML =
         <span class="type type-${type}">
 
           ${typeData[type]?.icon || ""}
+
           ${name}
 
         </span>
@@ -1661,11 +2346,17 @@ const typeHTML =
 ========================================== */
 
 const confirmed =
-  character.dataStatus === "confirmed";
+  character.dataStatus ===
+  "confirmed";
 
 const dataStatusHTML = `
 
-  <div class="data-status ${confirmed ? "confirmed" : "checking"}">
+  <div
+    class="
+      data-status
+      ${confirmed ? "confirmed" : "checking"}
+    "
+  >
 
     <div class="data-status-title">
 
@@ -1715,33 +2406,80 @@ const statsHTML = `
   <div class="stats">
 
     <div class="stat">
-      <span class="stat-name">HP</span>
-      <span class="stat-value">${statValue(stats.hp)}</span>
+
+      <span class="stat-name">
+        HP
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.hp)}
+      </span>
+
     </div>
 
-    <div class="stat">
-      <span class="stat-name">物攻</span>
-      <span class="stat-value">${statValue(stats.attack)}</span>
-    </div>
 
     <div class="stat">
-      <span class="stat-name">魔攻</span>
-      <span class="stat-value">${statValue(stats.magicAttack)}</span>
+
+      <span class="stat-name">
+        物攻
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.attack)}
+      </span>
+
     </div>
 
-    <div class="stat">
-      <span class="stat-name">物防</span>
-      <span class="stat-value">${statValue(stats.defense)}</span>
-    </div>
 
     <div class="stat">
-      <span class="stat-name">魔防</span>
-      <span class="stat-value">${statValue(stats.magicDefense)}</span>
+
+      <span class="stat-name">
+        魔攻
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.magicAttack)}
+      </span>
+
     </div>
 
+
     <div class="stat">
-      <span class="stat-name">速度</span>
-      <span class="stat-value">${statValue(stats.speed)}</span>
+
+      <span class="stat-name">
+        物防
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.defense)}
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span class="stat-name">
+        魔防
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.magicDefense)}
+      </span>
+
+    </div>
+
+
+    <div class="stat">
+
+      <span class="stat-name">
+        速度
+      </span>
+
+      <span class="stat-value">
+        ${statValue(stats.speed)}
+      </span>
+
     </div>
 
   </div>
@@ -1751,223 +2489,12 @@ const statsHTML = `
 
 /* ==========================================
    属性相性
-   characters.js の計算関数を使用
 ========================================== */
 
-function matchupTags(list,multiplier){
-
-  if(!Array.isArray(list) || list.length === 0){
-    return "";
-  }
-
-  return list.map(type => {
-
-    const data =
-      typeData[type];
-
-    return `
-
-      <span class="matchup-tag">
-
-        ${data?.icon || ""}
-        ${data?.name || type}
-        ${multiplier}
-
-      </span>
-
-    `;
-
-  }).join("");
-}
-
-
-/*
- characters.js に
- getCharacterTypeMatchups() があれば使用。
-
- まだ追加されていなくても
- character.html 全体は壊れない。
-*/
-
-let matchups = null;
-
-if(
-  typeof getCharacterTypeMatchups ===
-  "function"
-){
-
-  try{
-
-    matchups =
-      getCharacterTypeMatchups(
-        character
-      );
-
-  }catch(error){
-
-    console.error(
-      "属性相性の計算に失敗しました。",
-      error
-    );
-
-    matchups = null;
-
-  }
-
-}
-
-
-/*
- 戻り値が不足していても
- ページを壊さないように正規化
-*/
-
-if(matchups){
-
-  matchups = {
-
-    x4:
-      Array.isArray(matchups.x4)
-      ? matchups.x4
-      : [],
-
-    x2:
-      Array.isArray(matchups.x2)
-      ? matchups.x2
-      : [],
-
-    x05:
-      Array.isArray(matchups.x05)
-      ? matchups.x05
-      : [],
-
-    x025:
-      Array.isArray(matchups.x025)
-      ? matchups.x025
-      : []
-
-  };
-
-}
-
-
-/*
- 弱点
-*/
-
-let weaknessHTML = "";
-
-if(matchups){
-
-  weaknessHTML +=
-    matchupTags(
-      matchups.x4,
-      "×4"
-    );
-
-  weaknessHTML +=
-    matchupTags(
-      matchups.x2,
-      "×2"
-    );
-
-}
-
-
-/*
- 耐性
-*/
-
-let resistanceHTML = "";
-
-if(matchups){
-
-  resistanceHTML +=
-    matchupTags(
-      matchups.x025,
-      "×0.25"
-    );
-
-  resistanceHTML +=
-    matchupTags(
-      matchups.x05,
-      "×0.5"
-    );
-
-}
-
-
-/*
- 表示
-*/
-
-if(!matchups){
-
-  weaknessHTML = `
-    <span class="matchup-empty">
-      属性相性データ確認中
-    </span>
-  `;
-
-  resistanceHTML = `
-    <span class="matchup-empty">
-      属性相性データ確認中
-    </span>
-  `;
-
-}else{
-
-  if(!weaknessHTML){
-
-    weaknessHTML = `
-      <span class="matchup-empty">
-        弱点なし
-      </span>
-    `;
-
-  }
-
-  if(!resistanceHTML){
-
-    resistanceHTML = `
-      <span class="matchup-empty">
-        耐性なし
-      </span>
-    `;
-
-  }
-
-}
-
-
-const matchupHTML = `
-
-  <div class="matchup-grid">
-
-    <div class="matchup weak">
-
-      <div class="matchup-title">
-        ⚠️ 弱点
-      </div>
-
-      ${weaknessHTML}
-
-    </div>
-
-
-    <div class="matchup resist">
-
-      <div class="matchup-title">
-        🛡️ 耐性
-      </div>
-
-      ${resistanceHTML}
-
-    </div>
-
-  </div>
-
-`;
+const matchupHTML =
+  createMatchupHTML(
+    character
+  );
 
 
 /* ==========================================
@@ -1989,7 +2516,13 @@ if(
     <div class="trait">
 
       <strong>
-        ${character.ability.name || "名称確認中"}
+
+        ${
+          character.ability.name
+          ||
+          "名称確認中"
+        }
+
       </strong>
 
       ${
@@ -1997,7 +2530,8 @@ if(
         ?
         `
         <div class="original">
-          中国名：${character.ability.chineseName}
+          中国名：
+          ${character.ability.chineseName}
         </div>
         `
         :
@@ -2005,11 +2539,13 @@ if(
       }
 
       <div>
+
         ${
           character.ability.description
           ||
           "効果は現在確認中です。"
         }
+
       </div>
 
     </div>
@@ -2025,6 +2561,7 @@ if(
     </p>
 
   `;
+
 }
 
 
@@ -2036,7 +2573,11 @@ let levelSkills = [];
 let stoneSkills = [];
 let bloodlineSkills = [];
 
-if(Array.isArray(character.skills)){
+if(
+  Array.isArray(
+    character.skills
+  )
+){
 
   levelSkills =
     character.skills;
@@ -2044,13 +2585,20 @@ if(Array.isArray(character.skills)){
 }else if(character.skills){
 
   levelSkills =
-    character.skills.level || [];
+    character.skills.level
+    ||
+    [];
 
   stoneSkills =
-    character.skills.stone || [];
+    character.skills.stone
+    ||
+    [];
 
   bloodlineSkills =
-    character.skills.bloodline || [];
+    character.skills.bloodline
+    ||
+    [];
+
 }
 
 const skillsHTML =
@@ -2083,7 +2631,9 @@ const skillsHTML =
 ========================================== */
 
 const formsHTML =
-  createFormsHTML(character);
+  createFormsHTML(
+    character
+  );
 
 
 /* ==========================================
@@ -2091,7 +2641,9 @@ const formsHTML =
 ========================================== */
 
 const evolutionHTML =
-  createEvolutionHTML(character);
+  createEvolutionHTML(
+    character
+  );
 
 
 /* ==========================================
@@ -2100,19 +2652,25 @@ const evolutionHTML =
 
 content.innerHTML = `
 
+
 <section class="card hero">
 
   <div class="character-image">
     ${imageHTML}
   </div>
 
+
   <div class="no">
+
     NO.${
       character.dexNo
       ||
-      String(character.id).padStart(3,"0")
+      String(character.id)
+        .padStart(3,"0")
     }
+
   </div>
+
 
   <div class="name">
 
@@ -2125,6 +2683,7 @@ content.innerHTML = `
     }
 
   </div>
+
 
   ${
     character.formName
@@ -2146,6 +2705,7 @@ content.innerHTML = `
     ""
   }
 
+
   <div class="cn">
 
     中国名：
@@ -2153,15 +2713,19 @@ content.innerHTML = `
 
     ${
       character.chineseFormName
-      ? ` / ${character.chineseFormName}`
-      : ""
+      ?
+      ` / ${character.chineseFormName}`
+      :
+      ""
     }
 
   </div>
 
+
   <div class="types">
     ${typeHTML}
   </div>
+
 
   <div class="total">
 
@@ -2169,6 +2733,7 @@ content.innerHTML = `
     ${displayValue(character.total)}
 
   </div>
+
 
   ${dataStatusHTML}
 
@@ -2240,11 +2805,13 @@ ${formsHTML}
   </h2>
 
   <p>
+
     ${
       character.acquisition
       ||
       "現在データ整理中です。"
     }
+
   </p>
 
 </section>
