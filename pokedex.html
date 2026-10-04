@@ -190,6 +190,15 @@ main{
 }
 
 /* ========================================
+   形態フィルター
+======================================== */
+.form-filter-section{padding:17px;margin-bottom:17px;background:white;border:1px solid #dceaf3;border-radius:18px;box-shadow:0 4px 16px rgba(30,90,130,.07)}
+.form-filter-title{margin-bottom:11px;font-weight:900}
+.form-filter-buttons{display:flex;flex-wrap:wrap;gap:7px}
+.form-filter-btn{padding:8px 12px;border:0;border-radius:999px;background:#edf5fa;color:#29475f;font-weight:700;cursor:pointer}
+.form-filter-btn.active{background:#1689e8;color:white}
+
+/* ========================================
    件数
 ======================================== */
 
@@ -634,6 +643,20 @@ main{
 </section>
 
 <!-- ======================================
+     形態
+====================================== -->
+<section class="form-filter-section">
+  <div class="form-filter-title">形態から探す</div>
+  <div class="form-filter-buttons">
+    <button class="form-filter-btn active" data-form-filter="all">すべて</button>
+    <button class="form-filter-btn" data-form-filter="normal">🐾 通常形態</button>
+    <button class="form-filter-btn" data-form-filter="season">🌸 季節形態</button>
+    <button class="form-filter-btn" data-form-filter="boss">👑 首領形態</button>
+    <button class="form-filter-btn" data-form-filter="other">✨ その他形態</button>
+  </div>
+</section>
+
+<!-- ======================================
      件数
 ====================================== -->
 
@@ -719,6 +742,8 @@ const buttons =
     ".type-btn"
   );
 
+const formFilterButtons = document.querySelectorAll(".form-filter-btn");
+
 const count =
   document.getElementById(
     "count"
@@ -740,6 +765,7 @@ const formTotal =
   );
 
 let selectedType = "all";
+let selectedFormFilter = "all";
 
 /* ==========================================
    図鑑番号
@@ -1110,6 +1136,22 @@ function matchesType(
 }
 
 /* ==========================================
+   形態フィルター判定
+========================================== */
+function getFormCategory(form){
+  if(form.isBossForm === true) return "boss";
+  const s=[form.form,form.formName,form.chineseFormName,form.englishName].filter(Boolean).join(" ").toLowerCase();
+  if(/season|spring|summer|autumn|fall|winter|季節|春|夏|秋|冬/.test(s)) return "season";
+  if(form.form === "main" || form.form == null || String(form.form).trim() === "") return "normal";
+  return "other";
+}
+
+function matchesFormFilter(character, filter){
+  if(filter === "all") return true;
+  return getAllForms(character).some(form => getFormCategory(form) === filter);
+}
+
+/* ==========================================
    カード
 ========================================== */
 
@@ -1324,10 +1366,19 @@ function renderPokedex(){
             selectedType
           );
 
+        const formMatch =
+          matchesFormFilter(
+            character,
+            selectedFormFilter
+          );
+
+
         return (
           searchMatch
           &&
           typeMatch
+          &&
+          formMatch
         );
 
       }
@@ -1393,6 +1444,19 @@ buttons.forEach(
 
   }
 );
+
+/* ==========================================
+   形態ボタン
+========================================== */
+formFilterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    formFilterButtons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+    selectedFormFilter = button.dataset.formFilter;
+    renderPokedex();
+  });
+});
+
 
 /* ==========================================
    初期表示
