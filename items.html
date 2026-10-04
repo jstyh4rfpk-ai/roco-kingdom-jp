@@ -1,0 +1,1223 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>アイテム一覧 | ロコキングダム速報</title>
+
+<meta name="description"
+content="Roco Kingdom（洛克王国：世界）のアイテム、育成素材、進化関連アイテム、回復アイテムなどを日本語で整理する攻略ページです。">
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+
+  color:#17324d;
+  line-height:1.7;
+  background:#f1f8fd;
+}
+
+
+/* =========================
+   ヘッダー
+========================= */
+
+header{
+  padding:28px 16px;
+  text-align:center;
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #50b7f0,
+      #79d4ff
+    );
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:6px 0 0;
+  font-size:13px;
+}
+
+
+/* =========================
+   戻る
+========================= */
+
+.back{
+  display:block;
+
+  padding:14px 18px;
+
+  background:white;
+
+  border-bottom:
+    1px solid #dceaf4;
+
+  color:#1677d2;
+
+  text-decoration:none;
+
+  font-weight:900;
+}
+
+
+/* =========================
+   メイン
+========================= */
+
+main{
+  width:
+    min(900px,calc(100% - 24px));
+
+  margin:
+    20px auto 50px;
+}
+
+.card{
+  margin-bottom:17px;
+
+  padding:20px;
+
+  background:white;
+
+  border:
+    1px solid #dceaf3;
+
+  border-radius:19px;
+
+  box-shadow:
+    0 5px 20px rgba(30,90,130,.08);
+}
+
+.card h2{
+  margin:
+    0 0 12px;
+
+  font-size:21px;
+}
+
+.description{
+  margin:0;
+
+  color:#647e92;
+
+  font-size:13px;
+}
+
+
+/* =========================
+   カテゴリ
+========================= */
+
+.category-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:9px;
+
+  margin-top:16px;
+}
+
+.category{
+  padding:
+    15px 8px;
+
+  text-align:center;
+
+  border:
+    1px solid #d5e5ef;
+
+  border-radius:
+    14px;
+
+  background:
+    #f6fbfe;
+}
+
+.category-icon{
+  display:block;
+
+  margin-bottom:
+    5px;
+
+  font-size:
+    28px;
+}
+
+.category-title{
+  display:block;
+
+  font-size:
+    13px;
+
+  font-weight:
+    900;
+}
+
+.category-text{
+  display:block;
+
+  margin-top:
+    3px;
+
+  color:
+    #758b9d;
+
+  font-size:
+    10px;
+}
+
+
+/* =========================
+   検索
+========================= */
+
+.search{
+  width:100%;
+
+  margin-top:
+    16px;
+
+  padding:
+    14px 15px;
+
+  border:
+    1px solid #cbdfea;
+
+  border-radius:
+    13px;
+
+  outline:none;
+
+  background:white;
+
+  color:#17324d;
+
+  font-size:16px;
+}
+
+.search:focus{
+  border-color:
+    #52afe7;
+
+  box-shadow:
+    0 0 0 3px rgba(82,175,231,.12);
+}
+
+
+/* =========================
+   フィルター
+========================= */
+
+.filters{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:6px;
+
+  margin-top:
+    12px;
+}
+
+.filter{
+  padding:
+    7px 11px;
+
+  border:0;
+
+  border-radius:
+    999px;
+
+  background:
+    #edf5fa;
+
+  color:
+    #36546b;
+
+  font-weight:
+    800;
+
+  cursor:pointer;
+}
+
+.filter.active{
+  background:
+    #1689e8;
+
+  color:white;
+}
+
+
+/* =========================
+   アイテム
+========================= */
+
+.item-list{
+  margin-top:
+    10px;
+}
+
+.item{
+  display:grid;
+
+  grid-template-columns:
+    55px 1fr;
+
+  gap:
+    12px;
+
+  align-items:start;
+
+  padding:
+    15px 2px;
+
+  border-bottom:
+    1px solid #e4edf3;
+}
+
+.item:last-child{
+  border-bottom:0;
+}
+
+.item-icon{
+  display:flex;
+
+  width:55px;
+  height:55px;
+
+  align-items:center;
+  justify-content:center;
+
+  border-radius:
+    13px;
+
+  background:
+    #eef7fc;
+
+  font-size:
+    27px;
+}
+
+.item-name{
+  color:
+    #126fc1;
+
+  font-size:
+    15px;
+
+  font-weight:
+    900;
+}
+
+.item-cn{
+  color:
+    #8497a6;
+
+  font-size:
+    10px;
+}
+
+.tags{
+  margin:
+    5px 0;
+}
+
+.tag{
+  display:inline-block;
+
+  margin:
+    2px 3px 2px 0;
+
+  padding:
+    3px 8px;
+
+  border-radius:
+    999px;
+
+  background:
+    #edf4f8;
+
+  color:
+    #426077;
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+}
+
+.item-description{
+  color:
+    #536e82;
+
+  font-size:
+    12px;
+}
+
+.item-source{
+  margin-top:
+    5px;
+
+  color:
+    #8194a3;
+
+  font-size:
+    10px;
+}
+
+
+/* =========================
+   件数
+========================= */
+
+.result{
+  margin-top:
+    12px;
+
+  color:
+    #70879a;
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+}
+
+
+/* =========================
+   準備中
+========================= */
+
+.preparing{
+  padding:
+    22px 15px;
+
+  text-align:center;
+
+  border:
+    1px dashed #bad3e3;
+
+  border-radius:
+    14px;
+
+  background:
+    #f8fbfd;
+
+  color:
+    #70889b;
+
+  font-size:
+    12px;
+}
+
+
+/* =========================
+   0件
+========================= */
+
+.empty{
+  display:none;
+
+  padding:
+    28px 15px;
+
+  text-align:center;
+
+  color:
+    #70889b;
+
+  font-size:
+    13px;
+}
+
+
+/* =========================
+   関連ページ
+========================= */
+
+.link-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:
+    9px;
+
+  margin-top:
+    14px;
+}
+
+.link-button{
+  display:block;
+
+  padding:
+    13px 8px;
+
+  text-align:center;
+
+  border-radius:
+    13px;
+
+  background:
+    #1689e8;
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:
+    12px;
+
+  font-weight:
+    900;
+}
+
+
+/* =========================
+   注意
+========================= */
+
+.notice{
+  padding:
+    16px;
+
+  border:
+    1px solid #efdb96;
+
+  border-radius:
+    14px;
+
+  background:
+    #fff9e7;
+
+  color:
+    #66582b;
+
+  font-size:
+    12px;
+}
+
+
+/* =========================
+   PC
+========================= */
+
+@media(min-width:700px){
+
+  .category-grid{
+    grid-template-columns:
+      repeat(4,1fr);
+  }
+
+}
+
+
+/* =========================
+   スマホ
+========================= */
+
+@media(max-width:400px){
+
+  .card{
+    padding:
+      16px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+  <h1>
+    🎒 アイテム
+  </h1>
+
+  <p>
+    ロコキングダム速報 攻略ガイド
+  </p>
+
+</header>
+
+
+<a
+  class="back"
+  href="index.html">
+
+  ← ロコキングダム速報へ戻る
+
+</a>
+
+
+<main>
+
+
+<!-- =========================
+     アイテム概要
+========================= -->
+
+<section class="card">
+
+  <h2>
+    🎒 アイテム図鑑
+  </h2>
+
+  <p class="description">
+    Roco Kingdomで登場するアイテムを、
+    種類・用途・入手方法などから確認できるよう
+    順次整理していきます。
+  </p>
+
+
+  <div class="category-grid">
+
+
+    <div class="category">
+
+      <span class="category-icon">
+        🌱
+      </span>
+
+      <span class="category-title">
+        育成素材
+      </span>
+
+      <span class="category-text">
+        キャラクター育成
+      </span>
+
+    </div>
+
+
+    <div class="category">
+
+      <span class="category-icon">
+        💎
+      </span>
+
+      <span class="category-title">
+        進化・強化
+      </span>
+
+      <span class="category-text">
+        強化関連アイテム
+      </span>
+
+    </div>
+
+
+    <div class="category">
+
+      <span class="category-icon">
+        ❤️
+      </span>
+
+      <span class="category-title">
+        回復
+      </span>
+
+      <span class="category-text">
+        HPなどを回復
+      </span>
+
+    </div>
+
+
+    <div class="category">
+
+      <span class="category-icon">
+        🎟️
+      </span>
+
+      <span class="category-title">
+        特殊
+      </span>
+
+      <span class="category-text">
+        イベント・交換など
+      </span>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     検索
+========================= -->
+
+<section class="card">
+
+  <h2>
+    🔍 アイテム検索
+  </h2>
+
+
+  <input
+    class="search"
+    id="search"
+    type="search"
+    placeholder="🔍 アイテム名・用途から検索">
+
+
+  <div class="filters">
+
+    <button
+      class="filter active"
+      data-category="all">
+
+      すべて
+
+    </button>
+
+
+    <button
+      class="filter"
+      data-category="育成">
+
+      🌱 育成
+
+    </button>
+
+
+    <button
+      class="filter"
+      data-category="強化">
+
+      💎 強化
+
+    </button>
+
+
+    <button
+      class="filter"
+      data-category="回復">
+
+      ❤️ 回復
+
+    </button>
+
+
+    <button
+      class="filter"
+      data-category="特殊">
+
+      🎟️ 特殊
+
+    </button>
+
+
+    <button
+      class="filter"
+      data-category="その他">
+
+      📦 その他
+
+    </button>
+
+  </div>
+
+
+  <div class="result">
+
+    <span id="count">
+      0
+    </span>
+
+    件を表示中
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     一覧
+========================= -->
+
+<section class="card">
+
+  <h2>
+    📦 アイテム一覧
+  </h2>
+
+
+  <div
+    class="item-list"
+    id="itemList">
+  </div>
+
+
+  <div
+    class="empty"
+    id="empty">
+
+    🔍 条件に一致するアイテムがありません。
+
+  </div>
+
+
+  <div
+    class="preparing"
+    id="preparing">
+
+    🔎 中国版のアイテムデータを整理中です。<br><br>
+
+    正式名称・用途・入手場所を確認したものから
+    順次追加します。
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     関連攻略
+========================= -->
+
+<section class="card">
+
+  <h2>
+    📘 関連攻略
+  </h2>
+
+  <p class="description">
+    アイテムと関係する攻略情報はこちらから確認できます。
+  </p>
+
+
+  <div class="link-grid">
+
+    <a
+      class="link-button"
+      href="pokedex.html">
+
+      🐾 キャラ図鑑
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="training.html">
+
+      🌱 育成・進化
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="skills.html">
+
+      ⚔️ 技一覧
+
+    </a>
+
+
+    <a
+      class="link-button"
+      href="ranking.html">
+
+      ⭐ おすすめキャラ
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     今後追加
+========================= -->
+
+<section class="card">
+
+  <h2>
+    🔎 今後追加予定
+  </h2>
+
+
+  <div class="preparing">
+
+    ・育成素材<br>
+    ・進化関連アイテム<br>
+    ・回復アイテム<br>
+    ・技関連アイテム<br>
+    ・イベント交換アイテム<br>
+    ・ショップアイテム<br>
+    ・入手場所<br>
+    ・必要数
+
+    <br><br>
+
+    中国版データを確認しながら
+    順次追加します。
+
+  </div>
+
+</section>
+
+
+<div class="notice">
+
+  <strong>
+    🇨🇳 中国版データについて
+  </strong>
+
+  <br><br>
+
+  本ページは中国版「洛克王国：世界」の情報をもとに、
+  日本ユーザー向けに整理していく予定です。
+
+  <br><br>
+
+  日本版で正式名称・効果・入手方法などが
+  変更された場合は、日本版の情報を優先します。
+
+  <br><br>
+
+  未確認の情報を推測で掲載せず、
+  確認できたデータから順次追加します。
+
+</div>
+
+
+</main>
+
+
+<script>
+
+/*
+==================================================
+ アイテムデータ
+
+ 今後ここへ追加すると一覧へ自動表示されます。
+==================================================
+*/
+
+const items = [
+
+  /*
+  例：
+
+  {
+    name:"アイテム名（仮）",
+    chineseName:"中国名",
+    category:"育成",
+    icon:"🌱",
+    description:"アイテムの効果・用途。",
+    source:"入手方法確認中"
+  }
+
+  */
+
+];
+
+
+/*
+==================================================
+ DOM
+==================================================
+*/
+
+const search =
+  document.getElementById("search");
+
+const itemList =
+  document.getElementById("itemList");
+
+const count =
+  document.getElementById("count");
+
+const empty =
+  document.getElementById("empty");
+
+const preparing =
+  document.getElementById("preparing");
+
+const filters =
+  document.querySelectorAll(".filter");
+
+let selectedCategory =
+  "all";
+
+
+/*
+==================================================
+ アイテムHTML
+==================================================
+*/
+
+function itemHTML(item){
+
+  return `
+
+    <div class="item">
+
+      <div class="item-icon">
+
+        ${item.icon || "📦"}
+
+      </div>
+
+
+      <div>
+
+        <div class="item-name">
+
+          ${item.name || "名称確認中"}
+
+        </div>
+
+
+        ${
+          item.chineseName
+
+          ? `
+
+            <div class="item-cn">
+
+              中国名：
+              ${item.chineseName}
+
+            </div>
+
+          `
+
+          : ""
+        }
+
+
+        <div class="tags">
+
+          <span class="tag">
+
+            ${item.category || "その他"}
+
+          </span>
+
+        </div>
+
+
+        <div class="item-description">
+
+          ${item.description || "詳細確認中"}
+
+        </div>
+
+
+        <div class="item-source">
+
+          入手：
+          ${item.source || "確認中"}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/*
+==================================================
+ 検索用テキスト
+==================================================
+*/
+
+function itemSearchText(item){
+
+  return [
+
+    item.name || "",
+    item.chineseName || "",
+    item.category || "",
+    item.description || "",
+    item.source || ""
+
+  ]
+  .join(" ")
+  .toLowerCase();
+
+}
+
+
+/*
+==================================================
+ 表示
+==================================================
+*/
+
+function render(){
+
+  const keyword =
+    search.value
+      .trim()
+      .toLowerCase();
+
+
+  const filtered =
+    items.filter(item=>{
+
+      const keywordMatch =
+        itemSearchText(item)
+          .includes(keyword);
+
+
+      const categoryMatch =
+
+        selectedCategory === "all"
+
+        ||
+
+        item.category ===
+          selectedCategory;
+
+
+      return (
+        keywordMatch &&
+        categoryMatch
+      );
+
+    });
+
+
+  itemList.innerHTML =
+
+    filtered
+      .map(itemHTML)
+      .join("");
+
+
+  count.textContent =
+    filtered.length;
+
+
+  empty.style.display =
+
+    items.length > 0 &&
+    filtered.length === 0
+
+      ? "block"
+
+      : "none";
+
+
+  preparing.style.display =
+
+    items.length === 0
+
+      ? "block"
+
+      : "none";
+
+}
+
+
+/*
+==================================================
+ 検索
+==================================================
+*/
+
+search.addEventListener(
+  "input",
+  render
+);
+
+
+/*
+==================================================
+ カテゴリ
+==================================================
+*/
+
+filters.forEach(button=>{
+
+  button.addEventListener(
+    "click",
+    ()=>{
+
+      filters.forEach(btn=>
+
+        btn.classList.remove(
+          "active"
+        )
+
+      );
+
+
+      button.classList.add(
+        "active"
+      );
+
+
+      selectedCategory =
+        button.dataset.category;
+
+
+      render();
+
+    }
+  );
+
+});
+
+
+/*
+==================================================
+ 起動
+==================================================
+*/
+
+render();
+
+</script>
+
+
+</body>
+</html>
