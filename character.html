@@ -344,6 +344,11 @@ main{
   font-weight:800;
 }
 
+.matchup-empty{
+  color:#8194a3;
+  font-size:13px;
+}
+
 
 /* ========================================
    特性
@@ -955,7 +960,7 @@ function isEvolutionMainForm(character){
 
 
 /* ==========================================
-   図鑑番号から代表通常形態取得
+   図鑑番号から代表通常形態
 ========================================== */
 
 function getMainEvolutionCharacter(dexNo){
@@ -995,7 +1000,7 @@ function getMainEvolutionCharacter(dexNo){
 
 
 /* ==========================================
-   生の進化先を取得
+   生の進化先
 ========================================== */
 
 function getRawEvolutionTargets(character){
@@ -1023,8 +1028,7 @@ function getRawEvolutionTargets(character){
       target.dexNo !== character.dexNo &&
       !result.some(
         item =>
-          item.character.dexNo ===
-          target.dexNo
+          item.character.dexNo === target.dexNo
       )
     ){
 
@@ -1043,20 +1047,6 @@ function getRawEvolutionTargets(character){
 
 /* ==========================================
    到達可能判定
-
-   sourceからtargetへ
-   別キャラを経由して到達できるか確認する
-
-   例：
-   019 → 020
-
-   が存在する場合、
-
-   018の
-   [019,020]
-
-   の020は直接進化ではなく
-   最終進化先として扱う
 ========================================== */
 
 function canReachEvolution(
@@ -1084,8 +1074,7 @@ function canReachEvolution(
   for(const item of targets){
 
     if(
-      item.character.dexNo ===
-      targetDex
+      item.character.dexNo === targetDex
     ){
       return true;
     }
@@ -1107,21 +1096,7 @@ function canReachEvolution(
 
 
 /* ==========================================
-   直接進化先を取得
-
-   ★今回の重要修正★
-
-   同じevolution配列に
-
-   019
-   020
-
-   が入っていても、
-
-   019 → 020
-
-   が成立する場合は
-   020を直接進化先から除外する
+   直接進化先
 ========================================== */
 
 function getEvolutionTargets(character){
@@ -1139,36 +1114,31 @@ function getEvolutionTargets(character){
       const candidateDex =
         candidate.character.dexNo;
 
-      const isReachableThroughOther =
-        rawTargets.some(
-          other => {
+      const reachableThroughOther =
+        rawTargets.some(other => {
 
-            if(
-              other.character.dexNo ===
-              candidateDex
-            ){
-              return false;
-            }
-
-            return canReachEvolution(
-              other.character,
-              candidateDex
-            );
-
+          if(
+            other.character.dexNo ===
+            candidateDex
+          ){
+            return false;
           }
-        );
 
-      return !isReachableThroughOther;
+          return canReachEvolution(
+            other.character,
+            candidateDex
+          );
 
+        });
+
+      return !reachableThroughOther;
     }
   );
 }
 
 
 /* ==========================================
-   直接の進化前を逆引き
-
-   ★ここも直接進化先判定を使用
+   進化前を逆引き
 ========================================== */
 
 function getPreEvolutionCharacters(character){
@@ -1194,8 +1164,7 @@ function getPreEvolutionCharacters(character){
     targets.forEach(targetItem => {
 
       if(
-        targetItem.character.dexNo ===
-        currentDex &&
+        targetItem.character.dexNo === currentDex &&
         source.dexNo !== currentDex
       ){
 
@@ -1208,8 +1177,7 @@ function getPreEvolutionCharacters(character){
           mainSource &&
           !result.some(
             item =>
-              item.character.key ===
-              mainSource.key
+              item.character.key === mainSource.key
           )
         ){
 
@@ -1231,7 +1199,7 @@ function getPreEvolutionCharacters(character){
 
 
 /* ==========================================
-   進化系統の最初まで戻る
+   進化系統の開始地点
 ========================================== */
 
 function findEvolutionRoots(
@@ -1283,7 +1251,7 @@ function findEvolutionRoots(
 
 
 /* ==========================================
-   進化系統全体作成
+   進化段階作成
 ========================================== */
 
 function buildEvolutionStages(roots){
@@ -1460,7 +1428,7 @@ function evolutionCharacterHTML(
 
 
 /* ==========================================
-   進化系統表示
+   進化系統
 ========================================== */
 
 function createEvolutionHTML(character){
@@ -1498,7 +1466,7 @@ function createEvolutionHTML(character){
   if(!stages || stages.length === 0){
 
     return `
-      <div class="evolution-none">
+      <div class="empty">
         進化情報は現在確認中です。
       </div>
     `;
@@ -1631,7 +1599,9 @@ document.title =
   `${character.name}${character.formName ? " "+character.formName : ""} | ロコキングダム速報`;
 
 
-/* 画像 */
+/* ==========================================
+   画像
+========================================== */
 
 let imageHTML;
 
@@ -1654,7 +1624,9 @@ if(character.image){
 }
 
 
-/* 属性 */
+/* ==========================================
+   属性
+========================================== */
 
 const typeHTML =
   (character.type || [])
@@ -1684,7 +1656,9 @@ const typeHTML =
   .join("");
 
 
-/* データ確認状況 */
+/* ==========================================
+   データ確認状況
+========================================== */
 
 const confirmed =
   character.dataStatus === "confirmed";
@@ -1719,7 +1693,9 @@ const dataStatusHTML = `
 `;
 
 
-/* ステータス */
+/* ==========================================
+   ステータス
+========================================== */
 
 const stats =
   character.stats || {};
@@ -1773,40 +1749,196 @@ const statsHTML = `
 `;
 
 
-/* 属性相性 */
+/* ==========================================
+   属性相性
+   characters.js の計算関数を使用
+========================================== */
 
 function matchupTags(list,multiplier){
 
-  if(!list || list.length === 0){
-
-    return `
-      <span class="empty">
-        現在確認中
-      </span>
-    `;
+  if(!Array.isArray(list) || list.length === 0){
+    return "";
   }
 
-  return list.map(
-    type => {
+  return list.map(type => {
 
-      const data =
-        typeData[type];
+    const data =
+      typeData[type];
 
-      return `
+    return `
 
-        <span class="matchup-tag">
+      <span class="matchup-tag">
 
-          ${data?.icon || ""}
-          ${data?.name || type}
-          ${multiplier}
+        ${data?.icon || ""}
+        ${data?.name || type}
+        ${multiplier}
 
-        </span>
+      </span>
 
-      `;
+    `;
 
-    }
-  ).join("");
+  }).join("");
 }
+
+
+/*
+ characters.js に
+ getCharacterTypeMatchups() があれば使用。
+
+ まだ追加されていなくても
+ character.html 全体は壊れない。
+*/
+
+let matchups = null;
+
+if(
+  typeof getCharacterTypeMatchups ===
+  "function"
+){
+
+  try{
+
+    matchups =
+      getCharacterTypeMatchups(
+        character
+      );
+
+  }catch(error){
+
+    console.error(
+      "属性相性の計算に失敗しました。",
+      error
+    );
+
+    matchups = null;
+
+  }
+
+}
+
+
+/*
+ 戻り値が不足していても
+ ページを壊さないように正規化
+*/
+
+if(matchups){
+
+  matchups = {
+
+    x4:
+      Array.isArray(matchups.x4)
+      ? matchups.x4
+      : [],
+
+    x2:
+      Array.isArray(matchups.x2)
+      ? matchups.x2
+      : [],
+
+    x05:
+      Array.isArray(matchups.x05)
+      ? matchups.x05
+      : [],
+
+    x025:
+      Array.isArray(matchups.x025)
+      ? matchups.x025
+      : []
+
+  };
+
+}
+
+
+/*
+ 弱点
+*/
+
+let weaknessHTML = "";
+
+if(matchups){
+
+  weaknessHTML +=
+    matchupTags(
+      matchups.x4,
+      "×4"
+    );
+
+  weaknessHTML +=
+    matchupTags(
+      matchups.x2,
+      "×2"
+    );
+
+}
+
+
+/*
+ 耐性
+*/
+
+let resistanceHTML = "";
+
+if(matchups){
+
+  resistanceHTML +=
+    matchupTags(
+      matchups.x025,
+      "×0.25"
+    );
+
+  resistanceHTML +=
+    matchupTags(
+      matchups.x05,
+      "×0.5"
+    );
+
+}
+
+
+/*
+ 表示
+*/
+
+if(!matchups){
+
+  weaknessHTML = `
+    <span class="matchup-empty">
+      属性相性データ確認中
+    </span>
+  `;
+
+  resistanceHTML = `
+    <span class="matchup-empty">
+      属性相性データ確認中
+    </span>
+  `;
+
+}else{
+
+  if(!weaknessHTML){
+
+    weaknessHTML = `
+      <span class="matchup-empty">
+        弱点なし
+      </span>
+    `;
+
+  }
+
+  if(!resistanceHTML){
+
+    resistanceHTML = `
+      <span class="matchup-empty">
+        耐性なし
+      </span>
+    `;
+
+  }
+
+}
+
 
 const matchupHTML = `
 
@@ -1818,9 +1950,10 @@ const matchupHTML = `
         ⚠️ 弱点
       </div>
 
-      ${matchupTags(character.weaknesses,"×2")}
+      ${weaknessHTML}
 
     </div>
+
 
     <div class="matchup resist">
 
@@ -1828,7 +1961,7 @@ const matchupHTML = `
         🛡️ 耐性
       </div>
 
-      ${matchupTags(character.resistances,"×0.5")}
+      ${resistanceHTML}
 
     </div>
 
@@ -1837,7 +1970,9 @@ const matchupHTML = `
 `;
 
 
-/* 特性 */
+/* ==========================================
+   特性
+========================================== */
 
 let abilityHTML;
 
@@ -1893,7 +2028,9 @@ if(
 }
 
 
-/* 技 */
+/* ==========================================
+   技
+========================================== */
 
 let levelSkills = [];
 let stoneSkills = [];
@@ -1941,19 +2078,25 @@ const skillsHTML =
   );
 
 
-/* 形態 */
+/* ==========================================
+   形態
+========================================== */
 
 const formsHTML =
   createFormsHTML(character);
 
 
-/* 進化 */
+/* ==========================================
+   進化
+========================================== */
 
 const evolutionHTML =
   createEvolutionHTML(character);
 
 
-/* 描画 */
+/* ==========================================
+   描画
+========================================== */
 
 content.innerHTML = `
 
