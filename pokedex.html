@@ -273,7 +273,9 @@ main {
   font-weight: 800;
 }
 
-/* 属性色 */
+/* =========================
+   属性色
+========================= */
 
 .type-normal { background:#929292; }
 .type-grass { background:#58ad55; }
@@ -294,10 +296,18 @@ main {
 .type-machine { background:#6e8290; }
 .type-illusion { background:#a767b5; }
 
+/* =========================
+   種族値
+========================= */
+
 .total {
   margin-top: 7px;
   color: #617a8e;
   font-size: 12px;
+}
+
+.total-confirming {
+  color: #91a3b1;
 }
 
 /* =========================
@@ -394,7 +404,9 @@ main {
 </section>
 
 
-<!-- 検索 -->
+<!-- =========================
+     検索
+========================= -->
 
 <div class="search-box">
 
@@ -406,7 +418,9 @@ main {
 </div>
 
 
-<!-- 属性 -->
+<!-- =========================
+     属性
+========================= -->
 
 <section class="type-section">
 
@@ -497,7 +511,9 @@ main {
 </section>
 
 
-<!-- 件数 -->
+<!-- =========================
+     件数
+========================= -->
 
 <div class="result-count">
 
@@ -507,7 +523,9 @@ main {
 </div>
 
 
-<!-- JSがここへ自動生成 -->
+<!-- =========================
+     図鑑
+========================= -->
 
 <div
   class="pokedex"
@@ -548,18 +566,18 @@ main {
 </main>
 
 
-<!--
- characters.js を先に読み込む
--->
+<!-- =========================
+     characters.js
+========================= -->
 
 <script src="characters.js"></script>
 
 
 <script>
 
-/* ==========================================
-   必要なHTML要素
-========================================== */
+/* ==================================================
+   HTML要素
+================================================== */
 
 const pokedex =
   document.getElementById("pokedex");
@@ -579,52 +597,289 @@ const noResults =
 let selectedType = "all";
 
 
-/* ==========================================
-   画像を作る
-========================================== */
+/* ==================================================
+   HTMLエスケープ
+================================================== */
+
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+/* ==================================================
+   図鑑番号を取得
+================================================== */
+
+function getDexNo(character) {
+
+  if (character.dexNo) {
+
+    return String(character.dexNo)
+      .padStart(3, "0");
+
+  }
+
+  return String(character.id)
+    .padStart(3, "0");
+
+}
+
+
+/* ==================================================
+   同じ図鑑番号の形態をグループ化
+================================================== */
+
+function groupCharactersByDex() {
+
+  const groups = new Map();
+
+  characters.forEach(character => {
+
+    if (!character) {
+      return;
+    }
+
+    const dexNo =
+      getDexNo(character);
+
+    if (!groups.has(dexNo)) {
+
+      groups.set(
+        dexNo,
+        []
+      );
+
+    }
+
+    groups
+      .get(dexNo)
+      .push(character);
+
+  });
+
+  return groups;
+
+}
+
+
+/* ==================================================
+   一覧に使う代表形態を決める
+
+   優先順位
+
+   1：main
+   2：通常形態
+   3：本来の姿
+   4：首領・季節以外
+   5：最初の形態
+
+================================================== */
+
+function selectRepresentative(forms) {
+
+  if (
+    !Array.isArray(forms) ||
+    forms.length === 0
+  ) {
+
+    return null;
+
+  }
+
+
+  let result =
+    forms.find(character =>
+      character.form === "main"
+    );
+
+  if (result) {
+    return result;
+  }
+
+
+  result =
+    forms.find(character =>
+      character.formName === "通常形態"
+    );
+
+  if (result) {
+    return result;
+  }
+
+
+  result =
+    forms.find(character =>
+      character.formName === "本来の姿"
+    );
+
+  if (result) {
+    return result;
+  }
+
+
+  result =
+    forms.find(character =>
+      character.isBossForm !== true &&
+      character.form !== "season"
+    );
+
+  if (result) {
+    return result;
+  }
+
+
+  return forms[0];
+
+}
+
+
+/* ==================================================
+   図鑑一覧用キャラクターを作る
+
+   同じNOは必ず1枚
+================================================== */
+
+function createPokedexCharacters() {
+
+  const groups =
+    groupCharactersByDex();
+
+  const result = [];
+
+  groups.forEach(forms => {
+
+    const representative =
+      selectRepresentative(forms);
+
+    if (representative) {
+
+      /*
+       同じ図鑑番号に存在する
+       全形態を保存しておく
+      */
+
+      representative._allForms =
+        forms;
+
+      result.push(
+        representative
+      );
+
+    }
+
+  });
+
+
+  result.sort((a, b) => {
+
+    return (
+      Number(getDexNo(a)) -
+      Number(getDexNo(b))
+    );
+
+  });
+
+
+  return result;
+
+}
+
+
+/* ==================================================
+   一覧用データ
+================================================== */
+
+const pokedexCharacters =
+  createPokedexCharacters();
+
+
+/* ==================================================
+   画像
+================================================== */
 
 function createImage(character) {
 
-  if (character.image) {
+  if (
+    character.image &&
+    String(character.image).trim() !== ""
+  ) {
 
     return `
       <img
-        src="${character.image}"
-        alt="${character.name}"
+        src="${escapeHTML(character.image)}"
+        alt="${escapeHTML(character.name || character.chineseName || "")}"
         loading="lazy">
     `;
 
   }
 
-  const firstType =
-    character.type[0];
 
-  return typeData[firstType]?.icon || "🐾";
+  const firstType =
+    Array.isArray(character.type)
+      ? character.type[0]
+      : "normal";
+
+
+  return (
+    typeData[firstType]?.icon ||
+    "🐾"
+  );
 
 }
 
 
-/* ==========================================
-   属性ラベルを作る
-========================================== */
+/* ==================================================
+   属性ラベル
+================================================== */
 
 function createTypes(character) {
+
+  if (
+    !Array.isArray(character.type) ||
+    character.type.length === 0
+  ) {
+
+    return `
+      <span class="type-label type-normal">
+        ⚪ 普通
+      </span>
+    `;
+
+  }
+
 
   return character.type.map(
 
     (type, index) => {
 
       const displayName =
-        character.typeName[index]
-        || typeData[type]?.name
-        || type;
+        character.typeName?.[index]
+        ||
+        typeData[type]?.name
+        ||
+        type;
+
 
       const icon =
-        typeData[type]?.icon || "";
+        typeData[type]?.icon
+        ||
+        "";
+
 
       return `
-        <span class="type-label type-${type}">
-          ${icon} ${displayName}
+        <span
+          class="type-label type-${escapeHTML(type)}">
+
+          ${escapeHTML(icon)}
+          ${escapeHTML(displayName)}
+
         </span>
       `;
 
@@ -635,27 +890,105 @@ function createTypes(character) {
 }
 
 
-/* ==========================================
-   キャラカードを作る
-========================================== */
+/* ==================================================
+   種族値
+================================================== */
+
+function createTotal(character) {
+
+  if (
+    character.total === null ||
+    character.total === undefined ||
+    character.total === ""
+  ) {
+
+    return `
+      <span class="total-confirming">
+        確認中
+      </span>
+    `;
+
+  }
+
+
+  return escapeHTML(
+    character.total
+  );
+
+}
+
+
+/* ==================================================
+   詳細ページURL
+================================================== */
+
+function createDetailURL(character) {
+
+  const params =
+    new URLSearchParams();
+
+
+  if (character.key) {
+
+    params.set(
+      "key",
+      character.key
+    );
+
+  }
+
+
+  params.set(
+    "id",
+    character.id
+  );
+
+
+  return (
+    "character.html?" +
+    params.toString()
+  );
+
+}
+
+
+/* ==================================================
+   キャラカード
+================================================== */
 
 function createCharacterCard(character) {
 
   const number =
-    String(character.id).padStart(3,"0");
+    getDexNo(character);
+
 
   const temporary =
     character.nameStatus === "仮"
-    ? "（仮）"
-    : "";
+      ? "（仮）"
+      : "";
+
+
+  const displayName =
+    character.name
+    ||
+    character.chineseName
+    ||
+    "名称確認中";
+
+
+  const chineseName =
+    character.chineseName
+    ||
+    "確認中";
+
 
   return `
 
     <a
       class="character"
-      href="character.html?id=${character.id}"
-      data-id="${character.id}"
-      data-type="${character.type.join(" ")}">
+      href="${createDetailURL(character)}"
+      data-id="${escapeHTML(character.id)}"
+      data-dex="${escapeHTML(number)}">
 
       <div class="character-image">
 
@@ -671,23 +1004,32 @@ function createCharacterCard(character) {
       <div class="character-info">
 
         <div class="number">
-          NO.${number}
+          NO.${escapeHTML(number)}
         </div>
+
 
         <div class="character-name">
-          ${character.name}${temporary}
+          ${escapeHTML(displayName)}${temporary}
         </div>
+
 
         <div class="chinese-name">
-          中国名：${character.chineseName}
+          中国名：${escapeHTML(chineseName)}
         </div>
+
 
         <div class="character-types">
+
           ${createTypes(character)}
+
         </div>
 
+
         <div class="total">
-          種族値合計：${character.total}
+
+          種族値合計：
+          ${createTotal(character)}
+
         </div>
 
       </div>
@@ -699,36 +1041,78 @@ function createCharacterCard(character) {
 }
 
 
-/* ==========================================
+/* ==================================================
    検索用文字列
-========================================== */
+
+   ★同じ図鑑番号の別形態名も検索対象
+================================================== */
 
 function getSearchText(character) {
 
-  return [
+  const forms =
+    character._allForms || [character];
 
-    character.id,
 
-    String(character.id).padStart(3,"0"),
+  const words = [];
 
-    character.name,
 
-    character.chineseName,
+  forms.forEach(form => {
 
-    character.englishName || "",
+    words.push(
+      form.id ?? "",
+      getDexNo(form),
+      form.name ?? "",
+      form.chineseName ?? "",
+      form.englishName ?? "",
+      form.formName ?? "",
+      form.chineseFormName ?? "",
+      ...(form.typeName || [])
+    );
 
-    ...(character.typeName || [])
+  });
 
-  ]
-  .join(" ")
-  .toLowerCase();
+
+  return words
+    .join(" ")
+    .toLowerCase();
 
 }
 
 
-/* ==========================================
-   図鑑を表示
-========================================== */
+/* ==================================================
+   属性判定
+
+   ★別形態が持つ属性も検索対象
+================================================== */
+
+function hasSelectedType(character) {
+
+  if (selectedType === "all") {
+
+    return true;
+
+  }
+
+
+  const forms =
+    character._allForms || [character];
+
+
+  return forms.some(form => {
+
+    return (
+      Array.isArray(form.type) &&
+      form.type.includes(selectedType)
+    );
+
+  });
+
+}
+
+
+/* ==================================================
+   図鑑表示
+================================================== */
 
 function renderPokedex() {
 
@@ -737,31 +1121,28 @@ function renderPokedex() {
       .trim()
       .toLowerCase();
 
+
   const filtered =
-    characters.filter(character => {
+    pokedexCharacters.filter(
+      character => {
 
-      const searchMatch =
-        getSearchText(character)
-        .includes(keyword);
-
-      const typeMatch =
-        selectedType === "all"
-        ||
-        character.type.includes(selectedType);
-
-      return searchMatch && typeMatch;
-
-    });
+        const searchMatch =
+          getSearchText(character)
+            .includes(keyword);
 
 
-  /* 図鑑番号順 */
-
-  filtered.sort(
-    (a,b) => a.id - b.id
-  );
+        const typeMatch =
+          hasSelectedType(character);
 
 
-  /* HTML生成 */
+        return (
+          searchMatch &&
+          typeMatch
+        );
+
+      }
+    );
+
 
   pokedex.innerHTML =
     filtered
@@ -769,30 +1150,28 @@ function renderPokedex() {
       .join("");
 
 
-  /* 件数 */
-
   count.textContent =
     filtered.length;
 
 
-  /* 0件表示 */
-
   if (filtered.length === 0) {
 
-    noResults.style.display = "block";
+    noResults.style.display =
+      "block";
 
   } else {
 
-    noResults.style.display = "none";
+    noResults.style.display =
+      "none";
 
   }
 
 }
 
 
-/* ==========================================
+/* ==================================================
    検索
-========================================== */
+================================================== */
 
 search.addEventListener(
   "input",
@@ -800,9 +1179,9 @@ search.addEventListener(
 );
 
 
-/* ==========================================
+/* ==================================================
    属性ボタン
-========================================== */
+================================================== */
 
 buttons.forEach(button => {
 
@@ -810,15 +1189,23 @@ buttons.forEach(button => {
     "click",
     () => {
 
-      buttons.forEach(
-        btn =>
-          btn.classList.remove("active")
+      buttons.forEach(btn => {
+
+        btn.classList.remove(
+          "active"
+        );
+
+      });
+
+
+      button.classList.add(
+        "active"
       );
 
-      button.classList.add("active");
 
       selectedType =
         button.dataset.type;
+
 
       renderPokedex();
 
@@ -828,11 +1215,26 @@ buttons.forEach(button => {
 });
 
 
-/* ==========================================
-   最初の表示
-========================================== */
+/* ==================================================
+   初期表示
+================================================== */
 
 renderPokedex();
+
+
+/* ==================================================
+   確認用
+================================================== */
+
+console.log(
+  "図鑑番号数:",
+  pokedexCharacters.length
+);
+
+console.log(
+  "登録形態総数:",
+  characters.length
+);
 
 </script>
 
