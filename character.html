@@ -65,6 +65,14 @@ header p{
 
 
 /* ========================================
+   マイ図鑑
+======================================== */
+.my-dex-card{margin:16px 0;padding:16px;border:1px solid #dceaf3;border-radius:18px;background:#fff;box-shadow:0 4px 16px rgba(30,90,130,.07)}
+.my-dex-title{font-weight:900;margin-bottom:4px}.my-dex-help{font-size:12px;color:#7890a2;margin-bottom:12px}
+.my-dex-buttons{display:flex;gap:8px;flex-wrap:wrap}.my-dex-btn{border:0;border-radius:999px;padding:9px 12px;background:#edf5fa;color:#45677d;font-weight:900;cursor:pointer}
+.my-dex-btn.active{background:#1689e8;color:#fff}.my-dex-clear{margin-top:10px;border:0;background:transparent;color:#8a9aa7;font-size:11px;font-weight:800;cursor:pointer}
+
+ /* ========================================
    ページ内ジャンプ
 ======================================== */
 .detail-nav{
@@ -751,6 +759,16 @@ main{
 </nav>
 
 <main id="content">
+<section class="my-dex-card">
+  <div class="my-dex-title">📝 マイ図鑑</div>
+  <div class="my-dex-help">このキャラクターの育成状況をこの端末に保存できます。</div>
+  <div class="my-dex-buttons">
+    <button type="button" class="my-dex-btn" data-my-status="owned">✅ 所持済み</button>
+    <button type="button" class="my-dex-btn" data-my-status="training">🌱 育成中</button>
+    <button type="button" class="my-dex-btn" data-my-status="complete">🏆 育成完了</button>
+  </div>
+  <button type="button" class="my-dex-clear" id="myDexClear">状態を解除</button>
+</section>
   <div class="card">
     読み込み中...
   </div>
@@ -2106,6 +2124,33 @@ try{
   // localStorageが利用できない環境では履歴保存だけスキップ
 }
 
+
+/* ==========================================
+   マイ図鑑
+========================================== */
+const MY_DEX_STORAGE_KEY = "rocoKingdomMyDex";
+const myDexButtons = document.querySelectorAll("[data-my-status]");
+const myDexClear = document.getElementById("myDexClear");
+
+function loadMyDex(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(MY_DEX_STORAGE_KEY)||"{}");
+    return saved && typeof saved==="object" && !Array.isArray(saved) ? saved : {};
+  }catch(error){ return {}; }
+}
+function renderMyDexStatus(){
+  const status=loadMyDex()[String(character.key)]||"";
+  myDexButtons.forEach(b=>b.classList.toggle("active",b.dataset.myStatus===status));
+}
+myDexButtons.forEach(b=>b.addEventListener("click",()=>{
+  const data=loadMyDex(); data[String(character.key)]=b.dataset.myStatus;
+  localStorage.setItem(MY_DEX_STORAGE_KEY,JSON.stringify(data)); renderMyDexStatus();
+}));
+myDexClear.addEventListener("click",()=>{
+  const data=loadMyDex(); delete data[String(character.key)];
+  localStorage.setItem(MY_DEX_STORAGE_KEY,JSON.stringify(data)); renderMyDexStatus();
+});
+renderMyDexStatus();
 
 /* ==========================================
    ページタイトル

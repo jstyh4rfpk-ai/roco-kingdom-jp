@@ -399,6 +399,13 @@ main{
 }
 
 /* ========================================
+   マイ図鑑フィルター
+======================================== */
+.my-dex-filter-section{padding:17px;margin-bottom:17px;background:#fff;border:1px solid #dceaf3;border-radius:18px;box-shadow:0 4px 16px rgba(30,90,130,.07)}
+.my-dex-filter-title{font-weight:900;margin-bottom:10px}.my-dex-filter-buttons{display:flex;gap:8px;flex-wrap:wrap}
+.my-dex-filter-btn{border:0;border-radius:999px;padding:9px 12px;background:#edf5fa;color:#45677d;font-weight:900;cursor:pointer}.my-dex-filter-btn.active{background:#1689e8;color:#fff}
+
+/* ========================================
    最近見たキャラクター
 ======================================== */
 .recent-section{
@@ -1058,6 +1065,15 @@ main{
   </button>
 </section>
 
+<section class="my-dex-filter-section">
+ <div class="my-dex-filter-title">📝 マイ図鑑から探す</div>
+ <div class="my-dex-filter-buttons">
+  <button class="my-dex-filter-btn active" data-my-filter="all">すべて</button>
+  <button class="my-dex-filter-btn" data-my-filter="owned">✅ 所持済み</button>
+  <button class="my-dex-filter-btn" data-my-filter="training">🌱 育成中</button>
+  <button class="my-dex-filter-btn" data-my-filter="complete">🏆 育成完了</button>
+ </div>
+</section>
 </div>
 
 <!-- ======================================
@@ -1187,6 +1203,8 @@ const compareModal = document.getElementById("compareModal");
 const compareCloseBtn = document.getElementById("compareCloseBtn");
 const compareContent = document.getElementById("compareContent");
 const resetFilterBtn = document.getElementById("resetFilterBtn");
+const myDexFilterButtons=document.querySelectorAll(".my-dex-filter-btn");
+let currentMyDexFilter="all";
 const recentList = document.getElementById("recentList");
 const recentClearBtn = document.getElementById("recentClearBtn");
 
@@ -2102,6 +2120,19 @@ formTotal.textContent =
   characters.length;
 
 /* ==========================================
+   マイ図鑑
+========================================== */
+const MY_DEX_STORAGE_KEY="rocoKingdomMyDex";
+function loadMyDex(){
+ try{const d=JSON.parse(localStorage.getItem(MY_DEX_STORAGE_KEY)||"{}");return d&&typeof d==="object"&&!Array.isArray(d)?d:{};}catch(e){return {};}
+}
+myDexFilterButtons.forEach(b=>b.addEventListener("click",()=>{
+ currentMyDexFilter=b.dataset.myFilter;
+ myDexFilterButtons.forEach(x=>x.classList.toggle("active",x===b));
+ renderPokedex();
+}));
+
+/* ==========================================
    描画
 ========================================== */
 
@@ -2147,6 +2178,11 @@ function renderPokedex(){
           ||
           isFavorite(character);
 
+        const myDex = loadMyDex();
+        const myDexMatch =
+          currentMyDexFilter === "all"
+          ||
+          myDex[String(character.key)] === currentMyDexFilter;
 
         return (
           searchMatch
@@ -2158,6 +2194,8 @@ function renderPokedex(){
           rangeMatch
           &&
           favoriteMatch
+          &&
+          myDexMatch
         );
 
       }
