@@ -500,6 +500,14 @@ const categoryButtons =
 let selectedType = "all";
 let selectedCategory = "all";
 
+/* サイト内検索から渡された検索語 */
+const initialQuery =
+  new URLSearchParams(window.location.search).get("q") || "";
+
+if(initialQuery){
+  search.value = initialQuery;
+}
+
 
 /* ==========================================
    全キャラから技を取得
@@ -569,6 +577,9 @@ function collectSkills(){
           ownerId:
             character.id,
 
+          ownerKey:
+            character.key,
+
           ownerName:
             character.name,
 
@@ -576,7 +587,16 @@ function collectSkills(){
             character.chineseName,
 
           group:
-            group.name
+            group.name,
+
+          displayType:
+            skill.typeName || skill.type || "",
+
+          displayCategory:
+            skill.categoryName || skill.category || "",
+
+          displayCost:
+            skill.energy ?? skill.cost ?? null
 
         });
 
@@ -616,10 +636,10 @@ function skillHTML(skill){
       : "";
 
   const cost =
-    skill.cost !== null &&
-    skill.cost !== undefined
+    skill.displayCost !== null &&
+    skill.displayCost !== undefined
       ? `<span class="tag">
-          消費 ${skill.cost}
+          消費 ${skill.displayCost}
         </span>`
       : "";
 
@@ -651,15 +671,15 @@ function skillHTML(skill){
 
       <div class="tags">
 
-        ${skill.type
+        ${skill.displayType
           ? `<span class="tag">
-              ${skill.type}
+              ${skill.displayType}
             </span>`
           : ""}
 
-        ${skill.category
+        ${skill.displayCategory
           ? `<span class="tag">
-              ${skill.category}
+              ${skill.displayCategory}
             </span>`
           : ""}
 
@@ -683,8 +703,8 @@ function skillHTML(skill){
 
         習得キャラ：
 
-        <a href="character.html?id=${skill.ownerId}">
-          ${skill.ownerName}
+        <a href="character.html?key=${encodeURIComponent(skill.ownerKey || "")}">
+          ${skill.ownerName || "名前確認中"}
         </a>
 
         ／ 中国名：
@@ -709,6 +729,8 @@ function searchText(skill){
 
     skill.name || "",
     skill.chineseName || "",
+    skill.displayType || "",
+    skill.displayCategory || "",
     skill.type || "",
     skill.category || "",
     skill.description || "",
@@ -744,12 +766,12 @@ function render(){
       const typeMatch =
         selectedType === "all"
         ||
-        skill.type === selectedType;
+        skill.displayType === selectedType;
 
       const categoryMatch =
         selectedCategory === "all"
         ||
-        skill.category ===
+        skill.displayCategory ===
           selectedCategory;
 
       return (
