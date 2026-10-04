@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>育成・進化 | ロコキングダム速報</title>
+
+<meta name="description"
+content="Roco Kingdom（洛克王国：世界）のキャラクター育成・レベルアップ・進化・首領形態などを日本語でまとめる攻略ページです。">
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+  color:#17324d;
+  line-height:1.75;
+  background:#f1f8fd;
+}
+
+/* =========================
+   ヘッダー
+========================= */
+
+header{
+  padding:28px 16px;
+  text-align:center;
+  color:white;
+  background:linear-gradient(135deg,#50b7f0,#79d4ff);
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:6px 0 0;
+  font-size:13px;
+}
+
+.back{
+  display:block;
+  padding:14px 18px;
+  background:white;
+  border-bottom:1px solid #dceaf4;
+  color:#1677d2;
+  text-decoration:none;
+  font-weight:900;
+}
+
+/* =========================
+   メイン
+========================= */
+
+main{
+  width:min(900px,calc(100% - 24px));
+  margin:20px auto 50px;
+}
+
+.card{
+  margin-bottom:17px;
+  padding:20px;
+  background:white;
+  border:1px solid #dceaf3;
+  border-radius:19px;
+  box-shadow:0 5px 20px rgba(30,90,130,.08);
+}
+
+.card h2{
+  margin:0 0 12px;
+  font-size:21px;
+}
+
+.card h3{
+  margin:18px 0 8px;
+  font-size:16px;
+}
+
+.description{
+  margin:0;
+  color:#647e92;
+  font-size:13px;
+}
+
+/* =========================
+   メニュー
+========================= */
+
+.menu{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-top:17px;
+}
+
+.menu-item{
+  padding:14px 8px;
+  text-align:center;
+  border:1px solid #d4e5ef;
+  border-radius:14px;
+  background:#f4faff;
+}
+
+.menu-icon{
+  display:block;
+  margin-bottom:4px;
+  font-size:27px;
+}
+
+.menu-title{
+  display:block;
+  font-size:13px;
+  font-weight:900;
+}
+
+.menu-text{
+  display:block;
+  margin-top:2px;
+  color:#758c9d;
+  font-size:10px;
+}
+
+/* =========================
+   育成フロー
+========================= */
+
+.flow{
+  margin-top:15px;
+}
+
+.flow-item{
+  position:relative;
+  padding:16px;
+  margin-bottom:24px;
+  border:1px solid #d7e6ef;
+  border-radius:15px;
+  background:#f9fcfe;
+}
+
+.flow-item:not(:last-child)::after{
+  content:"↓";
+  position:absolute;
+  left:50%;
+  bottom:-24px;
+  transform:translateX(-50%);
+  color:#4ba7df;
+  font-size:20px;
+  font-weight:900;
+}
+
+.flow-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#126fc1;
+  font-weight:900;
+}
+
+.flow-number{
+  display:flex;
+  width:27px;
+  height:27px;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  border-radius:50%;
+  background:#1689e8;
+  color:white;
+  font-size:12px;
+}
+
+.flow-text{
+  margin-top:6px;
+  color:#60798d;
+  font-size:12px;
+}
+
+/* =========================
+   進化例
+========================= */
+
+.evolution{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:14px;
+}
+
+.evo-character{
+  padding:13px;
+  text-align:center;
+  border:1px solid #d7e6ef;
+  border-radius:14px;
+  background:#f5faff;
+}
+
+.evo-name{
+  color:#126fc1;
+  font-weight:900;
+}
+
+.evo-cn{
+  color:#8194a3;
+  font-size:10px;
+}
+
+.evo-arrow{
+  text-align:center;
+  color:#4ba7df;
+  font-size:13px;
+  font-weight:900;
+}
+
+/* =========================
+   例一覧
+========================= */
+
+.example-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:11px;
+  margin-top:15px;
+}
+
+.example{
+  padding:15px;
+  border:1px solid #d8e6ef;
+  border-radius:15px;
+  background:#f9fcfe;
+}
+
+.example-title{
+  margin-bottom:10px;
+  color:#126fc1;
+  font-size:16px;
+  font-weight:900;
+}
+
+.example-line{
+  padding:7px 0;
+  border-bottom:1px solid #e5edf2;
+  color:#536e82;
+  font-size:12px;
+}
+
+.example-line:last-child{
+  border-bottom:0;
+}
+
+/* =========================
+   首領形態
+========================= */
+
+.boss{
+  padding:16px;
+  margin-top:13px;
+  border:1px solid #ead79b;
+  border-radius:15px;
+  background:linear-gradient(135deg,#fff9e7,#fffdf7);
+}
+
+.boss-title{
+  color:#9b7008;
+  font-weight:900;
+}
+
+.boss p{
+  margin:7px 0 0;
+  color:#715f31;
+  font-size:12px;
+}
+
+/* =========================
+   キャラ図鑑リンク
+========================= */
+
+.button{
+  display:block;
+  margin-top:14px;
+  padding:13px 15px;
+  text-align:center;
+  border-radius:13px;
+  background:#1689e8;
+  color:white;
+  text-decoration:none;
+  font-weight:900;
+}
+
+/* =========================
+   準備中
+========================= */
+
+.preparing{
+  margin-top:14px;
+  padding:18px 15px;
+  text-align:center;
+  border:1px dashed #bcd4e3;
+  border-radius:14px;
+  background:#f8fbfd;
+  color:#70889b;
+  font-size:12px;
+}
+
+/* =========================
+   注意
+========================= */
+
+.notice{
+  padding:16px;
+  border:1px solid #efdb96;
+  border-radius:14px;
+  background:#fff9e7;
+  color:#66582b;
+  font-size:12px;
+}
+
+/* =========================
+   PC
+========================= */
+
+@media(min-width:700px){
+
+  .menu{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .example-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+}
+
+/* =========================
+   スマホ
+========================= */
+
+@media(max-width:400px){
+
+  .card{
+    padding:16px;
+  }
+
+  .card h2{
+    font-size:19px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>🌱 育成・進化</h1>
+
+  <p>
+    ロコキングダム速報 攻略ガイド
+  </p>
+
+</header>
+
+
+<a class="back" href="index.html">
+  ← ロコキングダム速報へ戻る
+</a>
+
+
+<main>
+
+
+<!-- =========================
+     育成・進化
+========================= -->
+
+<section class="card">
+
+  <h2>🌱 キャラクター育成・進化</h2>
+
+  <p class="description">
+    Roco Kingdomのキャラクター育成、
+    レベルアップ、進化、首領形態などの情報を
+    日本ユーザー向けに整理しています。
+  </p>
+
+
+  <div class="menu">
+
+    <div class="menu-item">
+      <span class="menu-icon">📈</span>
+      <span class="menu-title">レベル</span>
+      <span class="menu-text">キャラを育成</span>
+    </div>
+
+
+    <div class="menu-item">
+      <span class="menu-icon">🌱</span>
+      <span class="menu-title">進化</span>
+      <span class="menu-text">新しい形態へ</span>
+    </div>
+
+
+    <div class="menu-item">
+      <span class="menu-icon">👑</span>
+      <span class="menu-title">首領形態</span>
+      <span class="menu-text">特殊な形態</span>
+    </div>
+
+
+    <div class="menu-item">
+      <span class="menu-icon">⚡</span>
+      <span class="menu-title">技習得</span>
+      <span class="menu-text">育成で技を解放</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     基本的な育成
+========================= -->
+
+<section class="card">
+
+  <h2>📈 基本的な育成の流れ</h2>
+
+
+  <div class="flow">
+
+
+    <div class="flow-item">
+
+      <div class="flow-title">
+
+        <span class="flow-number">
+          1
+        </span>
+
+        キャラクターを入手
+
+      </div>
+
+      <div class="flow-text">
+        冒険やイベントなどでキャラクターを入手します。
+        入手方法はキャラクターごとに異なります。
+      </div>
+
+    </div>
+
+
+    <div class="flow-item">
+
+      <div class="flow-title">
+
+        <span class="flow-number">
+          2
+        </span>
+
+        レベルを上げる
+
+      </div>
+
+      <div class="flow-text">
+        キャラクターを育成してレベルを上げます。
+        レベルアップによって新しい技を習得する
+        キャラクターも存在します。
+      </div>
+
+    </div>
+
+
+    <div class="flow-item">
+
+      <div class="flow-title">
+
+        <span class="flow-number">
+          3
+        </span>
+
+        進化条件を達成
+
+      </div>
+
+      <div class="flow-text">
+        一部のキャラクターは一定レベルなどの
+        条件を満たすことで次の形態へ進化します。
+      </div>
+
+    </div>
+
+
+    <div class="flow-item">
+
+      <div class="flow-title">
+
+        <span class="flow-number">
+          4
+        </span>
+
+        最終形態を育成
+
+      </div>
+
+      <div class="flow-text">
+        最終進化後もレベルアップや技構成などを
+        整えてキャラクターを強化していきます。
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     進化例
+========================= -->
+
+<section class="card">
+
+  <h2>🐾 進化例</h2>
+
+  <p class="description">
+    現在キャラ図鑑に登録しているキャラクターの
+    進化例です。
+  </p>
+
+
+  <div class="example-grid">
+
+
+    <!-- 草 -->
+
+    <div class="example">
+
+      <div class="example-title">
+        🌿 草系統
+      </div>
+
+      <div class="example-line">
+        喵喵（仮）
+      </div>
+
+      <div class="example-line">
+        ↓ Lv.16
+      </div>
+
+      <div class="example-line">
+        喵呜（仮）
+      </div>
+
+      <div class="example-line">
+        ↓ Lv.32
+      </div>
+
+      <div class="example-line">
+        魔力猫（仮）
+      </div>
+
+    </div>
+
+
+    <!-- 火 -->
+
+    <div class="example">
+
+      <div class="example-title">
+        🔥 火系統
+      </div>
+
+      <div class="example-line">
+        火花（仮）
+      </div>
+
+      <div class="example-line">
+        ↓ Lv.16
+      </div>
+
+      <div class="example-line">
+        焰火（仮）
+      </div>
+
+      <div class="example-line">
+        ↓ Lv.36
+      </div>
+
+      <div class="example-line">
+        火神（仮）
+      </div>
+
+    </div>
+
+
+    <!-- 水 -->
+
+    <div class="example">
+
+      <div class="example-title">
+        💧 水系統
+      </div>
+
+      <div class="example-line">
+        水藍藍（仮）
+      </div>
+
+      <div class="example-line">
+        ↓ Lv.16
+      </div>
+
+      <div class="example-line">
+        波波拉（仮）
+      </div>
+
+      <div class="example-line">
+        ↓ Lv.36
+      </div>
+
+      <div class="example-line">
+        水霊（仮）
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     ディモ
+========================= -->
+
+<section class="card">
+
+  <h2>✨ ディモの派生形態</h2>
+
+  <p class="description">
+    ディモには通常のレベル進化とは異なる
+    派生形態があります。
+  </p>
+
+
+  <div class="evolution">
+
+    <div class="evo-character">
+
+      <div class="evo-name">
+        ディモ（仮）
+      </div>
+
+      <div class="evo-cn">
+        迪莫
+      </div>
+
+    </div>
+
+
+    <div class="evo-arrow">
+      ↓ 派生
+    </div>
+
+
+    <div class="evo-character">
+
+      <div class="evo-name">
+        👑 聖光ディモ（仮）
+      </div>
+
+    </div>
+
+
+    <div class="evo-character">
+
+      <div class="evo-name">
+        👑 聖草ディモ（仮）
+      </div>
+
+    </div>
+
+
+    <div class="evo-character">
+
+      <div class="evo-name">
+        👑 聖火ディモ（仮）
+      </div>
+
+    </div>
+
+
+    <div class="evo-character">
+
+      <div class="evo-name">
+        👑 聖水ディモ（仮）
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     首領形態
+========================= -->
+
+<section class="card">
+
+  <h2>👑 首領形態</h2>
+
+  <div class="boss">
+
+    <div class="boss-title">
+      👑 特殊な派生・強化形態
+    </div>
+
+    <p>
+      中国版では一部キャラクターに
+      通常形態とは異なる特殊な形態が存在します。
+    </p>
+
+  </div>
+
+
+  <h3>現在確認している例</h3>
+
+
+  <div class="evolution">
+
+    <div class="evo-character">
+      🌿 魔力猫 → 葉冕魔力猫（仮）
+    </div>
+
+    <div class="evo-character">
+      🔥 火神 → 烈火戦神（仮）
+    </div>
+
+    <div class="evo-character">
+      💧 水霊 → 首領形態
+    </div>
+
+  </div>
+
+
+  <div class="preparing">
+    🔎 各形態の詳しい進化条件・入手方法は
+    順次追加します。
+  </div>
+
+</section>
+
+
+<!-- =========================
+     キャラ図鑑
+========================= -->
+
+<section class="card">
+
+  <h2>🐾 キャラクター別の進化情報</h2>
+
+  <p class="description">
+    各キャラクターの詳しい進化先や
+    ステータスはキャラ図鑑から確認できます。
+  </p>
+
+  <a
+    class="button"
+    href="pokedex.html">
+    🐾 キャラ図鑑を見る
+  </a>
+
+</section>
+
+
+<!-- =========================
+     今後
+========================= -->
+
+<section class="card">
+
+  <h2>🔎 今後追加予定</h2>
+
+  <div class="preparing">
+    レベル上げ方法・育成素材・進化条件・
+    首領形態・育成おすすめキャラなど、
+    中国版データを確認しながら順次追加します。
+  </div>
+
+</section>
+
+
+<div class="notice">
+
+  <strong>🇨🇳 中国版データについて</strong>
+
+  <br><br>
+
+  本ページは中国版「洛克王国：世界」の情報をもとに、
+  日本ユーザー向けに整理しています。
+
+  <br><br>
+
+  日本版で正式名称・育成方法・進化条件などが
+  変更された場合は、日本版の情報を優先して更新します。
+
+  <br><br>
+
+  現在掲載している一部の日本語名称は仮表記です。
+
+</div>
+
+
+</main>
+
+</body>
+</html>
