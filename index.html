@@ -7,7 +7,7 @@
   <title>ロコキングダム速報 | Roco Kingdom 日本語情報</title>
 
   <meta name="description"
-        content="Roco Kingdom（洛克王国：世界）の日本向け非公式情報サイト。CBT、Creator Program、イベント、事前登録、最新ニュースなどを日本語でまとめています。">
+        content="Roco Kingdom（洛克王国：世界）の日本向け非公式情報サイト。キャラ図鑑、CBT、Creator Program、イベント、事前登録、最新ニュースなどを日本語でまとめています。">
 
   <meta name="robots" content="index,follow">
 
@@ -19,7 +19,7 @@
   <meta property="og:locale" content="ja_JP">
   <meta property="og:site_name" content="ロコキングダム速報">
   <meta property="og:title" content="ロコキングダム速報｜Roco Kingdom 日本向け情報">
-  <meta property="og:description" content="Roco Kingdom（洛克王国：世界）のCBT、Creator Program、事前登録、報酬、公式ニュースなどを日本向けに整理する非公式ファンサイトです。">
+  <meta property="og:description" content="キャラ図鑑、CBT、Creator Program、事前登録、報酬、公式ニュースなど、Roco Kingdomの情報を日本向けに整理する非公式ファンサイトです。">
   <meta property="og:url" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/">
   <meta property="og:image" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/645A3AFD-40E9-429D-B26E-D2A823C1581D.png">
   <meta property="og:image:type" content="image/png">
@@ -30,7 +30,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://jstyh4rfpk-ai.github.io/roco-kingdom-jp/645A3AFD-40E9-429D-B26E-D2A823C1581D.png">
   <meta name="twitter:title" content="ロコキングダム速報｜Roco Kingdom 日本向け情報">
-  <meta name="twitter:description" content="CBT・Creator Program・事前登録・報酬・公式ニュースなど、Roco Kingdomの情報を日本向けに整理。">
+  <meta name="twitter:description" content="キャラ図鑑・CBT・Creator Program・事前登録・報酬・公式ニュースなど、Roco Kingdomの情報を日本向けに整理。">
 
   <script type="application/ld+json">
   {
@@ -75,10 +75,6 @@
       color: #1677d2;
     }
 
-    /* =========================
-       ヘッダー
-    ========================= */
-
     header {
       padding: 55px 20px 45px;
       text-align: center;
@@ -116,10 +112,6 @@
       font-size: 14px;
     }
 
-    /* =========================
-       上部ナビ
-    ========================= */
-
     nav {
       position: sticky;
       top: 0;
@@ -142,21 +134,51 @@
       color: #17324d;
       text-decoration: none;
       font-weight: 700;
-      white-space: normal;
     }
 
-    /* =========================
-       メイン
-    ========================= */
+    nav a.pokedex-nav {
+      color: white;
+      background: linear-gradient(135deg,#1689e8,#45b5ff);
+      box-shadow: 0 3px 10px rgba(22,137,232,.25);
+    }
 
     main {
       width: min(920px, calc(100% - 28px));
       margin: 28px auto 60px;
     }
 
-    /* =========================
-       攻略ガイド
-    ========================= */
+    .pokedex-feature {
+      margin: 20px 0 26px;
+      padding: 22px;
+      border-radius: 22px;
+      color: white;
+      background:
+        linear-gradient(135deg,#1689e8,#56bdf5);
+      box-shadow: 0 9px 28px rgba(22,137,232,.24);
+    }
+
+    .pokedex-feature h2 {
+      margin: 0 0 8px;
+      font-size: 25px;
+    }
+
+    .pokedex-feature p {
+      margin: 0 0 17px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .pokedex-feature-button {
+      display: block;
+      padding: 14px 18px;
+      text-align: center;
+      border-radius: 14px;
+      background: white;
+      color: #126fc1;
+      text-decoration: none;
+      font-weight: 900;
+      box-shadow: 0 4px 12px rgba(0,0,0,.10);
+    }
 
     .guide-section {
       margin: 20px 0 26px;
@@ -190,30 +212,19 @@
     .guide-item {
       min-height: 110px;
       padding: 16px 8px;
-
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 6px;
-
       text-align: center;
       text-decoration: none;
-
       color: #17324d;
-      background:
-        linear-gradient(
-          180deg,
-          #f9fdff,
-          #eaf6ff
-        );
-
+      background: linear-gradient(180deg,#f9fdff,#eaf6ff);
       border: 1px solid #cfe5f5;
       border-radius: 15px;
-
       font-weight: 800;
       line-height: 1.35;
-
       transition:
         transform .15s ease,
         box-shadow .15s ease,
@@ -243,12 +254,7 @@
     }
 
     .guide-item.active {
-      background:
-        linear-gradient(
-          135deg,
-          #e2f5ff,
-          #f8fcff
-        );
+      background: linear-gradient(135deg,#e2f5ff,#f8fcff);
       border: 2px solid #55afe9;
     }
 
@@ -256,10 +262,6 @@
       opacity: .72;
       cursor: default;
     }
-
-    /* =========================
-       通常カード
-    ========================= */
 
     .card {
       margin: 20px 0;
@@ -276,25 +278,11 @@
       font-size: 24px;
     }
 
-    .news {
-      border-left: 6px solid #ff5757;
-    }
-
-    .creator {
-      border-left: 6px solid #8b69ff;
-    }
-
-    .cbt {
-      border-left: 6px solid #38a8ff;
-    }
-
-    .reward {
-      border-left: 6px solid #ffb52e;
-    }
-
-    .official {
-      border-left: 6px solid #40b878;
-    }
+    .news { border-left: 6px solid #ff5757; }
+    .creator { border-left: 6px solid #8b69ff; }
+    .cbt { border-left: 6px solid #38a8ff; }
+    .reward { border-left: 6px solid #ffb52e; }
+    .official { border-left: 6px solid #40b878; }
 
     .notice {
       padding: 15px 17px;
@@ -344,10 +332,6 @@
       background: #111;
     }
 
-    /* =========================
-       フッター
-    ========================= */
-
     footer {
       padding: 36px 20px 55px;
       text-align: center;
@@ -359,13 +343,18 @@
       color: #28445c;
     }
 
-    /* =========================
-       スマホ
-    ========================= */
-
     @media (max-width: 600px) {
       header {
         padding-top: 42px;
+      }
+
+      .pokedex-feature {
+        padding: 19px;
+        border-radius: 18px;
+      }
+
+      .pokedex-feature h2 {
+        font-size: 22px;
       }
 
       .guide-section {
@@ -422,22 +411,31 @@
   </div>
 </header>
 
-
 <nav>
+  <a class="pokedex-nav" href="pokedex.html">🐾 キャラ図鑑</a>
   <a href="#news">🔴 最新速報</a>
   <a href="#cbt">🎮 CBT</a>
   <a href="#creator">🎨 Creator</a>
   <a href="#reward">🎁 報酬</a>
-  <a href="#links">🔗 リンク</a>
   <a href="bbs.html">💬 掲示板</a>
 </nav>
 
-
 <main>
 
-  <!-- =========================
-       攻略ガイド
-  ========================== -->
+  <section class="pokedex-feature">
+
+    <h2>🐾 ロコキングダム キャラ図鑑</h2>
+
+    <p>
+      中国版「洛克王国：世界」のキャラクター情報を日本語で整理中！
+      種族値・属性・特性・習得技・進化・入手方法などを確認できます。
+    </p>
+
+    <a class="pokedex-feature-button" href="pokedex.html">
+      キャラ図鑑を見る →
+    </a>
+
+  </section>
 
   <section class="guide-section">
 
@@ -452,63 +450,54 @@
 
     <div class="guide-grid">
 
-      <!-- キャラ図鑑 -->
       <a class="guide-item active" href="pokedex.html">
         <span class="guide-icon">🐾</span>
         <span>キャラ図鑑</span>
         <small>中国版データ対応</small>
       </a>
 
-      <!-- 属性相性 -->
       <div class="guide-item preparing">
         <span class="guide-icon">🔥</span>
         <span>属性相性</span>
         <small>準備中</small>
       </div>
 
-      <!-- おすすめキャラ -->
       <div class="guide-item preparing">
         <span class="guide-icon">⭐</span>
         <span>おすすめキャラ</span>
         <small>準備中</small>
       </div>
 
-      <!-- 育成・進化 -->
       <div class="guide-item preparing">
         <span class="guide-icon">🌱</span>
         <span>育成・進化</span>
         <small>準備中</small>
       </div>
 
-      <!-- 技一覧 -->
       <div class="guide-item preparing">
         <span class="guide-icon">⚔️</span>
         <span>技一覧</span>
         <small>準備中</small>
       </div>
 
-      <!-- アイテム -->
       <div class="guide-item preparing">
         <span class="guide-icon">🎒</span>
         <span>アイテム</span>
         <small>準備中</small>
       </div>
 
-      <!-- マップ攻略 -->
       <div class="guide-item preparing">
         <span class="guide-icon">🗺️</span>
         <span>マップ攻略</span>
         <small>準備中</small>
       </div>
 
-      <!-- 初心者攻略 -->
       <div class="guide-item preparing">
         <span class="guide-icon">🔰</span>
         <span>初心者攻略</span>
         <small>準備中</small>
       </div>
 
-      <!-- 掲示板 -->
       <a class="guide-item" href="bbs.html">
         <span class="guide-icon">💬</span>
         <span>攻略掲示板</span>
@@ -519,14 +508,16 @@
 
   </section>
 
-
-  <!-- =========================
-       最新速報
-  ========================== -->
-
   <section class="card news" id="news">
 
     <h2>🔴 最新速報</h2>
+
+    <div class="item">
+      <span class="date">2026/10/04</span>
+      <strong>キャラクター図鑑を公開</strong>
+      中国版データをもとに、キャラクターの種族値・属性・特性・
+      習得技・進化・入手方法などを順次追加しています。
+    </div>
 
     <div class="item">
       <span class="date">2026/10/03</span>
@@ -549,11 +540,6 @@
     </div>
 
   </section>
-
-
-  <!-- =========================
-       CBT
-  ========================== -->
 
   <section class="card cbt" id="cbt">
 
@@ -580,11 +566,6 @@
 
   </section>
 
-
-  <!-- =========================
-       Creator Program
-  ========================== -->
-
   <section class="card creator" id="creator">
 
     <h2>🎨 Creator Program</h2>
@@ -606,11 +587,6 @@
 
   </section>
 
-
-  <!-- =========================
-       限定報酬
-  ========================== -->
-
   <section class="card reward" id="reward">
 
     <h2>🎁 限定報酬・イベント</h2>
@@ -627,11 +603,6 @@
     </div>
 
   </section>
-
-
-  <!-- =========================
-       関連リンク
-  ========================== -->
 
   <section class="card official" id="links">
 
@@ -651,11 +622,6 @@
 
   </section>
 
-
-  <!-- =========================
-       このサイトについて
-  ========================== -->
-
   <section class="card">
 
     <h2>📢 このサイトについて</h2>
@@ -668,7 +634,7 @@
 
     <p>
       公式発表を確認しながら、
-      CBT・Creator Program・イベント・報酬などを
+      攻略情報・CBT・Creator Program・イベント・報酬などを
       分かりやすく整理することを目的としています。
     </p>
 
@@ -685,7 +651,6 @@
 
 </main>
 
-
 <footer>
 
   <p>
@@ -694,7 +659,7 @@
   </p>
 
   <p>
-    最終情報確認：2026年10月3日
+    最終情報確認：2026年10月4日
   </p>
 
   <p>
