@@ -1303,9 +1303,9 @@
     {title:"📘 攻略情報", desc:"育成・進化・初心者向け攻略", url:"beginner.html", keys:"攻略 初心者 序盤 育成 進化 レベル"}
   ];
 
-  /* characters.js がある場合は、キャラクターを検索候補へ自動追加 */
-  if (Array.isArray(window.characters)) {
-    window.characters.forEach(character => {
+  /* characters.js のキャラクターデータを検索候補へ自動追加 */
+  if (typeof characters !== "undefined" && Array.isArray(characters)) {
+    characters.forEach(character => {
       const key = String(character.key || "");
       const dex = String(
         character.dexNo ?? character.dex ?? character.number ?? character.no ?? ""
@@ -1326,7 +1326,17 @@
         title: "🐾 " + (name || cn),
         desc: "キャラクター" + (dex ? "・図鑑NO." + dex : "") + (cn ? "・" + cn : ""),
         url: "character.html?key=" + encodeURIComponent(key),
-        keys: ["キャラ","キャラクター","図鑑",name,cn,dex,type].join(" ")
+        keys: [
+          "キャラ","キャラクター","図鑑",name,cn,dex,type,
+          character.formName || "",
+          character.chineseFormName || "",
+          character.ability?.name || "",
+          character.ability?.chineseName || "",
+          character.ability?.description || "",
+          JSON.stringify(character.skills || ""),
+          JSON.stringify(character.obtain || ""),
+          JSON.stringify(character.evolution || "")
+        ].join(" ")
       });
     });
   }
