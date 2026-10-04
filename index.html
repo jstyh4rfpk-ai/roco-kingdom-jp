@@ -1294,6 +1294,177 @@
     {title:"⭐ おすすめキャラ", desc:"評価・特徴", url:"ranking.html", keys:"おすすめ キャラ ランキング 評価 特徴"},
     {title:"🌱 育成・進化", desc:"レベル・進化情報", url:"training.html", keys:"育成 進化 レベル"},
     {title:"⚔️ 技一覧", desc:"技・スキル検索", url:"skills.html", keys:"技 スキル 一覧"},
+    {title:"🎒 アイテム", desc:"素材・アイテム情報", url:"items.html", keys:"アイテム 素材 道具 入手"},
+    {title:"🗺️ マップ攻略", desc:"エリア・探索情報", url:"map.html", keys:"マップ 地図 エリア 場所 フィールド 探索 攻略"},
+    {title:"🔰 初心者攻略", desc:"序盤ガイド", url:"beginner.html", keys:"初心者 序盤 ガイド 攻略"}
+  ];
+
+  function addCharacterAndSkillData(){
+    if (typeof characters === "undefined" || !Array.isArray(characters)) return;
+
+    const skillMap = new Map();
+
+    characters.forEach(character => {
+      const key = String(character.key || "");
+      const dex = String(character.dexNo ?? character.dex ?? character.number ?? character.no ?? "");
+      const name = String(character.nameJa ?? character.nameJP ?? character.name ?? character.japaneseName ?? "");
+      const cn = String(character.nameZh ?? character.nameCN ?? character.chineseName ?? "");
+      const type = Array.isArray(character.types) ? character.types.join(" ") : String(character.type || "");
+
+      if (key && (name || cn)) {
+        pages.push({
+          title:"🐾 " + (name || cn),
+          desc:"キャラクター" + (dex ? "・図鑑NO." + dex : "") + (cn ? "・" + cn : ""),
+          url:"character.html?key=" + encodeURIComponent(key),
+          keys:[
+            "キャラ","キャラクター","図鑑",name,cn,dex,type,
+            character.formName || "",
+            character.chineseFormName || "",
+            character.ability?.name || "",
+            character.ability?.chineseName || "",
+            character.ability?.description || "",
+            JSON.stringify(character.obtain || ""),
+            JSON.stringify(character.evolution || "")
+          ].join(" ")
+        });
+      }
+
+      const raw = character.skills;
+      if (!raw) return;
+
+      const groups = [];
+      if (Array.isArray(raw)) {
+        groups.push(raw);
+      } else {
+        if (Array.isArray(raw.level)) groups.push(raw.level);
+        if (Array.isArray(raw.stone)) groups.push(raw.stone);
+        if (Array.isArray(raw.bloodline)) groups.push(raw.bloodline);
+      }
+
+      groups.flat().forEach(skill => {
+        if (!skill || typeof skill !== "object") return;
+        const skillName = String(skill.nameJa ?? skill.nameJP ?? skill.name ?? skill.japaneseName ?? "");
+        const skillCn = String(skill.nameZh ?? skill.nameCN ?? skill.chineseName ?? "");
+        if (!skillName && !skillCn) return;
+
+        const id = [skillName, skillCn].join("|");
+        if (!skillMap.has(id)) {
+          skillMap.set(id, {
+            title:"⚔️ " + (skillName || skillCn),
+            desc:"技・スキル" + (skillCn ? "・" + skillCn : ""),
+            url:"skills.html?q=" + encodeURIComponent(skillName || skillCn),
+            keys:[
+              "技","スキル","わざ",skillName,skillCn,
+              skill.type || "", skill.category || "",
+              skill.effect || "", skill.description || "",
+              name,cn
+            ].join(" ")
+          });
+        } else {
+          const old = skillMap.get(id);
+          old.keys += " " + name + " " + cn;
+        }
+      });
+    });
+
+    pages.push(...skillMap.values());
+  }
+
+  addCharacterAndSkillData();
+
+  /*
+    map.html / items.html は現在それぞれ areas / items の配列を持つ設計。
+    ブラウザは別HTMLのJavaScript変数を直接読めないため、
+    今は検索語を該当ページへ引き継ぐ。
+    今後データを共通JS化すれば、個別エリア・個別アイテムも
+    トップ画面に直接候補表示できる。
+  */
+
+  const input = document.getElementById("siteSearchInput");
+  const results = document.getElementById("siteSearchResults");
+  const clear = document.getElementById("siteSearchClear");
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  }
+
+  function withQuery(url, q){
+    if (!q || url.startsWith("#") || url.includes("?q=")) return url;
+    if (url === "map.html" || url === "items.html" || url === "skills.html") {
+      return url + "?q=" + encodeURIComponent(q);
+    }
+    return url;
+  }
+
+  function render(){
+    const raw = input.value.trim();
+    const q = raw.toLowerCase();
+
+    if (!q) {
+      results.classList.remove("show");
+      results.innerHTML = "";
+      return;
+    }
+
+    const words = q.split(/\s+/).filter(Boolean);
+
+    let found = pages
+      .filter(p => {
+        const hay = (p.title+" "+p.desc+" "+p.keys).toLowerCase();
+        return words.every(w => hay.includes(w));
+      })
+      .sort((a,b) => {
+        const at = a.title.toLowerCase();
+        const bt = b.title.toLowerCase();
+        const aq = at.includes(q) ? 0 : 1;
+        const bq = bt.includes(q) ? 0 : 1;
+        return aq - bq;
+      })
+      .slice(0, 30);
+
+    const direct = [
+      {title:"🗺️ マップで「"+raw+"」を検索", desc:"エリア・出現キャラ・収集物・強敵から検索", url:"map.html?q="+encodeURIComponent(raw), keys:""},
+      {title:"🎒 アイテムで「"+raw+"」を検索", desc:"名称・用途・入手方法から検索", url:"items.html?q="+encodeURIComponent(raw), keys:""},
+      {title:"⚔️ 技で「"+raw+"」を検索", desc:"技名・中国名・キャラ名から検索", url:"skills.html?q="+encodeURIComponent(raw), keys:""}
+    ];
+
+    // 個別候補が少ない場合でも、3カテゴリへその検索語を渡せるようにする。
+    direct.forEach(d => {
+      if (!found.some(f => f.url === d.url)) found.push(d);
+    });
+
+    results.classList.add("show");
+
+    results.innerHTML = found.map(p => {
+      const url = withQuery(p.url, raw);
+      return '<a class="site-search-result" href="'+esc(url)+'"><strong>'+esc(p.title)+'</strong><span>'+esc(p.desc)+'</span></a>';
+    }).join("");
+  }
+
+  input.addEventListener("input", render);
+
+  clear.addEventListener("click", () => {
+    input.value = "";
+    render();
+    input.focus();
+  });
+})();
+</script>
+
+<script>
+(() => {
+  const pages = [
+    {title:"🔴 最新速報", desc:"最新ニュース・更新情報", url:"#news", keys:"最新 速報 ニュース 更新"},
+    {title:"🎮 CBT", desc:"クローズドβテスト情報", url:"#cbt", keys:"cbt ベータ テスト 当選"},
+    {title:"🎨 Creator", desc:"クリエイター関連情報", url:"#creator", keys:"creator クリエイター"},
+    {title:"🎁 報酬", desc:"限定・配布・参加報酬", url:"#reward", keys:"報酬 限定 配布 特典"},
+    {title:"🔗 リンク", desc:"公式・関連リンク", url:"#links", keys:"リンク 公式"},
+    {title:"💬 掲示板", desc:"攻略・情報交換", url:"bbs.html", keys:"掲示板 bbs 情報交換"},
+    {title:"🐾 キャラ図鑑", desc:"キャラクター検索・図鑑", url:"pokedex.html", keys:"キャラ キャラクター 図鑑 中国名 属性 形態 お気に入り"},
+    {title:"🔥 属性相性", desc:"弱点・耐性を確認", url:"type.html", keys:"属性 相性 弱点 耐性"},
+    {title:"⭐ おすすめキャラ", desc:"評価・特徴", url:"ranking.html", keys:"おすすめ キャラ ランキング 評価 特徴"},
+    {title:"🌱 育成・進化", desc:"レベル・進化情報", url:"training.html", keys:"育成 進化 レベル"},
+    {title:"⚔️ 技一覧", desc:"技・スキル検索", url:"skills.html", keys:"技 スキル 一覧"},
     {title:"🎒 アイテム", desc:"素材・アイテム情報", url:"items.html", keys:"アイテム 素材"},
     {title:"🗺️ マップ攻略", desc:"エリア・探索情報", url:"map.html", keys:"マップ エリア 探索 攻略"},
     {title:"🔰 初心者攻略", desc:"序盤ガイド", url:"beginner.html", keys:"初心者 序盤 ガイド 攻略"},
