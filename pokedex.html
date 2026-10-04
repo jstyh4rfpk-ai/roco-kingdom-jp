@@ -28,7 +28,6 @@ body{
   background:#f1f8fd;
 }
 
-
 /* ========================================
    ヘッダー
 ======================================== */
@@ -61,7 +60,6 @@ header p{
   border-bottom:1px solid #dceaf4;
 }
 
-
 /* ========================================
    メイン
 ======================================== */
@@ -91,7 +89,6 @@ main{
   font-size:13px;
   line-height:1.8;
 }
-
 
 /* ========================================
    登録状況
@@ -128,7 +125,6 @@ main{
   font-weight:800;
 }
 
-
 /* ========================================
    検索
 ======================================== */
@@ -153,7 +149,6 @@ main{
   box-shadow:
     0 0 0 3px rgba(82,175,231,.12);
 }
-
 
 /* ========================================
    属性フィルター
@@ -194,7 +189,6 @@ main{
   color:white;
 }
 
-
 /* ========================================
    件数
 ======================================== */
@@ -205,7 +199,6 @@ main{
   font-size:14px;
   font-weight:800;
 }
-
 
 /* ========================================
    図鑑
@@ -243,6 +236,23 @@ main{
     0 8px 22px rgba(30,90,130,.13);
 }
 
+/* ========================================
+   未確認カード
+======================================== */
+
+.character-unconfirmed{
+  cursor:default;
+}
+
+.character-unconfirmed:hover{
+  transform:none;
+  box-shadow:
+    0 4px 14px rgba(30,90,130,.07);
+}
+
+.character-unconfirmed:active{
+  transform:none;
+}
 
 /* ========================================
    キャラ画像
@@ -283,7 +293,6 @@ main{
   font-weight:900;
 }
 
-
 /* ========================================
    複数形態バッジ
 ======================================== */
@@ -303,7 +312,6 @@ main{
   box-shadow:
     0 2px 7px rgba(30,90,130,.08);
 }
-
 
 /* ========================================
    キャラ情報
@@ -326,6 +334,10 @@ main{
   font-weight:900;
 }
 
+.character-unconfirmed .character-name{
+  color:#7b8e9d;
+}
+
 .chinese-name{
   margin-top:1px;
   color:#899ba9;
@@ -345,7 +357,6 @@ main{
   font-size:11px;
   font-weight:800;
 }
-
 
 /* ========================================
    属性色
@@ -376,7 +387,6 @@ main{
   font-size:12px;
 }
 
-
 /* ========================================
    0件
 ======================================== */
@@ -389,7 +399,6 @@ main{
   border-radius:17px;
   color:#748b9e;
 }
-
 
 /* ========================================
    注意書き
@@ -406,7 +415,6 @@ main{
   line-height:1.8;
 }
 
-
 /* ========================================
    PC
 ======================================== */
@@ -419,7 +427,6 @@ main{
   }
 
 }
-
 
 /* ========================================
    小型スマホ
@@ -440,9 +447,7 @@ main{
 </style>
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -456,7 +461,6 @@ main{
 
 </header>
 
-
 <a
   class="back"
   href="index.html">
@@ -465,9 +469,7 @@ main{
 
 </a>
 
-
 <main>
-
 
 <section class="info">
 
@@ -485,7 +487,6 @@ main{
   </p>
 
 </section>
-
 
 <!-- ======================================
      登録状況
@@ -509,7 +510,6 @@ main{
 
   </div>
 
-
   <div class="summary-box">
 
     <span
@@ -528,7 +528,6 @@ main{
 
 </div>
 
-
 <!-- ======================================
      検索
 ====================================== -->
@@ -542,7 +541,6 @@ main{
 
 </div>
 
-
 <!-- ======================================
      属性
 ====================================== -->
@@ -553,127 +551,87 @@ main{
     属性から探す
   </div>
 
-
   <div class="types">
 
-    <button
-      class="type-btn active"
-      data-type="all">
+    <button class="type-btn active" data-type="all">
       すべて
     </button>
 
-    <button
-      class="type-btn"
-      data-type="normal">
+    <button class="type-btn" data-type="normal">
       ⚪ 普通
     </button>
 
-    <button
-      class="type-btn"
-      data-type="grass">
+    <button class="type-btn" data-type="grass">
       🌿 草
     </button>
 
-    <button
-      class="type-btn"
-      data-type="fire">
+    <button class="type-btn" data-type="fire">
       🔥 火
     </button>
 
-    <button
-      class="type-btn"
-      data-type="water">
+    <button class="type-btn" data-type="water">
       💧 水
     </button>
 
-    <button
-      class="type-btn"
-      data-type="light">
+    <button class="type-btn" data-type="light">
       ✨ 光
     </button>
 
-    <button
-      class="type-btn"
-      data-type="ground">
+    <button class="type-btn" data-type="ground">
       ⛰️ 地
     </button>
 
-    <button
-      class="type-btn"
-      data-type="ice">
+    <button class="type-btn" data-type="ice">
       ❄️ 氷
     </button>
 
-    <button
-      class="type-btn"
-      data-type="dragon">
+    <button class="type-btn" data-type="dragon">
       🐉 龍
     </button>
 
-    <button
-      class="type-btn"
-      data-type="electric">
+    <button class="type-btn" data-type="electric">
       ⚡ 電気
     </button>
 
-    <button
-      class="type-btn"
-      data-type="poison">
+    <button class="type-btn" data-type="poison">
       ☠️ 毒
     </button>
 
-    <button
-      class="type-btn"
-      data-type="bug">
+    <button class="type-btn" data-type="bug">
       🐛 虫
     </button>
 
-    <button
-      class="type-btn"
-      data-type="fighting">
+    <button class="type-btn" data-type="fighting">
       👊 武
     </button>
 
-    <button
-      class="type-btn"
-      data-type="wing">
+    <button class="type-btn" data-type="wing">
       🪽 翼
     </button>
 
-    <button
-      class="type-btn"
-      data-type="cute">
+    <button class="type-btn" data-type="cute">
       💕 萌
     </button>
 
-    <button
-      class="type-btn"
-      data-type="ghost">
+    <button class="type-btn" data-type="ghost">
       👻 幽
     </button>
 
-    <button
-      class="type-btn"
-      data-type="dark">
+    <button class="type-btn" data-type="dark">
       😈 悪
     </button>
 
-    <button
-      class="type-btn"
-      data-type="machine">
+    <button class="type-btn" data-type="machine">
       ⚙️ 機械
     </button>
 
-    <button
-      class="type-btn"
-      data-type="illusion">
+    <button class="type-btn" data-type="illusion">
       🔮 幻
     </button>
 
   </div>
 
 </section>
-
 
 <!-- ======================================
      件数
@@ -689,7 +647,6 @@ main{
 
 </div>
 
-
 <!-- ======================================
      図鑑
 ====================================== -->
@@ -699,7 +656,6 @@ main{
   id="pokedex">
 </div>
 
-
 <div
   class="no-results"
   id="noResults">
@@ -707,7 +663,6 @@ main{
   🔍 条件に一致するキャラクターがいません。
 
 </div>
-
 
 <div class="translation-note">
 
@@ -739,12 +694,9 @@ main{
 
 </div>
 
-
 </main>
 
-
 <script src="characters.js"></script>
-
 
 <script>
 
@@ -789,7 +741,6 @@ const formTotal =
 
 let selectedType = "all";
 
-
 /* ==========================================
    図鑑番号
 ========================================== */
@@ -804,7 +755,6 @@ function getDexNo(character){
   );
 
 }
-
 
 /* ==========================================
    同じ番号の全形態
@@ -822,7 +772,6 @@ function getAllForms(character){
 
 }
 
-
 /* ==========================================
    代表形態を取得
 
@@ -836,7 +785,6 @@ function getMainCharacters(){
 
   const groups =
     new Map();
-
 
   characters.forEach(
     character => {
@@ -862,9 +810,7 @@ function getMainCharacters(){
     }
   );
 
-
   const result = [];
-
 
   groups.forEach(
     forms => {
@@ -874,18 +820,15 @@ function getMainCharacters(){
           character =>
             character.form === "main"
         )
-
         ||
 
         forms.find(
           character =>
             character.isBossForm !== true
         )
-
         ||
 
         forms[0];
-
 
       if(main){
 
@@ -896,7 +839,6 @@ function getMainCharacters(){
     }
   );
 
-
   result.sort(
     (a,b) =>
       Number(a.id)
@@ -904,11 +846,107 @@ function getMainCharacters(){
       Number(b.id)
   );
 
-
   return result;
 
 }
 
+/* ==========================================
+   未確認データ判定
+========================================== */
+
+function isUnconfirmedCharacter(
+  character
+){
+
+  if(!character){
+    return true;
+  }
+
+  const hasName =
+    character.name !== null
+    &&
+    character.name !== undefined
+    &&
+    String(character.name).trim() !== "";
+
+  const hasChineseName =
+    character.chineseName !== null
+    &&
+    character.chineseName !== undefined
+    &&
+    String(character.chineseName).trim() !== "";
+
+  const hasType =
+    Array.isArray(character.type)
+    &&
+    character.type.length > 0;
+
+  /*
+    625まで作成した空枠は、
+    名前・中国名・属性などが未確認なので
+    詳細ページへ移動させない。
+
+    一方、既存キャラで種族値だけ未確認の場合は
+    詳細ページを利用できる。
+  */
+
+  return (
+    !hasName
+    &&
+    !hasChineseName
+    &&
+    !hasType
+  );
+
+}
+
+/* ==========================================
+   表示名
+========================================== */
+
+function getDisplayName(
+  character
+){
+
+  if(
+    character.name === null
+    ||
+    character.name === undefined
+    ||
+    String(character.name).trim() === ""
+  ){
+
+    return "未確認";
+
+  }
+
+  return character.name;
+
+}
+
+/* ==========================================
+   中国名
+========================================== */
+
+function getChineseName(
+  character
+){
+
+  if(
+    character.chineseName === null
+    ||
+    character.chineseName === undefined
+    ||
+    String(character.chineseName).trim() === ""
+  ){
+
+    return "未確認";
+
+  }
+
+  return character.chineseName;
+
+}
 
 /* ==========================================
    画像
@@ -922,17 +960,15 @@ function createImage(character){
 
       <img
         src="${character.image}"
-        alt="${character.name}"
+        alt="${getDisplayName(character)}"
         loading="lazy">
 
     `;
 
   }
 
-
   const firstType =
     character.type?.[0];
-
 
   return (
     typeData[firstType]?.icon
@@ -942,56 +978,67 @@ function createImage(character){
 
 }
 
-
 /* ==========================================
    属性
 ========================================== */
 
 function createTypes(character){
 
-  return (
+  const types =
+    Array.isArray(character.type)
+    ?
     character.type
-    ||
-    []
-  )
-  .map(
-    (type,index) => {
+    :
+    [];
 
-      const displayName =
-        character.typeName?.[index]
-        ||
-        typeData[type]?.name
-        ||
-        type;
+  if(types.length === 0){
 
+    return `
+      <span
+        class="type-label"
+        style="background:#9aaab5">
+        未確認
+      </span>
+    `;
 
-      const icon =
-        typeData[type]?.icon
-        ||
-        "";
+  }
 
+  return types
+    .map(
+      (type,index) => {
 
-      return `
+        const displayName =
+          character.typeName?.[index]
+          ||
+          typeData[type]?.name
+          ||
+          type;
 
-        <span
-          class="
-            type-label
-            type-${type}
-          ">
+        const icon =
+          typeData[type]?.icon
+          ||
+          "";
 
-          ${icon}
-          ${displayName}
+        return `
 
-        </span>
+          <span
+            class="
+              type-label
+              type-${type}
+            ">
 
-      `;
+            ${icon}
+            ${displayName}
 
-    }
-  )
-  .join("");
+          </span>
+
+        `;
+
+      }
+    )
+    .join("");
 
 }
-
 
 /* ==========================================
    検索文字列
@@ -1004,7 +1051,6 @@ function getSearchText(character){
 
   const forms =
     getAllForms(character);
-
 
   return forms
     .map(
@@ -1035,7 +1081,6 @@ function getSearchText(character){
 
 }
 
-
 /* ==========================================
    属性検索
 
@@ -1052,10 +1097,8 @@ function matchesType(
     return true;
   }
 
-
   const forms =
     getAllForms(character);
-
 
   return forms.some(
     form =>
@@ -1065,7 +1108,6 @@ function matchesType(
   );
 
 }
-
 
 /* ==========================================
    カード
@@ -1078,18 +1120,36 @@ function createCharacterCard(
   const dexNo =
     getDexNo(character);
 
+  const unconfirmed =
+    isUnconfirmedCharacter(
+      character
+    );
+
+  const displayName =
+    getDisplayName(
+      character
+    );
+
+  const chineseName =
+    getChineseName(
+      character
+    );
 
   const temporary =
+    !unconfirmed
+    &&
     character.nameStatus === "仮"
-    ? "（仮）"
-    : "";
-
+    ?
+    "（仮）"
+    :
+    "";
 
   const forms =
     getAllForms(character);
 
-
   const formBadge =
+    !unconfirmed
+    &&
     forms.length > 1
     ?
     `
@@ -1100,16 +1160,108 @@ function createCharacterCard(
     :
     "";
 
-
   const total =
     character.total === null
     ||
     character.total === undefined
     ?
-    "確認中"
+    "未確認"
     :
     character.total;
 
+  const detailBadge =
+    unconfirmed
+    ?
+    ""
+    :
+    `
+      <span class="detail-badge">
+        詳細を見る ›
+      </span>
+    `;
+
+  const imageArea = `
+
+    <div class="character-image">
+
+      ${formBadge}
+      ${createImage(character)}
+      ${detailBadge}
+
+    </div>
+
+  `;
+
+  const infoArea = `
+
+    <div class="character-info">
+
+      <div class="number">
+
+        NO.${dexNo}
+
+      </div>
+
+      <div class="character-name">
+
+        ${displayName}
+        ${temporary}
+
+      </div>
+
+      <div class="chinese-name">
+
+        中国名：
+        ${chineseName}
+
+      </div>
+
+      <div class="character-types">
+
+        ${createTypes(character)}
+
+      </div>
+
+      <div class="total">
+
+        種族値合計：
+        ${total}
+
+      </div>
+
+    </div>
+
+  `;
+
+  /*
+    未確認枠は <a> にしない。
+    これでクリックしても
+    character.htmlへ移動しない。
+  */
+
+  if(unconfirmed){
+
+    return `
+
+      <div
+        class="
+          character
+          character-unconfirmed
+        ">
+
+        ${imageArea}
+        ${infoArea}
+
+      </div>
+
+    `;
+
+  }
+
+  /*
+    データ確認済みキャラは
+    今まで通り詳細ページへ移動。
+  */
 
   return `
 
@@ -1117,62 +1269,8 @@ function createCharacterCard(
       class="character"
       href="character.html?key=${encodeURIComponent(character.key)}">
 
-
-      <div class="character-image">
-
-        ${formBadge}
-
-        ${createImage(character)}
-
-        <span class="detail-badge">
-          詳細を見る ›
-        </span>
-
-      </div>
-
-
-      <div class="character-info">
-
-
-        <div class="number">
-
-          NO.${dexNo}
-
-        </div>
-
-
-        <div class="character-name">
-
-          ${character.name}
-          ${temporary}
-
-        </div>
-
-
-        <div class="chinese-name">
-
-          中国名：
-          ${character.chineseName || "確認中"}
-
-        </div>
-
-
-        <div class="character-types">
-
-          ${createTypes(character)}
-
-        </div>
-
-
-        <div class="total">
-
-          種族値合計：
-          ${total}
-
-        </div>
-
-
-      </div>
+      ${imageArea}
+      ${infoArea}
 
     </a>
 
@@ -1180,14 +1278,12 @@ function createCharacterCard(
 
 }
 
-
 /* ==========================================
    代表形態一覧
 ========================================== */
 
 const mainCharacters =
   getMainCharacters();
-
 
 /* ==========================================
    登録状況
@@ -1198,7 +1294,6 @@ dexTotal.textContent =
 
 formTotal.textContent =
   characters.length;
-
 
 /* ==========================================
    描画
@@ -1211,11 +1306,9 @@ function renderPokedex(){
       .trim()
       .toLowerCase();
 
-
   const filtered =
     mainCharacters.filter(
       character => {
-
 
         const searchMatch =
           getSearchText(
@@ -1225,13 +1318,11 @@ function renderPokedex(){
             keyword
           );
 
-
         const typeMatch =
           matchesType(
             character,
             selectedType
           );
-
 
         return (
           searchMatch
@@ -1242,7 +1333,6 @@ function renderPokedex(){
       }
     );
 
-
   pokedex.innerHTML =
     filtered
       .map(
@@ -1250,10 +1340,8 @@ function renderPokedex(){
       )
       .join("");
 
-
   count.textContent =
     filtered.length;
-
 
   noResults.style.display =
     filtered.length === 0
@@ -1264,7 +1352,6 @@ function renderPokedex(){
 
 }
 
-
 /* ==========================================
    検索
 ========================================== */
@@ -1273,7 +1360,6 @@ search.addEventListener(
   "input",
   renderPokedex
 );
-
 
 /* ==========================================
    属性ボタン
@@ -1286,7 +1372,6 @@ buttons.forEach(
       "click",
       () => {
 
-
         buttons.forEach(
           btn =>
             btn.classList.remove(
@@ -1294,15 +1379,12 @@ buttons.forEach(
             )
         );
 
-
         button.classList.add(
           "active"
         );
 
-
         selectedType =
           button.dataset.type;
-
 
         renderPokedex();
 
@@ -1312,7 +1394,6 @@ buttons.forEach(
   }
 );
 
-
 /* ==========================================
    初期表示
 ========================================== */
@@ -1320,7 +1401,6 @@ buttons.forEach(
 renderPokedex();
 
 </script>
-
 
 </body>
 </html>
