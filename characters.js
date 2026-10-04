@@ -58,7 +58,7 @@ const characters = [
     "001-holy-fire-dimo",
     "001-holy-water-dimo"
   ],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"魔法增效",type:"normal",typeName:"普通",category:"status",categoryName:"状態",power:null,energy:0,level:7,description:"自身の魔攻+70%。",dataStatus:"confirmed"},{name:null,chineseName:"漫反射",type:"light",typeName:"光",category:"status",categoryName:"状態",power:null,energy:1,level:30,description:"各属性につき最大1つの技の威力+35。",dataStatus:"confirmed"},{name:null,chineseName:"过曝",type:"light",typeName:"光",category:"magic",categoryName:"魔攻",power:60,energy:3,level:42,description:"魔法ダメージ。これまで使用した他属性の技1種類につき、この技の威力が永続的に+30。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"partial",
   image:null
@@ -87,7 +87,7 @@ const characters = [
     "001-holy-fire-dimo",
     "001-holy-water-dimo"
   ],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"魔法增效",type:"normal",typeName:"普通",category:"status",categoryName:"状態",power:null,energy:0,level:7,description:"自身の魔攻+70%。",dataStatus:"confirmed"},{name:null,chineseName:"漫反射",type:"light",typeName:"光",category:"status",categoryName:"状態",power:null,energy:1,level:30,description:"各属性につき最大1つの技の威力+35。",dataStatus:"confirmed"},{name:null,chineseName:"放晴",type:"light",typeName:"光",category:"status",categoryName:"状態",power:null,energy:1,level:40,description:"光属性技の威力を永続的に+50%。防御への対応時は永続的に+100%。",dataStatus:"confirmed"},{name:null,chineseName:"过曝",type:"light",typeName:"光",category:"magic",categoryName:"魔攻",power:60,energy:3,level:42,description:"魔法ダメージ。これまで使用した他属性の技1種類につき、この技の威力が永続的に+30。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"partial",
   image:null
@@ -116,7 +116,7 @@ const characters = [
     "001-holy-fire-dimo",
     "001-holy-water-dimo"
   ],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"漫反射",type:"light",typeName:"光",category:"status",categoryName:"状態",power:null,energy:1,level:30,description:"各属性につき最大1つの技の威力+35。",dataStatus:"confirmed"},{name:null,chineseName:"过曝",type:"light",typeName:"光",category:"magic",categoryName:"魔攻",power:60,energy:3,level:42,description:"魔法ダメージ。これまで使用した他属性の技1種類につき、この技の威力が永続的に+30。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"partial",
   image:null
@@ -145,7 +145,7 @@ const characters = [
     "001-holy-fire-dimo",
     "001-holy-water-dimo"
   ],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"漫反射",type:"light",typeName:"光",category:"status",categoryName:"状態",power:null,energy:1,level:30,description:"各属性につき最大1つの技の威力+35。",dataStatus:"confirmed"},{name:null,chineseName:"过曝",type:"light",typeName:"光",category:"magic",categoryName:"魔攻",power:60,energy:3,level:42,description:"魔法ダメージ。これまで使用した他属性の技1種類につき、この技の威力が永続的に+30。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"partial",
   image:null
@@ -174,7 +174,7 @@ const characters = [
     "001-holy-fire-dimo",
     "001-holy-water-dimo"
   ],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"魔法增效",type:"normal",typeName:"普通",category:"status",categoryName:"状態",power:null,energy:0,level:7,description:"自身の魔攻+70%。",dataStatus:"confirmed"},{name:null,chineseName:"漫反射",type:"light",typeName:"光",category:"status",categoryName:"状態",power:null,energy:1,level:30,description:"各属性につき最大1つの技の威力+35。",dataStatus:"confirmed"},{name:null,chineseName:"过曝",type:"light",typeName:"光",category:"magic",categoryName:"魔攻",power:60,energy:3,level:42,description:"魔法ダメージ。これまで使用した他属性の技1種類につき、この技の威力が永続的に+30。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"partial",
   image:null
@@ -344,7 +344,7 @@ const characters = [
   ability:{chineseName:null,name:null,description:null},
   evolution:["006 焰火","007 火神"],
   forms:["005-huohua"],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"火苗",type:"fire",typeName:"火",category:"physical",categoryName:"物攻",power:30,energy:0,level:1,description:"物理ダメージを与え、自身のエネルギーを1回復。",dataStatus:"confirmed"},{name:null,chineseName:"火焰切割",type:"fire",typeName:"火",category:"physical",categoryName:"物攻",power:100,energy:3,level:8,description:"敵に物理ダメージを与える。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"partial",
   image:null
@@ -372,7 +372,7 @@ const characters = [
   ability:{chineseName:null,name:null,description:null},
   evolution:["007 火神"],
   forms:["006-yanhuo"],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"火苗",type:"fire",typeName:"火",category:"physical",categoryName:"物攻",power:30,energy:0,level:1,description:"物理ダメージを与え、自身のエネルギーを1回復。",dataStatus:"confirmed"},{name:null,chineseName:"火焰切割",type:"fire",typeName:"火",category:"physical",categoryName:"物攻",power:100,energy:3,level:8,description:"敵に物理ダメージを与える。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"partial",
   image:null
@@ -400,7 +400,7 @@ const characters = [
   ability:{chineseName:null,name:null,description:null},
   evolution:[],
   forms:["007-fire-god","007-fire-war-god"],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"火苗",type:"fire",typeName:"火",category:"physical",categoryName:"物攻",power:30,energy:0,level:1,description:"物理ダメージを与え、自身のエネルギーを1回復。",dataStatus:"confirmed"},{name:null,chineseName:"火焰切割",type:"fire",typeName:"火",category:"physical",categoryName:"物攻",power:100,energy:3,level:8,description:"敵に物理ダメージを与える。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"partial",
   image:null
@@ -434,7 +434,7 @@ const characters = [
   },
   evolution:[],
   forms:["007-fire-god","007-fire-war-god"],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"火苗",type:"fire",typeName:"火",category:"physical",categoryName:"物攻",power:30,energy:0,level:1,description:"物理ダメージを与え、自身のエネルギーを1回復。",dataStatus:"confirmed"},{name:null,chineseName:"火焰切割",type:"fire",typeName:"火",category:"physical",categoryName:"物攻",power:100,energy:3,level:8,description:"敵に物理ダメージを与える。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"confirmed",
   image:null
@@ -473,7 +473,7 @@ const characters = [
   },
   evolution:["009 波波拉","010 水灵"],
   forms:["008-shuilanlan"],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"甩水",type:"water",typeName:"水",category:"magic",categoryName:"魔攻",power:30,energy:0,level:6,description:"魔法ダメージを与え、自身のエネルギーを1回復。",dataStatus:"confirmed"},{name:null,chineseName:"水泡盾",type:"water",typeName:"水",category:"defense",categoryName:"防御",power:null,energy:2,level:12,description:"被ダメージ80%軽減。攻撃への対応時、自身の魔攻+70%。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"confirmed",
   image:null
@@ -512,7 +512,7 @@ const characters = [
   },
   evolution:["010 水灵"],
   forms:["009-bobola"],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"水泡盾",type:"water",typeName:"水",category:"defense",categoryName:"防御",power:null,energy:2,level:12,description:"被ダメージ80%軽減。攻撃への対応時、自身の魔攻+70%。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"confirmed",
   image:null
@@ -551,7 +551,7 @@ const characters = [
   },
   evolution:[],
   forms:["010-water-spirit","010-holy-water-guardian"],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"水泡盾",type:"water",typeName:"水",category:"defense",categoryName:"防御",power:null,energy:2,level:12,description:"被ダメージ80%軽減。攻撃への対応時、自身の魔攻+70%。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"confirmed",
   image:null
@@ -585,7 +585,7 @@ const characters = [
   },
   evolution:[],
   forms:["010-water-spirit","010-holy-water-guardian"],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"水泡盾",type:"water",typeName:"水",category:"defense",categoryName:"防御",power:null,energy:2,level:12,description:"被ダメージ80%軽減。攻撃への対応時、自身の魔攻+70%。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"confirmed",
   image:null
@@ -871,7 +871,7 @@ const characters = [
     "012-banbanke-normal",
     "012-banbanke-molting"
   ],
-  skills:{level:[],stone:[],bloodline:[]},
+  skills:{level:[{name:null,chineseName:"水泡盾",type:"water",typeName:"水",category:"defense",categoryName:"防御",power:null,energy:2,level:21,description:"被ダメージ80%軽減。攻撃への対応時、自身の魔攻+70%。",dataStatus:"confirmed"}],stone:[],bloodline:[]},
   acquisition:null,
   dataStatus:"confirmed",
   image:null
